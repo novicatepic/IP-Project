@@ -7,12 +7,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.unibl.etf.ip.bean.AdminBean;
+import org.unibl.etf.ip.bean.AttributeBean;
 import org.unibl.etf.ip.bean.CategoryBean;
 
 public class CategoryDAO {
 
 	private static ConnectionPool connectionPool = ConnectionPool.getConnectionPool();
 	private static final String SQL_SELECT_ONE = "SELECT * FROM kategorija WHERE id=?";
+	
+	private static final String SQL_SELECT_ATTRIBUTES = "SELECT * FROM atribut WHERE kategorija_id=?";
+	
 	private static final String SQL_SELECT_ALL = "SELECT * FROM kategorija";
 	private static final String SQL_INSERT = "INSERT INTO kategorija (naziv)"
 			+ " VALUES (?)";
@@ -42,6 +46,27 @@ public class CategoryDAO {
 			connectionPool.checkIn(connection);
 		}
 		return c;
+	}
+	
+	public static ArrayList<AttributeBean> selectAttributes(int id) {
+		ArrayList<AttributeBean> retVal = new ArrayList<AttributeBean>();
+		Connection connection = null;
+		ResultSet rs = null;
+		Object values[] = { id };
+		try {
+			connection = connectionPool.checkOut();
+			PreparedStatement pstmt = DAOUtil.prepareStatement(connection, SQL_SELECT_ATTRIBUTES, false, values);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				retVal.add(new AttributeBean(rs.getInt("id"), rs.getString("naziv"), rs.getString("vrijednost"), rs.getInt("kategorija_id")));
+			} 
+			pstmt.close();
+		} catch (SQLException exp) {
+			exp.printStackTrace();
+		} finally {
+			connectionPool.checkIn(connection);
+		}
+		return retVal;
 	}
 	
 	public static ArrayList<CategoryBean> selectAll() {

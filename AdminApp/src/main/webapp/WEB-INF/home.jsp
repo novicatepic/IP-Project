@@ -31,6 +31,10 @@
         <form action="?action=showstats" method="post">
             <div class="mb-3"><button class="btn btn-primary w-100">Statistics</button></div>
         </form>
+        
+        <form action="?action=newconsultant" method="post">
+            <div class="mb-3"><button class="btn btn-primary w-100">Consultants</button></div>
+        </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

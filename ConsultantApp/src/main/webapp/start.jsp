@@ -1,40 +1,57 @@
-<!DOCTYPE html>
+<%@page import="org.unibl.etf.ip.dao.ConsultantDAO"%>
+<%@page import="org.unibl.etf.ip.bean.ConsultantBean"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:useBean id="consultantBean" class="org.unibl.etf.ip.bean.ConsultantBean" scope="session"></jsp:useBean>   
+<jsp:setProperty property="username" name="consultantBean" param="username"></jsp:setProperty> 
+<jsp:setProperty property="password" name="consultantBean" param="password"></jsp:setProperty> 
+
 <html lang="en">
+
+<%
+	if(request.getParameter("submit") != null) {
+		ConsultantBean consultant = ConsultantDAO.selectOne(consultantBean.getUsername(), consultantBean.getPassword());
+		if(consultant != null) {
+			consultantBean.setFirstName(consultant.getUsername());
+			consultantBean.setLastName(consultant.getLastName());
+			consultantBean.setLoggedIn(true);
+			response.sendRedirect("messages.jsp");
+		} else {
+			session.setAttribute("notification", "Incorrect username/password");
+		}
+	} else {
+		session.setAttribute("notification", "");
+	}
+%>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
-
-<style>
+    <style>
     #maindiv {
         height: 100vh;
         background-color: aliceblue;
     }
-</style>
-
+    </style>
+</head>
 <body>
     
     <div id="maindiv" class="d-flex flex-column align-items-center justify-content-center">
-        <form method="post" action="?action=login">
+        <form method="post" action="start.jsp">
             <div class="form-group">
               <label for="username">Username</label>
-              <input required="required" type="text" name="username" class="form-control" id="username" placeholder="Username">
+              <input type="text" name="username" class="form-control" id="username" placeholder="Username">
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
               <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
           </form>
-          <div style="margin-top: 10px;"><p>Nisu korektni kredencijali</p></div> 
+          <div style="margin-top: 10px;"><p><%= session.getAttribute("notification")!=null ? session.getAttribute("notification") : "" %></p></div> 
     </div>
-
-    <form action="message.jsp" method="POST">
-      <input type="hidden" value="">
-      <button type="submit" class="btn btn-primary">Check out message</button>
-    </form>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

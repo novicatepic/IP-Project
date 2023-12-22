@@ -1,0 +1,2 @@
+ <p><a class="link-offset-2 link-underline link-underline-opacity-100 mb-10" href="?action=start">Start page</a></p>
+ <p><a class="link-offset-2 link-underline link-underline-opacity-100 mb-10" href="?action=logout">Logout</a></p>

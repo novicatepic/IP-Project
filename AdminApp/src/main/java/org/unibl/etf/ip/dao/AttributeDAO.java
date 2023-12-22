@@ -13,8 +13,8 @@ public class AttributeDAO {
 
 	private static ConnectionPool connectionPool = ConnectionPool.getConnectionPool();
 	private static final String SQL_SELECT_ALL = "SELECT * FROM atribut";
-	private static final String SQL_INSERT = "INSERT INTO atribut (naziv, vrijednost)"
-			+ " VALUES (?, ?)";
+	private static final String SQL_INSERT = "INSERT INTO atribut (naziv, vrijednost, kategorija_id)"
+			+ " VALUES (?, ?, ?)";
 	private static final String SQL_UPDATE = "UPDATE atribut SET naziv=?, vrijednost=? "
 			+ "WHERE id=?";
 	private static final String SQL_DELETE = "DELETE FROM atribut WHERE id=?";
@@ -29,7 +29,7 @@ public class AttributeDAO {
 			PreparedStatement pstmt = DAOUtil.prepareStatement(connection, SQL_SELECT_ALL, false, values);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				retVal.add(new AttributeBean(rs.getInt("id"), rs.getString("naziv"),  rs.getString("vrijednost")));
+				retVal.add(new AttributeBean(rs.getInt("id"), rs.getString("naziv"),  rs.getString("vrijednost"), rs.getInt("kategorija_id")));
 			}
 			pstmt.close();
 		} catch (SQLException exp) {
@@ -44,7 +44,7 @@ public class AttributeDAO {
 		boolean result = false;
 		Connection connection = null;
 		ResultSet generatedKeys = null;
-		Object values[] = { attribute.getName(), attribute.getValue() };
+		Object values[] = { attribute.getName(), attribute.getValue(), attribute.getCategory_id() };
 		try {
 			connection = connectionPool.checkOut();
 			PreparedStatement pstmt = DAOUtil.prepareStatement(connection, SQL_INSERT, true, values);

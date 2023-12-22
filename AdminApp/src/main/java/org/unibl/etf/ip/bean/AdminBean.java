@@ -10,6 +10,7 @@ public class AdminBean implements Serializable {
 	private String lastName;
 	private String username;
 	private String password;
+	private boolean loggedIn = false;
 	
 	public AdminBean() {
 		// TODO Auto-generated constructor stub
@@ -100,6 +101,20 @@ public class AdminBean implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
+
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+
+
+
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
+	}
+
+
 
 	@Override
 	public int hashCode() {

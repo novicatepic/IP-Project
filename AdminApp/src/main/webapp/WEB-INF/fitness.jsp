@@ -15,11 +15,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
     
+   <%@include file="./header.jsp" %>
     
+    <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#adduser">Add New Fitness User</button>
     
     <table class="table">
         <thead>
@@ -77,9 +80,55 @@
 
         </tbody>
       </table>
+      
+      <div class="modal fade" id="adduser" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="enrollLabel">Add Fitness User</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="lead">New Fitness User</p>
+          <form method="post" action="?action=addfitnessuser">
+            <div class="mb-3">
+                <label for="name" class="col-form-label">First name*</label>
+                <input id="name" name="name" type="text" class="form-control" required="required">
+            </div>
+            <div class="mb-3">
+                <label for="lastname" class="col-form-label">Last name*</label>
+                <input id="lastname" name="lastname" type="text" class="form-control" required="required">             
+            </div>
+            <div class="mb-3">
+                <label for="city" class="col-form-label">City*</label>
+                <input id="city" name="city" type="text" class="form-control" required="required">
+            </div>
+            <div class="mb-3">
+                <label for="username" class="col-form-label">User Name*</label>
+                <input id="username" name="username" type="text" class="form-control" required="required">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="col-form-label">Password*</label>
+                <input id="password" name="password" type="password" class="form-control" required="required">
+            </div>
+            <div class="mb-3">
+                <label for="avatar" class="col-form-label">Avatar</label>
+                <input id="avatar" name="avatar" type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="mail" class="col-form-label" >Mail*</label>
+                <input id="mail" name="mail" type="email" class="form-control" required="required">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 </html>

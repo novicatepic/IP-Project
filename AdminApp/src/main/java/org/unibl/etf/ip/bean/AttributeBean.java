@@ -7,18 +7,29 @@ public class AttributeBean implements Serializable {
 	private Integer id;
 	private String name;
 	private String value;
-	//private int category_id;
+	private int category_id;
 	
 	public AttributeBean() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AttributeBean(Integer id, String naziv, String vrijednost/*, int kategorija_id*/) {
+	
+	
+	public AttributeBean(String name, String value, int category_id) {
+		super();
+		this.name = name;
+		this.value = value;
+		this.category_id = category_id;
+	}
+
+
+
+	public AttributeBean(Integer id, String naziv, String vrijednost, int kategorija_id) {
 		super();
 		this.id = id;
 		this.name = naziv;
 		this.value = vrijednost;
-		//this.category_id = kategorija_id;
+		this.category_id = kategorija_id;
 	}
 
 	public Integer getId() {
@@ -45,13 +56,13 @@ public class AttributeBean implements Serializable {
 		this.value = vrijednost;
 	}
 
-	/*public int getCategory_id() {
+	public int getCategory_id() {
 		return category_id;
 	}
 
 	public void setCategory_id(int kategorija_id) {
 		this.category_id = kategorija_id;
-	}*/
+	}
 
 	
 	

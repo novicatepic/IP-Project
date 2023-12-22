@@ -1,0 +1,10 @@
+ADMIN app. :
+kategorija jedinstven naziv BP
+atribut za kategoriju jedinstven naziv aplikativno
+Fitness user unique username i mail BP 
+Consultants unique username BP
+Uraditi header samo malo druge boje da se razlikuje 
+odmaketi body da ne bude upetljano
+kod pop-up razmaknuti dugmice 
+Iste velicine dugmica na pocetnoj
+
