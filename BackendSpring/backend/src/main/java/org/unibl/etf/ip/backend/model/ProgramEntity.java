@@ -1,0 +1,146 @@
+package org.unibl.etf.ip.backend.model;
+
+import jakarta.persistence.*;
+
+import java.sql.Date;
+import java.util.Objects;
+
+@Entity
+@Table(name = "program", schema = "ip_project", catalog = "")
+public class ProgramEntity {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id", nullable = false)
+    private Integer id;
+    @Basic
+    @Column(name = "naziv", nullable = false, length = 200)
+    private String naziv;
+    @Basic
+    @Column(name = "opis", nullable = false, length = 2000)
+    private String opis;
+    @Basic
+    @Column(name = "cijena", nullable = false, precision = 0)
+    private Integer cijena;
+    @Basic
+    @Column(name = "tezina", nullable = false)
+    private Integer tezina;
+    @Basic
+    @Column(name = "trajanje", nullable = false, length = 10)
+    private String trajanje;
+    @Basic
+    @Column(name = "lokacija", nullable = false, length = 200)
+    private String lokacija;
+    @Basic
+    @Column(name = "kontakt", nullable = false, length = 45)
+    private String kontakt;
+    @Basic
+    @Column(name = "datum", nullable = false)
+    private Date datum;
+    @Basic
+    @Column(name = "ucestvovan", nullable = false)
+    private Byte ucestvovan;
+    @Basic
+    @Column(name = "aktivan", nullable = false)
+    private Byte aktivan;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "kreator_id", nullable = false)
+    private KorisnikEntity kreator;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNaziv() {
+        return naziv;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
+    public String getOpis() {
+        return opis;
+    }
+
+    public void setOpis(String opis) {
+        this.opis = opis;
+    }
+
+    public Integer getCijena() {
+        return cijena;
+    }
+
+    public void setCijena(Integer cijena) {
+        this.cijena = cijena;
+    }
+
+    public Integer getTezina() {
+        return tezina;
+    }
+
+    public void setTezina(Integer tezina) {
+        this.tezina = tezina;
+    }
+
+    public String getTrajanje() {
+        return trajanje;
+    }
+
+    public void setTrajanje(String trajanje) {
+        this.trajanje = trajanje;
+    }
+
+    public String getLokacija() {
+        return lokacija;
+    }
+
+    public void setLokacija(String lokacija) {
+        this.lokacija = lokacija;
+    }
+
+    public String getKontakt() {
+        return kontakt;
+    }
+
+    public void setKontakt(String kontakt) {
+        this.kontakt = kontakt;
+    }
+
+    public Date getDatum() {
+        return datum;
+    }
+
+    public void setDatum(Date datum) {
+        this.datum = datum;
+    }
+
+    public Byte getUcestvovan() {
+        return ucestvovan;
+    }
+
+    public void setUcestvovan(Byte ucestvovan) {
+        this.ucestvovan = ucestvovan;
+    }
+
+    public Byte getAktivan() {
+        return aktivan;
+    }
+
+    public void setAktivan(Byte aktivan) {
+        this.aktivan = aktivan;
+    }
+
+    public KorisnikEntity getKreatorId() {
+        return kreator;
+    }
+
+    public void setKreatorId(KorisnikEntity kreator) {
+        this.kreator = kreator;
+    }
+
+
+}

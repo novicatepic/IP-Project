@@ -1,0 +1,30 @@
+package org.unibl.etf.ip.backend.service;
+
+import com.rometools.rome.feed.synd.SyndEntry;
+import com.rometools.rome.feed.synd.SyndFeed;
+import com.rometools.rome.io.SyndFeedInput;
+import com.rometools.rome.io.XmlReader;
+import org.springframework.stereotype.Service;
+import org.unibl.etf.ip.backend.model.RSSModel;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class RSSService {
+
+    public List<RSSModel> fetchRssFeed() throws Exception {
+        List<RSSModel> result = new ArrayList<>();
+        URL url = new URL("https://feeds.feedburner.com/AceFitFacts");
+        try (XmlReader reader = new XmlReader(url)) {
+            SyndFeedInput input = new SyndFeedInput();
+            SyndFeed feed = input.build(reader);
+            List<SyndEntry> entries = feed.getEntries();
+            for(SyndEntry entry : entries) {
+                result.add(new RSSModel(entry.getTitle(), entry.getLink(), entry.getDescription().getValue()));
+            }
+            return result;
+        }
+    }
+}
