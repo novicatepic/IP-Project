@@ -181,22 +181,10 @@ public class Controller extends HttpServlet {
 		
 		//PrintWriter pw = response.getWriter();
 		
-		/*pw.println("<form action=\"message.jsp\" method=\"POST\">\r\n"
-				+ "      <input type=\"hidden\" value=\"\">\r\n"
-				+ "      <button type=\"submit\" class=\"btn btn-primary\">Check out message</button>\r\n"
-				+ "    </form>");*/
-		
-		//pw.println(" <button class=\"btn btn-success\" data-bs-toggle=\"modal\" data-bs-target=\"#addattribute\">Add Attribute</button>");
-		
-		/*pw.println("<td><form action=\"?action=updateCategory\" method=\"post\">\r\n"
-				+ "                <button class=\"btn btn-primary\">Update</button>\r\n"
-				+ "                <input type=\"text\" style=\"display: none;\" value=\""+"\">\r\n"
-				+ "            </form></td>\r\n"
-				+ "            <td><form action=\"?action=deleteCategory\" method=\"post\">\r\n"
-				+ "                <button class=\"btn btn-primary\">Delete</button>\r\n"
-				+ "                <input type=\"text\" style=\"display: none;\" value=\""+"\">\r\n"
-				+ "            </form></td>");*/
-		//pw.close();
+		/*pw.println("<div class=\"form-group\">\r\n"
+				+ "        <label for=\"fileInput\">Attach File:</label>\r\n"
+				+ "        <input type=\"file\" class=\"form-control-file\" id=\"fileInput\" name=\"fileInput\">\r\n"
+				+ "      </div>");*/
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);

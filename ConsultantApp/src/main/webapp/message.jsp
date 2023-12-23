@@ -1,3 +1,6 @@
+<%@page import="org.unibl.etf.ip.bean.FitnessUserBean"%>
+<%@page import="org.unibl.etf.ip.dao.MessageDAO"%>
+<%@page import="org.unibl.etf.ip.bean.MessageBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:useBean id="consultantBean" class="org.unibl.etf.ip.bean.ConsultantBean" scope="session"></jsp:useBean> 
@@ -6,6 +9,33 @@
 	if(!consultantBean.isLoggedIn()) {
 		response.sendRedirect("login.jsp");
 	}
+
+	MessageBean m = null;
+	if(request.getParameter("id") != null) {
+		m = MessageDAO.selectOne(Integer.valueOf(request.getParameter("id")));
+		
+		if(m == null) {
+			response.sendRedirect("messages.jsp");
+		}
+	}
+	
+	FitnessUserBean user = null;
+	if(m != null) {
+		user = MessageDAO.selectUserWhoWroteMessage(m.getUser_id());
+		session.setAttribute("currentUser", user);
+		if(request.getParameter("responseHidden") == null) {
+			MessageDAO.updateOneRead(m.getId());
+		}
+	}
+	
+	
+	if(request.getParameter("submit") != null) {
+		String responseText = request.getParameter("responseText");
+		System.out.println(responseText);
+		String file = request.getParameter("file");
+		System.out.println(file);
+	}
+	
 %>
 
 <!DOCTYPE html>
@@ -24,15 +54,39 @@
 </head>
 <body>
 
+<%@include file="./header.jsp" %>
+
 <div class="container">
   <div class="jumbotron">
-    <h1 class="display-4">Message Title</h1>
-    <p class="lead">Message Text goes here. You can add more details and information in this section.</p>
+    <h1 class="display-4"><%= m.getTitle() %></h1>
+    <p class="lead"><%= m.getText() %></p>
     <hr class="my-4">
-    <p>Author: John Doe</p>
-    <p>Date: December 22, 2023</p>
-    <p class="lead">This page is nice and responsive!</p>
-    <a class="btn btn-primary" href="messages.html">Go Back to Messages</a>
+    <p><%= user.getUsername() %></p>
+    <p><%= m.getDate() %></p>
+    
+    
+    <%
+    	if(request.getParameter("responseHidden") != null) {   		
+    		out.println("<form action=\"MessageServlet\" method=\"post\" enctype=\"multipart/form-data\">\r\n"
+    				+ "<div class=\"form-group\">\r\n"
+    				+ "        <label for=\"fileInput\">Attach File Or Image:</label>\r\n"
+    				+ "        <input type=\"file\" name=\"file\" class=\"form-control-file\" id=\"fileInput\" name=\"fileInput\">\r\n"
+    				+ "      </div>"
+    				+ "<input type=\"hidden\" name=\"id\" value=\"" + m.getId() + "\" >\r\n"
+    				+ "      <div class=\"form-group\">\r\n"
+    				+ "        <label for=\"response\">Your Response:</label>\r\n"
+    				+ "        <textarea class=\"form-control\" id=\"response\" name=\"responseText\" rows=\"3\" required></textarea>\r\n"
+    				+ "      </div>\r\n"
+    				+ "      <button type=\"submit\" name=\"submit\" class=\"btn btn-success\">Send Response</button>\r\n"
+    				+ "    </form>");
+    		
+    		
+    	} else {
+    		out.println("<p class=\"lead\">Message updated as read!</p>");
+    	}
+    %>
+    
+    <!-- a class="btn btn-primary" href="messages.html">Go Back to Messages</a> -->
   </div>
 </div>
 

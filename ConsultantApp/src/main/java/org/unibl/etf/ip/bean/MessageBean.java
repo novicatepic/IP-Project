@@ -6,21 +6,25 @@ import java.util.Date;
 public class MessageBean implements Serializable {
 
 	private int id;
+	private String title;
 	private String text;
 	private Date date;
-	private boolean read;
+	private boolean read = false;
+	private boolean responded = false;
 	private int user_id;
 	
 	public MessageBean() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MessageBean(int id, String text, Date date, boolean read, int user_id) {
+	public MessageBean(int id, String title, String text, Date date, boolean read, boolean responded, int user_id) {
 		super();
 		this.id = id;
+		this.title = title;
 		this.text = text;
 		this.date = date;
 		this.read = read;
+		this.responded = responded;
 		this.user_id = user_id;
 	}
 
@@ -62,6 +66,22 @@ public class MessageBean implements Serializable {
 
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public boolean isResponded() {
+		return responded;
+	}
+
+	public void setResponded(boolean responded) {
+		this.responded = responded;
 	}
 
 	@Override

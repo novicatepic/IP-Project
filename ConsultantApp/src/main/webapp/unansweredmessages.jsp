@@ -10,12 +10,11 @@
 	if(!consultantBean.isLoggedIn()) {
 		response.sendRedirect("login.jsp");
 	}
-
-	ArrayList<MessageBean> messages = MessageDAO.selectAllUnread();
+	ArrayList<MessageBean> unasweredMessages = MessageDAO.selectAllUnanswered();
 	
 	String filterText = request.getParameter("filterText");
     if (filterText != null && !filterText.isEmpty()) {
-        messages = MessageDAO.filterByText(filterText); // Replace with your actual filtering method
+    	unasweredMessages = MessageDAO.filterByText(filterText); // Replace with your actual filtering method
     }
 
 %>
@@ -35,11 +34,11 @@
     	}
     </style>
     
-    <script>
-        function submitFilterForm() {
-            var filterText = document.getElementById('attribute-name').value;
-            document.getElementById('filterText').value = filterText;
-            document.getElementById('filterForm').submit();
+    <script>    
+        function submitFilterUnasweredForm() {
+            var filterText = document.getElementById('attribute-name2').value;
+            document.getElementById('filterText2').value = filterText;
+            document.getElementById('filterForm2').submit();
         }
     </script>
     
@@ -47,18 +46,17 @@
 <body>
 	
 	<%@include file="./header.jsp" %>
-
-	<p class="h2 mt-5">Unread messages</p>
+	
+	<p class="h2 mt-5">Unanswered messages</p>
 	<div class="mb-3" style="margin-bottom: 10px;">
-        <form id="filterForm" method="post" action="messages.jsp">
+        <form id="filterForm2" method="post" action="messages.jsp">
             <label for="attribute-name" class="form-label">Text</label>
-            <input type="text" class="form-control" id="attribute-name" name="attributeName" placeholder="Enter text to filter" required>
-            <input type="hidden" id="filterText" name="filterText" value="">
-            <button type="button" class="btn btn-primary" onclick="submitFilterForm()">Filter</button>
+            <input type="text" class="form-control" id="attribute-name2" name="attributeName" placeholder="Enter text to filter" required>
+            <input type="hidden" id="filterText2" name="filterText" value="">
+            <button type="button" class="btn btn-primary" onclick="submitFilterUnansweredForm()">Filter</button>
         </form>
     </div>
-
-    <table class="table">
+	<table class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -66,13 +64,12 @@
             <th scope="col">Text</th>
             <th scope="col">Date</th>
             <th scope="col">Writer</th>
-            <th scope="col">Check out message</th>
             <th scope="col">Respond</th>
           </tr>
         </thead>
         <tbody>
           <%
-          	for(MessageBean m : messages) {
+          	for(MessageBean m : unasweredMessages) {
           		
           		out.println("<tr>");
                 
@@ -84,25 +81,30 @@
           		FitnessUserBean user = MessageDAO.selectUserWhoWroteMessage(m.getUser_id());
           		out.println("<td>"+user.getUsername()+"</td>");
           		
-          		out.println("<td><form action=\"message.jsp\" method=\"POST\">\r\n"
-        				+ "      <input type=\"hidden\" name=\"id\" value=\"" + m.getId() + "\">\r\n"
-        				+ "      <button type=\"submit\" class=\"btn btn-primary\">Check out message</button>\r\n"
-        				+ "    </form></td>");
           		
           		out.println("<td><form action=\"message.jsp\" method=\"POST\">\r\n"
         				+ "      <input type=\"hidden\" name=\"id\" value=\"" + m.getId() + "\">\r\n"
         						+ "      <input type=\"hidden\" name=\"responseHidden\" value=\"responseHidden\">\r\n"
         				+ "      <button type=\"submit\" class=\"btn btn-success\">Respond to a message</button>\r\n"
-        				+ "    </form></td>");  		
+        				+ "    </form></td>");
+          		
+          		
+          		
           	}
           %>
 
         </tbody>
       </table>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		 
+	  <p class="lead"><%= session.getAttribute("email-notification")!=null ?session.getAttribute("email-notification") : "" %></p>	
+	  
+	  <%
+	  	session.setAttribute("email-notification", null);
+	  %>
+		
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         
 </body>
 </html>
