@@ -193,3 +193,75 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2023-12-24T17:38:30.837+01:00  INFO 14140 --- [http-nio-4040-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2023-12-24T17:38:30.838+01:00  INFO 14140 --- [http-nio-4040-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2023-12-24T17:38:30.840+01:00  INFO 14140 --- [http-nio-4040-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-12-24T18:04:05.756+01:00  INFO 14140 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-24T18:04:05.943+01:00  INFO 14140 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-24T18:04:06.095+01:00  INFO 14140 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-24T19:00:04.484+01:00  INFO 13944 --- [main] o.u.etf.ip.backend.BackendApplication    : Starting BackendApplication using Java 17.0.9 with PID 13944 (C:\Users\User\Desktop\IP-Project\BackendSpring\backend\target\classes started by Тепица in C:\Users\User\Desktop\IP-Project\BackendSpring\backend)
+2023-12-24T19:00:04.489+01:00  INFO 13944 --- [main] o.u.etf.ip.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2023-12-24T19:00:06.564+01:00  INFO 13944 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-24T19:00:06.690+01:00  INFO 13944 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 114 ms. Found 12 JPA repository interfaces.
+2023-12-24T19:00:07.501+01:00  INFO 13944 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 4040 (http)
+2023-12-24T19:00:07.515+01:00  INFO 13944 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-24T19:00:07.515+01:00  INFO 13944 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2023-12-24T19:00:07.601+01:00  INFO 13944 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-24T19:00:07.602+01:00  INFO 13944 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3019 ms
+2023-12-24T19:00:07.788+01:00  INFO 13944 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-24T19:00:07.859+01:00  INFO 13944 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2023-12-24T19:00:07.906+01:00  INFO 13944 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2023-12-24T19:00:08.152+01:00  INFO 13944 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-24T19:00:08.180+01:00  INFO 13944 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-24T19:00:08.782+01:00  INFO 13944 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6e239337
+2023-12-24T19:00:08.785+01:00  INFO 13944 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-24T19:00:08.880+01:00  WARN 13944 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2023-12-24T19:00:08.882+01:00  WARN 13944 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-12-24T19:00:09.463+01:00  WARN 13944 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-24T19:00:09.464+01:00  WARN 13944 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-24T19:00:09.464+01:00  WARN 13944 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-24T19:00:09.464+01:00  WARN 13944 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-24T19:00:10.487+01:00  INFO 13944 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-24T19:00:10.878+01:00  INFO 13944 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-24T19:00:11.783+01:00  WARN 13944 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-24T19:00:12.456+01:00  WARN 13944 --- [main] o.s.b.a.f.FreeMarkerAutoConfiguration    : Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2023-12-24T19:00:12.562+01:00  INFO 13944 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 4040 (http) with context path ''
+2023-12-24T19:00:12.576+01:00  INFO 13944 --- [main] o.u.etf.ip.backend.BackendApplication    : Started BackendApplication in 9.005 seconds (process running for 10.644)
+2023-12-24T19:00:59.318+01:00  INFO 13944 --- [http-nio-4040-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-24T19:00:59.318+01:00  INFO 13944 --- [http-nio-4040-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-12-24T19:00:59.320+01:00  INFO 13944 --- [http-nio-4040-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-12-24T19:04:04.681+01:00  INFO 13944 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-24T19:04:04.726+01:00  INFO 13944 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-24T19:04:04.788+01:00  INFO 13944 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-24T19:04:13.191+01:00  INFO 3668 --- [main] o.u.etf.ip.backend.BackendApplication    : Starting BackendApplication using Java 17.0.9 with PID 3668 (C:\Users\User\Desktop\IP-Project\BackendSpring\backend\target\classes started by Тепица in C:\Users\User\Desktop\IP-Project\BackendSpring\backend)
+2023-12-24T19:04:13.195+01:00  INFO 3668 --- [main] o.u.etf.ip.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2023-12-24T19:04:14.113+01:00  INFO 3668 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-24T19:04:14.246+01:00  INFO 3668 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 118 ms. Found 12 JPA repository interfaces.
+2023-12-24T19:04:14.981+01:00  INFO 3668 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 4040 (http)
+2023-12-24T19:04:14.996+01:00  INFO 3668 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-24T19:04:14.997+01:00  INFO 3668 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2023-12-24T19:04:15.076+01:00  INFO 3668 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-24T19:04:15.076+01:00  INFO 3668 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1821 ms
+2023-12-24T19:04:15.259+01:00  INFO 3668 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-24T19:04:15.325+01:00  INFO 3668 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2023-12-24T19:04:15.369+01:00  INFO 3668 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2023-12-24T19:04:15.604+01:00  INFO 3668 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-24T19:04:15.635+01:00  INFO 3668 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-24T19:04:16.117+01:00  INFO 3668 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5eeee124
+2023-12-24T19:04:16.122+01:00  INFO 3668 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-24T19:04:16.197+01:00  WARN 3668 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2023-12-24T19:04:16.198+01:00  WARN 3668 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-12-24T19:04:16.625+01:00  WARN 3668 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-24T19:04:16.625+01:00  WARN 3668 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-24T19:04:16.626+01:00  WARN 3668 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-24T19:04:16.626+01:00  WARN 3668 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-24T19:04:17.499+01:00  INFO 3668 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-24T19:04:17.758+01:00  INFO 3668 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-24T19:04:18.532+01:00  WARN 3668 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-24T19:04:18.970+01:00  WARN 3668 --- [main] o.s.b.a.f.FreeMarkerAutoConfiguration    : Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2023-12-24T19:04:19.056+01:00  INFO 3668 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 4040 (http) with context path ''
+2023-12-24T19:04:19.066+01:00  INFO 3668 --- [main] o.u.etf.ip.backend.BackendApplication    : Started BackendApplication in 6.554 seconds (process running for 7.486)
+2023-12-24T19:04:49.268+01:00  INFO 3668 --- [http-nio-4040-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-24T19:04:49.268+01:00  INFO 3668 --- [http-nio-4040-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-12-24T19:04:49.271+01:00  INFO 3668 --- [http-nio-4040-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-12-24T19:23:44.457+01:00  WARN 3668 --- [http-nio-4040-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "undefined"]
+2023-12-24T19:38:22.789+01:00  INFO 3668 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-24T19:38:22.811+01:00  INFO 3668 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-24T19:38:22.823+01:00  INFO 3668 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

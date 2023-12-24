@@ -13,7 +13,7 @@ import org.unibl.etf.ip.backend.service.FitnessProgramService;
 
 import java.util.List;
 
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/fitness-programs")
 public class FitnessProgramController {

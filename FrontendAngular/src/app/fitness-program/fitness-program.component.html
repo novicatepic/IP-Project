@@ -1,0 +1,22 @@
+
+
+<div class="row" style="margin-top: 100px;">
+
+
+    <div *ngFor="let program of data" class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ program.naziv }}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Title: {{program.naziv}}</h5>
+          <p class="card-text">Description: {{ program.opis }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Created by: {{ program.kreator.korisnickoIme }}</li>
+          <li class="list-group-item">Date created: {{ program.datum }}</li>
+          <li class="list-group-item">Location: {{ program.location }}</li>
+        </ul>
+        <div class="card-body">
+            <a routerLink="/fitness-programs/{{program.id}}" class="card-link">Read more</a>
+        </div>
+      </div>
+
+</div>
