@@ -14,9 +14,12 @@ public class SlikaEntity {
     @Basic
     @Column(name = "url", nullable = false, length = 1000)
     private String url;
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @Basic
+    @Column(name = "program_id", nullable = false)
+    private Integer programId;
+    /*@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "program_id", nullable = false)
-    private ProgramEntity program;
+    private ProgramEntity program;*/
 
     public Integer getId() {
         return id;
@@ -34,11 +37,11 @@ public class SlikaEntity {
         this.url = url;
     }
 
-    public ProgramEntity getProgram() {
-        return program;
+    public Integer getProgramId() {
+        return programId;
     }
 
-    public void setProgramId(ProgramEntity program) {
-        this.program = program;
+    public void setProgramId(Integer programId) {
+        this.programId = programId;
     }
 }

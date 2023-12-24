@@ -18,17 +18,22 @@ public class MessageUserController {
 
     @PostMapping
     public ResponseEntity<PorukaEntity> createMessage(@RequestBody PorukaEntity message) {
-        return new ResponseEntity<PorukaEntity>(service.createUserMessage(message), HttpStatus.OK);
+        return new ResponseEntity<>(service.createUserMessage(message), HttpStatus.OK);
     }
 
     @GetMapping("/unread/{id}")
     public ResponseEntity<List<PorukaEntity>> unreadMessages(@PathVariable("id")Integer id) {
-        return new ResponseEntity<List<PorukaEntity>>(service.readUnreadMessages(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.readUnreadMessages(id), HttpStatus.OK);
     }
 
     @GetMapping("/all/{id}")
     public ResponseEntity<List<PorukaEntity>> allMessages(@PathVariable("id")Integer id) {
-        return new ResponseEntity<List<PorukaEntity>>(service.readMessages(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.readMessages(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/read-message/{id}")
+    public ResponseEntity<PorukaEntity> readMessage(@PathVariable("id")Integer id) {
+        return new ResponseEntity<>(service.readMessage(id), HttpStatus.OK);
     }
 
 }

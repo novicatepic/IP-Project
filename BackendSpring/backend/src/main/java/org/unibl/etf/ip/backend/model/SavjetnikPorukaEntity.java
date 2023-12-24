@@ -3,7 +3,6 @@ package org.unibl.etf.ip.backend.model;
 import jakarta.persistence.*;
 
 import java.sql.Date;
-import java.util.Objects;
 
 @Entity
 @Table(name = "savjetnik_poruka", schema = "ip_project", catalog = "")
@@ -18,8 +17,11 @@ public class SavjetnikPorukaEntity {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
+    @Basic
+    @Column(name = "korisnik_id", nullable = false)
+    private Integer korisnikId;
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "korisnik_id", nullable = false)
+    @JoinColumn(name = "korisnik_id", nullable = false, insertable = false, updatable = false)
     private KorisnikEntity korisnik;
     @Basic
     @Column(name = "datum", nullable = false)
@@ -55,11 +57,19 @@ public class SavjetnikPorukaEntity {
         this.id = id;
     }
 
-    public KorisnikEntity getKorisnikId() {
+    public Integer getKorisnikId() {
+        return korisnikId;
+    }
+
+    public void setKorisnikId(Integer korisnikId) {
+        this.korisnikId = korisnikId;
+    }
+
+    public KorisnikEntity getKorisnik() {
         return korisnik;
     }
 
-    public void setKorisnikId(KorisnikEntity korisnik) {
+    public void setKorisnik(KorisnikEntity korisnik) {
         this.korisnik = korisnik;
     }
 
@@ -86,5 +96,4 @@ public class SavjetnikPorukaEntity {
     public void setOdgovorena(Boolean odgovorena) {
         this.odgovorena = odgovorena;
     }
-
 }

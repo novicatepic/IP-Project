@@ -2,9 +2,9 @@ package org.unibl.etf.ip.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.model.KorisnikEntity;
 import org.unibl.etf.ip.backend.service.FitnessUserService;
 
@@ -26,7 +26,7 @@ public class FitnessUserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<KorisnikEntity> loginFitnessUser(@RequestBody KorisnikEntity fitnessUser) {
+    public ResponseEntity<KorisnikEntity> loginFitnessUser(@RequestBody KorisnikEntity fitnessUser) throws NotFoundException {
         KorisnikEntity user = service.loginUser(fitnessUser.getKorisnickoIme(), fitnessUser.getLozinka());
         return new ResponseEntity<>(user, HttpStatus.OK);
     }

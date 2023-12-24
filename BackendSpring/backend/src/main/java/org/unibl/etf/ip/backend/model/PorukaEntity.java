@@ -2,8 +2,6 @@ package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
-
 @Entity
 @Table(name = "poruka", schema = "ip_project", catalog = "")
 public class PorukaEntity {
@@ -15,11 +13,18 @@ public class PorukaEntity {
     @Column(name = "tekst", nullable = false, length = 1000)
     private String tekst;
 
+    @Basic
+    @Column(name = "posiljalac_id", nullable = false)
+    private Integer posiljalacId;
+    @Basic
+    @Column(name = "primalac_id", nullable = false)
+    private Integer primalacId;
+
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "posiljalac_id", nullable = false)
+    @JoinColumn(name = "posiljalac_id", nullable = false, updatable = false, insertable = false)
     private KorisnikEntity posiljalac;
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "primalac_id", nullable = false)
+    @JoinColumn(name = "primalac_id", nullable = false, updatable = false, insertable = false)
     private KorisnikEntity primalac;
     @Basic
     @Column(name = "procitana", nullable = false)
@@ -39,6 +44,22 @@ public class PorukaEntity {
 
     public void setTekst(String tekst) {
         this.tekst = tekst;
+    }
+
+    public Integer getPosiljalacId() {
+        return posiljalacId;
+    }
+
+    public void setPosiljalacId(Integer posiljalacId) {
+        this.posiljalacId = posiljalacId;
+    }
+
+    public Integer getPrimalacId() {
+        return primalacId;
+    }
+
+    public void setPrimalacId(Integer primalacId) {
+        this.primalacId = primalacId;
     }
 
     public KorisnikEntity getPosiljalac() {
@@ -64,6 +85,4 @@ public class PorukaEntity {
     public void setProcitana(Boolean procitana) {
         this.procitana = procitana;
     }
-
-
 }

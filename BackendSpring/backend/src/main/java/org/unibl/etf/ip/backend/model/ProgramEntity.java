@@ -3,7 +3,8 @@ package org.unibl.etf.ip.backend.model;
 import jakarta.persistence.*;
 
 import java.sql.Date;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "program", schema = "ip_project", catalog = "")
@@ -42,9 +43,19 @@ public class ProgramEntity {
     @Basic
     @Column(name = "aktivan", nullable = false)
     private Boolean aktivan;
+    @Basic
+    @Column(name = "kreator_id", nullable = false)
+    private Integer kreatorId;
+
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "kreator_id", nullable = false)
+    @JoinColumn(name = "kreator_id", nullable = false, insertable = false, updatable = false)
     private KorisnikEntity kreator;
+
+    @OneToMany(mappedBy = "programId", cascade = CascadeType.ALL)
+    private List<SlikaEntity> pictures = new ArrayList<>();
+
+    @OneToMany(mappedBy = "kategorijaId", cascade = CascadeType.ALL)
+    private List<KategorijaProgramEntity> kategorijaProgramEntities = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -134,13 +145,35 @@ public class ProgramEntity {
         this.aktivan = aktivan;
     }
 
-    public KorisnikEntity getKreatorId() {
+    public KorisnikEntity getKreator() {
         return kreator;
     }
 
-    public void setKreatorId(KorisnikEntity kreator) {
+    public void setKreator(KorisnikEntity kreator) {
         this.kreator = kreator;
     }
 
+    public Integer getKreatorId() {
+        return kreatorId;
+    }
 
+    public void setKreatorId(Integer kreatorId) {
+        this.kreatorId = kreatorId;
+    }
+
+    public List<SlikaEntity> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<SlikaEntity> pictures) {
+        this.pictures = pictures;
+    }
+
+    public List<KategorijaProgramEntity> getKategorijaProgramEntities() {
+        return kategorijaProgramEntities;
+    }
+
+    public void setKategorijaProgramEntities(List<KategorijaProgramEntity> kategorijaProgramEntities) {
+        this.kategorijaProgramEntities = kategorijaProgramEntities;
+    }
 }

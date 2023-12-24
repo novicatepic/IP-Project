@@ -1,19 +1,24 @@
 package org.unibl.etf.ip.backend.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.unibl.etf.ip.backend.model.KorisnikEntity;
+import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntity;
 import org.unibl.etf.ip.backend.model.ProgramEntity;
 import org.unibl.etf.ip.backend.service.FitnessProgramService;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/fitness-programs")
 public class FitnessProgramController {
+
+    Logger logger = LoggerFactory.getLogger(FitnessProgramController.class);
 
     @Autowired
     private FitnessProgramService service;
@@ -24,7 +29,7 @@ public class FitnessProgramController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProgramEntity> getProgram(@PathVariable("id") Integer id) throws Exception {
+    public ResponseEntity<ProgramEntity> getProgram(@PathVariable("id") Integer id) throws NotFoundException {
         return new ResponseEntity<>(service.getProgramById(id), HttpStatus.OK);
     }
 

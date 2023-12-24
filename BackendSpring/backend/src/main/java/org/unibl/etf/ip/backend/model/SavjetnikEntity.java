@@ -63,17 +63,4 @@ public class SavjetnikEntity {
     public void setPrezime(String prezime) {
         this.prezime = prezime;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SavjetnikEntity that = (SavjetnikEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(korisnickoIme, that.korisnickoIme) && Objects.equals(lozinka, that.lozinka) && Objects.equals(ime, that.ime) && Objects.equals(prezime, that.prezime);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, korisnickoIme, lozinka, ime, prezime);
-    }
 }

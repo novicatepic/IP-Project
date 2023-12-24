@@ -2,8 +2,6 @@ package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
-
 @Entity
 @Table(name = "dnevnik_unos", schema = "ip_project", catalog = "")
 public class DnevnikUnosEntity {

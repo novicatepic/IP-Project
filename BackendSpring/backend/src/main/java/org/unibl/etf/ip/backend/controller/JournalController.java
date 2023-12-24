@@ -1,10 +1,5 @@
 package org.unibl.etf.ip.backend.controller;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,8 +10,6 @@ import org.unibl.etf.ip.backend.model.DnevnikEntity;
 import org.unibl.etf.ip.backend.model.DnevnikUnosEntity;
 import org.unibl.etf.ip.backend.service.JournalService;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 @RestController

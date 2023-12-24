@@ -1,7 +1,9 @@
 package org.unibl.etf.ip.backend.service;
 
+import org.hibernate.annotations.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntity;
 import org.unibl.etf.ip.backend.model.ProgramEntity;
 import org.unibl.etf.ip.backend.repository.FitnessProgramRepository;
@@ -28,9 +30,9 @@ public class FitnessProgramService {
         return repository.findByKreator_Id(id);
     }
 
-    public ProgramEntity getProgramById(Integer id) throws Exception {
+    public ProgramEntity getProgramById(Integer id) throws NotFoundException {
         return repository.findById(id)
-                .orElseThrow(() -> new Exception("Error: Entity not found with ID " + id));
+                .orElseThrow(NotFoundException::new);
     }
 
     public ProgramEntity createProgram(ProgramEntity fitnessProgram) throws Exception {

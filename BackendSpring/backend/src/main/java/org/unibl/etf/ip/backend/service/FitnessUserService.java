@@ -1,8 +1,8 @@
 package org.unibl.etf.ip.backend.service;
 
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.model.KorisnikEntity;
 import org.unibl.etf.ip.backend.repository.FitnessUserRepository;
 
@@ -31,7 +31,7 @@ public class FitnessUserService {
     }
 
 
-    public KorisnikEntity loginUser(String username, String password)   {
+    public KorisnikEntity loginUser(String username, String password) throws NotFoundException {
         KorisnikEntity k = repository.findByKorisnickoImeAndLozinka(username, password);
         if(k != null && !k.isAktivan()) {
             codeService.deleteCode(k.getId());

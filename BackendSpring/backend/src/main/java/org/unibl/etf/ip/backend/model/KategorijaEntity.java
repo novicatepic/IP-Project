@@ -2,7 +2,8 @@ package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "kategorija", schema = "ip_project", catalog = "")
@@ -14,6 +15,9 @@ public class KategorijaEntity {
     @Basic
     @Column(name = "naziv", nullable = false, length = 200)
     private String naziv;
+
+    @OneToMany(mappedBy = "kategorijaId", cascade = CascadeType.ALL)
+    private List<AtributEntity> attributes = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -31,16 +35,11 @@ public class KategorijaEntity {
         this.naziv = naziv;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        KategorijaEntity that = (KategorijaEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(naziv, that.naziv);
+    public List<AtributEntity> getAttributes() {
+        return attributes;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, naziv);
+    public void setAttributes(List<AtributEntity> attributes) {
+        this.attributes = attributes;
     }
 }

@@ -34,16 +34,4 @@ public class KorisnikPretplacenProgramEntityPK implements Serializable {
         this.programId = programId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        KorisnikPretplacenProgramEntityPK that = (KorisnikPretplacenProgramEntityPK) o;
-        return Objects.equals(korisnikId, that.korisnikId) && Objects.equals(programId, that.programId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(korisnikId, programId);
-    }
 }

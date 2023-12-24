@@ -2,20 +2,22 @@ package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
-
 @Entity
 @Table(name = "kategorija_program", schema = "ip_project", catalog = "")
 @IdClass(KategorijaProgramEntityPK.class)
 public class KategorijaProgramEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "kategorija_id", nullable = false)
     private Integer kategorijaId;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "program_id", nullable = false)
     private Integer programId;
+
+    @ManyToOne
+    @JoinColumn(name = "kategorija_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private KategorijaEntity kategorija;
 
     public Integer getKategorijaId() {
         return kategorijaId;
@@ -33,16 +35,11 @@ public class KategorijaProgramEntity {
         this.programId = programId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        KategorijaProgramEntity that = (KategorijaProgramEntity) o;
-        return Objects.equals(kategorijaId, that.kategorijaId) && Objects.equals(programId, that.programId);
+    public KategorijaEntity getKategorija() {
+        return kategorija;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(kategorijaId, programId);
+    public void setKategorija(KategorijaEntity kategorija) {
+        this.kategorija = kategorija;
     }
 }

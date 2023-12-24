@@ -4,8 +4,6 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.unibl.etf.ip.backend.model.DnevnikEntity;
 import org.unibl.etf.ip.backend.model.DnevnikUnosEntity;

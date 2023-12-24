@@ -1,5 +1,6 @@
 package org.unibl.etf.ip.controller;
 
+import java.awt.PageAttributes.MediaType;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -11,6 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
 
 import org.unibl.etf.ip.bean.AdminBean;
 import org.unibl.etf.ip.bean.AttributeBean;
@@ -22,6 +27,7 @@ import org.unibl.etf.ip.dao.AttributeDAO;
 import org.unibl.etf.ip.dao.CategoryDAO;
 import org.unibl.etf.ip.dao.ConsultantDAO;
 import org.unibl.etf.ip.dao.FitnessUserDAO;
+import org.unibl.etf.ip.model.LoggerData;
 
 import com.mysql.cj.Session;
 
@@ -65,6 +71,13 @@ public class Controller extends HttpServlet {
 				address = "/WEB-INF/consultants.jsp";
 				extractConsultants(ses);
 			} else if("showstats".equals(action)) {
+				Client client = ClientBuilder.newClient();
+				WebTarget target = client.target("http://localhost:4040/logger");
+				Response apiResponse = target.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get();
+				LoggerData loggerData = apiResponse.readEntity(LoggerData.class);
+				String[] splitLoggerString = loggerData.getLogData().split("2023");
+				//System.out.println("SIZE = " + splitLoggerString.length);
+				ses.setAttribute("loggerString", splitLoggerString);
 				address = "/WEB-INF/stats.jsp";
 			}  else if("addcategory".equals(action)) {
 				String categoryName = request.getParameter("categoryName");
@@ -162,9 +175,11 @@ public class Controller extends HttpServlet {
 				address = "/WEB-INF/login.jsp";
 			}
 		} else if("login".equals(action)) {
+			System.out.println("login");
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			
+			System.out.println(username);
+			System.out.println(password);
 			AdminBean adminBean = AdminDAO.selectOne(username, password);
 			if(adminBean != null) {
 				address = "/WEB-INF/home.jsp";

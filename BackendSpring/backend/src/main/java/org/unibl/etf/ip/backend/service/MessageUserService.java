@@ -29,6 +29,19 @@ public class MessageUserService {
         return result;
     }
 
+    public PorukaEntity readMessage(Integer id) {
+        List<PorukaEntity> messages = repository.findAll();
+        PorukaEntity entity = new PorukaEntity();
+        for(PorukaEntity m : messages) {
+            if(m.getId() == id) {
+                entity = m;
+                entity.setProcitana(true);
+            }
+        }
+        repository.save(entity);
+        return entity;
+    }
+
     public List<PorukaEntity> readUnreadMessages(Integer id) {
         List<PorukaEntity> messages = repository.findAll();
         List<PorukaEntity> result = new ArrayList<>();

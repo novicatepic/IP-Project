@@ -3,7 +3,6 @@ package org.unibl.etf.ip.backend.model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Table(name = "dnevnik", schema = "ip_project", catalog = "")

@@ -3,11 +3,11 @@ package org.unibl.etf.ip.backend.service;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.model.KorisnikEntity;
 import org.unibl.etf.ip.backend.model.NalogAktivacijaEntity;
 import org.unibl.etf.ip.backend.repository.CodeRepository;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -36,12 +36,13 @@ public class CodeService {
     }
 
     @Transactional
-    public void deleteCode(Integer fitnessUserId) {
-        Optional<NalogAktivacijaEntity> optionalCode = repository.findByKorisnikId(fitnessUserId);
+    public void deleteCode(Integer fitnessUserId) throws NotFoundException {
+        NalogAktivacijaEntity code  = repository.findByKorisnikId(fitnessUserId)
+                .orElseThrow(() -> new NotFoundException());
 
-        optionalCode.ifPresent(code -> {
-            repository.delete(code);
-        });
+        repository.delete(code);
+
+
     }
 
 }

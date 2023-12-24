@@ -11,11 +11,11 @@ import java.util.Objects;
 public class KategorijaProgramEntityPK implements Serializable {
     @Column(name = "kategorija_id", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer kategorijaId;
     @Column(name = "program_id", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer programId;
 
     public Integer getKategorijaId() {
@@ -34,16 +34,4 @@ public class KategorijaProgramEntityPK implements Serializable {
         this.programId = programId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        KategorijaProgramEntityPK that = (KategorijaProgramEntityPK) o;
-        return Objects.equals(kategorijaId, that.kategorijaId) && Objects.equals(programId, that.programId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(kategorijaId, programId);
-    }
 }

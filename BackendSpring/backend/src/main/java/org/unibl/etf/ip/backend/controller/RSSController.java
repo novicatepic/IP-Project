@@ -1,6 +1,5 @@
 package org.unibl.etf.ip.backend.controller;
 
-import com.rometools.rome.feed.synd.SyndEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

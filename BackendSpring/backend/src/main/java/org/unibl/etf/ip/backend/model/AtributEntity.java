@@ -13,10 +13,14 @@ public class AtributEntity {
     @Basic
     @Column(name = "vrijednost", nullable = false, length = 300)
     private String vrijednost;
+    @Basic
+    @Column(name = "kategorija_id", nullable = false)
+    private Integer kategorijaId;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "kategorija_id", nullable = false)
-    private KategorijaEntity kategorija;
+
+    /*@ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "kategorija_id", nullable = false, insertable = false, updatable = false)
+    private KategorijaEntity kategorija;*/
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -39,12 +43,20 @@ public class AtributEntity {
         this.vrijednost = vrijednost;
     }
 
-    public KategorijaEntity getKategorijaId() {
+    /*public KategorijaEntity getKategorijaId() {
         return kategorija;
     }
 
     public void setKategorijaId(KategorijaEntity kategorija) {
         this.kategorija = kategorija;
+    }*/
+
+    public Integer getKategorijaId() {
+        return kategorijaId;
+    }
+
+    public void setKategorijaId(Integer kategorijaId) {
+        this.kategorijaId = kategorijaId;
     }
 
     public Integer getId() {

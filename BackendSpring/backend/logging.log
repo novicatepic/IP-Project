@@ -1,0 +1,195 @@
+2023-12-24T17:06:22.448+01:00  INFO 14712 --- [main] o.u.etf.ip.backend.BackendApplication    : Starting BackendApplication using Java 17.0.9 with PID 14712 (C:\Users\User\Desktop\IP-Project\BackendSpring\backend\target\classes started by Тепица in C:\Users\User\Desktop\IP-Project\BackendSpring\backend)
+2023-12-24T17:06:22.452+01:00  INFO 14712 --- [main] o.u.etf.ip.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2023-12-24T17:06:23.266+01:00  INFO 14712 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-24T17:06:23.362+01:00  INFO 14712 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 88 ms. Found 12 JPA repository interfaces.
+2023-12-24T17:06:23.911+01:00  INFO 14712 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2023-12-24T17:06:23.923+01:00  INFO 14712 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-24T17:06:23.923+01:00  INFO 14712 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2023-12-24T17:06:24.002+01:00  INFO 14712 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-24T17:06:24.003+01:00  INFO 14712 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1491 ms
+2023-12-24T17:06:24.157+01:00  INFO 14712 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-24T17:06:24.223+01:00  INFO 14712 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2023-12-24T17:06:24.268+01:00  INFO 14712 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2023-12-24T17:06:24.540+01:00  INFO 14712 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-24T17:06:24.573+01:00  INFO 14712 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-24T17:06:24.938+01:00  INFO 14712 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@300bb303
+2023-12-24T17:06:24.940+01:00  INFO 14712 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-24T17:06:24.988+01:00  WARN 14712 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2023-12-24T17:06:24.989+01:00  WARN 14712 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-12-24T17:06:25.390+01:00  WARN 14712 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-24T17:06:25.391+01:00  WARN 14712 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-24T17:06:25.391+01:00  WARN 14712 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-24T17:06:25.391+01:00  WARN 14712 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-24T17:06:26.211+01:00  INFO 14712 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-24T17:06:26.443+01:00  INFO 14712 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-24T17:06:27.131+01:00  WARN 14712 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-24T17:06:27.558+01:00  WARN 14712 --- [main] o.s.b.a.f.FreeMarkerAutoConfiguration    : Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2023-12-24T17:06:27.678+01:00  INFO 14712 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2023-12-24T17:06:27.696+01:00  INFO 14712 --- [main] o.u.etf.ip.backend.BackendApplication    : Started BackendApplication in 5.812 seconds (process running for 6.635)
+2023-12-24T17:06:30.559+01:00  INFO 14712 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-24T17:06:30.559+01:00  INFO 14712 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-12-24T17:06:30.561+01:00  INFO 14712 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-12-24T17:06:30.689+01:00 ERROR 14712 --- [http-nio-8080-exec-2] o.u.e.i.b.a.GlobalExceptionHandler       : Resource not found!
+2023-12-24T17:07:53.953+01:00 ERROR 14712 --- [http-nio-8080-exec-5] o.u.e.i.b.a.GlobalExceptionHandler       : Resource not found!
+2023-12-24T17:15:50.029+01:00  INFO 14712 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-24T17:15:50.032+01:00  INFO 14712 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-24T17:15:50.041+01:00  INFO 14712 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-24T17:15:55.631+01:00  INFO 11552 --- [main] o.u.etf.ip.backend.BackendApplication    : Starting BackendApplication using Java 17.0.9 with PID 11552 (C:\Users\User\Desktop\IP-Project\BackendSpring\backend\target\classes started by Тепица in C:\Users\User\Desktop\IP-Project\BackendSpring\backend)
+2023-12-24T17:15:55.634+01:00  INFO 11552 --- [main] o.u.etf.ip.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2023-12-24T17:15:56.442+01:00  INFO 11552 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-24T17:15:56.550+01:00  INFO 11552 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 100 ms. Found 12 JPA repository interfaces.
+2023-12-24T17:15:57.081+01:00  INFO 11552 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2023-12-24T17:15:57.091+01:00  INFO 11552 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-24T17:15:57.091+01:00  INFO 11552 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2023-12-24T17:15:57.160+01:00  INFO 11552 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-24T17:15:57.160+01:00  INFO 11552 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1475 ms
+2023-12-24T17:15:57.306+01:00  INFO 11552 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-24T17:15:57.356+01:00  INFO 11552 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2023-12-24T17:15:57.391+01:00  INFO 11552 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2023-12-24T17:15:57.591+01:00  INFO 11552 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-24T17:15:57.614+01:00  INFO 11552 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-24T17:15:57.888+01:00  INFO 11552 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@67c21bf
+2023-12-24T17:15:57.890+01:00  INFO 11552 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-24T17:15:57.941+01:00  WARN 11552 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2023-12-24T17:15:57.942+01:00  WARN 11552 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-12-24T17:15:58.391+01:00  WARN 11552 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-24T17:15:58.391+01:00  WARN 11552 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-24T17:15:58.391+01:00  WARN 11552 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-24T17:15:58.392+01:00  WARN 11552 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-24T17:15:59.127+01:00  INFO 11552 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-24T17:15:59.337+01:00  INFO 11552 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-24T17:16:00.000+01:00  WARN 11552 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-24T17:16:00.385+01:00  WARN 11552 --- [main] o.s.b.a.f.FreeMarkerAutoConfiguration    : Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2023-12-24T17:16:00.469+01:00  INFO 11552 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2023-12-24T17:16:00.480+01:00  INFO 11552 --- [main] o.u.etf.ip.backend.BackendApplication    : Started BackendApplication in 5.402 seconds (process running for 6.2)
+2023-12-24T17:16:07.804+01:00  INFO 11552 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-24T17:16:07.805+01:00  INFO 11552 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-12-24T17:16:07.806+01:00  INFO 11552 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-12-24T17:16:55.066+01:00  INFO 11552 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-24T17:16:55.069+01:00  INFO 11552 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-24T17:16:55.081+01:00  INFO 11552 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-24T17:36:46.888+01:00  INFO 10964 --- [main] o.u.etf.ip.backend.BackendApplication    : Starting BackendApplication using Java 17.0.9 with PID 10964 (C:\Users\User\Desktop\IP-Project\BackendSpring\backend\target\classes started by Тепица in C:\Users\User\Desktop\IP-Project\BackendSpring\backend)
+2023-12-24T17:36:46.901+01:00  INFO 10964 --- [main] o.u.etf.ip.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2023-12-24T17:36:48.161+01:00  INFO 10964 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-24T17:36:48.311+01:00  INFO 10964 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 136 ms. Found 12 JPA repository interfaces.
+2023-12-24T17:36:49.011+01:00  INFO 10964 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2023-12-24T17:36:49.024+01:00  INFO 10964 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-24T17:36:49.024+01:00  INFO 10964 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2023-12-24T17:36:49.125+01:00  INFO 10964 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-24T17:36:49.125+01:00  INFO 10964 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2150 ms
+2023-12-24T17:36:49.348+01:00  INFO 10964 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-24T17:36:49.415+01:00  INFO 10964 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2023-12-24T17:36:49.460+01:00  INFO 10964 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2023-12-24T17:36:49.704+01:00  INFO 10964 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-24T17:36:49.735+01:00  INFO 10964 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-24T17:36:50.222+01:00  INFO 10964 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@752973de
+2023-12-24T17:36:50.225+01:00  INFO 10964 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-24T17:36:50.324+01:00  WARN 10964 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2023-12-24T17:36:50.326+01:00  WARN 10964 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-12-24T17:36:50.848+01:00  WARN 10964 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-24T17:36:50.848+01:00  WARN 10964 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-24T17:36:50.849+01:00  WARN 10964 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-24T17:36:50.849+01:00  WARN 10964 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-24T17:36:51.910+01:00  INFO 10964 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-24T17:36:52.331+01:00  INFO 10964 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-24T17:36:53.288+01:00  WARN 10964 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-24T17:36:53.829+01:00  WARN 10964 --- [main] o.s.b.a.f.FreeMarkerAutoConfiguration    : Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2023-12-24T17:36:53.946+01:00  WARN 10964 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2023-12-24T17:36:53.950+01:00  INFO 10964 --- [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-24T17:36:53.954+01:00  INFO 10964 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-24T17:36:53.970+01:00  INFO 10964 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-24T17:36:53.985+01:00  INFO 10964 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-12-24T17:36:54.009+01:00 ERROR 10964 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2023-12-24T17:37:10.314+01:00  INFO 8648 --- [main] o.u.etf.ip.backend.BackendApplication    : Starting BackendApplication using Java 17.0.9 with PID 8648 (C:\Users\User\Desktop\IP-Project\BackendSpring\backend\target\classes started by Тепица in C:\Users\User\Desktop\IP-Project\BackendSpring\backend)
+2023-12-24T17:37:10.318+01:00  INFO 8648 --- [main] o.u.etf.ip.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2023-12-24T17:37:11.386+01:00  INFO 8648 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-24T17:37:11.543+01:00  INFO 8648 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 141 ms. Found 12 JPA repository interfaces.
+2023-12-24T17:37:12.493+01:00  INFO 8648 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2023-12-24T17:37:12.511+01:00  INFO 8648 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-24T17:37:12.512+01:00  INFO 8648 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2023-12-24T17:37:12.614+01:00  INFO 8648 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-24T17:37:12.614+01:00  INFO 8648 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2208 ms
+2023-12-24T17:37:12.838+01:00  INFO 8648 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-24T17:37:12.899+01:00  INFO 8648 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2023-12-24T17:37:12.956+01:00  INFO 8648 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2023-12-24T17:37:13.176+01:00  INFO 8648 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-24T17:37:13.229+01:00  INFO 8648 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-24T17:37:13.751+01:00  INFO 8648 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@52a67293
+2023-12-24T17:37:13.754+01:00  INFO 8648 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-24T17:37:13.845+01:00  WARN 8648 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2023-12-24T17:37:13.848+01:00  WARN 8648 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-12-24T17:37:14.480+01:00  WARN 8648 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-24T17:37:14.480+01:00  WARN 8648 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-24T17:37:14.481+01:00  WARN 8648 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-24T17:37:14.482+01:00  WARN 8648 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-24T17:37:15.807+01:00  INFO 8648 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-24T17:37:16.222+01:00  INFO 8648 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-24T17:37:17.349+01:00  WARN 8648 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-24T17:37:17.940+01:00  WARN 8648 --- [main] o.s.b.a.f.FreeMarkerAutoConfiguration    : Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2023-12-24T17:37:18.068+01:00  WARN 8648 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2023-12-24T17:37:18.072+01:00  INFO 8648 --- [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-24T17:37:18.076+01:00  INFO 8648 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-24T17:37:18.092+01:00  INFO 8648 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-24T17:37:18.116+01:00  INFO 8648 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-12-24T17:37:18.143+01:00 ERROR 8648 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2023-12-24T17:38:10.426+01:00  INFO 14140 --- [main] o.u.etf.ip.backend.BackendApplication    : Starting BackendApplication using Java 17.0.9 with PID 14140 (C:\Users\User\Desktop\IP-Project\BackendSpring\backend\target\classes started by Тепица in C:\Users\User\Desktop\IP-Project\BackendSpring\backend)
+2023-12-24T17:38:10.431+01:00  INFO 14140 --- [main] o.u.etf.ip.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2023-12-24T17:38:11.456+01:00  INFO 14140 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-24T17:38:11.642+01:00  INFO 14140 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 168 ms. Found 12 JPA repository interfaces.
+2023-12-24T17:38:12.485+01:00  INFO 14140 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 4040 (http)
+2023-12-24T17:38:12.498+01:00  INFO 14140 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-24T17:38:12.498+01:00  INFO 14140 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2023-12-24T17:38:12.621+01:00  INFO 14140 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-24T17:38:12.622+01:00  INFO 14140 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2097 ms
+2023-12-24T17:38:12.853+01:00  INFO 14140 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-24T17:38:12.938+01:00  INFO 14140 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2023-12-24T17:38:12.991+01:00  INFO 14140 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2023-12-24T17:38:13.330+01:00  INFO 14140 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-24T17:38:13.370+01:00  INFO 14140 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-24T17:38:13.907+01:00  INFO 14140 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6903ed0e
+2023-12-24T17:38:13.911+01:00  INFO 14140 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-24T17:38:13.986+01:00  WARN 14140 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2023-12-24T17:38:13.991+01:00  WARN 14140 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-12-24T17:38:14.573+01:00  WARN 14140 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-24T17:38:14.574+01:00  WARN 14140 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-24T17:38:14.574+01:00  WARN 14140 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-24T17:38:14.574+01:00  WARN 14140 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-24T17:38:15.807+01:00  INFO 14140 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-24T17:38:16.137+01:00  INFO 14140 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-24T17:38:17.326+01:00  WARN 14140 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-24T17:38:17.873+01:00  WARN 14140 --- [main] o.s.b.a.f.FreeMarkerAutoConfiguration    : Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2023-12-24T17:38:17.972+01:00  INFO 14140 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 4040 (http) with context path ''
+2023-12-24T17:38:17.983+01:00  INFO 14140 --- [main] o.u.etf.ip.backend.BackendApplication    : Started BackendApplication in 8.283 seconds (process running for 9.243)
+2023-12-24T17:38:30.837+01:00  INFO 14140 --- [http-nio-4040-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-24T17:38:30.838+01:00  INFO 14140 --- [http-nio-4040-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-12-24T17:38:30.840+01:00  INFO 14140 --- [http-nio-4040-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
