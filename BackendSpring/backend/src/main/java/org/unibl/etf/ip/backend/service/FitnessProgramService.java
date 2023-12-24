@@ -7,7 +7,9 @@ import org.unibl.etf.ip.backend.model.ProgramEntity;
 import org.unibl.etf.ip.backend.repository.FitnessProgramRepository;
 import org.unibl.etf.ip.backend.repository.ProgramSubscribeRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FitnessProgramService {
@@ -40,7 +42,59 @@ public class FitnessProgramService {
     }
 
     public KorisnikPretplacenProgramEntity subscribeToAProgram(KorisnikPretplacenProgramEntity entity) {
+        List<KorisnikPretplacenProgramEntity> allEntitites = subscribeRepository.findAll();
+        //already subscribed
+        for(KorisnikPretplacenProgramEntity k : allEntitites) {
+            if(k.getKorisnikId() == entity.getKorisnikId() && k.getProgramId() == entity.getProgramId()) {
+                //or throw exception -> todo
+                return null;
+            }
+        }
+
+        //update fitness program if it wasn't active -> now it has participants
+        Optional<ProgramEntity> pe = repository.findById(entity.getProgramId());
+        if(pe.isPresent()) {
+            ProgramEntity fitnessProgram = pe.get();
+            if(!fitnessProgram.getUcestvovan()) {
+                fitnessProgram.setUcestvovan(true);
+                repository.save(fitnessProgram);
+            }
+        }
+
         return subscribeRepository.save(entity);
+    }
+
+    public List<ProgramEntity> getUserParticipations(Integer userId) {
+        List<KorisnikPretplacenProgramEntity> allEntitites = subscribeRepository.findAll();
+        List<ProgramEntity> result = new ArrayList<>();
+        for(KorisnikPretplacenProgramEntity k : allEntitites) {
+            if(k.getKorisnikId() == userId && k.getFitnessProgram().getAktivan()) {
+                result.add(k.getFitnessProgram());
+            }
+        }
+        return result;
+    }
+
+    public List<ProgramEntity> getPastUserParticipations(Integer userId) {
+        List<KorisnikPretplacenProgramEntity> allEntitites = subscribeRepository.findAll();
+        List<ProgramEntity> result = new ArrayList<>();
+        for(KorisnikPretplacenProgramEntity k : allEntitites) {
+            if(k.getKorisnikId() == userId && !k.getFitnessProgram().getAktivan()) {
+                result.add(k.getFitnessProgram());
+            }
+        }
+        return result;
+    }
+
+    public List<ProgramEntity> getUserUnparticipations(Integer userId) {
+        List<KorisnikPretplacenProgramEntity> allEntitites = subscribeRepository.findAll();
+        List<ProgramEntity> result = new ArrayList<>();
+        for(KorisnikPretplacenProgramEntity k : allEntitites) {
+            if(k.getKorisnikId() != userId && !k.getFitnessProgram().getAktivan()) {
+                result.add(k.getFitnessProgram());
+            }
+        }
+        return result;
     }
 
 }

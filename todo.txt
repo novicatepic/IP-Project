@@ -1,9 +1,2 @@
 backend:
 filtriranje i pretrazivanje
-mail za aktivaciju naloga poslati
-captcha
-
-
-pregled prethodnih ucestvovanja na programima
-kupovina programa itd.
-placanje i evidentiranje programa kao ucestvovanog

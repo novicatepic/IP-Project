@@ -1,11 +1,14 @@
 package org.unibl.etf.ip.backend.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.unibl.etf.ip.backend.model.KorisnikEntity;
 import org.unibl.etf.ip.backend.model.NalogAktivacijaEntity;
 import org.unibl.etf.ip.backend.repository.CodeRepository;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -14,7 +17,7 @@ public class CodeService {
     @Autowired
     private CodeRepository repository;
 
-    public void insertCode(KorisnikEntity fitnessUser) {
+    public String insertCode(KorisnikEntity fitnessUser) {
 
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
@@ -25,8 +28,20 @@ public class CodeService {
         NalogAktivacijaEntity code = new NalogAktivacijaEntity();
         code.setFitnessUser(fitnessUser);
         code.setKod(sb.toString());
+        code.setKorisnikId(fitnessUser.getId());
 
         repository.save(code);
+
+        return sb.toString();
+    }
+
+    @Transactional
+    public void deleteCode(Integer fitnessUserId) {
+        Optional<NalogAktivacijaEntity> optionalCode = repository.findByKorisnikId(fitnessUserId);
+
+        optionalCode.ifPresent(code -> {
+            repository.delete(code);
+        });
     }
 
 }

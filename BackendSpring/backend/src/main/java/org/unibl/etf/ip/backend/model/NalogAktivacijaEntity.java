@@ -16,8 +16,12 @@ public class NalogAktivacijaEntity {
     @Column(name = "kod", nullable = false, length = 5)
     private String kod;
 
+    @Basic
+    @Column(name = "korisnik_id", nullable = false)
+    private Integer korisnikId;
+
     @OneToOne
-    @JoinColumn(name = "korisnik_id", nullable = false)
+    @JoinColumn(name = "korisnik_id", nullable = false, insertable = false, updatable = false)
     private KorisnikEntity fitnessUser;
 
     public Integer getId() {
@@ -42,5 +46,13 @@ public class NalogAktivacijaEntity {
 
     public void setFitnessUser(KorisnikEntity fitnessUser) {
         this.fitnessUser = fitnessUser;
+    }
+
+    public Integer getKorisnikId() {
+        return korisnikId;
+    }
+
+    public void setKorisnikId(Integer korisnikId) {
+        this.korisnikId = korisnikId;
     }
 }

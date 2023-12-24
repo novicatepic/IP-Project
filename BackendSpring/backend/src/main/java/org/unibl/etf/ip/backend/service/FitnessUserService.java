@@ -1,5 +1,6 @@
 package org.unibl.etf.ip.backend.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.unibl.etf.ip.backend.model.KorisnikEntity;
@@ -14,9 +15,13 @@ public class FitnessUserService {
     @Autowired
     private CodeService codeService;
 
+    @Autowired
+    private MailService mailService;
+
     public KorisnikEntity createFitnessUser(KorisnikEntity fitnessUser)   {
         KorisnikEntity k = repository.save(fitnessUser);
-        codeService.insertCode(k);
+        String code = codeService.insertCode(k);
+        mailService.sendEmail(k.getMail(), "Code for password change", code);
         return k;
     }
 
@@ -25,8 +30,16 @@ public class FitnessUserService {
         return k;
     }
 
+
     public KorisnikEntity loginUser(String username, String password)   {
-        return repository.findByKorisnickoImeAndLozinka(username, password);
+        KorisnikEntity k = repository.findByKorisnickoImeAndLozinka(username, password);
+        if(k != null && !k.isAktivan()) {
+            codeService.deleteCode(k.getId());
+            String code = codeService.insertCode(k);
+            mailService.sendEmail(k.getMail(), "Code for password change", code);
+            return null;
+        }
+        return k;
 
     }
 

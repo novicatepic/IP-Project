@@ -20,12 +20,12 @@ public class FitnessProgramController {
 
     @GetMapping
     public ResponseEntity<List<ProgramEntity>> getPrograms() {
-        return new ResponseEntity<List<ProgramEntity>>(service.getPrograms(), HttpStatus.OK);
+        return new ResponseEntity<>(service.getPrograms(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProgramEntity> getProgram(@PathVariable("id") Integer id) throws Exception {
-        return new ResponseEntity<ProgramEntity>(service.getProgramById(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.getProgramById(id), HttpStatus.OK);
     }
 
     @GetMapping("/my-programs/{id}")
@@ -35,7 +35,7 @@ public class FitnessProgramController {
 
     @PostMapping
     public ResponseEntity<ProgramEntity> createProgram(@RequestBody ProgramEntity fitnessProgram) throws Exception {
-        return new ResponseEntity<ProgramEntity>(service.createProgram(fitnessProgram), HttpStatus.OK);
+        return new ResponseEntity<>(service.createProgram(fitnessProgram), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
@@ -47,6 +47,21 @@ public class FitnessProgramController {
     @PostMapping("/subscribe")
     public ResponseEntity<KorisnikPretplacenProgramEntity> subscribeToAProgram(@RequestBody KorisnikPretplacenProgramEntity subscribeEntity) {
         return new ResponseEntity<>(service.subscribeToAProgram(subscribeEntity), HttpStatus.OK);
+    }
+
+    @GetMapping("/upcoming-user-programs/{userId}")
+    public ResponseEntity<List<ProgramEntity>> getUserParticipations(@PathVariable("userId")Integer userId) {
+        return new ResponseEntity<>(service.getUserParticipations(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/past-user-programs/{userId}")
+    public ResponseEntity<List<ProgramEntity>> getPastUserParticipations(@PathVariable("userId")Integer userId) {
+        return new ResponseEntity<>(service.getPastUserParticipations(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/unparticipated-user-programs/{userId}")
+    public ResponseEntity<List<ProgramEntity>> getUserUnparticipated(@PathVariable("userId")Integer userId) {
+        return new ResponseEntity<>(service.getUserUnparticipations(userId), HttpStatus.OK);
     }
 
 }

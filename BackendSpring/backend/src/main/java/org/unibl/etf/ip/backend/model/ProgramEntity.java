@@ -38,10 +38,10 @@ public class ProgramEntity {
     private Date datum;
     @Basic
     @Column(name = "ucestvovan", nullable = false)
-    private Byte ucestvovan;
+    private Boolean ucestvovan;
     @Basic
     @Column(name = "aktivan", nullable = false)
-    private Byte aktivan;
+    private Boolean aktivan;
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "kreator_id", nullable = false)
     private KorisnikEntity kreator;
@@ -118,19 +118,19 @@ public class ProgramEntity {
         this.datum = datum;
     }
 
-    public Byte getUcestvovan() {
+    public Boolean getUcestvovan() {
         return ucestvovan;
     }
 
-    public void setUcestvovan(Byte ucestvovan) {
+    public void setUcestvovan(Boolean ucestvovan) {
         this.ucestvovan = ucestvovan;
     }
 
-    public Byte getAktivan() {
+    public Boolean getAktivan() {
         return aktivan;
     }
 
-    public void setAktivan(Byte aktivan) {
+    public void setAktivan(Boolean aktivan) {
         this.aktivan = aktivan;
     }
 
