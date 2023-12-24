@@ -17,10 +17,13 @@ public class PitanjeEntity {
     @Basic
     @Column(name = "odgovor", nullable = true, length = 1000)
     private String odgovor;
+    @Basic
+    @Column(name = "program_id", nullable = false)
+    private Integer programId;
 
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "program_id", nullable = false)
+    @JoinColumn(name = "program_id", insertable = false, updatable = false)
     private ProgramEntity program;
 
     public Integer getId() {
@@ -39,13 +42,6 @@ public class PitanjeEntity {
         this.tekst = tekst;
     }
 
-    public ProgramEntity getProgram() {
-        return program;
-    }
-
-    public void setProgramId(ProgramEntity program) {
-        this.program = program;
-    }
 
     public String getOdgovor() {
         return odgovor;
@@ -53,6 +49,19 @@ public class PitanjeEntity {
 
     public void setOdgovor(String odgovor) {
         this.odgovor = odgovor;
+    }
+
+
+    public Integer getProgramId() {
+        return programId;
+    }
+
+    public void setProgramId(Integer programId) {
+        this.programId = programId;
+    }
+
+    public ProgramEntity getProgram() {
+        return program;
     }
 
     public void setProgram(ProgramEntity program) {

@@ -25,4 +25,10 @@ public class FitnessUserController {
         return new ResponseEntity<KorisnikEntity>(service.updateFitnessUser(fitnessUser), HttpStatus.OK);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<KorisnikEntity> loginFitnessUser(@RequestBody KorisnikEntity fitnessUser) {
+        KorisnikEntity user = service.loginUser(fitnessUser.getKorisnickoIme(), fitnessUser.getLozinka());
+        return new ResponseEntity<KorisnikEntity>(user, HttpStatus.OK);
+    }
+
 }

@@ -25,4 +25,9 @@ public class FitnessUserService {
         return k;
     }
 
+    public KorisnikEntity loginUser(String username, String password)   {
+        return repository.findByKorisnickoImeAndLozinka(username, password);
+
+    }
+
 }

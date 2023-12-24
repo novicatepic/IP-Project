@@ -3,10 +3,7 @@ package org.unibl.etf.ip.backend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.ip.backend.model.PitanjeEntity;
 import org.unibl.etf.ip.backend.service.QuestionService;
 
@@ -25,4 +22,13 @@ public class QuestionController {
         return new ResponseEntity<List<PitanjeEntity>>(service.getProgramById(programId), HttpStatus.OK);
     }
 
+    @PostMapping
+    public ResponseEntity<PitanjeEntity> createQuestion(@RequestBody PitanjeEntity question) {
+        return new ResponseEntity<>(service.createQuestion(question), HttpStatus.OK);
+    }
+
+    @PostMapping("/respond")
+    public ResponseEntity<PitanjeEntity> respondToQuestion(@RequestBody PitanjeEntity question) {
+        return new ResponseEntity<>(service.respondToAQuestion(question), HttpStatus.OK);
+    }
 }

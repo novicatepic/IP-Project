@@ -9,20 +9,35 @@ import java.util.Objects;
 public class DnevnikUnosEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "dnevnik_korisnik_id", nullable = false)
-    private Integer dnevnikKorisnikId;
+    @Column(name = "id", nullable = false)
+    private Integer id;
     @Basic
     @Column(name = "vjezba", nullable = false, length = 45)
     private String vjezba;
     @Basic
-    @Column(name = "trajanje", nullable = false)
-    private Integer trajanje;
+    @Column(name = "trajanje", nullable = false, length = 45)
+    private String trajanje;
     @Basic
     @Column(name = "intenzitet", nullable = false, length = 45)
     private String intenzitet;
     @Basic
     @Column(name = "potroseno_kalorija", nullable = false)
     private Integer potrosenoKalorija;
+    @Basic
+    @Column(name = "dnevnik_korisnik_id", nullable = false)
+    private Integer dnevnikKorisnikId;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "dnevnik_korisnik_id", referencedColumnName = "korisnik_id", insertable = false, updatable = false)
+    private DnevnikEntity dnevnik;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getDnevnikKorisnikId() {
         return dnevnikKorisnikId;
@@ -40,11 +55,11 @@ public class DnevnikUnosEntity {
         this.vjezba = vjezba;
     }
 
-    public Integer getTrajanje() {
+    public String getTrajanje() {
         return trajanje;
     }
 
-    public void setTrajanje(Integer trajanje) {
+    public void setTrajanje(String trajanje) {
         this.trajanje = trajanje;
     }
 
@@ -64,16 +79,11 @@ public class DnevnikUnosEntity {
         this.potrosenoKalorija = potrosenoKalorija;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DnevnikUnosEntity that = (DnevnikUnosEntity) o;
-        return Objects.equals(dnevnikKorisnikId, that.dnevnikKorisnikId) && Objects.equals(vjezba, that.vjezba) && Objects.equals(trajanje, that.trajanje) && Objects.equals(intenzitet, that.intenzitet) && Objects.equals(potrosenoKalorija, that.potrosenoKalorija);
+    public DnevnikEntity getDnevnik() {
+        return dnevnik;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(dnevnikKorisnikId, vjezba, trajanje, intenzitet, potrosenoKalorija);
+    public void setDnevnik(DnevnikEntity dnevnik) {
+        this.dnevnik = dnevnik;
     }
 }

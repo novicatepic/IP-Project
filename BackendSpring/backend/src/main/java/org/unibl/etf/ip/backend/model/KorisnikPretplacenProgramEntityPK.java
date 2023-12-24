@@ -11,11 +11,11 @@ import java.util.Objects;
 public class KorisnikPretplacenProgramEntityPK implements Serializable {
     @Column(name = "korisnik_id", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer korisnikId;
     @Column(name = "program_id", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer programId;
 
     public Integer getKorisnikId() {

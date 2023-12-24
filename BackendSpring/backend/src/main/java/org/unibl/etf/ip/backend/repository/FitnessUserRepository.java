@@ -6,5 +6,5 @@ import org.unibl.etf.ip.backend.model.KorisnikEntity;
 
 @Repository
 public interface FitnessUserRepository extends JpaRepository<KorisnikEntity, Integer> {
-
+    KorisnikEntity findByKorisnickoImeAndLozinka(String korisnickoIme, String lozinka);
 }

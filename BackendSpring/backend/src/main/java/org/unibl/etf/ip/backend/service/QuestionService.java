@@ -15,8 +15,16 @@ public class QuestionService {
     @Autowired
     private QuestionRepository repository;
 
-    public List<PitanjeEntity> getProgramById(Integer id) throws Exception {
+    public List<PitanjeEntity> getProgramById(Integer id)  {
         return repository.findByProgram_Id(id);
+    }
+
+    public PitanjeEntity createQuestion(PitanjeEntity question) {
+        return repository.save(question);
+    }
+
+    public PitanjeEntity respondToAQuestion(PitanjeEntity question) {
+        return repository.save(question);
     }
 
 }

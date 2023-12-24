@@ -7,18 +7,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.unibl.etf.ip.backend.model.ExerciseAPI;
 import org.unibl.etf.ip.backend.service.ExerciseService;
 
-@RequestMapping("/api/exercises")
+import java.util.List;
+
 @RestController
+@RequestMapping("/api/exercises")
 public class ExerciseAPIController {
 
     @Autowired
     private ExerciseService service;
 
     @GetMapping
-    public void responseEntity() throws Exception {
-        service.processApiResponse();
+    public ResponseEntity<List<ExerciseAPI>> responseEntity() {
+       return new ResponseEntity<>(service.processApiResponse(), HttpStatus.OK);
     }
-
 }

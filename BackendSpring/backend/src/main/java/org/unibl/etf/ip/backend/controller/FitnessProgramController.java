@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.unibl.etf.ip.backend.model.KorisnikEntity;
+import org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntity;
 import org.unibl.etf.ip.backend.model.ProgramEntity;
 import org.unibl.etf.ip.backend.service.FitnessProgramService;
 
@@ -40,6 +42,11 @@ public class FitnessProgramController {
     public ResponseEntity<String> deleteProgram(@PathVariable("id") Integer id) throws Exception {
         service.deleteProgram(id);
         return new ResponseEntity<>("Success", HttpStatus.OK);
+    }
+
+    @PostMapping("/subscribe")
+    public ResponseEntity<KorisnikPretplacenProgramEntity> subscribeToAProgram(@RequestBody KorisnikPretplacenProgramEntity subscribeEntity) {
+        return new ResponseEntity<>(service.subscribeToAProgram(subscribeEntity), HttpStatus.OK);
     }
 
 }
