@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class SingleFitnessProgramComponent implements OnInit {
 
   data: any;
+  questions: any[] = [];
   id: any;
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {
@@ -17,6 +18,7 @@ export class SingleFitnessProgramComponent implements OnInit {
       this.id = params.get('id');
     });
     this.loadData();
+    this.loadQuestions();
   }
   ngOnInit(): void {
     
@@ -29,5 +31,15 @@ export class SingleFitnessProgramComponent implements OnInit {
       console.log(this.data);
     });
   }
+
+  loadQuestions() {
+    const url = `http://localhost:4040/questions/${this.id}`;
+    this.http.get<any>(url).subscribe(data => {
+      this.questions = data;
+      console.log("QUESTIONS=" + this.questions);
+    });
+  }
+
+
 
 }

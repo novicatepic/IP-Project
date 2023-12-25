@@ -1,0 +1,12 @@
+<div class="list-group" style="margin-top: 100px;">
+    <a *ngFor="let item of data" href="#" style="margin-bottom: 10px;" class="list-group-item list-group-item-action flex-column align-items-start active">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">Name : {{item.naziv}}</h5>
+        <small>Date: {{item.datum}}</small>
+      </div>
+      <p class="mb-1">Description: {{ item.opis }}</p>
+      <p class="mb-1">Active: {{ item.aktivan }}</p>
+      <div><small>Price: {{ item.cijena }}</small></div>
+      <button (click)="deleteProgram(item.id)" class="btn btn-danger">Delete program</button>
+    </a>
+  </div>

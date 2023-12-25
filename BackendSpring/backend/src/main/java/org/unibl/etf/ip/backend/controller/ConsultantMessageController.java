@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.ip.backend.model.SavjetnikPorukaEntity;
 import org.unibl.etf.ip.backend.service.ConsultantMessageService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/messages")
 public class ConsultantMessageController {
@@ -14,7 +15,6 @@ public class ConsultantMessageController {
     @Autowired
     private ConsultantMessageService service;
 
-    @GetMapping
 
     @PostMapping
     public ResponseEntity<SavjetnikPorukaEntity> messageConsultant(@RequestBody SavjetnikPorukaEntity message) {

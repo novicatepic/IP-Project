@@ -8,7 +8,6 @@ import org.unibl.etf.ip.backend.model.KorisnikEntity;
 import org.unibl.etf.ip.backend.model.NalogAktivacijaEntity;
 import org.unibl.etf.ip.backend.repository.CodeRepository;
 
-import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -17,7 +16,7 @@ public class CodeService {
     @Autowired
     private CodeRepository repository;
 
-    public String insertCode(KorisnikEntity fitnessUser) {
+    public String saveCodeToDB(KorisnikEntity fitnessUser) {
 
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
@@ -33,6 +32,21 @@ public class CodeService {
         repository.save(code);
 
         return sb.toString();
+    }
+
+    public Boolean insertCode(Integer userId, String userCode) throws NotFoundException {
+        NalogAktivacijaEntity code  = repository.findByKorisnikId(userId)
+                .orElseThrow(() -> new NotFoundException());
+
+        /*System.out.print("Code 1: " + code.getKod());
+        System.out.print("Code 2: " +  userCode);*/
+
+        if(code.getKod().equals(userCode)) {
+            //System.out.print("True");
+            repository.delete(code);
+            return true;
+        }
+        return false;
     }
 
     @Transactional

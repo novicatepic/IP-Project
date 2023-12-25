@@ -10,6 +10,7 @@ import org.unibl.etf.ip.backend.service.QuestionService;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/questions")
 public class QuestionController {
@@ -25,6 +26,7 @@ public class QuestionController {
 
     @PostMapping
     public ResponseEntity<PitanjeEntity> createQuestion(@RequestBody PitanjeEntity question) {
+        System.out.println("IN");
         return new ResponseEntity<>(service.createQuestion(question), HttpStatus.OK);
     }
 

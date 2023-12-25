@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.unibl.etf.ip.backend.exceptions.MethodNotAllowedException;
+import org.unibl.etf.ip.backend.exceptions.ModifiedUserNameException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
+import org.unibl.etf.ip.backend.exceptions.UserNotActiveException;
 
 import java.io.IOException;
 
@@ -28,4 +31,21 @@ public class GlobalExceptionHandler {
         logger.error("Problem with files!");
     }
 
+    @ExceptionHandler(ModifiedUserNameException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public void handleModifiedUserNameException() {
+        logger.error("Forbidden username change!");
+    }
+
+    @ExceptionHandler(UserNotActiveException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public void handleUserNotActiveException() {
+        logger.error("User not active, can not change profile!");
+    }
+
+    @ExceptionHandler(MethodNotAllowedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public void handleMethodNotAllowedException() {
+        logger.error("Action not allowed!");
+    }
 }

@@ -3,6 +3,7 @@ package org.unibl.etf.ip.backend.service;
 import org.hibernate.annotations.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.unibl.etf.ip.backend.exceptions.MethodNotAllowedException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntity;
 import org.unibl.etf.ip.backend.model.ProgramEntity;
@@ -35,11 +36,17 @@ public class FitnessProgramService {
                 .orElseThrow(NotFoundException::new);
     }
 
-    public ProgramEntity createProgram(ProgramEntity fitnessProgram) throws Exception {
+    public ProgramEntity createProgram(ProgramEntity fitnessProgram) {
         return repository.save(fitnessProgram);
     }
 
-    public void deleteProgram(Integer id) {
+    public void deleteProgram(Integer id, Integer userId) throws NotFoundException, MethodNotAllowedException {
+        ProgramEntity program = repository.findById(id).orElseThrow(NotFoundException::new);
+
+        if(program.getKreatorId() != userId) {
+            throw new MethodNotAllowedException();
+        }
+
         repository.deleteById(id);
     }
 
@@ -81,7 +88,11 @@ public class FitnessProgramService {
         List<KorisnikPretplacenProgramEntity> allEntitites = subscribeRepository.findAll();
         List<ProgramEntity> result = new ArrayList<>();
         for(KorisnikPretplacenProgramEntity k : allEntitites) {
+            System.out.println("userId " + userId);
+            System.out.println("k.getKorId() " + k.getKorisnikId());
+            System.out.println("k.active " + k.getFitnessProgram().getAktivan());
             if(k.getKorisnikId() == userId && !k.getFitnessProgram().getAktivan()) {
+                System.out.println("IN");
                 result.add(k.getFitnessProgram());
             }
         }

@@ -2,13 +2,14 @@ package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "program", schema = "ip_project", catalog = "")
-public class ProgramEntity {
+public class ProgramEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -145,20 +146,20 @@ public class ProgramEntity {
         this.aktivan = aktivan;
     }
 
-    public KorisnikEntity getKreator() {
-        return kreator;
-    }
-
-    public void setKreator(KorisnikEntity kreator) {
-        this.kreator = kreator;
-    }
-
     public Integer getKreatorId() {
         return kreatorId;
     }
 
     public void setKreatorId(Integer kreatorId) {
         this.kreatorId = kreatorId;
+    }
+
+    public KorisnikEntity getKreator() {
+        return kreator;
+    }
+
+    public void setKreator(KorisnikEntity kreator) {
+        this.kreator = kreator;
     }
 
     public List<SlikaEntity> getPictures() {

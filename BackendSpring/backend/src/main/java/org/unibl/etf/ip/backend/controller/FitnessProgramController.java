@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.unibl.etf.ip.backend.exceptions.MethodNotAllowedException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntity;
 import org.unibl.etf.ip.backend.model.ProgramEntity;
@@ -17,8 +18,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/fitness-programs")
 public class FitnessProgramController {
-
-    Logger logger = LoggerFactory.getLogger(FitnessProgramController.class);
 
     @Autowired
     private FitnessProgramService service;
@@ -39,13 +38,21 @@ public class FitnessProgramController {
     }
 
     @PostMapping
-    public ResponseEntity<ProgramEntity> createProgram(@RequestBody ProgramEntity fitnessProgram) throws Exception {
-        return new ResponseEntity<>(service.createProgram(fitnessProgram), HttpStatus.OK);
+    public ResponseEntity<ProgramEntity> createProgram(@RequestBody ProgramEntity fitnessProgram) {
+        try {
+            System.out.println("In fitness programs addition");
+            return new ResponseEntity<>(service.createProgram(fitnessProgram), HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProgram(@PathVariable("id") Integer id) throws Exception {
-        service.deleteProgram(id);
+    @DeleteMapping("/{programId}/{userId}")
+    public ResponseEntity<String> deleteProgram(@PathVariable("programId") Integer programId,
+                                                @PathVariable("userId") Integer userId) throws NotFoundException, MethodNotAllowedException {
+        System.out.println("In");
+        service.deleteProgram(programId, userId);
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 
