@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,9 +43,7 @@ public class ProgramEntity implements Serializable {
     @Basic
     @Column(name = "ucestvovan", nullable = false)
     private Boolean ucestvovan;
-    @Basic
-    @Column(name = "aktivan", nullable = false)
-    private Boolean aktivan;
+
     @Basic
     @Column(name = "kreator_id", nullable = false)
     private Integer kreatorId;
@@ -57,6 +57,12 @@ public class ProgramEntity implements Serializable {
 
     @OneToMany(mappedBy = "kategorijaId", cascade = CascadeType.ALL)
     private List<KategorijaProgramEntity> kategorijaProgramEntities = new ArrayList<>();
+
+    @OneToMany(mappedBy = "programId", cascade = CascadeType.ALL)
+    private List<PitanjeEntity> programQuestions = new ArrayList<>();
+
+    @Transient
+    private Boolean aktivan;
 
     public Integer getId() {
         return id;
@@ -134,16 +140,25 @@ public class ProgramEntity implements Serializable {
         return ucestvovan;
     }
 
+
     public void setUcestvovan(Boolean ucestvovan) {
         this.ucestvovan = ucestvovan;
     }
 
     public Boolean getAktivan() {
-        return aktivan;
-    }
+        /*LocalDate currentDate = LocalDate.now();
+        LocalDate datumLocalDate = this.datum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-    public void setAktivan(Boolean aktivan) {
-        this.aktivan = aktivan;
+        // Check if this.datum is greater than the current date
+        boolean isDatumAfterCurrentDate = datumLocalDate.isAfter(currentDate);
+
+        // Check if this.datum - numberOfDays is less than the current date
+        int numberOfDays = daniTrajanja; // Adjust this value as needed
+        LocalDate earlierDate = datumLocalDate.minusDays(numberOfDays);
+        boolean isEarlierDateBeforeCurrentDate = earlierDate.isBefore(currentDate);
+
+        //return isDatumAfterCurrentDate && isEarlierDateBeforeCurrentDate;*/
+        return this.datum.getTime() > new java.util.Date().getTime();
     }
 
     public Integer getKreatorId() {
@@ -176,5 +191,13 @@ public class ProgramEntity implements Serializable {
 
     public void setKategorijaProgramEntities(List<KategorijaProgramEntity> kategorijaProgramEntities) {
         this.kategorijaProgramEntities = kategorijaProgramEntities;
+    }
+
+    public List<PitanjeEntity> getProgramQuestions() {
+        return programQuestions;
+    }
+
+    public void setProgramQuestions(List<PitanjeEntity> programQuestions) {
+        this.programQuestions = programQuestions;
     }
 }

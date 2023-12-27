@@ -26,6 +26,8 @@ import { NinjaApiPageComponent } from './ninja-api-page/ninja-api-page.component
 import { JournalEntriesComponent } from './journal-entries/journal-entries.component';
 import { NewJournalEntryComponent } from './new-journal-entry/new-journal-entry.component';
 import { Chart } from 'chart.js';
+import { CheckCategorySubscriptionsComponent } from './check-category-subscriptions/check-category-subscriptions.component';
+import { CheckCategoryUnsubscribedComponent } from './check-category-unsubscribed/check-category-unsubscribed.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { Chart } from 'chart.js';
     StartPageRssComponent,
     NinjaApiPageComponent,
     JournalEntriesComponent,
-    NewJournalEntryComponent
+    NewJournalEntryComponent,
+    CheckCategorySubscriptionsComponent,
+    CheckCategoryUnsubscribedComponent
   ],
   imports: [
     BrowserModule,

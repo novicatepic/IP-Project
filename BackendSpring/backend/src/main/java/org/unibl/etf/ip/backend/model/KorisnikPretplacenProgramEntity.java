@@ -16,7 +16,7 @@ public class KorisnikPretplacenProgramEntity {
     private Integer programId;
     @Basic
     @Column(name = "nacin_placanja", nullable = false)
-    private Integer nacinPlacanja;
+    private String nacinPlacanja;
     @Basic
     @Column(name = "vrijednost", nullable = false)
     private Integer vrijednost;
@@ -45,11 +45,11 @@ public class KorisnikPretplacenProgramEntity {
         this.programId = programId;
     }
 
-    public Integer getNacinPlacanja() {
+    public String getNacinPlacanja() {
         return nacinPlacanja;
     }
 
-    public void setNacinPlacanja(Integer nacinPlacanja) {
+    public void setNacinPlacanja(String nacinPlacanja) {
         this.nacinPlacanja = nacinPlacanja;
     }
 

@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface QuestionRepository extends JpaRepository<PitanjeEntity, Integer> {
 
-    List<PitanjeEntity> findByProgram_Id(Integer programId);
+    List<PitanjeEntity> findByProgramId(Integer programId);
 
 }

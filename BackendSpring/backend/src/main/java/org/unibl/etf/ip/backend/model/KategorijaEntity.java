@@ -15,9 +15,12 @@ public class KategorijaEntity {
     @Basic
     @Column(name = "naziv", nullable = false, length = 200)
     private String naziv;
+    @Basic
+    @Column(name = "program_id", nullable = false, length = 200)
+    private Integer programId;
 
-    @OneToMany(mappedBy = "kategorijaId", cascade = CascadeType.ALL)
-    private List<AtributEntity> attributes = new ArrayList<>();
+    /*@OneToMany(mappedBy = "kategorijaId", cascade = CascadeType.ALL)
+    private List<AtributEntity> attributes = new ArrayList<>();*/
 
     public Integer getId() {
         return id;
@@ -35,11 +38,19 @@ public class KategorijaEntity {
         this.naziv = naziv;
     }
 
-    public List<AtributEntity> getAttributes() {
+    /*public List<AtributEntity> getAttributes() {
         return attributes;
     }
 
     public void setAttributes(List<AtributEntity> attributes) {
         this.attributes = attributes;
+    }*/
+
+    public Integer getProgramId() {
+        return programId;
+    }
+
+    public void setProgramId(Integer programId) {
+        this.programId = programId;
     }
 }

@@ -2,6 +2,9 @@ package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "pitanje", schema = "ip_project", catalog = "")
 public class PitanjeEntity {
@@ -12,17 +15,37 @@ public class PitanjeEntity {
     @Basic
     @Column(name = "tekst", nullable = false, length = 1000)
     private String tekst;
-    @Basic
-    @Column(name = "odgovor", nullable = true, length = 1000)
-    private String odgovor;
+
     @Basic
     @Column(name = "program_id", nullable = false)
     private Integer programId;
+    @Basic
+    @Column(name = "korisnik_id", nullable = false)
+    private Integer korisnikId;
 
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "program_id", insertable = false, updatable = false)
-    private ProgramEntity program;
+    @JoinColumn(name = "korisnik_id", insertable = false, updatable = false)
+    private KorisnikEntity user;
+
+    @OneToMany(mappedBy = "pitanjeId", cascade = CascadeType.ALL)
+    private List<OdgovorEntity> odgovori = new ArrayList<>();
+
+    public KorisnikEntity getUser() {
+        return user;
+    }
+
+    public void setUser(KorisnikEntity user) {
+        this.user = user;
+    }
+
+    public List<OdgovorEntity> getOdgovori() {
+        return odgovori;
+    }
+
+    public void setOdgovori(List<OdgovorEntity> odgovori) {
+        this.odgovori = odgovori;
+    }
 
     public Integer getId() {
         return id;
@@ -40,16 +63,6 @@ public class PitanjeEntity {
         this.tekst = tekst;
     }
 
-
-    public String getOdgovor() {
-        return odgovor;
-    }
-
-    public void setOdgovor(String odgovor) {
-        this.odgovor = odgovor;
-    }
-
-
     public Integer getProgramId() {
         return programId;
     }
@@ -58,11 +71,11 @@ public class PitanjeEntity {
         this.programId = programId;
     }
 
-    public ProgramEntity getProgram() {
-        return program;
+    public Integer getKorisnikId() {
+        return korisnikId;
     }
 
-    public void setProgram(ProgramEntity program) {
-        this.program = program;
+    public void setKorisnikId(Integer korisnikId) {
+        this.korisnikId = korisnikId;
     }
 }

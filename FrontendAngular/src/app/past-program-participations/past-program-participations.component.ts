@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class PastProgramParticipationsComponent {
 
   data: any = [];
-  user: any;
+  //user: any;
 
   constructor( 
      private router: Router,
@@ -24,10 +24,11 @@ export class PastProgramParticipationsComponent {
   readData() {
     var temp =  sessionStorage.getItem("user");
     if(temp) {
-      this.user = JSON.parse(temp);
+      //this.user = JSON.parse(temp);
     }
     
-    this.service.baseUrl += this.user.id;
+    //hard-kodovano
+    this.service.baseUrl += 3;
       this.service.getPastParticipations().subscribe((data) => {
         this.data = data;
         console.log(data);

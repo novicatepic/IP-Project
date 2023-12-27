@@ -88,9 +88,6 @@ public class FitnessProgramService {
         List<KorisnikPretplacenProgramEntity> allEntitites = subscribeRepository.findAll();
         List<ProgramEntity> result = new ArrayList<>();
         for(KorisnikPretplacenProgramEntity k : allEntitites) {
-            System.out.println("userId " + userId);
-            System.out.println("k.getKorId() " + k.getKorisnikId());
-            System.out.println("k.active " + k.getFitnessProgram().getAktivan());
             if(k.getKorisnikId() == userId && !k.getFitnessProgram().getAktivan()) {
                 System.out.println("IN");
                 result.add(k.getFitnessProgram());
@@ -101,13 +98,30 @@ public class FitnessProgramService {
 
     public List<ProgramEntity> getUserUnparticipations(Integer userId) {
         List<KorisnikPretplacenProgramEntity> allEntitites = subscribeRepository.findAll();
-        List<ProgramEntity> result = new ArrayList<>();
+        List<ProgramEntity> results = new ArrayList<>();
         for(KorisnikPretplacenProgramEntity k : allEntitites) {
-            if(k.getKorisnikId() != userId && !k.getFitnessProgram().getAktivan()) {
-                result.add(k.getFitnessProgram());
+            if(k.getKorisnikId() == userId) {
+                System.out.println("1="+k.getFitnessProgram().getNaziv());
+                results.add(k.getFitnessProgram());
             }
         }
-        return result;
+
+        List<ProgramEntity> allPrograms = repository.findAll();
+        List<ProgramEntity> toReturn = new ArrayList<>();
+        for(ProgramEntity program : allPrograms) {
+            boolean participated = false;
+            for(ProgramEntity result : results) {
+                if(program.getId() == result.getId()) {
+                    System.out.println("2="+true);
+                    participated = true;
+                }
+            }
+            if(!participated) {
+                toReturn.add(program);
+            }
+        }
+
+        return toReturn;
     }
 
 }

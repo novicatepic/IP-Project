@@ -37,7 +37,8 @@ export class NewQuestionComponent {
     if (questionControl && questionControl.value !== null) {
      const requestData = {
        tekst: questionControl.value,
-       programId: parseInt(this.id, 10)
+       programId: parseInt(this.id, 10),
+       korisnikId: 3 //hard-kodovano
     };
     return this.http.post(`${url}`, JSON.stringify(requestData), {headers}).subscribe(data => {
       console.log(data);

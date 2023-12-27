@@ -1,10 +1,25 @@
 <div class="list-group" style="margin-top: 100px;">
-    <a *ngFor="let item of data" href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+    <div *ngFor="let item of data" href="#" class="mb-3 list-group-item list-group-item-action flex-column align-items-start active">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">Name : {{item.naziv}}</h5>
         <small>Date: {{item.datum}}</small>
       </div>
       <p class="mb-1">Description: {{ item.opis }}</p>
-      <small>Price: {{ item.cijena }}</small>
-    </a>
+      <div><small>Price: {{ item.cijena }} E</small></div>
+      <button (click)="showPart(item)" class="btn btn-success">Buy Program</button>
+      <form [formGroup]="firstForm" (ngSubmit)="buyProgram()" *ngIf="selectedItem && selectedItem.id === item.id">
+        <select formControlName="paymentMethod" class="mt-5 form-select">
+          <option selected value="Debit card">Debit card</option>
+          <option value="Paypal">PayPal</option>
+          <option value="Live">Live</option>
+        </select>
+        <div class="form-group">
+          <label for="payment-value">Payment value</label>
+          <input formControlName="paymentValue" type="number" min="0" class="form-control" id="exampleInputPassword1" placeholder="Value...">
+        </div>
+        <button type="submit" class="btn btn-danger">Submit</button>
+      </form>
+    </div>
   </div>
+
+  

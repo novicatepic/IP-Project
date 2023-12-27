@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BuyProgramService } from './buy-program.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-buy-program',
@@ -9,29 +10,65 @@ import { BuyProgramService } from './buy-program.service';
 })
 export class BuyProgramComponent {
   data: any = [];
-  user: any;
+  show: any = false;
+  selectedItem: any = null;
+  //user: any;
+  public firstForm : FormGroup;
 
   constructor( 
+    private formBuilder: FormBuilder,
      private router: Router,
      private service: BuyProgramService) {
 
       this.readData();
       console.log("DATA PART: " + this.data);
 
+      this.firstForm = formBuilder.group({
+        paymentMethod : [null],
+        paymentValue : [null]
+      });
+
   }
 
   readData() {
-    var temp =  sessionStorage.getItem("user");
+    /*var temp =  sessionStorage.getItem("user");
     if(temp) {
       this.user = JSON.parse(temp);
-    }
+    }*/
     
-    this.service.baseUrl += this.user.id;
+    //hard-kodovano
+    this.service.baseUrl += 3;
       this.service.getUnparticipated().subscribe((data) => {
         this.data = data;
         console.log(data);
       },
       error => console.log(error));
 
+    }
+
+    showPart(item: any) {
+      this.selectedItem = this.selectedItem === item ? null : item;
+      event?.preventDefault();
+    }
+
+    buyProgram() {
+
+      if(this.selectedItem) {
+        const obj = {
+          programId: this.selectedItem.id,
+          korisnikId: 3, //hard-kodovano,
+          nacinPlacanja: this.firstForm.get('paymentMethod')?.value,
+          vrijednost: parseInt(this.firstForm.get('paymentValue')?.value, 10),
+        }
+
+        console.log(JSON.stringify(obj));
+
+        this.service.subscribeToProgram(obj).subscribe((data) => {
+          console.log(data);
+        })
+        
+      }
+      event?.preventDefault();
+      
     }
 }

@@ -18,6 +18,9 @@ import { StartPageRssComponent } from './start-page-rss/start-page-rss.component
 import { NinjaApiPageComponent } from './ninja-api-page/ninja-api-page.component';
 import { JournalEntriesComponent } from './journal-entries/journal-entries.component';
 import { NewJournalEntryComponent } from './new-journal-entry/new-journal-entry.component';
+import { CheckCategorySubscriptionsComponent } from './check-category-subscriptions/check-category-subscriptions.component';
+import { CheckCategoryUnsubscribedComponent } from './check-category-unsubscribed/check-category-unsubscribed.component';
+import { BuyProgramComponent } from './buy-program/buy-program.component';
 
 
 const routes: Routes = [
@@ -25,6 +28,8 @@ const routes: Routes = [
   {path: 'ninja', component:NinjaApiPageComponent},
   {path: 'journal-entries', component:JournalEntriesComponent},
   {path: 'new-journal-entry', component:NewJournalEntryComponent},
+  {path: 'category-subscriptions', component:CheckCategorySubscriptionsComponent},
+  {path: 'category-unsubscribed', component:CheckCategoryUnsubscribedComponent},
   {path: 'fitness-programs', component:FitnessProgramComponent},
   {path: 'login', component:LoginComponent},
   {path: 'fitness-programs/:id', component: SingleFitnessProgramComponent},
@@ -36,6 +41,7 @@ const routes: Routes = [
   {path: 'unparticipated', component: PastProgramParticipationsComponent},
   {path: 'create-fitness-program', component: CreateFitnessProgramComponent},
   {path: 'my-programs', component: MyFitnessProgramsComponent},
+  {path: 'buy-programs', component: BuyProgramComponent},
   {path: 'message-consultant', component: MessageConsultantComponent},
   {path: 'check-messages', component: CheckMessagesComponent},
   {path: 'all-messages', component: CheckAllMessagesComponent},
