@@ -17,7 +17,7 @@ public class ExerciseService {
 
     public List<ExerciseAPI> processApiResponse() {
         try {
-            URL url = new URL("https://api.api-ninjas.com/v1/exercises?muscle=biceps");
+            URL url = new URL("https://api.api-ninjas.com/v1/exercises?difficulty=intermediate");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("x-api-key", "UnTW9ey5rROzstJ6IJ3fdQ==0ZZMbTXqO0KJatwX");
             connection.setRequestProperty("accept", "application/json");
@@ -31,7 +31,7 @@ public class ExerciseService {
                 // Now you can access the JSON elements
                 List<ExerciseAPI> exercises = mapper.readValue(
                         root.toString(),
-                        new TypeReference<List<ExerciseAPI>>() {}
+                        new TypeReference<>() {}
                 );
                 return exercises;
             } else {

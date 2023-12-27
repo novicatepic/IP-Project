@@ -280,3 +280,106 @@ org.hibernate.PropertyValueException: not-null property references a null or tra
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
 	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
 
+2023-12-27T07:34:03.679+01:00 ERROR 13828 --- [http-nio-4040-exec-10] o.u.e.i.b.a.GlobalExceptionHandler       : Resource not found!
+2023-12-27T07:40:22.701+01:00  INFO 13828 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-27T07:40:22.721+01:00  INFO 13828 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-27T07:40:22.733+01:00  INFO 13828 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-27T07:40:29.712+01:00  INFO 2284 --- [main] o.u.etf.ip.backend.BackendApplication    : Starting BackendApplication using Java 17.0.9 with PID 2284 (C:\Users\User\Desktop\IP-Project\BackendSpring\backend\target\classes started by Тепица in C:\Users\User\Desktop\IP-Project\BackendSpring\backend)
+2023-12-27T07:40:29.723+01:00  INFO 2284 --- [main] o.u.etf.ip.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2023-12-27T07:40:30.650+01:00  INFO 2284 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-27T07:40:30.755+01:00  INFO 2284 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 95 ms. Found 12 JPA repository interfaces.
+2023-12-27T07:40:31.370+01:00  INFO 2284 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 4040 (http)
+2023-12-27T07:40:31.385+01:00  INFO 2284 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-27T07:40:31.385+01:00  INFO 2284 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2023-12-27T07:40:31.476+01:00  INFO 2284 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-27T07:40:31.477+01:00  INFO 2284 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1696 ms
+2023-12-27T07:40:31.677+01:00  INFO 2284 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-27T07:40:31.753+01:00  INFO 2284 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2023-12-27T07:40:31.805+01:00  INFO 2284 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2023-12-27T07:40:32.069+01:00  INFO 2284 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-27T07:40:32.105+01:00  INFO 2284 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-27T07:40:32.575+01:00  INFO 2284 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1f45db49
+2023-12-27T07:40:32.578+01:00  INFO 2284 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-27T07:40:32.662+01:00  WARN 2284 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2023-12-27T07:40:32.663+01:00  WARN 2284 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-12-27T07:40:33.370+01:00  WARN 2284 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-27T07:40:33.371+01:00  WARN 2284 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-27T07:40:33.372+01:00  WARN 2284 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-27T07:40:33.372+01:00  WARN 2284 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-27T07:40:34.460+01:00  INFO 2284 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-27T07:40:34.732+01:00  INFO 2284 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-27T07:40:35.468+01:00  WARN 2284 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-27T07:40:36.063+01:00  WARN 2284 --- [main] o.s.b.a.f.FreeMarkerAutoConfiguration    : Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2023-12-27T07:40:36.215+01:00  INFO 2284 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 4040 (http) with context path ''
+2023-12-27T07:40:36.228+01:00  INFO 2284 --- [main] o.u.etf.ip.backend.BackendApplication    : Started BackendApplication in 7.182 seconds (process running for 8.234)
+2023-12-27T07:40:46.009+01:00  INFO 2284 --- [http-nio-4040-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-27T07:40:46.010+01:00  INFO 2284 --- [http-nio-4040-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-12-27T07:40:46.013+01:00  INFO 2284 --- [http-nio-4040-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2023-12-27T07:54:21.373+01:00  INFO 2284 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-27T07:54:21.398+01:00  INFO 2284 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-27T07:54:21.422+01:00  INFO 2284 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-27T07:54:28.397+01:00  INFO 17428 --- [main] o.u.etf.ip.backend.BackendApplication    : Starting BackendApplication using Java 17.0.9 with PID 17428 (C:\Users\User\Desktop\IP-Project\BackendSpring\backend\target\classes started by Тепица in C:\Users\User\Desktop\IP-Project\BackendSpring\backend)
+2023-12-27T07:54:28.400+01:00  INFO 17428 --- [main] o.u.etf.ip.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2023-12-27T07:54:29.483+01:00  INFO 17428 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-27T07:54:29.608+01:00  INFO 17428 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 113 ms. Found 12 JPA repository interfaces.
+2023-12-27T07:54:30.267+01:00  INFO 17428 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 4040 (http)
+2023-12-27T07:54:30.280+01:00  INFO 17428 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-27T07:54:30.280+01:00  INFO 17428 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2023-12-27T07:54:30.363+01:00  INFO 17428 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-27T07:54:30.364+01:00  INFO 17428 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1881 ms
+2023-12-27T07:54:30.563+01:00  INFO 17428 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-27T07:54:30.644+01:00  INFO 17428 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2023-12-27T07:54:30.689+01:00  INFO 17428 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2023-12-27T07:54:30.945+01:00  INFO 17428 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-27T07:54:30.978+01:00  INFO 17428 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-27T07:54:31.419+01:00  INFO 17428 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4abbe41c
+2023-12-27T07:54:31.422+01:00  INFO 17428 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-27T07:54:31.503+01:00  WARN 17428 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2023-12-27T07:54:31.505+01:00  WARN 17428 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-12-27T07:54:31.966+01:00  WARN 17428 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-27T07:54:31.966+01:00  WARN 17428 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-27T07:54:31.967+01:00  WARN 17428 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-27T07:54:31.967+01:00  WARN 17428 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-27T07:54:32.844+01:00  INFO 17428 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-27T07:54:33.083+01:00  INFO 17428 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-27T07:54:33.782+01:00  WARN 17428 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-27T07:54:34.217+01:00  WARN 17428 --- [main] o.s.b.a.f.FreeMarkerAutoConfiguration    : Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2023-12-27T07:54:34.310+01:00  INFO 17428 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 4040 (http) with context path ''
+2023-12-27T07:54:34.321+01:00  INFO 17428 --- [main] o.u.etf.ip.backend.BackendApplication    : Started BackendApplication in 6.558 seconds (process running for 7.841)
+2023-12-27T07:55:09.167+01:00  INFO 17428 --- [http-nio-4040-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-27T07:55:09.168+01:00  INFO 17428 --- [http-nio-4040-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-12-27T07:55:09.172+01:00  INFO 17428 --- [http-nio-4040-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-12-27T08:07:30.714+01:00  INFO 17428 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-27T08:07:30.727+01:00  INFO 17428 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-27T08:07:30.747+01:00  INFO 17428 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-27T08:08:12.344+01:00  INFO 908 --- [main] o.u.etf.ip.backend.BackendApplication    : Starting BackendApplication using Java 17.0.9 with PID 908 (C:\Users\User\Desktop\IP-Project\BackendSpring\backend\target\classes started by Тепица in C:\Users\User\Desktop\IP-Project\BackendSpring\backend)
+2023-12-27T08:08:12.354+01:00  INFO 908 --- [main] o.u.etf.ip.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2023-12-27T08:08:13.301+01:00  INFO 908 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-27T08:08:13.415+01:00  INFO 908 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 104 ms. Found 12 JPA repository interfaces.
+2023-12-27T08:08:14.290+01:00  INFO 908 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 4040 (http)
+2023-12-27T08:08:14.304+01:00  INFO 908 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-27T08:08:14.305+01:00  INFO 908 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2023-12-27T08:08:14.403+01:00  INFO 908 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-27T08:08:14.403+01:00  INFO 908 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1991 ms
+2023-12-27T08:08:14.574+01:00  INFO 908 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-27T08:08:14.645+01:00  INFO 908 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2023-12-27T08:08:14.690+01:00  INFO 908 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2023-12-27T08:08:14.903+01:00  INFO 908 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-27T08:08:14.939+01:00  INFO 908 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-27T08:08:15.281+01:00  INFO 908 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@26ffd2c0
+2023-12-27T08:08:15.283+01:00  INFO 908 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-27T08:08:15.331+01:00  WARN 908 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2023-12-27T08:08:15.332+01:00  WARN 908 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-12-27T08:08:15.734+01:00  WARN 908 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-27T08:08:15.734+01:00  WARN 908 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KategorijaProgramEntityPK
+2023-12-27T08:08:15.734+01:00  WARN 908 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-27T08:08:15.735+01:00  WARN 908 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2023-12-27T08:08:16.506+01:00  INFO 908 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-27T08:08:16.796+01:00  INFO 908 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-27T08:08:17.442+01:00  WARN 908 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-27T08:08:17.835+01:00  WARN 908 --- [main] o.s.b.a.f.FreeMarkerAutoConfiguration    : Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2023-12-27T08:08:17.929+01:00  INFO 908 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 4040 (http) with context path ''
+2023-12-27T08:08:17.940+01:00  INFO 908 --- [main] o.u.etf.ip.backend.BackendApplication    : Started BackendApplication in 6.146 seconds (process running for 7.056)
+2023-12-27T08:10:02.119+01:00  INFO 908 --- [http-nio-4040-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-27T08:10:02.120+01:00  INFO 908 --- [http-nio-4040-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-12-27T08:10:02.122+01:00  INFO 908 --- [http-nio-4040-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms

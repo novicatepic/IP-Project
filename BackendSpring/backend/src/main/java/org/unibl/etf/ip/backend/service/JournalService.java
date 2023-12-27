@@ -5,6 +5,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.model.DnevnikEntity;
 import org.unibl.etf.ip.backend.model.DnevnikUnosEntity;
 import org.unibl.etf.ip.backend.repository.JournalEntryRepository;
@@ -22,7 +23,7 @@ public class JournalService {
     @Autowired
     private JournalEntryRepository journalEntryRepository;
 
-    public DnevnikEntity getJournal(Integer id) throws Exception {
+    public DnevnikEntity getJournal(Integer id) throws NotFoundException {
         return journalRepository.findById(id).orElseThrow(() -> new RuntimeException("Exception"));
     }
 
@@ -62,7 +63,7 @@ public class JournalService {
             document.add(new Paragraph("Vježba: " + dnevnikUnos.getVjezba()));
             document.add(new Paragraph("Trajanje: " + dnevnikUnos.getTrajanje()));
             document.add(new Paragraph("Intenzitet: " + dnevnikUnos.getIntenzitet()));
-            document.add(new Paragraph("Potrošeno kalorija: " + dnevnikUnos.getPotrosenoKalorija()));
+            document.add(new Paragraph("Kilaža: " + dnevnikUnos.getKilaza()));
             document.add(new Paragraph("-------------------------------------"));
         }
 

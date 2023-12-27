@@ -1,0 +1,13 @@
+<div style="margin-top: 100px;" class="d-flex justify-content-end mb-3">
+    <button type="button" class="btn btn-lg btn-primary mr-2">Add new Journal entry</button>
+    <button type="button" class="btn btn-lg btn-primary">Download PDF</button>
+</div>
+
+<div *ngFor="let item of data" style="margin-top: 20px;" class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Exercise name: {{item.vjezba}}</h1>
+        <p class="lead">Intensity: {{item.intenzitet}}</p>
+        <p class="lead">Duration: {{item.trajanje}}</p>
+        <p class="lead">Weight after training: {{item.kilaza}}</p>
+    </div>
+</div>

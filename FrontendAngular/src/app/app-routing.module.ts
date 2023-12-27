@@ -14,10 +14,15 @@ import { MessageConsultantComponent } from './message-consultant/message-consult
 import { CheckMessagesComponent } from './check-messages/check-messages.component';
 import { CheckSingleMessageComponent } from './check-single-message/check-single-message.component';
 import { CheckAllMessagesComponent } from './check-all-messages/check-all-messages.component';
+import { StartPageRssComponent } from './start-page-rss/start-page-rss.component';
+import { NinjaApiPageComponent } from './ninja-api-page/ninja-api-page.component';
+import { JournalEntriesComponent } from './journal-entries/journal-entries.component';
 
 
 const routes: Routes = [
-  {path: '', component:FitnessProgramComponent},
+  {path: '', component:StartPageRssComponent},
+  {path: 'ninja', component:NinjaApiPageComponent},
+  {path: 'journal-entries', component:JournalEntriesComponent},
   {path: 'fitness-programs', component:FitnessProgramComponent},
   {path: 'login', component:LoginComponent},
   {path: 'fitness-programs/:id', component: SingleFitnessProgramComponent},

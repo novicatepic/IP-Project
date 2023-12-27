@@ -1,5 +1,6 @@
 package org.unibl.etf.ip.backend.advices;
 
+import com.rometools.rome.io.FeedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -47,5 +48,11 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public void handleMethodNotAllowedException() {
         logger.error("Action not allowed!");
+    }
+
+    @ExceptionHandler(FeedException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public void handleFeedException() {
+        logger.error("Feed error!");
     }
 }

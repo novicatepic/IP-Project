@@ -6,12 +6,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.model.DnevnikEntity;
 import org.unibl.etf.ip.backend.model.DnevnikUnosEntity;
 import org.unibl.etf.ip.backend.service.JournalService;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/journals")
 public class JournalController {
@@ -20,7 +22,7 @@ public class JournalController {
     private JournalService service;
 
     @GetMapping("/{id}")
-    public ResponseEntity<DnevnikEntity> getJournal(@PathVariable("id") Integer id) throws Exception {
+    public ResponseEntity<DnevnikEntity> getJournal(@PathVariable("id") Integer id) throws NotFoundException {
         return new ResponseEntity<>(service.getJournal(id), HttpStatus.OK);
     }
 
@@ -31,7 +33,7 @@ public class JournalController {
 
     @GetMapping("/journal-entry/{id}")
     public ResponseEntity<List<DnevnikUnosEntity>> getJournalEntries(@PathVariable("id") Integer id) {
-       return new ResponseEntity<List<DnevnikUnosEntity>>(service.getJournalEntries(id), HttpStatus.OK);
+       return new ResponseEntity<>(service.getJournalEntries(id), HttpStatus.OK);
     }
 
     @PostMapping("/journal-entry")
@@ -42,7 +44,7 @@ public class JournalController {
     @DeleteMapping("/journal-entry/{id}")
     public ResponseEntity<String> deleteJournalEntry(@PathVariable("id") Integer id) {
         service.deleteJournalEntry(id);
-        return new ResponseEntity<String>("Deleted", HttpStatus.OK);
+        return new ResponseEntity<>("Deleted", HttpStatus.OK);
     }
 
     @GetMapping("/download-journal/{id}")

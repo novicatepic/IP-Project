@@ -19,8 +19,8 @@ public class DnevnikUnosEntity {
     @Column(name = "intenzitet", nullable = false, length = 45)
     private String intenzitet;
     @Basic
-    @Column(name = "potroseno_kalorija", nullable = false)
-    private Integer potrosenoKalorija;
+    @Column(name = "kilaza", nullable = false)
+    private Integer kilaza;
     @Basic
     @Column(name = "dnevnik_korisnik_id", nullable = false)
     private Integer dnevnikKorisnikId;
@@ -69,12 +69,12 @@ public class DnevnikUnosEntity {
         this.intenzitet = intenzitet;
     }
 
-    public Integer getPotrosenoKalorija() {
-        return potrosenoKalorija;
+    public Integer getKilaza() {
+        return kilaza;
     }
 
-    public void setPotrosenoKalorija(Integer potrosenoKalorija) {
-        this.potrosenoKalorija = potrosenoKalorija;
+    public void setKilaza(Integer kilaza) {
+        this.kilaza = kilaza;
     }
 
     public DnevnikEntity getDnevnik() {
