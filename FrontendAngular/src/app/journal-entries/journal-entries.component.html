@@ -1,6 +1,10 @@
 <div style="margin-top: 100px;" class="d-flex justify-content-end mb-3">
-    <button type="button" class="btn btn-lg btn-primary mr-2">Add new Journal entry</button>
-    <button type="button" class="btn btn-lg btn-primary">Download PDF</button>
+    <a routerLink="/new-journal-entry" style="color: white;" type="button" class="btn btn-lg btn-primary mr-2">Add new Journal entry</a>
+    <button type="button" class="btn btn-lg btn-primary" (click)="downloadPDF()">Download PDF</button>
+</div>
+
+<div>
+    <canvas class="weight-chart" id="weight-chart"></canvas>
 </div>
 
 <div *ngFor="let item of data" style="margin-top: 20px;" class="jumbotron jumbotron-fluid">

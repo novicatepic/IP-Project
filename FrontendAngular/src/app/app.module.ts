@@ -25,6 +25,7 @@ import { StartPageRssComponent } from './start-page-rss/start-page-rss.component
 import { NinjaApiPageComponent } from './ninja-api-page/ninja-api-page.component';
 import { JournalEntriesComponent } from './journal-entries/journal-entries.component';
 import { NewJournalEntryComponent } from './new-journal-entry/new-journal-entry.component';
+import { Chart } from 'chart.js';
 
 @NgModule({
   declarations: [
