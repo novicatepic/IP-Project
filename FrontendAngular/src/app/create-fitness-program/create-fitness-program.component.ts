@@ -12,7 +12,8 @@ import { CreateFitnessProgramService } from './create-fitness-program.service';
 export class CreateFitnessProgramComponent {
   public firstForm : FormGroup
   question: any;
-  user: any;
+  categories: any;
+  //user: any;
   constructor( 
     private formBuilder: FormBuilder,
      private router: Router,
@@ -20,9 +21,13 @@ export class CreateFitnessProgramComponent {
 
       const userTemp = sessionStorage.getItem("user");
       console.log(userTemp);
-      if(userTemp) {
+      /*if(userTemp) {
         this.user = JSON.parse(userTemp);
-      }
+      }*/
+
+      this.service.getCategories().subscribe((data) => {
+        this.categories = data;
+      })
 
     this.firstForm = formBuilder.group({
       name : [null, Validators.required],
@@ -32,7 +37,8 @@ export class CreateFitnessProgramComponent {
       duration : [null, Validators.required],
       location : [null, Validators.required],
       contact : [null, Validators.required],
-      date : [null, Validators.required]
+      date : [null, Validators.required],
+      select : [null, Validators.required]
     });
   }
 
@@ -51,9 +57,9 @@ export class CreateFitnessProgramComponent {
         lokacija: this.firstForm.get('location')?.value,
         kontakt: this.firstForm.get('contact')?.value,
         datum: this.firstForm.get('date')?.value,
-        kreatorId: this.user.id,
+        kreatorId: 3, //hard-kodovano
         ucestvovan: false,
-        aktivan: false
+        kategorijaId: this.firstForm.get('select')?.value
       }
 
       //console.log(JSON.stringify(fitnessProgram));

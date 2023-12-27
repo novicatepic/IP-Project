@@ -12,6 +12,7 @@ export class BuyProgramComponent {
   data: any = [];
   show: any = false;
   selectedItem: any = null;
+  message : any = null;
   //user: any;
   public firstForm : FormGroup;
 
@@ -65,6 +66,9 @@ export class BuyProgramComponent {
 
         this.service.subscribeToProgram(obj).subscribe((data) => {
           console.log(data);
+          this.message = null;
+        }, (error:any) => {
+          this.message = "Not enough money";
         })
         
       }

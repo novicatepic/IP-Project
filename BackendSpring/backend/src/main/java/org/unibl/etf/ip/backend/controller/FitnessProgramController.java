@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.ip.backend.exceptions.MethodNotAllowedException;
+import org.unibl.etf.ip.backend.exceptions.NotEnoughMoneyException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntity;
 import org.unibl.etf.ip.backend.model.ProgramEntity;
@@ -57,7 +58,8 @@ public class FitnessProgramController {
     }
 
     @PostMapping("/subscribe")
-    public ResponseEntity<KorisnikPretplacenProgramEntity> subscribeToAProgram(@RequestBody KorisnikPretplacenProgramEntity subscribeEntity) {
+    public ResponseEntity<KorisnikPretplacenProgramEntity> subscribeToAProgram(@RequestBody KorisnikPretplacenProgramEntity subscribeEntity)
+            throws NotFoundException, NotEnoughMoneyException {
         return new ResponseEntity<>(service.subscribeToAProgram(subscribeEntity), HttpStatus.OK);
     }
 

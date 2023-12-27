@@ -8,10 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.unibl.etf.ip.backend.exceptions.MethodNotAllowedException;
-import org.unibl.etf.ip.backend.exceptions.ModifiedUserNameException;
-import org.unibl.etf.ip.backend.exceptions.NotFoundException;
-import org.unibl.etf.ip.backend.exceptions.UserNotActiveException;
+import org.unibl.etf.ip.backend.exceptions.*;
 
 import java.io.IOException;
 
@@ -54,5 +51,11 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public void handleFeedException() {
         logger.error("Feed error!");
+    }
+
+    @ExceptionHandler(NotEnoughMoneyException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public void handleNotEnoughMoneyException() {
+        logger.error("Not enough money!");
     }
 }

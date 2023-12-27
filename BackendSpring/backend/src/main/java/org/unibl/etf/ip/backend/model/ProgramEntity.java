@@ -48,6 +48,10 @@ public class ProgramEntity implements Serializable {
     @Column(name = "kreator_id", nullable = false)
     private Integer kreatorId;
 
+    @Basic
+    @Column(name = "kategorija_id", nullable = false)
+    private Integer kategorijaId;
+
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "kreator_id", nullable = false, insertable = false, updatable = false)
     private KorisnikEntity kreator;
@@ -55,14 +59,12 @@ public class ProgramEntity implements Serializable {
     @OneToMany(mappedBy = "programId", cascade = CascadeType.ALL)
     private List<SlikaEntity> pictures = new ArrayList<>();
 
-    @OneToMany(mappedBy = "kategorijaId", cascade = CascadeType.ALL)
-    private List<KategorijaProgramEntity> kategorijaProgramEntities = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "kategorija_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private KategorijaEntity kategorija;
 
     @OneToMany(mappedBy = "programId", cascade = CascadeType.ALL)
     private List<PitanjeEntity> programQuestions = new ArrayList<>();
-
-    @Transient
-    private Boolean aktivan;
 
     public Integer getId() {
         return id;
@@ -185,12 +187,28 @@ public class ProgramEntity implements Serializable {
         this.pictures = pictures;
     }
 
-    public List<KategorijaProgramEntity> getKategorijaProgramEntities() {
+    /*public List<KategorijaProgramEntity> getKategorijaProgramEntities() {
         return kategorijaProgramEntities;
     }
 
     public void setKategorijaProgramEntities(List<KategorijaProgramEntity> kategorijaProgramEntities) {
         this.kategorijaProgramEntities = kategorijaProgramEntities;
+    }*/
+
+    public KategorijaEntity getKategorija() {
+        return kategorija;
+    }
+
+    public void setKategorija(KategorijaEntity kategorije) {
+        this.kategorija = kategorije;
+    }
+
+    public Integer getKategorijaId() {
+        return kategorijaId;
+    }
+
+    public void setKategorijaId(Integer kategorijaId) {
+        this.kategorijaId = kategorijaId;
     }
 
     public List<PitanjeEntity> getProgramQuestions() {

@@ -4,6 +4,7 @@ import org.hibernate.annotations.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.unibl.etf.ip.backend.exceptions.MethodNotAllowedException;
+import org.unibl.etf.ip.backend.exceptions.NotEnoughMoneyException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntity;
 import org.unibl.etf.ip.backend.model.ProgramEntity;
@@ -50,24 +51,32 @@ public class FitnessProgramService {
         repository.deleteById(id);
     }
 
-    public KorisnikPretplacenProgramEntity subscribeToAProgram(KorisnikPretplacenProgramEntity entity) {
+    public KorisnikPretplacenProgramEntity subscribeToAProgram(KorisnikPretplacenProgramEntity entity)
+            throws NotFoundException, NotEnoughMoneyException {
         List<KorisnikPretplacenProgramEntity> allEntitites = subscribeRepository.findAll();
         //already subscribed
         for(KorisnikPretplacenProgramEntity k : allEntitites) {
             if(k.getKorisnikId() == entity.getKorisnikId() && k.getProgramId() == entity.getProgramId()) {
-                //or throw exception -> todo
-                return null;
+                throw new NotFoundException();
             }
         }
 
         //update fitness program if it wasn't active -> now it has participants
         Optional<ProgramEntity> pe = repository.findById(entity.getProgramId());
         if(pe.isPresent()) {
+
             ProgramEntity fitnessProgram = pe.get();
+
+            if(fitnessProgram.getCijena() > entity.getVrijednost()) {
+                throw new NotEnoughMoneyException();
+            }
+
             if(!fitnessProgram.getUcestvovan()) {
                 fitnessProgram.setUcestvovan(true);
                 repository.save(fitnessProgram);
             }
+        } else {
+            throw new NotFoundException();
         }
 
         return subscribeRepository.save(entity);
@@ -116,7 +125,7 @@ public class FitnessProgramService {
                     participated = true;
                 }
             }
-            if(!participated) {
+            if(!participated && program.getAktivan()) {
                 toReturn.add(program);
             }
         }

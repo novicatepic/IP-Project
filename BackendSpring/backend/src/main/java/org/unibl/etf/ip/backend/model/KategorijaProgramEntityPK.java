@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class KategorijaProgramEntityPK implements Serializable {
-    @Column(name = "kategorija_id", nullable = false)
+    /*@Column(name = "kategorija_id", nullable = false)
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer kategorijaId;
@@ -32,6 +32,6 @@ public class KategorijaProgramEntityPK implements Serializable {
 
     public void setProgramId(Integer programId) {
         this.programId = programId;
-    }
+    }*/
 
 }

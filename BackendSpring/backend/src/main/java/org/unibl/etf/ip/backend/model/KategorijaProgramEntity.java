@@ -2,12 +2,12 @@ package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
 
-@Entity
+/*@Entity
 @Table(name = "kategorija_program", schema = "ip_project", catalog = "")
-@IdClass(KategorijaProgramEntityPK.class)
+@IdClass(KategorijaProgramEntityPK.class)*/
 public class KategorijaProgramEntity {
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
+    /*@Id
     @Column(name = "kategorija_id", nullable = false)
     private Integer kategorijaId;
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,5 +41,5 @@ public class KategorijaProgramEntity {
 
     public void setKategorija(KategorijaEntity kategorija) {
         this.kategorija = kategorija;
-    }
+    }*/
 }
