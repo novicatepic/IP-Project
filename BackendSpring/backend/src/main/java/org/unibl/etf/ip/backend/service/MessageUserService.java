@@ -2,6 +2,7 @@ package org.unibl.etf.ip.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.model.PorukaEntity;
 import org.unibl.etf.ip.backend.repository.MessageUserRepository;
 
@@ -29,17 +30,26 @@ public class MessageUserService {
         return result;
     }
 
-    public PorukaEntity readMessage(Integer id) {
+    public PorukaEntity showMessage(Integer id) {
         List<PorukaEntity> messages = repository.findAll();
-        PorukaEntity entity = new PorukaEntity();
         for(PorukaEntity m : messages) {
             if(m.getId() == id) {
-                entity = m;
-                entity.setProcitana(true);
+                return m;
             }
         }
-        repository.save(entity);
-        return entity;
+        return null;
+    }
+
+    public PorukaEntity readMessage(Integer id) throws NotFoundException {
+        List<PorukaEntity> messages = repository.findAll();
+        for(PorukaEntity m : messages) {
+            if(m.getId() == id) {
+                m.setProcitana(true);
+                repository.save(m);
+                return m;
+            }
+        }
+        throw new NotFoundException();
     }
 
     public List<PorukaEntity> readUnreadMessages(Integer id) {

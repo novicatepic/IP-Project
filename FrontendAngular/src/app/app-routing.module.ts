@@ -11,6 +11,9 @@ import { PastProgramParticipationsComponent } from './past-program-participation
 import { CreateFitnessProgramComponent } from './create-fitness-program/create-fitness-program.component';
 import { MyFitnessProgramsComponent } from './my-fitness-programs/my-fitness-programs.component';
 import { MessageConsultantComponent } from './message-consultant/message-consultant.component';
+import { CheckMessagesComponent } from './check-messages/check-messages.component';
+import { CheckSingleMessageComponent } from './check-single-message/check-single-message.component';
+import { CheckAllMessagesComponent } from './check-all-messages/check-all-messages.component';
 
 
 const routes: Routes = [
@@ -27,6 +30,9 @@ const routes: Routes = [
   {path: 'create-fitness-program', component: CreateFitnessProgramComponent},
   {path: 'my-programs', component: MyFitnessProgramsComponent},
   {path: 'message-consultant', component: MessageConsultantComponent},
+  {path: 'check-messages', component: CheckMessagesComponent},
+  {path: 'all-messages', component: CheckAllMessagesComponent},
+  {path: 'check-messages/:id', component: CheckSingleMessageComponent},
   { path: '**', redirectTo: '/fitness-programs', pathMatch: 'full' },
 ];
 

@@ -1,0 +1,7 @@
+<div *ngFor="let message of data" style="margin-top: 100px;" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Sender : {{message.posiljalac.korisnickoIme}}</h1>
+      <p class="lead">Message: {{ message.tekst }}</p>
+      <a routerLink="/check-messages/{{message.id}}" class="btn btn-primary">Respond</a>
+    </div>
+  </div>

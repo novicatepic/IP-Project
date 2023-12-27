@@ -1,0 +1,18 @@
+<div class="jumbotron">
+    <h1 class="display-4">Sender: {{data.posiljalac.korisnickoIme}}</h1>
+    <p class="lead">NOTE: This message will be marked as read only if you answer to it!</p>
+    <hr class="my-4">
+    <p>{{data.tekst}}</p>
+
+    <div *ngIf="!data.procitana" class="container">
+      <form (ngSubmit)="respondToMessage()" [formGroup]="firstForm">
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Enter response</label>
+          <textarea formControlName="response" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+        </div>
+        <button class="btn btn-primary">Send message</button>
+      </form>
+    </div>
+    
+
+  </div>

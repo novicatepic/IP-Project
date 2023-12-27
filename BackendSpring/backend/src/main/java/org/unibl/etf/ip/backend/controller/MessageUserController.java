@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.model.PorukaEntity;
 import org.unibl.etf.ip.backend.service.MessageUserService;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/user-messages")
 public class MessageUserController {
@@ -31,8 +33,17 @@ public class MessageUserController {
         return new ResponseEntity<>(service.readMessages(id), HttpStatus.OK);
     }
 
+    @GetMapping("/{messageId}")
+    public ResponseEntity<PorukaEntity> getOneMessage(@PathVariable("messageId")Integer messageId) throws NotFoundException {
+        PorukaEntity message = service.showMessage(messageId);
+        if(message == null) {
+            throw new NotFoundException();
+        }
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
     @GetMapping("/read-message/{id}")
-    public ResponseEntity<PorukaEntity> readMessage(@PathVariable("id")Integer id) {
+    public ResponseEntity<PorukaEntity> readMessage(@PathVariable("id")Integer id) throws NotFoundException {
         return new ResponseEntity<>(service.readMessage(id), HttpStatus.OK);
     }
 

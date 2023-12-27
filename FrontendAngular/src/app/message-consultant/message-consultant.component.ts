@@ -43,14 +43,6 @@ export class MessageConsultantComponent {
       },
       error => console.log(error))
 
-      /*this.service.createFitnessUser(fitnessUser).subscribe((data) => {
-        const user = JSON.stringify(data);
-        console.log("Success: " + user);
-        console.log("Success: " + data.id);
-        this.router.navigate(['/code/'+data.id]);
-      },
-      error => console.log(error));*/
-
     }
   }
 
