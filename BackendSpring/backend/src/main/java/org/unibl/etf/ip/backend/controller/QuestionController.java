@@ -1,8 +1,10 @@
 package org.unibl.etf.ip.backend.controller;
 
+import jakarta.annotation.security.PermitAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.ip.backend.model.OdgovorEntity;
 import org.unibl.etf.ip.backend.model.PitanjeEntity;
@@ -19,8 +21,7 @@ public class QuestionController {
     @Autowired
     private QuestionService service;
 
-    @GetMapping
-    @RequestMapping("/{programId}")
+    @GetMapping("/{programId}")
     public ResponseEntity<List<PitanjeEntity>> getQuestionsByProgram(@PathVariable("programId")Integer programId) throws Exception {
         return new ResponseEntity<>(service.getProgramById(programId), HttpStatus.OK);
     }

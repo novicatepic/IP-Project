@@ -1,12 +1,20 @@
 package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.unibl.etf.ip.backend.roles.ROLE;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "korisnik", schema = "ip_project", catalog = "")
-public class KorisnikEntity {
+public class KorisnikEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -35,6 +43,9 @@ public class KorisnikEntity {
     @Basic
     @Column(name = "aktivan", nullable = false)
     private Boolean aktivan;
+    /*@Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private ROLE role = ROLE.FITNESS_USER;*/
 
     public Integer getId() {
         return id;
@@ -121,5 +132,52 @@ public class KorisnikEntity {
                 ", mail='" + mail + '\'' +
                 ", aktivan=" + aktivan +
                 '}';
+    }
+
+    public Boolean getAktivan() {
+        return aktivan;
+    }
+
+    /*public ROLE getRole() {
+        return role;
+    }
+
+    public void setRole(ROLE role) {
+        this.role = role;
+    }*/
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(ROLE.ROLE_USER.toString()));
+    }
+
+    @Override
+    public String getPassword() {
+        return lozinka;
+    }
+
+    @Override
+    public String getUsername() {
+        return korisnickoIme;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

@@ -4,6 +4,7 @@ import com.rometools.rome.io.FeedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -57,5 +58,17 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public void handleNotEnoughMoneyException() {
         logger.error("Not enough money!");
+    }
+
+    @ExceptionHandler(InvalidUsernameException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public void handleInvalidUsernameException() {
+        logger.error("Incorrect username!");
+    }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public void handleUsernameNotFoundException() {
+        logger.error("Incorrect username!");
     }
 }

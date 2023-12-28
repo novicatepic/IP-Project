@@ -3,6 +3,7 @@ package org.unibl.etf.ip.backend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.ip.backend.exceptions.ModifiedUserNameException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
@@ -33,11 +34,4 @@ public class FitnessUserController {
     public ResponseEntity<KorisnikEntity> updateFitnessUser(@RequestBody KorisnikEntity fitnessUser) throws UserNotActiveException, NotFoundException, ModifiedUserNameException {
         return new ResponseEntity<>(service.updateFitnessUser(fitnessUser), HttpStatus.OK);
     }
-
-    @PostMapping("/login")
-    public ResponseEntity<KorisnikEntity> loginFitnessUser(@RequestBody KorisnikEntity fitnessUser) throws NotFoundException {
-        KorisnikEntity user = service.loginUser(fitnessUser.getKorisnickoIme(), fitnessUser.getLozinka());
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-
 }
