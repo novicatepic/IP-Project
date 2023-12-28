@@ -1,3 +1,4 @@
+<%@page import="org.unibl.etf.ip.password.PasswordHasher"%>
 <%@page import="org.unibl.etf.ip.dao.ConsultantDAO"%>
 <%@page import="org.unibl.etf.ip.bean.ConsultantBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,7 +11,7 @@
 
 <%
 	if(request.getParameter("submit") != null) {
-		ConsultantBean consultant = ConsultantDAO.selectOne(consultantBean.getUsername(), consultantBean.getPassword());
+		ConsultantBean consultant = ConsultantDAO.selectOne(consultantBean.getUsername(), PasswordHasher.hashPassword(consultantBean.getPassword()) );
 		if(consultant != null) {
 			consultantBean.setFirstName(consultant.getUsername());
 			consultantBean.setLastName(consultant.getLastName());

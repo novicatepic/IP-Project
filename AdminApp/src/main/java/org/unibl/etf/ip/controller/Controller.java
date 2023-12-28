@@ -3,6 +3,7 @@ package org.unibl.etf.ip.controller;
 import java.awt.PageAttributes.MediaType;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -28,6 +29,7 @@ import org.unibl.etf.ip.dao.CategoryDAO;
 import org.unibl.etf.ip.dao.ConsultantDAO;
 import org.unibl.etf.ip.dao.FitnessUserDAO;
 import org.unibl.etf.ip.model.LoggerData;
+import org.unibl.etf.ip.password.PasswordHasher;
 
 import com.mysql.cj.Session;
 
@@ -175,19 +177,21 @@ public class Controller extends HttpServlet {
 				address = "/WEB-INF/login.jsp";
 			}
 		} else if("login".equals(action)) {
-			System.out.println("login");
-			String username = request.getParameter("username");
-			String password = request.getParameter("password");
-			System.out.println(username);
-			System.out.println(password);
-			AdminBean adminBean = AdminDAO.selectOne(username, password);
-			if(adminBean != null) {
-				address = "/WEB-INF/home.jsp";
-				adminBean.setLoggedIn(true);
-				ses.setAttribute("admin", adminBean);
-			} else {
-				ses.setAttribute("notification", "Username/password not correct!");
+			try {
+				String username = request.getParameter("username");
+				String password = request.getParameter("password");
+				AdminBean adminBean = AdminDAO.selectOne(username, PasswordHasher.hashPassword(password));
+				if(adminBean != null) {
+					address = "/WEB-INF/home.jsp";
+					adminBean.setLoggedIn(true);
+					ses.setAttribute("admin", adminBean);
+				} else {
+					ses.setAttribute("notification", "Username/password not correct!");
+				}
+			} catch(NoSuchAlgorithmException e) {
+				e.printStackTrace();
 			}
+			
 		} 
 		else {
 			address = "/WEB-INF/login.jsp";

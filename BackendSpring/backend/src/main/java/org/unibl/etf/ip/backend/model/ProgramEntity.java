@@ -29,8 +29,8 @@ public class ProgramEntity implements Serializable {
     @Column(name = "tezina", nullable = false)
     private Integer tezina;
     @Basic
-    @Column(name = "trajanje", nullable = false, length = 10)
-    private String trajanje;
+    @Column(name = "trajanje", nullable = false)
+    private Integer trajanje;
     @Basic
     @Column(name = "lokacija", nullable = false, length = 200)
     private String lokacija;
@@ -106,11 +106,11 @@ public class ProgramEntity implements Serializable {
         this.tezina = tezina;
     }
 
-    public String getTrajanje() {
+    public Integer getTrajanje() {
         return trajanje;
     }
 
-    public void setTrajanje(String trajanje) {
+    public void setTrajanje(Integer trajanje) {
         this.trajanje = trajanje;
     }
 

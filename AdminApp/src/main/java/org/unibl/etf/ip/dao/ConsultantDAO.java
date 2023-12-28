@@ -1,5 +1,6 @@
 package org.unibl.etf.ip.dao;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 
 import org.unibl.etf.ip.bean.CategoryBean;
 import org.unibl.etf.ip.bean.ConsultantBean;
+import org.unibl.etf.ip.password.PasswordHasher;
 
 public class ConsultantDAO {
 
@@ -42,8 +44,9 @@ public class ConsultantDAO {
 		boolean result = false;
 		Connection connection = null;
 		ResultSet generatedKeys = null;
-		Object values[] = { consultant.getUsername(), consultant.getPassword(), consultant.getName(), consultant.getLastName() };
 		try {
+			Object values[] = { consultant.getUsername(), PasswordHasher.hashPassword(consultant.getPassword()) , consultant.getName(), consultant.getLastName() };
+		
 			connection = connectionPool.checkOut();
 			PreparedStatement pstmt = DAOUtil.prepareStatement(connection, SQL_INSERT, true, values);
 			pstmt.executeUpdate();
@@ -54,7 +57,7 @@ public class ConsultantDAO {
 			if (generatedKeys.next())
 				consultant.setId(generatedKeys.getInt(1));
 			pstmt.close();
-		} catch (SQLException e) {
+		} catch (SQLException | NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} finally {
 			connectionPool.checkIn(connection);

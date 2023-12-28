@@ -1,18 +1,40 @@
+<div class="container">
+  <form style="margin-top: 100px;" (ngSubmit)="filter()">
+    <div class="form-group">
+      <label for="nameFilter">Search by name</label>
+      <input #filterTextRef name="filterText" type="text" class="form-control" id="nameFilter" placeholder="Enter name to filter...">
+  </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
 
+<div class="container d-flex justify-content-between">
+  <form style="margin-top: 50px;">
+      <button type="button" class="btn btn-primary mr-5" (click)="filterByPrice()">Filter by Price</button>
+      <button type="button" class="btn btn-primary mr-5" (click)="filterByDifficulty()">Filter by Difficulty</button>
+      <button type="button" class="btn btn-primary" (click)="filterByDuration()">Filter by Duration</button>
+  </form>
+</div>
 
-<div class="row" style="margin-top: 100px;">
+<div class="container">
+  <div class="row" style="margin-top: 50px;">
 
 
     <div *ngFor="let program of getCurrentPageData()" class="card col" style="width: 18rem; margin-right: 10px;">
-        <img class="card-img-top" src="{{ program.naziv }}" alt="Card image cap">
+        <img *ngIf="program.pictures.length > 0" class="card-img-top" src="{{ program.pictures[0].url }}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Title: {{program.naziv}}</h5>
           <p class="card-text">Description: {{ program.opis }}</p>
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Created by: {{ program.kreator.korisnickoIme }}</li>
+          <li class="list-group-item">Price: {{ program.cijena }}</li>
+          <li *ngIf="program.tezina==0" class="list-group-item">Difficulty: Easy</li>
+          <li *ngIf="program.tezina==1" class="list-group-item">Difficulty: Medium</li>
+          <li *ngIf="program.tezina==2" class="list-group-item">Difficulty: Hard</li>
+          <li class="list-group-item">Duration: {{ program.trajanje }} days</li>
           <li class="list-group-item">Date created: {{ program.datum }}</li>
-          <li class="list-group-item">Location: {{ program.location }}</li>
+          <li class="list-group-item">Location: {{ program.lokacija }}</li>
         </ul>
         <div class="card-body">
             <a routerLink="/fitness-programs/{{program.id}}" class="card-link">Read more</a>
@@ -22,8 +44,7 @@
       
 
 </div>
-
-<nav aria-label="Page navigation">
+<nav style="margin-top: 10px;" aria-label="Page navigation">
   <ul class="pagination">
     <li class="page-item" [class.disabled]="currentPage === 1">
       <a class="page-link" (click)="setPage(currentPage - 1)" aria-label="Previous">
@@ -42,3 +63,7 @@
     </li>
   </ul>
 </nav>
+</div>
+
+
+
