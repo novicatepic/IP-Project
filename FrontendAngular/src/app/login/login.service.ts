@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  private baseUrl = 'http://localhost:4040/fitness-users/login';
+  private baseUrl = 'http://localhost:4040/auth/login';
 
   constructor(private http:HttpClient) { }
 

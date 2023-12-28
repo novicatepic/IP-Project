@@ -27,25 +27,22 @@ export class LoginComponent {
 
     if(this.firstForm.valid) {
       const fitnessUser = {
-        korisnickoIme: this.firstForm.get('username')?.value,
-        lozinka: this.firstForm.get('password')?.value
+        username: this.firstForm.get('username')?.value,
+        password: this.firstForm.get('password')?.value
       }
 
-      this.service.loginFitnessUser(fitnessUser).subscribe((data) => {
-        const user = JSON.stringify(data);
-        console.log("Success: " + user);
-        console.log("Success: " + data.id);
-        console.log("Success: " + data.aktivan);
 
-        if(data.aktivan == true) {
-          sessionStorage.removeItem("user");
-          sessionStorage.setItem("user", user);
+
+      this.service.loginFitnessUser(fitnessUser).subscribe((data) => {
+        console.log("DATA " + JSON.stringify(data));
+
+        if(data) {
           this.router.navigate(['/fitness-programs']);
         } else {
           this.router.navigate(['/code/'+data.id]);
         }
       },
-      error => console.log(error));
+      error => console.log("ERROR " + JSON.stringify(error)));
 
     }
   }

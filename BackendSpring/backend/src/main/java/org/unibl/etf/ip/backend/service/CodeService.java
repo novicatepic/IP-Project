@@ -8,6 +8,7 @@ import org.unibl.etf.ip.backend.model.KorisnikEntity;
 import org.unibl.etf.ip.backend.model.NalogAktivacijaEntity;
 import org.unibl.etf.ip.backend.repository.CodeRepository;
 
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -55,8 +56,16 @@ public class CodeService {
                 .orElseThrow(() -> new NotFoundException());
 
         repository.delete(code);
+    }
 
+    public NalogAktivacijaEntity getById(Integer id)  {
+        Optional<NalogAktivacijaEntity> code =  repository.findByKorisnikId(id);
 
+        if(code.isPresent()) {
+            return code.get();
+        }
+
+        return null;
     }
 
 }

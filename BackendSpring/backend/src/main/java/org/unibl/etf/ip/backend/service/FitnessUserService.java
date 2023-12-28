@@ -53,20 +53,4 @@ public class FitnessUserService {
         return false;
     }
 
-
-    public KorisnikEntity loginUser(String username, String password) throws NotFoundException {
-        KorisnikEntity k = repository.findByKorisnickoImeAndLozinka(username, password);
-        if(k != null) {
-            System.out.println("UN " + k.getKorisnickoIme());
-        }
-        if(k != null && !k.isAktivan()) {
-            codeService.deleteCode(k.getId());
-            String code = codeService.saveCodeToDB(k);
-            mailService.sendEmail(k.getMail(), "Code for password change", code);
-            //return null;
-        }
-        return k;
-
-    }
-
 }

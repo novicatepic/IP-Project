@@ -6,7 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.unibl.etf.ip.backend.errorservice.ForbiddenEntity;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
+import org.unibl.etf.ip.backend.loginservice.UserLoginHelp;
 import org.unibl.etf.ip.backend.model.DnevnikEntity;
 import org.unibl.etf.ip.backend.model.DnevnikUnosEntity;
 import org.unibl.etf.ip.backend.service.JournalService;
@@ -33,11 +35,18 @@ public class JournalController {
 
     @GetMapping("/journal-entry/{id}")
     public ResponseEntity<List<DnevnikUnosEntity>> getJournalEntries(@PathVariable("id") Integer id) {
+        if(!UserLoginHelp.checkUserValidity(id)) {
+            return ForbiddenEntity.returnForbidden();
+        }
+
        return new ResponseEntity<>(service.getJournalEntries(id), HttpStatus.OK);
     }
 
     @PostMapping("/journal-entry")
     public ResponseEntity<DnevnikUnosEntity> createJournalEntry(@RequestBody DnevnikUnosEntity journalEntry) {
+        if(!UserLoginHelp.checkUserValidity(journalEntry.getDnevnikKorisnikId())) {
+            return ForbiddenEntity.returnForbidden();
+        }
         return new ResponseEntity<>(service.createJournalEntry(journalEntry), HttpStatus.OK);
     }
 
@@ -49,6 +58,9 @@ public class JournalController {
 
     @GetMapping("/download-journal/{id}")
     public ResponseEntity<byte[]> downloadPDF(@PathVariable("id") Integer id) throws Exception {
+        if(!UserLoginHelp.checkUserValidity(id)) {
+            return ForbiddenEntity.returnForbidden();
+        }
 
         byte[] baos = service.makePDF(id);
 

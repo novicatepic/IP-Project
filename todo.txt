@@ -1,2 +1,4 @@
-backend:
-filtriranje i pretrazivanje
+kreiranje dnevnika za korisnika automatski pri kreiranju profila
+u message user controlleru zadnje dvije stavke treba i user id pa provjera
+
+login dio
