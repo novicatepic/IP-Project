@@ -15,6 +15,7 @@ export class CreateFitnessProgramComponent {
   question: any;
   categories: any;
   user: any;
+  ytLink: any;
   constructor( 
     private formBuilder: FormBuilder,
      private router: Router,
@@ -38,7 +39,8 @@ export class CreateFitnessProgramComponent {
       location : [null, Validators.required],
       contact : [null, Validators.required],
       date : [null, Validators.required],
-      select : [null, Validators.required]
+      select : [null, Validators.required],
+      ytlink : [null]
     });
   }
 
@@ -51,7 +53,6 @@ export class CreateFitnessProgramComponent {
         cijena: this.firstForm.get('price')?.value,
         tezina: this.firstForm.get('difficulty')?.value,
         trajanje: this.firstForm.get('duration')?.value,
-        lokacija: this.firstForm.get('location')?.value,
         kontakt: this.firstForm.get('contact')?.value,
         datum: this.firstForm.get('date')?.value,
         kreatorId: this.user.id,
@@ -59,8 +60,24 @@ export class CreateFitnessProgramComponent {
         kategorijaId: this.firstForm.get('select')?.value
       }
 
+      const location = {
+        nazivLokacije: this.firstForm.get('location')?.value,
+        poruka: "",
+        programId: 0
+      }
+
+      if(this.firstForm.get('location')?.value == 'Link') {
+        location.poruka = this.firstForm.get('ytlink')?.value;
+      }
+
+
+
       this.service.createFitnessProgram(fitnessProgram).subscribe((data)=> {
-        console.log(data);
+        //console.log(data);
+        location.programId = data.id;
+        this.service.createLocation(location).subscribe((data) => {
+          console.log("Location " + location);
+        });
       },
       error => console.log(error));
 

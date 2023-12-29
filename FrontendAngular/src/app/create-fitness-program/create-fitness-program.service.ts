@@ -10,6 +10,8 @@ export class CreateFitnessProgramService {
   private baseUrl = 'http://localhost:4040/fitness-programs';
 
   private categoryUrl = 'http://localhost:4040/categories';
+
+  private locationUrl = 'http://localhost:4040/locations';
   
   constructor(private http:HttpClient) { }
 
@@ -20,5 +22,10 @@ export class CreateFitnessProgramService {
 
   getCategories(): Observable<any> {
     return this.http.get(`${this.categoryUrl}`);
+  }
+
+  createLocation(location: object): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(`${this.locationUrl}`, JSON.stringify(location), {headers});
   }
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
+import { SingleFitnessProgramService } from './single-fitness-program.service';
 
 @Component({
   selector: 'single-fitness-program',
@@ -15,18 +16,29 @@ export class SingleFitnessProgramComponent implements OnInit {
   questions: any[] = [];
   id: any;
   userId: any;
+  photoUrls: string[] = [];
+  imageUrl = '/static/uploads/12/image1.jpg';
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, 
-    private router : Router, private location: Location, private jwtService: JwtTokenService) {
+  constructor(
+    private http: HttpClient, 
+    private route: ActivatedRoute, 
+    private router : Router, 
+    private location: Location, 
+    private jwtService: JwtTokenService,
+    private service: SingleFitnessProgramService) {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
     });
 
     var temp = this.jwtService.extractTokenInfo();
-    this.userId = temp.id;
+    if(temp) {
+      this.userId = temp.id;
+    }
+    
 
     this.loadData();
     this.loadQuestions();
+    this.loadPhotos();
   }
   ngOnInit(): void {
     
@@ -46,6 +58,18 @@ export class SingleFitnessProgramComponent implements OnInit {
       this.questions = data;
       //console.log("QUESTIONS=" + JSON.stringify(this.questions[0]));
     });
+  }
+
+  loadPhotos() {
+    this.service.loadPhotos(this.id).subscribe(
+      (urls: any) => {
+        this.photoUrls = urls;
+        console.log("PHOTOS " + this.photoUrls);
+      },
+      (error) => {
+        console.error('Error fetching photos:', error);
+      }
+    );
   }
 
   addComment(id: any) {

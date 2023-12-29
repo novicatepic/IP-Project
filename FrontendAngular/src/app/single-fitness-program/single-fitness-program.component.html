@@ -37,7 +37,13 @@
         <li *ngIf="question.odgovor == 0" class="list-group-item">No answer for this question yet!</li>
       </ul>
     </div>
-  
+    
+    <div class="image-gallery">
+      <div *ngFor="let url of photoUrls" class="image-item">
+        <img [src]="url" alt="Image">
+      </div>
+    </div>
+
   
     <div class="modal fade" id="purchaseModal" tabindex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -56,6 +62,14 @@
           </div>
       </div>
   </div>
+
   </div>
+
+  
+
+  <!--div *ngFor="let url of photoUrls">
+    <img [src]="url" alt="Photo">
+  </div-->
+  <!--img src="{{imageUrl}}" alt="No picture"-->
 
 

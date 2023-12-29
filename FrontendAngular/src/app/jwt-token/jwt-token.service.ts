@@ -9,6 +9,8 @@ export class JwtTokenService {
 
   private baseUrl = 'http://localhost:4040/fitness-users/';
 
+  private fixedUrl = 'http://localhost:4040/fitness-users/';
+
   constructor(private http: HttpClient) { }
 
   extractToken() {
@@ -30,10 +32,12 @@ export class JwtTokenService {
   }
 
   getUserById() : any {
+    this.baseUrl = this.fixedUrl;
     var tokenInfo = this.extractTokenInfo();
     if(tokenInfo) {
       this.baseUrl += tokenInfo.id;
       return this.http.get<any[]>(`${this.baseUrl}`);
+      
     }
   }
 

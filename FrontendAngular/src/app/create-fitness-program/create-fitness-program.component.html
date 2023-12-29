@@ -25,9 +25,21 @@
             <label for="duration">Duration*</label>
             <input formControlName="duration" type="text" required="required" class="form-control" id="duration">
         </div>
-        <div class="form-group">
+        <!--div class="form-group">
             <label for="location">Location*</label>
             <input formControlName="location" type="text" required="required" class="form-control" id="location" placeholder="Enter location">
+        </div-->
+        <div class="form-group">
+            <label for="location">Location*</label>
+            <select formControlName="location" name="location" required >
+                <option value="Live">Live</option>
+                <option value="Link">Youtube link</option>
+            </select>
+            <div *ngIf="firstForm.get('location')?.value === 'Link'" class="form-group">
+                <label for="ytlink">Youtube link*</label>
+                <input formControlName="ytlink" type="text" class="form-control" id="ytlink" placeholder="Enter youtube link">
+            </div>
+            
         </div>
         <div class="form-group">
             <label for="contact">Contact*</label>

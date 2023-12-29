@@ -43,6 +43,9 @@ export class CodeComponent {
         const user = JSON.stringify(data);
         console.log("Success: " + data);
         console.log("Success: " + user);
+
+        localStorage.setItem("user", user);
+
         this.router.navigate(['/']);
       },
       error => console.log(error));

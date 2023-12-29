@@ -22,6 +22,8 @@ import { CheckCategorySubscriptionsComponent } from './check-category-subscripti
 import { CheckCategoryUnsubscribedComponent } from './check-category-unsubscribed/check-category-unsubscribed.component';
 import { BuyProgramComponent } from './buy-program/buy-program.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ShowProfileComponent } from './show-profile/show-profile.component';
+import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 
 
 const routes: Routes = [
@@ -37,11 +39,13 @@ const routes: Routes = [
   {path: 'questions/new-question/:id', component: NewQuestionComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'code/:id', component: CodeComponent},
+  {path: 'profile', component: ShowProfileComponent, canActivate: [AuthGuard]},
   {path: 'change-profile', component: ChangeProfileComponent, canActivate: [AuthGuard]},
   {path: 'past-program-participations', component: PastProgramParticipationsComponent, canActivate: [AuthGuard]},
   {path: 'unparticipated', component: PastProgramParticipationsComponent, canActivate: [AuthGuard]},
   {path: 'create-fitness-program', component: CreateFitnessProgramComponent, canActivate: [AuthGuard]},
   {path: 'my-programs', component: MyFitnessProgramsComponent, canActivate: [AuthGuard]},
+  {path: 'upload-photo/:programId', component: UploadPhotoComponent, canActivate: [AuthGuard]},
   {path: 'buy-programs', component: BuyProgramComponent, canActivate: [AuthGuard]},
   {path: 'message-consultant', component: MessageConsultantComponent, canActivate: [AuthGuard]},
   {path: 'check-messages', component: CheckMessagesComponent, canActivate: [AuthGuard]},

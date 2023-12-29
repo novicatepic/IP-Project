@@ -28,6 +28,17 @@ import { JournalEntriesComponent } from './journal-entries/journal-entries.compo
 import { NewJournalEntryComponent } from './new-journal-entry/new-journal-entry.component';
 import { CheckCategorySubscriptionsComponent } from './check-category-subscriptions/check-category-subscriptions.component';
 import { CheckCategoryUnsubscribedComponent } from './check-category-unsubscribed/check-category-unsubscribed.component';
+import { ShowProfileComponent } from './show-profile/show-profile.component';
+import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './navbar/navbar.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -52,14 +63,25 @@ import { CheckCategoryUnsubscribedComponent } from './check-category-unsubscribe
     JournalEntriesComponent,
     NewJournalEntryComponent,
     CheckCategorySubscriptionsComponent,
-    CheckCategoryUnsubscribedComponent
+    CheckCategoryUnsubscribedComponent,
+    ShowProfileComponent,
+    UploadPhotoComponent,
+    NavbarComponent,
+    MainNavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [
     {

@@ -1,9 +1,11 @@
 
-
-<div *ngFor="let item of data" style="margin-top: 100px;" class="jumbotron jumbotron-fluid">
+<div class="container">
+  <div *ngFor="let item of data" style="margin-top: 100px;" class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">{{item.title}}</h1>
       <p class="lead">{{item.description}}</p>
       <a target="_blank" href="{{item.link}}" class="btn btn-primary">Read more</a>
     </div>
   </div>
+</div>
+

@@ -1,0 +1,16 @@
+<div class="container" style="margin-top: 20px;">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Image Upload</h5>
+      </div>
+      <div class="card-body">
+        <form (submit)="onSubmit()">
+          <div class="form-group">
+            <label for="image">Choose Image</label>
+            <input type="file" class="form-control-file" id="image" (change)="onFileSelected($event)">
+          </div>
+          <button type="submit" class="btn btn-primary">Upload Image</button>
+        </form>
+      </div>
+    </div>
+  </div>
