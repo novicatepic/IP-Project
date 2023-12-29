@@ -1,18 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { JwtTokenService } from '../jwt-token/jwt-token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckAllMessagesService {
 
-  //hard kodovano, kasnije autentifikacija
-  private baseUrl = 'http://localhost:4040/user-messages/all/3';
+  private baseUrl = 'http://localhost:4040/user-messages/all/';
   
-  constructor(private http:HttpClient) { }
+  user : any;
+  constructor(private http:HttpClient, private jwtService: JwtTokenService) { 
+    this.jwtService.getUserById().subscribe((data: any) => {
+      this.user = data;
+      
+   });
+  }
 
   getAllMessages(): Observable<any> {
+    this.baseUrl += this.user.id;
     return this.http.get(`${this.baseUrl}`);
   }
 }

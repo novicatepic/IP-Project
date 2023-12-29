@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PastProgramParticipationsService } from '../past-program-participations/past-program-participations.service';
 import { MyFitnessProgramsService } from './my-fitness-programs.service';
+import { JwtTokenService } from '../jwt-token/jwt-token.service';
 
 @Component({
   selector: 'app-my-fitness-programs',
@@ -10,22 +11,22 @@ import { MyFitnessProgramsService } from './my-fitness-programs.service';
 })
 export class MyFitnessProgramsComponent {
   data: any = [];
-  user: any;
+  id: any;
 
   constructor( 
      private router: Router,
-     private service: MyFitnessProgramsService) {
+     private service: MyFitnessProgramsService,
+     private jwtService: JwtTokenService) {
+
+      var temp = this.jwtService.extractTokenInfo();
+      this.id = temp.id;
 
       this.readData();
 
   }
 
   readData() {
-    var temp =  sessionStorage.getItem("user");
-    if(temp) {
-      this.user = JSON.parse(temp);
-      this.service.baseUrl += this.user.id;
-    }
+      this.service.baseUrl +=  this.id;
       this.service.getMyPrograms().subscribe((data) => {
         this.data = data;
         console.log(data);
@@ -36,9 +37,9 @@ export class MyFitnessProgramsComponent {
 
     deleteProgram(programId: any) {
       event?.preventDefault();
-      this.service.deleteUrl+=programId+"/"+this.user.id;
+      this.service.deleteUrl+=programId+"/"+this.id;
       this.service.deleteProgram().subscribe((response) => {
-        console.log(response);
+        //console.log(response);
         this.router.navigate(['/my-programs']);
       },
       error => console.log(error))

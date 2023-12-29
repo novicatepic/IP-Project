@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BuyProgramService } from './buy-program.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { JwtTokenService } from '../jwt-token/jwt-token.service';
 
 @Component({
   selector: 'app-buy-program',
@@ -13,16 +14,21 @@ export class BuyProgramComponent {
   show: any = false;
   selectedItem: any = null;
   message : any = null;
-  //user: any;
+  user: any;
   public firstForm : FormGroup;
 
   constructor( 
     private formBuilder: FormBuilder,
      private router: Router,
-     private service: BuyProgramService) {
+     private service: BuyProgramService,
+     private jwtService: JwtTokenService) {
+      
+      this.jwtService.getUserById().subscribe((data: any) => {
+        this.user = data;
+     });
 
       this.readData();
-      console.log("DATA PART: " + this.data);
+      
 
       this.firstForm = formBuilder.group({
         paymentMethod : [null],
@@ -32,16 +38,11 @@ export class BuyProgramComponent {
   }
 
   readData() {
-    /*var temp =  sessionStorage.getItem("user");
-    if(temp) {
-      this.user = JSON.parse(temp);
-    }*/
     
-    //hard-kodovano
-    this.service.baseUrl += 3;
+    this.service.baseUrl += this.user.id;
       this.service.getUnparticipated().subscribe((data) => {
         this.data = data;
-        console.log(data);
+        //console.log(data);
       },
       error => console.log(error));
 
@@ -57,15 +58,15 @@ export class BuyProgramComponent {
       if(this.selectedItem) {
         const obj = {
           programId: this.selectedItem.id,
-          korisnikId: 3, //hard-kodovano,
+          korisnikId: this.user.id,
           nacinPlacanja: this.firstForm.get('paymentMethod')?.value,
           vrijednost: parseInt(this.firstForm.get('paymentValue')?.value, 10),
         }
 
-        console.log(JSON.stringify(obj));
+        //console.log(JSON.stringify(obj));
 
         this.service.subscribeToProgram(obj).subscribe((data) => {
-          console.log(data);
+          //console.log(data);
           this.message = null;
         }, (error:any) => {
           this.message = "Not enough money";

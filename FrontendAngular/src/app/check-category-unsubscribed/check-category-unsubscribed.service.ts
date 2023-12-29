@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CheckCategoryUnsubscribedService {
   //hard kodovano, kasnije autentifikacija
-  private baseUrl = 'http://localhost:4040/category-subscriptions/unsubscribed/3';
+  baseUrl = 'http://localhost:4040/category-subscriptions/unsubscribed/';
   
   //hard kodovano
   private subscribeUrl = 'http://localhost:4040/category-subscriptions/subscribe'

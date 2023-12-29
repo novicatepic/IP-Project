@@ -2,3 +2,11 @@ kreiranje dnevnika za korisnika automatski pri kreiranju profila
 u message user controlleru zadnje dvije stavke treba i user id pa provjera
 
 login dio
+
+eventualno modali za:
+-prikaz profila pa izmjena profila,
+-prikaz programa pa kupovina programa,
+-prikaz poruka pa pregled neke poruke
+-prikaz sopstvenih fitnes programa pa kreiranje nekog,
+-prikaz journal entry-a pa kreiranje nekog,
+-registrovanje pa prikaz forme za unos koda ako se treba unijeti

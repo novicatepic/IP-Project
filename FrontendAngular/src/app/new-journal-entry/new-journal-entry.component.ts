@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NewJournalEntryService } from './new-journal-entry.service';
+import { JwtTokenService } from '../jwt-token/jwt-token.service';
 
 @Component({
   selector: 'app-new-journal-entry',
@@ -11,11 +12,16 @@ import { NewJournalEntryService } from './new-journal-entry.service';
 export class NewJournalEntryComponent {
   public firstForm : FormGroup
   question: any;
+  id:any;
 
   constructor( 
     private formBuilder: FormBuilder,
      private router: Router,
-     private service: NewJournalEntryService) {
+     private service: NewJournalEntryService,
+     private jwtService: JwtTokenService) {
+
+      var temp = this.jwtService.extractTokenInfo();
+      this.id = temp.id;
 
     this.firstForm = formBuilder.group({
       exercise : [null, Validators.required],
@@ -33,7 +39,7 @@ export class NewJournalEntryComponent {
         trajanje: this.firstForm.get('duration')?.value,
         intenzitet: this.firstForm.get('intensity')?.value,
         kilaza: this.firstForm.get('weight')?.value,
-        dnevnikKorisnikId: 3 //HARD KODOVAN KORISNIK ZA SAD
+        dnevnikKorisnikId: this.id
       }
 
       this.service.createJournalEntry(journalEntry).subscribe((data) => {

@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthService } from './interceptors/auth.service';
 
 import { FitnessProgramComponent } from './fitness-program/fitness-program.component';
 import { SingleFitnessProgramComponent } from './single-fitness-program/single-fitness-program.component';
@@ -25,7 +26,6 @@ import { StartPageRssComponent } from './start-page-rss/start-page-rss.component
 import { NinjaApiPageComponent } from './ninja-api-page/ninja-api-page.component';
 import { JournalEntriesComponent } from './journal-entries/journal-entries.component';
 import { NewJournalEntryComponent } from './new-journal-entry/new-journal-entry.component';
-import { Chart } from 'chart.js';
 import { CheckCategorySubscriptionsComponent } from './check-category-subscriptions/check-category-subscriptions.component';
 import { CheckCategoryUnsubscribedComponent } from './check-category-unsubscribed/check-category-unsubscribed.component';
 
@@ -61,7 +61,13 @@ import { CheckCategoryUnsubscribedComponent } from './check-category-unsubscribe
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

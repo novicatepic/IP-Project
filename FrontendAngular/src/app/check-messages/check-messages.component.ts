@@ -21,7 +21,6 @@ export class CheckMessagesComponent {
   getMyMessages() {
 
       this.service.getUnreadMessages().subscribe((data) => {
-          //console.log(data);
           this.data = data;
       },
       error => console.log(error))

@@ -51,6 +51,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/exercises").permitAll()
                         .requestMatchers("/fitness-users/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/questions/{programId}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/fitness-users/{id}").permitAll()
 
                         .requestMatchers("/fitness-programs/**").hasRole("USER")
                         .requestMatchers("/category-subscriptions/**").hasRole("USER")

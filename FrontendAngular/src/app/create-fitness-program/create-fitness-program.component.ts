@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterService } from '../register/register.service';
 import { CreateFitnessProgramService } from './create-fitness-program.service';
+import { JwtTokenService } from '../jwt-token/jwt-token.service';
 
 @Component({
   selector: 'create-fitness-program',
@@ -13,17 +14,16 @@ export class CreateFitnessProgramComponent {
   public firstForm : FormGroup
   question: any;
   categories: any;
-  //user: any;
+  user: any;
   constructor( 
     private formBuilder: FormBuilder,
      private router: Router,
-     private service: CreateFitnessProgramService) {
+     private service: CreateFitnessProgramService,
+     private jwtService: JwtTokenService) {
 
-      const userTemp = sessionStorage.getItem("user");
-      console.log(userTemp);
-      /*if(userTemp) {
-        this.user = JSON.parse(userTemp);
-      }*/
+      this.jwtService.getUserById().subscribe((data: any) => {
+        this.user = data;
+     });
 
       this.service.getCategories().subscribe((data) => {
         this.categories = data;
@@ -43,10 +43,7 @@ export class CreateFitnessProgramComponent {
   }
 
   createFitnessProgram() {
-    console.log("in");
     if(this.firstForm.valid) {
-
-      
 
       const fitnessProgram = {
         naziv: this.firstForm.get('name')?.value,
@@ -57,12 +54,10 @@ export class CreateFitnessProgramComponent {
         lokacija: this.firstForm.get('location')?.value,
         kontakt: this.firstForm.get('contact')?.value,
         datum: this.firstForm.get('date')?.value,
-        kreatorId: 3, //hard-kodovano
+        kreatorId: this.user.id,
         ucestvovan: false,
         kategorijaId: this.firstForm.get('select')?.value
       }
-
-      //console.log(JSON.stringify(fitnessProgram));
 
       this.service.createFitnessProgram(fitnessProgram).subscribe((data)=> {
         console.log(data);

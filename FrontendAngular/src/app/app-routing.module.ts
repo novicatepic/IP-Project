@@ -21,32 +21,33 @@ import { NewJournalEntryComponent } from './new-journal-entry/new-journal-entry.
 import { CheckCategorySubscriptionsComponent } from './check-category-subscriptions/check-category-subscriptions.component';
 import { CheckCategoryUnsubscribedComponent } from './check-category-unsubscribed/check-category-unsubscribed.component';
 import { BuyProgramComponent } from './buy-program/buy-program.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
   {path: '', component:StartPageRssComponent},
   {path: 'ninja', component:NinjaApiPageComponent},
-  {path: 'journal-entries', component:JournalEntriesComponent},
-  {path: 'new-journal-entry', component:NewJournalEntryComponent},
-  {path: 'category-subscriptions', component:CheckCategorySubscriptionsComponent},
-  {path: 'category-unsubscribed', component:CheckCategoryUnsubscribedComponent},
+  {path: 'journal-entries', component:JournalEntriesComponent, canActivate: [AuthGuard]},
+  {path: 'new-journal-entry', component:NewJournalEntryComponent, canActivate: [AuthGuard]},
+  {path: 'category-subscriptions', component:CheckCategorySubscriptionsComponent, canActivate: [AuthGuard]},
+  {path: 'category-unsubscribed', component:CheckCategoryUnsubscribedComponent, canActivate: [AuthGuard]},
   {path: 'fitness-programs', component:FitnessProgramComponent},
   {path: 'login', component:LoginComponent},
   {path: 'fitness-programs/:id', component: SingleFitnessProgramComponent},
-  {path: 'questions/new-question/:id', component: NewQuestionComponent},
+  {path: 'questions/new-question/:id', component: NewQuestionComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'code/:id', component: CodeComponent},
-  {path: 'change-profile', component: ChangeProfileComponent},
-  {path: 'past-program-participations', component: PastProgramParticipationsComponent},
-  {path: 'unparticipated', component: PastProgramParticipationsComponent},
-  {path: 'create-fitness-program', component: CreateFitnessProgramComponent},
-  {path: 'my-programs', component: MyFitnessProgramsComponent},
-  {path: 'buy-programs', component: BuyProgramComponent},
-  {path: 'message-consultant', component: MessageConsultantComponent},
-  {path: 'check-messages', component: CheckMessagesComponent},
+  {path: 'change-profile', component: ChangeProfileComponent, canActivate: [AuthGuard]},
+  {path: 'past-program-participations', component: PastProgramParticipationsComponent, canActivate: [AuthGuard]},
+  {path: 'unparticipated', component: PastProgramParticipationsComponent, canActivate: [AuthGuard]},
+  {path: 'create-fitness-program', component: CreateFitnessProgramComponent, canActivate: [AuthGuard]},
+  {path: 'my-programs', component: MyFitnessProgramsComponent, canActivate: [AuthGuard]},
+  {path: 'buy-programs', component: BuyProgramComponent, canActivate: [AuthGuard]},
+  {path: 'message-consultant', component: MessageConsultantComponent, canActivate: [AuthGuard]},
+  {path: 'check-messages', component: CheckMessagesComponent, canActivate: [AuthGuard]},
   {path: 'all-messages', component: CheckAllMessagesComponent},
-  {path: 'check-messages/:id', component: CheckSingleMessageComponent},
-  { path: '**', redirectTo: '/fitness-programs', pathMatch: 'full' },
+  {path: 'check-messages/:id', component: CheckSingleMessageComponent, canActivate: [AuthGuard]},
+  { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];
 
 @NgModule({

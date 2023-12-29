@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { JwtTokenService } from '../jwt-token/jwt-token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,18 +9,24 @@ import { Observable } from 'rxjs';
 export class JournalEntriesService {
 
   //hard kodovana trica => id usera
-  private baseUrl = 'http://localhost:4040/journals/journal-entry/3';
+  private baseUrl = 'http://localhost:4040/journals/journal-entry/';
   
   //hard kodovano za usera 3
-  private pdfUrl = 'http://localhost:4040/journals/download-journal/3';
+  private pdfUrl = 'http://localhost:4040/journals/download-journal/';
 
-  constructor(private http:HttpClient) { }
+  id : any;
+  constructor(private http:HttpClient, private jwtService: JwtTokenService) {
+    var temp = this.jwtService.extractTokenInfo();
+    this.id = temp.id;
+   }
 
    readJournalEntriesForUser(): Observable<any> {
+    this.baseUrl +=  this.id;
     return this.http.get(`${this.baseUrl}`);
   }
 
   downloadPDF() {
+    this.pdfUrl += this.id;
     return this.http.get(this.pdfUrl, { responseType: 'blob' });
   }
 }

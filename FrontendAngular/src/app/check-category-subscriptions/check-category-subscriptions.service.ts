@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { JwtTokenService } from '../jwt-token/jwt-token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +9,14 @@ import { Observable } from 'rxjs';
 export class CheckCategorySubscriptionsService {
 
    //hard kodovano, kasnije autentifikacija
-   private baseUrl = 'http://localhost:4040/category-subscriptions/subscribed/3';
+   baseUrl = 'http://localhost:4040/category-subscriptions/subscribed/';
   
    //hard kodovano
-   deleteUrl = 'http://localhost:4040/category-subscriptions/unsubscribe/3/'
+   deleteUrl = 'http://localhost:4040/category-subscriptions/unsubscribe/'
 
-   constructor(private http:HttpClient) { }
+   constructor(private http:HttpClient) { 
+
+   }
  
    getSubscribedCategories(): Observable<any> {
      return this.http.get(`${this.baseUrl}`);

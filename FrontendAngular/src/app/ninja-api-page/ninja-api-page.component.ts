@@ -17,7 +17,7 @@ export class NinjaApiPageComponent {
   loadData() {
     this.service.readNinjaApiExercises().subscribe((data) => {
       this.data = data;
-      console.log(data);
+      //console.log(data);
     })
 
 

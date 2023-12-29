@@ -22,6 +22,15 @@ public class FitnessUserController {
     @Autowired
     private FitnessUserService service;
 
+    @GetMapping("/{id}")
+    public ResponseEntity<KorisnikEntity> getFitnessUserById(@PathVariable("id") Integer id) throws NotFoundException {
+        if(!UserLoginHelp.checkUserValidity(id)) {
+            return ForbiddenEntity.returnForbidden();
+        }
+
+        return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<KorisnikEntity> createFitnessUser(@RequestBody KorisnikEntity fitnessUser) {
         return new ResponseEntity<>(service.createFitnessUser(fitnessUser), HttpStatus.OK);

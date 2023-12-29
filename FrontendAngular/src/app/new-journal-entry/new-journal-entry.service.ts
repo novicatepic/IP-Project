@@ -9,8 +9,6 @@ export class NewJournalEntryService {
 
   private baseUrl = 'http://localhost:4040/journals/journal-entry';
   
-
-
   constructor(private http:HttpClient) { }
 
   createJournalEntry(journalEntry: object): Observable<any> {

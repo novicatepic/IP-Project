@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import * as jwtDecode from 'jwt-decode';
+import { JwtTokenService } from '../jwt-token/jwt-token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ import { Observable } from 'rxjs';
 export class ChangeProfileService {
 
   private baseUrl = 'http://localhost:4040/fitness-users';
-  
+
   constructor(private http:HttpClient) { }
 
   updateFitnessUserProfile(fitnessUser: object): Observable<any> {

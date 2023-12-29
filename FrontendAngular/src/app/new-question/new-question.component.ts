@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
+import { JwtTokenService } from '../jwt-token/jwt-token.service';
 
 @Component({
   selector: 'new-question',
@@ -13,11 +14,16 @@ export class NewQuestionComponent {
   public firstForm : FormGroup
   question: any;
   id: any;
+  userId: any;
 
   constructor(private http: HttpClient, 
     private formBuilder: FormBuilder,
      private route: ActivatedRoute,
-     private router: Router) {
+     private router: Router,
+     private jwtService: JwtTokenService) {
+      var temp = this.jwtService.extractTokenInfo();
+      this.userId = temp.id;
+
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
     });
@@ -38,7 +44,7 @@ export class NewQuestionComponent {
      const requestData = {
        tekst: questionControl.value,
        programId: parseInt(this.id, 10),
-       korisnikId: 3 //hard-kodovano
+       korisnikId: this.userId
     };
     return this.http.post(`${url}`, JSON.stringify(requestData), {headers}).subscribe(data => {
       console.log(data);

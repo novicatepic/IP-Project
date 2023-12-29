@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { JwtTokenService } from '../jwt-token/jwt-token.service';
 
 @Component({
   selector: 'single-fitness-program',
@@ -13,11 +14,17 @@ export class SingleFitnessProgramComponent implements OnInit {
   data: any;
   questions: any[] = [];
   id: any;
+  userId: any;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router : Router, private location: Location,) {
+  constructor(private http: HttpClient, private route: ActivatedRoute, 
+    private router : Router, private location: Location, private jwtService: JwtTokenService) {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
     });
+
+    var temp = this.jwtService.extractTokenInfo();
+    this.userId = temp.id;
+
     this.loadData();
     this.loadQuestions();
   }
@@ -37,7 +44,7 @@ export class SingleFitnessProgramComponent implements OnInit {
     const url = `http://localhost:4040/questions/${this.id}`;
     this.http.get<any>(url).subscribe(data => {
       this.questions = data;
-      console.log("QUESTIONS=" + JSON.stringify(this.questions[0]));
+      //console.log("QUESTIONS=" + JSON.stringify(this.questions[0]));
     });
   }
 
@@ -50,17 +57,12 @@ export class SingleFitnessProgramComponent implements OnInit {
       const answer = {
         odgovor: text,
         pitanjeId: id,
-        korisnikId: 3 //HARD-KODOVANO
+        korisnikId: this.userId
       }
       this.http.post(url, JSON.stringify(answer), {headers}).subscribe((data) => {
-        console.log("POSTED " + data);
+        //console.log("POSTED " + data);
         const currentUrl = this.router.url;
-  this.router.navigateByUrl('/fitness-programs/' + this.id).then(() => {
-    if (currentUrl === this.router.url) {
-      this.location.replaceState('/');
-      this.router.navigate([currentUrl]);
-    }
-  });
+        this.router.navigate(['/fitness-programs/' + this.id]);
       });
     }
   }

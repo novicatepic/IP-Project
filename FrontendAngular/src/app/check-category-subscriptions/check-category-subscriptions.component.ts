@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CheckCategorySubscriptionsService } from './check-category-subscriptions.service';
+import { JwtTokenService } from '../jwt-token/jwt-token.service';
 
 @Component({
   selector: 'app-check-category-subscriptions',
@@ -9,16 +10,20 @@ import { CheckCategorySubscriptionsService } from './check-category-subscription
 })
 export class CheckCategorySubscriptionsComponent {
   data: any = [];
+  decodedTokenId: any;
   constructor( 
      private router: Router,
-     private service: CheckCategorySubscriptionsService) {
+     private service: CheckCategorySubscriptionsService, private jwtService: JwtTokenService) {
 
       this.getSubscribredCategories();
+
+      var temp = this.jwtService.extractTokenInfo();
+      this.decodedTokenId = temp.id;
 
   }
 
   getSubscribredCategories() {
-
+      this.service.baseUrl += this.decodedTokenId;
       this.service.getSubscribedCategories().subscribe((data) => {
           //console.log(data);
           this.data = data;
@@ -27,9 +32,10 @@ export class CheckCategorySubscriptionsComponent {
   }
 
   unsubscribe(id: any) {
+    this.service.deleteUrl += this.decodedTokenId + "/";
     this.service.unsubscribeFromCategory(id).subscribe((data) => {
       this.router.navigate(['/category-subscriptions']);
-      console.log(data);
+      //console.log(data);
     });
   }
 }

@@ -27,6 +27,10 @@ public class FitnessUserService {
         return k;
     }
 
+    public KorisnikEntity getById(Integer id) throws NotFoundException {
+        return repository.findById(id).orElseThrow(NotFoundException::new);
+    }
+
     public KorisnikEntity updateFitnessUser(KorisnikEntity fitnessUser) throws UserNotActiveException,NotFoundException, ModifiedUserNameException {
         KorisnikEntity currentDBUser = repository.findById(fitnessUser.getId()).orElseThrow(NotFoundException::new);
 

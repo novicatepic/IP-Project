@@ -55,7 +55,7 @@ export class CheckSingleMessageComponent {
         procitana: false
       }
 
-      console.log("new mssg" + JSON.stringify(newMessage));
+      //console.log("new mssg" + JSON.stringify(newMessage));
 
       this.service.sendResponse(newMessage).subscribe((data) => {
         console.log(data);

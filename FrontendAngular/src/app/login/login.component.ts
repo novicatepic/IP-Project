@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
+import { JwtTokenService } from '../jwt-token/jwt-token.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent {
   constructor( 
     private formBuilder: FormBuilder,
      private router: Router,
-     private service: LoginService) {
+     private service: LoginService,
+     private jwtService: JwtTokenService) {
 
     this.firstForm = formBuilder.group({
       username : [null, Validators.required],
@@ -34,9 +36,11 @@ export class LoginComponent {
 
 
       this.service.loginFitnessUser(fitnessUser).subscribe((data) => {
-        console.log("DATA " + JSON.stringify(data));
-
+      
         if(data) {
+          //console.log("SET INTO LOCAL STORAGE");
+          localStorage.setItem("user", JSON.stringify(data));
+          //console.log(this.jwtService.extractToken());
           this.router.navigate(['/fitness-programs']);
         } else {
           this.router.navigate(['/code/'+data.id]);
