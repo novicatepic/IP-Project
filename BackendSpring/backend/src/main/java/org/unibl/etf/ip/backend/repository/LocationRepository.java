@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import org.unibl.etf.ip.backend.model.LokacijaEntity;
 
 @Repository
-public interface LokacijaRepository extends JpaRepository<LokacijaEntity, Integer> {
+public interface LocationRepository extends JpaRepository<LokacijaEntity, Integer> {
 }

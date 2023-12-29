@@ -31,9 +31,9 @@ public class ProgramEntity implements Serializable {
     @Basic
     @Column(name = "trajanje", nullable = false)
     private Integer trajanje;
-    @Basic
+    /*@Basic
     @Column(name = "lokacija", nullable = false, length = 200)
-    private String lokacija;
+    private String lokacija;*/
     @Basic
     @Column(name = "kontakt", nullable = false, length = 45)
     private String kontakt;
@@ -58,6 +58,9 @@ public class ProgramEntity implements Serializable {
 
     @OneToMany(mappedBy = "programId", cascade = CascadeType.ALL)
     private List<SlikaEntity> pictures = new ArrayList<>();
+
+    @OneToMany(mappedBy = "programId", cascade = CascadeType.ALL)
+    private List<LokacijaEntity> lokacije = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "kategorija_id", referencedColumnName = "id", insertable = false, updatable = false)
@@ -114,13 +117,13 @@ public class ProgramEntity implements Serializable {
         this.trajanje = trajanje;
     }
 
-    public String getLokacija() {
+    /*public String getLokacija() {
         return lokacija;
     }
 
     public void setLokacija(String lokacija) {
         this.lokacija = lokacija;
-    }
+    }*/
 
     public String getKontakt() {
         return kontakt;
@@ -217,5 +220,13 @@ public class ProgramEntity implements Serializable {
 
     public void setProgramQuestions(List<PitanjeEntity> programQuestions) {
         this.programQuestions = programQuestions;
+    }
+
+    public List<LokacijaEntity> getLokacije() {
+        return lokacije;
+    }
+
+    public void setLokacije(List<LokacijaEntity> lokacije) {
+        this.lokacije = lokacije;
     }
 }

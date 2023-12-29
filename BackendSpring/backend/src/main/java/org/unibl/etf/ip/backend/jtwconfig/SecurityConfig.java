@@ -9,6 +9,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -39,7 +40,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/csrf").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/**")
@@ -52,7 +53,13 @@ public class SecurityConfig {
                         .requestMatchers("/fitness-users/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/questions/{programId}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/fitness-users/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/fitness-users/user/{userName}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/pictures/{programId}").permitAll()
+                        .requestMatchers("/api/files/download/**").permitAll()
 
+                        .requestMatchers(HttpMethod.PUT, "/fitness-users/password-update").hasRole("USER")
+                        .requestMatchers("/pictures/upload/{programId}").hasRole("USER")
+                        .requestMatchers("/locations/**").hasRole("USER")
                         .requestMatchers("/fitness-programs/**").hasRole("USER")
                         .requestMatchers("/category-subscriptions/**").hasRole("USER")
                         .requestMatchers("/messages/**").hasRole("USER")

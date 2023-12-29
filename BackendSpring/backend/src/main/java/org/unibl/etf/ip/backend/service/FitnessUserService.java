@@ -1,11 +1,17 @@
 package org.unibl.etf.ip.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.unibl.etf.ip.backend.auth.JwtAuthResponse;
 import org.unibl.etf.ip.backend.exceptions.ModifiedUserNameException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.exceptions.UserNotActiveException;
+import org.unibl.etf.ip.backend.jtwconfig.JwtService;
 import org.unibl.etf.ip.backend.model.KorisnikEntity;
+import org.unibl.etf.ip.backend.model.PasswordWrapper;
 import org.unibl.etf.ip.backend.repository.FitnessUserRepository;
 
 @Service
@@ -20,7 +26,16 @@ public class FitnessUserService {
     @Autowired
     private MailService mailService;
 
+    @Autowired
+    private JwtService jwtService;
+
+
+    public static PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     public KorisnikEntity createFitnessUser(KorisnikEntity fitnessUser)   {
+        fitnessUser.setLozinka(passwordEncoder().encode(fitnessUser.getLozinka()) );
         KorisnikEntity k = repository.save(fitnessUser);
         String code = codeService.saveCodeToDB(k);
         mailService.sendEmail(k.getMail(), "Code for password change", code);
@@ -29,6 +44,10 @@ public class FitnessUserService {
 
     public KorisnikEntity getById(Integer id) throws NotFoundException {
         return repository.findById(id).orElseThrow(NotFoundException::new);
+    }
+
+    public KorisnikEntity getByUsername(String userName) throws NotFoundException {
+        return repository.findByKorisnickoIme(userName).orElseThrow(NotFoundException::new);
     }
 
     public KorisnikEntity updateFitnessUser(KorisnikEntity fitnessUser) throws UserNotActiveException,NotFoundException, ModifiedUserNameException {
@@ -42,19 +61,40 @@ public class FitnessUserService {
             throw new UserNotActiveException();
         }
 
+        fitnessUser.setLozinka(currentDBUser.getLozinka());
         KorisnikEntity k = repository.save(fitnessUser);
         return k;
     }
 
-    public Boolean userInsertCode(Integer userId, String code) throws NotFoundException {
+    public JwtAuthResponse userInsertCode(Integer userId, String code) throws NotFoundException {
         Boolean result = codeService.insertCode(userId, code);
         if(result) {
             KorisnikEntity k = repository.findById(userId).orElseThrow(NotFoundException::new);
             k.setAktivan(true);
             repository.save(k);
-            return true;
+            //System.out.println("User saved!");
+            String token = jwtService.generateToken((k));
+            //System.out.println("Token generated: " + token);
+            return new JwtAuthResponse(token);
         }
-        return false;
+        return null;
     }
 
+    public KorisnikEntity updateFitnessUserPassword(PasswordWrapper passwordWrapper) throws NotFoundException {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        KorisnikEntity user = repository.findById(passwordWrapper.getId()).orElseThrow(NotFoundException::new);
+
+        boolean matches = passwordEncoder.matches(passwordWrapper.getOldPassword(), user.getLozinka());
+
+
+        if(!matches) {
+            throw new NotFoundException();
+        }
+
+        user.setLozinka(passwordEncoder().encode(passwordWrapper.getNewPassword()));
+
+        return repository.save(user);
+
+    }
 }

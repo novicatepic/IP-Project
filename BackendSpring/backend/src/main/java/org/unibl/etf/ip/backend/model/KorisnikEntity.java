@@ -35,7 +35,7 @@ public class KorisnikEntity implements UserDetails {
     @Column(name = "lozinka", nullable = false, length = 45)
     private String lozinka;
     @Basic
-    @Column(name = "avatar", nullable = true, length = 200)
+    @Column(name = "avatar", nullable = true, length = 21845)
     private String avatar;
     @Basic
     @Column(name = "mail", nullable = false, length = 200)

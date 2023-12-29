@@ -3,6 +3,8 @@ u message user controlleru zadnje dvije stavke treba i user id pa provjera
 
 login dio
 
+neophodna provjera za upload slike da li je korisnik nadlezan za fitnes program
+
 eventualno modali za:
 -prikaz profila pa izmjena profila,
 -prikaz programa pa kupovina programa,
