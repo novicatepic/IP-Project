@@ -1,6 +1,6 @@
 
 
-<div class=" container jumbotron" style="margin-top: 100px;">
+<div class=" container jumbotron" style="margin-top: 10px;">
     <h1 class="display-4">{{data.naziv}}</h1>
     <p class="lead">Description: {{data.opis}}</p>
     <hr class="my-4">
@@ -13,7 +13,7 @@
 
 
   <div class="container">
-    <a routerLink="/questions/new-question/{{id}}" class="btn btn-primary">Ask a question</a>
+    <a *ngIf="this.userId" routerLink="/questions/new-question/{{id}}" class="btn btn-primary">Ask a question</a>
   
     <p class="lead">Questions:</p>
     <div *ngFor="let question of questions">
@@ -21,7 +21,7 @@
         <li class="list-group-item d-flex justify-content-between align-items-center disabled">
           Question: {{question.tekst}}
           <div class="row">
-            <form (ngSubmit)="addComment(question.id)">
+            <form *ngIf="this.userId" (ngSubmit)="addComment(question.id)">
               <input type="text" name="comment" id="{{question.id}}" class="mr-2">
               <button class="btn btn-primary mr-2">Get yourself into conversation</button>
             </form>

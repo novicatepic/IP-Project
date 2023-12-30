@@ -1,5 +1,5 @@
 <div class="container">
-  <form style="margin-top: 100px;" (ngSubmit)="filter()">
+  <form (ngSubmit)="filter()">
     <div class="form-group">
       <label for="nameFilter">Search by name</label>
       <input #filterTextRef name="filterText" type="text" class="form-control" id="nameFilter" placeholder="Enter name to filter...">
@@ -8,20 +8,21 @@
   </form>
 </div>
 
-<div class="container d-flex justify-content-between">
-  <form style="margin-top: 50px;">
-      <button type="button" class="btn btn-primary mr-5" (click)="filterByPrice()">Filter by Price</button>
-      <button type="button" class="btn btn-primary mr-5" (click)="filterByDifficulty()">Filter by Difficulty</button>
-      <button type="button" class="btn btn-primary" (click)="filterByDuration()">Filter by Duration</button>
+<div class="container d-flex flex-column justify-content-between">
+  <form style="margin-top: 30px; margin-bottom: 10px;">
+    <button type="button" class="btn btn-primary" (click)="filterByPrice()">Filter by Price</button>
+    <button type="button" class="btn btn-primary" (click)="filterByDifficulty()">Filter by Difficulty</button>
+    <button type="button" class="btn btn-primary" (click)="filterByDuration()">Filter by Duration</button>
   </form>
 </div>
 
 <div class="container">
-  <div class="row" style="margin-top: 50px;">
+  <div class="row">
 
 
     <div *ngFor="let program of getCurrentPageData()" class="card col" style="width: 18rem; margin-right: 10px;">
-        <img *ngIf="program.pictures.length > 0" class="card-img-top" src="{{ program.pictures[0].url }}" alt="Card image cap">
+      <img *ngIf="program.pictures.length > 0" style="height: 200px;" class="card-img-top h-10" src="{{ program.pictures[0].url }}" alt="Card image cap">
+      <img *ngIf="program.pictures.length <= 0" style="height: 200px;" class="card-img-top h-10" src="https://png.pngtree.com/png-vector/20190820/ourmid/pngtree-no-avatar-vector-isolated-on-white-background-png-image_1694546.jpg" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Title: {{program.naziv}}</h5>
           <p class="card-text">Description: {{ program.opis }}</p>

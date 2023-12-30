@@ -10,16 +10,11 @@ export class CheckAllMessagesService {
 
   private baseUrl = 'http://localhost:4040/user-messages/all/';
   
-  user : any;
-  constructor(private http:HttpClient, private jwtService: JwtTokenService) { 
-    this.jwtService.getUserById().subscribe((data: any) => {
-      this.user = data;
-      
-   });
+  constructor(private http:HttpClient) { 
   }
 
-  getAllMessages(): Observable<any> {
-    this.baseUrl += this.user.id;
-    return this.http.get(`${this.baseUrl}`);
+  getAllMessages(id: any): Observable<any> {
+    const url = this.baseUrl + id;
+    return this.http.get(`${url}`);
   }
 }

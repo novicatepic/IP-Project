@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { AuthServiceService } from '../auth-service/auth-service.service';
 
 @Component({
-  selector: 'app-main-nav',
+  selector: 'main-nav',
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.css']
 })

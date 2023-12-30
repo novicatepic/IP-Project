@@ -15,16 +15,18 @@ export class CheckCategorySubscriptionsComponent {
      private router: Router,
      private service: CheckCategorySubscriptionsService, private jwtService: JwtTokenService) {
 
-      this.getSubscribredCategories();
-
       var temp = this.jwtService.extractTokenInfo();
       this.decodedTokenId = temp.id;
+
+      console.log("TOKEN = " + this.decodedTokenId);
+
+      this.getSubscribredCategories();
 
   }
 
   getSubscribredCategories() {
-      this.service.baseUrl += this.decodedTokenId;
-      this.service.getSubscribedCategories().subscribe((data) => {
+      //this.service.baseUrl += this.decodedTokenId;
+      this.service.getSubscribedCategories(this.decodedTokenId).subscribe((data) => {
           //console.log(data);
           this.data = data;
       },
@@ -32,8 +34,7 @@ export class CheckCategorySubscriptionsComponent {
   }
 
   unsubscribe(id: any) {
-    this.service.deleteUrl += this.decodedTokenId + "/";
-    this.service.unsubscribeFromCategory(id).subscribe((data) => {
+    this.service.unsubscribeFromCategory(this.decodedTokenId, id).subscribe((data) => {
       this.router.navigate(['/category-subscriptions']);
       //console.log(data);
     });

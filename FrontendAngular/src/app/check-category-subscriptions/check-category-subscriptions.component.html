@@ -1,9 +1,11 @@
-<div style="margin-top: 100px;"></div>
-
-<div *ngFor="let item of data" class="jumbotron jumbotron-fluid">
+<div style="margin-top: 10px;" class="container">
+  <div *ngFor="let item of data" class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">Category id: {{ item.id }}</h1>
       <p class="lead">Category name: {{  item.naziv }}</p>
       <button (click)="unsubscribe(item.id)" class="btn btn-primary">UNSUBSCRIBE</button>
     </div>
   </div>
+
+</div>
+

@@ -12,12 +12,14 @@ export class MyFitnessProgramsService {
   
   constructor(private http:HttpClient) { }
 
-  getMyPrograms(): Observable<any> {
-    return this.http.get<any[]>(`${this.baseUrl}`);
+  getMyPrograms(id:any): Observable<any> {
+    const url = this.baseUrl + id;
+    return this.http.get<any[]>(`${url}`);
   }
 
-  deleteProgram(): Observable<any> {
-    return this.http.delete(`${this.deleteUrl}`, { responseType: 'text' });
+  deleteProgram(id :any): Observable<any> {
+    const url = this.deleteUrl += id;
+    return this.http.delete(`${url}`, { responseType: 'text' });
   }
 }
 

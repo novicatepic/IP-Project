@@ -18,14 +18,15 @@ export class CheckCategoryUnsubscribedComponent {
      private jwtService: JwtTokenService) {
       this.jwtService.getUserById().subscribe((data: any) => {
         this.user = data;
+        this.getUnsubscribredCategories();
      });
-      this.getUnsubscribredCategories();
+      
 
   }
 
   getUnsubscribredCategories() {
-      this.service.baseUrl += this.user.id;
-      this.service.getUnsubscribedCategories().subscribe((data) => {
+      //this.service.baseUrl += this.user.id;
+      this.service.getUnsubscribedCategories(this.user.id).subscribe((data) => {
           //console.log(data);
           this.data = data;
       },

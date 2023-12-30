@@ -31,7 +31,6 @@ export class ChangeProfileComponent {
         firstName : [null, Validators.required],
         lastName : [null, Validators.required],
         city : [null, Validators.required],
-        //password : [null, Validators.required],
         avatar : [null],
         email : [null, [Validators.required, Validators.email]],
       });

@@ -5,6 +5,16 @@ login dio
 
 neophodna provjera za upload slike da li je korisnik nadlezan za fitnes program
 
+kreiranje dnevnika ako ne postoji
+
+dnevnik unos fali datum unosa (da je lakse pratiti na grafu)
+
+popraviti konkatenaciju stringova za url-ove
+
+bought upcoming programs fali
+
+obrisati suvisnu komponentu
+
 eventualno modali za:
 -prikaz profila pa izmjena profila,
 -prikaz programa pa kupovina programa,

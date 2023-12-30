@@ -7,11 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class PastProgramParticipationsService {
 
-  baseUrl = 'http://localhost:4040/fitness-programs/past-user-programs/';
+  private baseUrl = 'http://localhost:4040/fitness-programs/past-user-programs/';
   
   constructor(private http:HttpClient) { }
 
-  getPastParticipations(): Observable<any> {
-    return this.http.get<any[]>(`${this.baseUrl}`);
+  getPastParticipations(id: any): Observable<any> {
+    const url = this.baseUrl + id;
+    return this.http.get<any[]>(`${url}`);
   }
 }

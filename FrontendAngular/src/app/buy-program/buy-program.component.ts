@@ -25,9 +25,11 @@ export class BuyProgramComponent {
       
       this.jwtService.getUserById().subscribe((data: any) => {
         this.user = data;
+        console.log(this.user);
+        this.readData();
      });
 
-      this.readData();
+     
       
 
       this.firstForm = formBuilder.group({
@@ -39,8 +41,7 @@ export class BuyProgramComponent {
 
   readData() {
     
-    this.service.baseUrl += this.user.id;
-      this.service.getUnparticipated().subscribe((data) => {
+      this.service.getUnparticipated(this.user.id).subscribe((data) => {
         this.data = data;
         //console.log(data);
       },

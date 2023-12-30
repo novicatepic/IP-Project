@@ -1,18 +1,29 @@
-
 <div class="container">
-  <div class="list-group" style="margin-top: 50px;">
-    <a routerLink="/create-fitness-program" class="btn btn-success" style="margin-top: 20px; margin-bottom: 20px;">Create New Program</a>
-  
-      <a *ngFor="let item of data" href="#" style="margin-bottom: 10px;" class="list-group-item list-group-item-action flex-column align-items-start active">
+  <div class="list-group" style="margin-top: 10px; position: relative;">
+
+    <!-- Create New Program Button -->
+    <a routerLink="/create-fitness-program" class="btn btn-success mt-4 mb-2">Create New Program</a>
+
+    <div *ngFor="let item of data" class="mb-3">
+      <div class="list-group-item list-group-item-action flex-column align-items-start active position-relative" style="z-index: 0;">
+        <!-- Program Details -->
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">Name : {{item.naziv}}</h5>
           <small>Date: {{item.datum}}</small>
         </div>
         <p class="mb-1">Description: {{ item.opis }}</p>
+        <p *ngIf="item.tezina == 0" class="mb-1">Difficulty: Easy</p>
+        <p *ngIf="item.tezina == 1" class="mb-1">Difficulty: Medium</p>
+        <p *ngIf="item.tezina == 2" class="mb-1">Difficulty: Hard</p>
+        <p class="mb-1">Duration (in minutes): {{ item.trajanje }}</p>
         <p class="mb-1">Active: {{ item.aktivan }}</p>
-        <div><small>Price: {{ item.cijena }}</small></div>
-        <button (click)="deleteProgram(item.id)" class="btn btn-danger">Delete program</button>
-      </a>
+        <div><small>Price (in euro): {{ item.cijena }}</small></div>
+        <button (click)="deleteProgram(item.id)" class="btn btn-danger mt-2">Delete program</button>
+        
+        <!-- Responsive "Add Photo" button -->
+        <a routerLink="/upload-photo/{{item.id}}" class="btn btn-success d-none d-md-block position-absolute top-0 end-0 m-3 mt-2" style="z-index: 2;">Add Photo</a>
+      </div>
     </div>
+  </div>
 </div>
 

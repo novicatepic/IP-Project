@@ -9,22 +9,23 @@ import { JwtTokenService } from '../jwt-token/jwt-token.service';
 export class CheckCategorySubscriptionsService {
 
    //hard kodovano, kasnije autentifikacija
-   baseUrl = 'http://localhost:4040/category-subscriptions/subscribed/';
+   private baseUrl = 'http://localhost:4040/category-subscriptions/subscribed/';
   
    //hard kodovano
-   deleteUrl = 'http://localhost:4040/category-subscriptions/unsubscribe/'
+   private deleteUrl = 'http://localhost:4040/category-subscriptions/unsubscribe/'
 
    constructor(private http:HttpClient) { 
 
    }
  
-   getSubscribedCategories(): Observable<any> {
-     return this.http.get(`${this.baseUrl}`);
+   getSubscribedCategories(id: any): Observable<any> {
+    const url = this.baseUrl + id;
+     return this.http.get(`${url}`);
    }
 
-   unsubscribeFromCategory(id: any): Observable<any> {
-    this.deleteUrl+=id;
+   unsubscribeFromCategory(tokenId:any, id: any): Observable<any> {
+    const url = this.deleteUrl + "/" + tokenId + "/"+id;
     //const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.delete(`${this.deleteUrl}`);
+    return this.http.delete(`${url}`);
   }
 }

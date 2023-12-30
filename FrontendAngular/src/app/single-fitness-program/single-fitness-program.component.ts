@@ -35,6 +35,7 @@ export class SingleFitnessProgramComponent implements OnInit {
       this.userId = temp.id;
     }
     
+    
 
     this.loadData();
     this.loadQuestions();

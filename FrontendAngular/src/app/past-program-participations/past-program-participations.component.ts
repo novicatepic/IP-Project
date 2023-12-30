@@ -28,8 +28,7 @@ export class PastProgramParticipationsComponent {
 
   readData() {
     
-    this.service.baseUrl += this.id;
-      this.service.getPastParticipations().subscribe((data) => {
+      this.service.getPastParticipations(this.id).subscribe((data) => {
         this.data = data;
         console.log(data);
       },

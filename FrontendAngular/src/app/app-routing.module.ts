@@ -42,7 +42,7 @@ const routes: Routes = [
   {path: 'profile', component: ShowProfileComponent, canActivate: [AuthGuard]},
   {path: 'change-profile', component: ChangeProfileComponent, canActivate: [AuthGuard]},
   {path: 'past-program-participations', component: PastProgramParticipationsComponent, canActivate: [AuthGuard]},
-  {path: 'unparticipated', component: PastProgramParticipationsComponent, canActivate: [AuthGuard]},
+  {path: 'unparticipated', component: BuyProgramComponent, canActivate: [AuthGuard]},
   {path: 'create-fitness-program', component: CreateFitnessProgramComponent, canActivate: [AuthGuard]},
   {path: 'my-fitness-programs', component: MyFitnessProgramsComponent, canActivate: [AuthGuard]},
   {path: 'upload-photo/:programId', component: UploadPhotoComponent, canActivate: [AuthGuard]},

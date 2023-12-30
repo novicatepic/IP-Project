@@ -38,6 +38,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { MatListModule } from '@angular/material/list';
     CheckCategoryUnsubscribedComponent,
     ShowProfileComponent,
     UploadPhotoComponent,
-    MainNavComponent
+    MainNavComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,17 +1,24 @@
-<div style="margin-top: 100px;" class="d-flex justify-content-end mb-3">
-    <a routerLink="/new-journal-entry" style="color: white;" type="button" class="btn btn-lg btn-primary mr-2">Add new Journal entry</a>
-    <button type="button" class="btn btn-lg btn-primary" (click)="downloadPDF()">Download PDF</button>
+
+<div class="container">
+    <div style="margin-top: 10px;" class="d-flex justify-content-end mb-3">
+        <a routerLink="/new-journal-entry" style="color: white;" type="button" class="btn btn-lg btn-primary mr-2">Add new Journal entry</a>
+        <button type="button" class="btn btn-lg btn-primary" (click)="downloadPDF()">Download PDF</button>
+    </div>
 </div>
 
-<div>
+
+<div class="container">
     <canvas class="weight-chart" id="weight-chart"></canvas>
 </div>
 
-<div *ngFor="let item of data" style="margin-top: 20px;" class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4">Exercise name: {{item.vjezba}}</h1>
-        <p class="lead">Intensity: {{item.intenzitet}}</p>
-        <p class="lead">Duration: {{item.trajanje}}</p>
-        <p class="lead">Weight after training: {{item.kilaza}}</p>
+<div class="container">
+    <div *ngFor="let item of data" style="margin-top: 20px;" class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Journal entry</h1>
+            <p class="lead">Exercise name: {{item.vjezba}}</p>
+            <p class="lead">Intensity: {{item.intenzitet}}</p>
+            <p class="lead">Duration: {{item.trajanje}}</p>
+            <p class="lead">Weight after training: {{item.kilaza}}</p>
+        </div>
     </div>
 </div>

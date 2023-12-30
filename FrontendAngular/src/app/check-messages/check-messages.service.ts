@@ -8,16 +8,13 @@ import { JwtTokenService } from '../jwt-token/jwt-token.service';
 })
 export class CheckMessagesService {
 
-  //hard kodovano, kasnije autentifikacija
   private baseUrl = 'http://localhost:4040/user-messages/unread/';
-  id: any;
-  constructor(private http:HttpClient, private jwtService: JwtTokenService) { 
-      var temp = this.jwtService.extractTokenInfo();
-      this.id = temp.id;
+  constructor(private http:HttpClient) { 
+      
   }
 
-  getUnreadMessages(): Observable<any> {
-    this.baseUrl += this.id;
-    return this.http.get(`${this.baseUrl}`);
+  getUnreadMessages(id: any): Observable<any> {
+    const url = this.baseUrl + id;
+    return this.http.get(`${url}`);
   }
 }

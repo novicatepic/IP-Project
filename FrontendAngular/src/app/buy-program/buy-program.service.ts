@@ -13,8 +13,9 @@ export class BuyProgramService {
   
   constructor(private http:HttpClient) { }
 
-  getUnparticipated(): Observable<any> {
-    return this.http.get<any[]>(`${this.baseUrl}`);
+  getUnparticipated(id: any): Observable<any> {
+    const url = this.baseUrl + id;
+    return this.http.get<any[]>(`${url}`);
   }
 
   subscribeToProgram(program: any): Observable<any> {

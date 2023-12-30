@@ -1,28 +1,28 @@
 
 <div id="maindiv" class="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
-    <div class="d-flex flex-column justify-content-end mb-3">
-        <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#enroll">Change password</button>
-    </div>
-    <form [formGroup]="firstForm" (ngSubmit)="changeProfile()">
-        <div class="form-group">
-          <label for="firstName">First Name*</label>
-          <input [(ngModel)]="user.ime" formControlName="firstName" type="text" required="required" class="form-control" id="firstName" placeholder="Enter first name">
-        </div>
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#enroll">Change password</button>
+  </div>
+    <form style="width: 500px;" [formGroup]="firstForm" (ngSubmit)="changeProfile()" class="text-center">
+      <div class="form-group">
+        <label for="firstName">First Name*</label>
+        <input [(ngModel)]="user.ime" formControlName="firstName" type="text" required="required" class="text-center form-control" id="firstName" placeholder="Enter first name">
+      </div>
         <div class="form-group">
             <label for="lastName">Last Name*</label>
-            <input [(ngModel)]="user.prezime" formControlName="lastName" type="text" required="required" class="form-control" id="lastName" placeholder="Enter last name">
+            <input [(ngModel)]="user.prezime" formControlName="lastName" type="text" required="required" class="text-center form-control" id="lastName" placeholder="Enter last name">
         </div>
         <div class="form-group">
             <label for="city">City*</label>
-            <input [(ngModel)]="user.grad" formControlName="city" type="text" required="required" class="form-control" id="city" placeholder="Enter city">
+            <input [(ngModel)]="user.grad" formControlName="city" type="text" required="required" class="text-center form-control" id="city" placeholder="Enter city">
         </div>
         <div class="form-group">
             <label for="avatar">Avatar URL</label>
-            <input [(ngModel)]="user.avatar" formControlName="avatar" type="text" class="form-control" id="avatar" placeholder="Enter avatar">
+            <input [(ngModel)]="user.avatar" formControlName="avatar" type="text" class="text-center form-control" id="avatar" placeholder="Enter avatar">
         </div>
         <div class="form-group">
             <label for="email">Mail*</label>
-            <input [(ngModel)]="user.mail" formControlName="email" type="email" required="required" class="form-control" id="email"placeholder="Enter email">
+            <input [(ngModel)]="user.mail" formControlName="email" type="email" required="required" class="text-center form-control w-100" id="email" placeholder="Enter email">
         </div>
         <button [disabled]="firstForm.invalid" type="submit" class="btn btn-primary">Submit</button>
       </form>
@@ -32,11 +32,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="enrollLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="enrollLabel">Change password</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p class="lead">Fill out this form and we will get back to you</p>
+        <p class="lead">New password form</p>
         <form (ngSubmit)="updatePassword()" [formGroup]="passwordForm">
           <div class="mb-3">
               <label for="pw1" class="col-form-label">Old Password</label>
@@ -50,13 +50,14 @@
               <label for="pw3" class="col-form-label">Repeat new password</label>
               <input formControlName="newPassword2" id="pw3" type="password" class="form-control">
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+          
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        
-      </div>
+      
     </div>
   </div>
 </div>

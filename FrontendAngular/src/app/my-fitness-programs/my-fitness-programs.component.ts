@@ -26,8 +26,7 @@ export class MyFitnessProgramsComponent {
   }
 
   readData() {
-      this.service.baseUrl +=  this.id;
-      this.service.getMyPrograms().subscribe((data) => {
+      this.service.getMyPrograms(this.id).subscribe((data) => {
         this.data = data;
         console.log(data);
       },
@@ -37,12 +36,15 @@ export class MyFitnessProgramsComponent {
 
     deleteProgram(programId: any) {
       event?.preventDefault();
-      this.service.deleteUrl+=programId+"/"+this.id;
-      this.service.deleteProgram().subscribe((response) => {
+      this.service.deleteProgram(this.id).subscribe((response) => {
         //console.log(response);
         this.router.navigate(['/my-programs']);
       },
       error => console.log(error))
     }
+
+    /*addPhoto(id: any) {
+
+    }*/
 
 }

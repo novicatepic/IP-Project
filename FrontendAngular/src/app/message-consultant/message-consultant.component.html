@@ -1,15 +1,17 @@
 
 <div id="maindiv" class="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
-    <form [formGroup]="firstForm" (ngSubmit)="sendMessage()" style="margin-top: 120px;">
-        <div class="form-group">
-            <label for="title">Title*</label>
-            <input formControlName="title" type="text" required="required" class="form-control" id="title" placeholder="Enter title...">
-          </div>
-        <div class="form-group">
+  <form [formGroup]="firstForm" (ngSubmit)="sendMessage()" style="margin-top: 120px;">
+      <div class="form-group text-center">
+          <label for="title">Title*</label>
+          <input formControlName="title" type="text" required="required" class="form-control mx-auto" id="title" placeholder="Enter title...">
+      </div>
+      <div class="form-group text-center">
           <label for="text">Text*</label>
-          <input formControlName="text" type="text" required="required" class="form-control" id="text" placeholder="Enter message...">
-        </div>
+          <input formControlName="text" type="text" required="required" class="form-control mx-auto" id="text" placeholder="Enter message...">
+      </div>
+      <div class="d-flex justify-content-center">
         <button [disabled]="firstForm.invalid" type="submit" class="btn btn-primary">Submit</button>
-      </form>
+    </div>
+  </form>
 </div>
 

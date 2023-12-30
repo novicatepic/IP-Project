@@ -1,35 +1,72 @@
-
-<div id="maindiv" class="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
+<div id="maindiv" class="d-flex flex-column flex-grow-1 justify-content-center align-items-center" style="height: 40vh;">
     <form [formGroup]="firstForm" (ngSubmit)="makeUser()" style="margin-top: 120px;">
-        <div class="form-group">
-          <label for="firstName">First Name*</label>
-          <input formControlName="firstName" type="text" required="required" class="form-control" id="firstName" placeholder="Enter first name">
-        </div>
-        <div class="form-group">
-            <label for="lastName">Last Name*</label>
-            <input formControlName="lastName" type="text" required="required" class="form-control" id="lastName" placeholder="Enter last name">
-        </div>
-        <div class="form-group">
-            <label for="city">City*</label>
-            <input formControlName="city" type="text" required="required" class="form-control" id="city" placeholder="Enter city">
-        </div>
-        <div class="form-group">
-            <label for="username">Username*</label>
-            <input formControlName="username" type="text" required="required" class="form-control" id="username" placeholder="Enter username">
-        </div>
-        <div class="form-group">
-            <label for="password">Password*</label>
-            <input formControlName="password" type="password" required="required" class="form-control" id="password">
-        </div>
-        <div class="form-group">
-            <label for="avatar">Avatar URL</label>
-            <input formControlName="avatar" type="text" class="form-control" id="avatar" placeholder="Enter avatar">
-        </div>
-        <div class="form-group">
-            <label for="email">Mail*</label>
-            <input formControlName="email" type="email" required="required" class="form-control" id="email"placeholder="Enter email">
-        </div>
-        <button [disabled]="firstForm.invalid" type="submit" class="btn btn-primary">Submit</button>
-      </form>
-</div>
 
+        <div class="row">
+            <!-- Personal Information -->
+            <div class="col-md-6">
+                <div class="form-group text-center">
+                    <label for="firstName" class="text-center">First Name*</label>
+                    <input formControlName="firstName" type="text" required="required" class="form-control text-center"
+                        id="firstName" placeholder="Enter first name">
+                </div>
+
+                
+                <div class="form-group text-center">
+                    <label for="email" class="text-center">Email*</label>
+                    <input formControlName="email" type="email" required="required" class="form-control text-center" id="email"
+                        placeholder="Enter email">
+                </div>
+            </div>
+
+            <!-- Account Information -->
+            <div class="col-md-6">
+                <div class="form-group text-center">
+                    <label for="lastName" class="text-center">Last Name*</label>
+                    <input formControlName="lastName" type="text" required="required" class="form-control text-center" id="lastName"
+                        placeholder="Enter last name">
+                </div>
+                
+
+                <div class="form-group text-center">
+                    <label for="username" class="text-center">Username*</label>
+                    <input formControlName="username" type="text" required="required" class="form-control text-center" id="username"
+                        placeholder="Enter username">
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group text-center">
+                    <label for="avatar" class="text-center">Avatar URL</label>
+                    <input formControlName="avatar" type="text" class="form-control text-center" id="avatar"
+                        placeholder="Enter avatar URL">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group text-center">
+                    <label for="city" class="text-center">City*</label>
+                    <input formControlName="city" type="text" required="required" class="form-control text-center" id="city"
+                        placeholder="Enter city">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group text-center">
+                <label for="password" class="text-center">Password*</label>
+                <input formControlName="password" type="password" required="required" class="form-control text-center"
+                    id="password">
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="row">
+            <div class="col-12 text-center">
+                <button [disabled]="firstForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

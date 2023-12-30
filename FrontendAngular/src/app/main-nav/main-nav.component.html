@@ -13,7 +13,7 @@
     <a mat-list-item routerLink="/">Home</a>
     <a mat-list-item routerLink="/profile">Profile</a>
     <a mat-list-item routerLink="/journal-entries">Journal</a>
-    <a mat-list-item (click)="logout()">Logout</a>
+    <a routerLink="/" mat-list-item (click)="logout()">Logout</a>
   </mat-nav-list>
   <span *ngIf="this.loggedIn">
     <a mat-button [matMenuTriggerFor]="phoneDropdown">Fitness programs</a>
@@ -88,7 +88,7 @@
           <a mat-menu-item routerLink="/check-messages">Check new messages</a>
           <a mat-menu-item routerLink="/message-consultant">Message consultant</a>
         </mat-menu> 
-        <a (click)="logout()">Logout</a>
+        <a routerLink="/" (click)="logout()">Logout</a>
       </span>
       <span *ngIf="!this.loggedIn" class="right-links">
         <a routerLink="/">Start Page</a>
