@@ -7,9 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.ip.backend.errorservice.ForbiddenEntity;
-import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.loginservice.UserLoginHelp;
-import org.unibl.etf.ip.backend.model.DnevnikEntity;
 import org.unibl.etf.ip.backend.model.DnevnikUnosEntity;
 import org.unibl.etf.ip.backend.service.JournalService;
 
@@ -23,7 +21,7 @@ public class JournalController {
     @Autowired
     private JournalService service;
 
-    @GetMapping("/{id}")
+    /*@GetMapping("/{id}")
     public ResponseEntity<DnevnikEntity> getJournal(@PathVariable("id") Integer id) throws NotFoundException {
         return new ResponseEntity<>(service.getJournal(id), HttpStatus.OK);
     }
@@ -31,7 +29,7 @@ public class JournalController {
     @PostMapping()
     public ResponseEntity<DnevnikEntity> createJournal(@RequestBody DnevnikEntity journal) {
         return new ResponseEntity<>(service.createJournal(journal), HttpStatus.OK);
-    }
+    }*/
 
     @GetMapping("/journal-entry/{id}")
     public ResponseEntity<List<DnevnikUnosEntity>> getJournalEntries(@PathVariable("id") Integer id) {

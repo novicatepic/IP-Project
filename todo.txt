@@ -1,19 +1,16 @@
-kreiranje dnevnika za korisnika automatski pri kreiranju profila
 u message user controlleru zadnje dvije stavke treba i user id pa provjera
-
-login dio
 
 neophodna provjera za upload slike da li je korisnik nadlezan za fitnes program
 
-kreiranje dnevnika ako ne postoji
+logger
 
-dnevnik unos fali datum unosa (da je lakse pratiti na grafu)
+serverska validacija
 
-popraviti konkatenaciju stringova za url-ove
+mejl svaki dan!
 
-bought upcoming programs fali
+provjeriti na bekendu sta se moze izdvojiti u konf. fajl
 
-obrisati suvisnu komponentu
+dodati unique dijelove u bp
 
 eventualno modali za:
 -prikaz profila pa izmjena profila,

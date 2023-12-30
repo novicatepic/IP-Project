@@ -31,9 +31,12 @@ public class ProgramEntity implements Serializable {
     @Basic
     @Column(name = "trajanje", nullable = false)
     private Integer trajanje;
-    /*@Basic
-    @Column(name = "lokacija", nullable = false, length = 200)
-    private String lokacija;*/
+    @Basic
+    @Column(name = "naziv_lokacije", nullable = false, length = 200)
+    private String nazivLokacije;
+    @Basic
+    @Column(name = "poruka_lokacije", nullable = false, length = 200)
+    private String porukaLokacije;
     @Basic
     @Column(name = "kontakt", nullable = false, length = 45)
     private String kontakt;
@@ -59,8 +62,13 @@ public class ProgramEntity implements Serializable {
     @OneToMany(mappedBy = "programId", cascade = CascadeType.ALL)
     private List<SlikaEntity> pictures = new ArrayList<>();
 
-    @OneToMany(mappedBy = "programId", cascade = CascadeType.ALL)
-    private List<LokacijaEntity> lokacije = new ArrayList<>();
+    /*@OneToMany(mappedBy = "programId", cascade = CascadeType.ALL)
+    private List<LokacijaEntity> lokacije = new ArrayList<>();*/
+
+    /*@OneToOne(mappedBy = "programId", cascade = CascadeType.ALL)
+    private LokacijaEntity lokacija;*/
+
+
 
     @ManyToOne
     @JoinColumn(name = "kategorija_id", referencedColumnName = "id", insertable = false, updatable = false)
@@ -71,6 +79,22 @@ public class ProgramEntity implements Serializable {
 
     public Integer getId() {
         return id;
+    }
+
+    public String getNazivLokacije() {
+        return nazivLokacije;
+    }
+
+    public void setNazivLokacije(String nazivLokacije) {
+        this.nazivLokacije = nazivLokacije;
+    }
+
+    public String getPorukaLokacije() {
+        return porukaLokacije;
+    }
+
+    public void setPorukaLokacije(String porukaLokacije) {
+        this.porukaLokacije = porukaLokacije;
     }
 
     public void setId(Integer id) {
@@ -151,18 +175,6 @@ public class ProgramEntity implements Serializable {
     }
 
     public Boolean getAktivan() {
-        /*LocalDate currentDate = LocalDate.now();
-        LocalDate datumLocalDate = this.datum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-        // Check if this.datum is greater than the current date
-        boolean isDatumAfterCurrentDate = datumLocalDate.isAfter(currentDate);
-
-        // Check if this.datum - numberOfDays is less than the current date
-        int numberOfDays = daniTrajanja; // Adjust this value as needed
-        LocalDate earlierDate = datumLocalDate.minusDays(numberOfDays);
-        boolean isEarlierDateBeforeCurrentDate = earlierDate.isBefore(currentDate);
-
-        //return isDatumAfterCurrentDate && isEarlierDateBeforeCurrentDate;*/
         return this.datum.getTime() > new java.util.Date().getTime();
     }
 
@@ -222,11 +234,19 @@ public class ProgramEntity implements Serializable {
         this.programQuestions = programQuestions;
     }
 
-    public List<LokacijaEntity> getLokacije() {
+    /*public List<LokacijaEntity> getLokacije() {
         return lokacije;
     }
 
     public void setLokacije(List<LokacijaEntity> lokacije) {
         this.lokacije = lokacije;
+    }*/
+
+    /*public LokacijaEntity getLokacija() {
+        return lokacija;
     }
+
+    public void setLokacija(LokacijaEntity lokacija) {
+        this.lokacija = lokacija;
+    }*/
 }

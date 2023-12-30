@@ -32,7 +32,7 @@ public class KorisnikEntity implements UserDetails {
     @Column(name = "korisnicko_ime", nullable = false, length = 45)
     private String korisnickoIme;
     @Basic
-    @Column(name = "lozinka", nullable = false, length = 45)
+    @Column(name = "lozinka", nullable = false, length = 500)
     private String lozinka;
     @Basic
     @Column(name = "avatar", nullable = true, length = 21845)

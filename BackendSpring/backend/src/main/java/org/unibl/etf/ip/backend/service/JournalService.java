@@ -5,11 +5,9 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.unibl.etf.ip.backend.exceptions.NotFoundException;
-import org.unibl.etf.ip.backend.model.DnevnikEntity;
 import org.unibl.etf.ip.backend.model.DnevnikUnosEntity;
 import org.unibl.etf.ip.backend.repository.JournalEntryRepository;
-import org.unibl.etf.ip.backend.repository.JournalRepository;
+
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,19 +15,19 @@ import java.util.List;
 @Service
 public class JournalService {
 
-    @Autowired
-    private JournalRepository journalRepository;
+    /*@Autowired
+    private JournalRepository journalRepository;*/
 
     @Autowired
     private JournalEntryRepository journalEntryRepository;
 
-    public DnevnikEntity getJournal(Integer id) throws NotFoundException {
+    /*public DnevnikEntity getJournal(Integer id) throws NotFoundException {
         return journalRepository.findById(id).orElseThrow(() -> new RuntimeException("Exception"));
     }
 
     public DnevnikEntity createJournal(DnevnikEntity journal) {
        return journalRepository.save(journal);
-    }
+    }*/
 
     public List<DnevnikUnosEntity> getJournalEntries(Integer id) {
         List<DnevnikUnosEntity> entries = journalEntryRepository.findAll();

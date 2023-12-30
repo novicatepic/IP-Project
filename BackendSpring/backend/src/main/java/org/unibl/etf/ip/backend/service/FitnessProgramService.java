@@ -86,7 +86,7 @@ public class FitnessProgramService {
         List<KorisnikPretplacenProgramEntity> allEntitites = subscribeRepository.findAll();
         List<ProgramEntity> result = new ArrayList<>();
         for(KorisnikPretplacenProgramEntity k : allEntitites) {
-            if(k.getKorisnikId() == userId && k.getFitnessProgram().getAktivan()) {
+            if(k.getKorisnikId() == userId && (k.getFitnessProgram().getAktivan())) {
                 result.add(k.getFitnessProgram());
             }
         }

@@ -15,7 +15,7 @@ public class KorisnikPretplacenProgramEntity {
     @Column(name = "program_id", nullable = false)
     private Integer programId;
     @Basic
-    @Column(name = "nacin_placanja", nullable = false)
+    @Column(name = "nacin_placanja", nullable = false, length = 100)
     private String nacinPlacanja;
     @Basic
     @Column(name = "vrijednost", nullable = false)

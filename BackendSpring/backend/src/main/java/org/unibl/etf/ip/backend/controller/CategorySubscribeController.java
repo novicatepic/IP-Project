@@ -9,6 +9,7 @@ import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.loginservice.UserLoginHelp;
 import org.unibl.etf.ip.backend.model.KategorijaEntity;
 import org.unibl.etf.ip.backend.model.KorisnikPretplacenKategorijaEntity;
+import org.unibl.etf.ip.backend.model.MessageModel;
 import org.unibl.etf.ip.backend.service.CategorySubscribeService;
 
 import java.util.List;
@@ -53,7 +54,7 @@ public class CategorySubscribeController {
     }
 
     @DeleteMapping("/unsubscribe/{userId}/{categoryId}")
-    public ResponseEntity<String> unsubscribeFromCategory
+    public ResponseEntity<MessageModel> unsubscribeFromCategory
             (@PathVariable("userId")Integer userId, @PathVariable("categoryId")Integer categoryId) throws NotFoundException {
 
         if(!UserLoginHelp.checkUserValidity(userId)) {
@@ -65,9 +66,13 @@ public class CategorySubscribeController {
         kat.setKorisnikId(userId);
         //return new ResponseEntity<>( service.subscribe(subscription), HttpStatus.OK);
         if(service.unsubscribe(kat)) {
-            return new ResponseEntity<>("Success", HttpStatus.OK);
+            MessageModel m = new MessageModel();
+            m.setText("Success");
+            return new ResponseEntity<>(m, HttpStatus.OK);
         }
-        return new ResponseEntity<>("Failure", HttpStatus.OK);
+        MessageModel m = new MessageModel();
+        m.setText("Failure");
+        return new ResponseEntity<>(m, HttpStatus.OK);
     }
 
 }

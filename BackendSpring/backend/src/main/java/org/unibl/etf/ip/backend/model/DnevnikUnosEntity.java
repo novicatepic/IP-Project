@@ -2,6 +2,8 @@ package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "dnevnik_unos", schema = "ip_project", catalog = "")
 public class DnevnikUnosEntity {
@@ -24,10 +26,13 @@ public class DnevnikUnosEntity {
     @Basic
     @Column(name = "dnevnik_korisnik_id", nullable = false)
     private Integer dnevnikKorisnikId;
+    @Basic
+    @Column(name = "datum", nullable = false)
+    private Date datum;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    /*@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "dnevnik_korisnik_id", referencedColumnName = "korisnik_id", insertable = false, updatable = false)
-    private DnevnikEntity dnevnik;
+    private DnevnikEntity dnevnik;*/
 
     public Integer getId() {
         return id;
@@ -77,11 +82,19 @@ public class DnevnikUnosEntity {
         this.kilaza = kilaza;
     }
 
-    public DnevnikEntity getDnevnik() {
+    /*public DnevnikEntity getDnevnik() {
         return dnevnik;
     }
 
     public void setDnevnik(DnevnikEntity dnevnik) {
         this.dnevnik = dnevnik;
+    }*/
+
+    public Date getDatum() {
+        return datum;
+    }
+
+    public void setDatum(Date datum) {
+        this.datum = datum;
     }
 }
