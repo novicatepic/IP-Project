@@ -56,7 +56,7 @@
 
 <%@include file="./header.jsp" %>
 
-<div class="container">
+<div class="container" style="margin-top: 50px;">
   <div class="jumbotron">
     <h1 class="display-4"><%= m.getTitle() %></h1>
     <p class="lead"><%= m.getText() %></p>

@@ -47,13 +47,13 @@
 	
 	<%@include file="./header.jsp" %>
 	
-	<p class="h2 mt-5">Unanswered messages</p>
+	<div class="container">
+		<p class="h2 mt-5">Unanswered messages</p>
 	<div class="mb-3" style="margin-bottom: 10px;">
         <form id="filterForm2" method="post" action="messages.jsp">
-            <label for="attribute-name" class="form-label">Text</label>
             <input type="text" class="form-control" id="attribute-name2" name="attributeName" placeholder="Enter text to filter" required>
             <input type="hidden" id="filterText2" name="filterText" value="">
-            <button type="button" class="btn btn-primary" onclick="submitFilterUnansweredForm()">Filter</button>
+            <button  style="margin-top: 10px;" type="button" class="btn btn-primary" onclick="submitFilterUnansweredForm()">Filter</button>
         </form>
     </div>
 	<table class="table">
@@ -95,6 +95,7 @@
 
         </tbody>
       </table>
+	</div>
 		 
 	  <p class="lead"><%= session.getAttribute("email-notification")!=null ?session.getAttribute("email-notification") : "" %></p>	
 	  

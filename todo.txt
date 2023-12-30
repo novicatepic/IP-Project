@@ -4,15 +4,9 @@ mejl svaki dan!
 
 dodati unique dijelove u bp
 
-dvije ostale aplikacije popraviti izgled
-
 captcha eventualno
 
-avatar kod komentara u angularu
-
-ADMIN:
-bug sa dodavanjem kategorije kod administratora (ISTESTIRATI ZA KATEGORIJU DA LI JE KOREKTNO NAKON IZMJENE)
-table layout
+kod kategorije eventualno izbaciti programId!
 
 dodati info o tome da li je login screen itd. ?
 

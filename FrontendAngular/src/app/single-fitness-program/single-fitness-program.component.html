@@ -18,19 +18,24 @@
     <p class="lead">Questions:</p>
     <div *ngFor="let question of questions">
       <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-center disabled">
-          Question: {{question.tekst}}
-          <div class="row">
-            <form *ngIf="this.userId" (ngSubmit)="addComment(question.id)">
-              <input type="text" name="comment" id="{{question.id}}" class="mr-2">
-              <button class="btn btn-primary mr-2">Get yourself into conversation</button>
-            </form>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+              <span class="mr-2">
+                  <!-- Assuming you have an avatar URL in question.user.avatar -->
+                  <!--img *ngIf="question.user.avatar" src="{{ question.user.avatar }}" alt="User Avatar" class="rounded-circle" style="width: 50px; height: 50px;"-->
+              </span>
+              Question: {{ question.tekst }} by user &nbsp; <a routerLink="/profile/{{question.user.korisnickoIme}}"> {{ question.user.korisnickoIme }}</a> 
           </div>
-          
-        </li>
+          <div class="row">
+              <form *ngIf="this.userId" (ngSubmit)="addComment(question.id)">
+                  <input type="text" name="comment" id="{{question.id}}" class="mr-2">
+                  <button type="submit" class="btn btn-primary mr-2">Get yourself into conversation</button>
+              </form>
+          </div>
+      </li>
         <ul *ngIf="question.odgovori.length > 0" class="list-group-item">
-          <li *ngFor="let answer of question.odgovori" class=" list-group-item d-flex justify-content-between align-items-center disabled">
-            Answer: {{ answer.odgovor }} by user {{ answer.korisnik.korisnickoIme }}
+          <li *ngFor="let answer of question.odgovori" class=" list-group-item d-flex justify-content-between align-items-center">
+            Comment: {{ answer.odgovor }} &nbsp; <a routerLink="/profile/{{question.user.korisnickoIme}}"> {{ answer.korisnik.korisnickoIme }}</a> 
           </li>
 
         </ul>
@@ -64,12 +69,5 @@
   </div>
 
   </div>
-
-  
-
-  <!--div *ngFor="let url of photoUrls">
-    <img [src]="url" alt="Photo">
-  </div-->
-  <!--img src="{{imageUrl}}" alt="No picture"-->
 
 

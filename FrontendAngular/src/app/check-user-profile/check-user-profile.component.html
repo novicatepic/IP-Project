@@ -1,0 +1,14 @@
+
+<div class="container">
+    <div style="margin-top: 10px;" class="jumbotron">
+        <div class="text-center">
+            <img src="{{ this.user.avatar }}" alt="No Avatar" class="img-thumbnail" style="width: 150px; height: 150px; border-radius: 50%;">
+        </div>
+        <h1 class="display-4">Username : {{ this.user.korisnickoIme }}</h1>
+        <p class="lead">Name and last name : {{this.user.ime}} {{ this.user.prezime }}</p>
+        <hr class="my-4">
+        <p class="lead">City : {{this.user.grad}}</p>
+        <hr class="my-4">
+        <p class="lead">Mail : {{this.user.mail}}</p>
+      </div>
+</div>

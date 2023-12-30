@@ -26,7 +26,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category</title>
+    <title>Unread Messages</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         
     <style>
@@ -47,14 +47,14 @@
 <body>
 	
 	<%@include file="./header.jsp" %>
-
-	<p class="h2 mt-5">Unread messages</p>
+	
+	<div class="container">
+		<p class="h2 mt-5">Unread messages</p>
 	<div class="mb-3" style="margin-bottom: 10px;">
         <form id="filterForm" method="post" action="messages.jsp">
-            <label for="attribute-name" class="form-label">Text</label>
             <input type="text" class="form-control" id="attribute-name" name="attributeName" placeholder="Enter text to filter" required>
             <input type="hidden" id="filterText" name="filterText" value="">
-            <button type="button" class="btn btn-primary" onclick="submitFilterForm()">Filter</button>
+            <button style="margin-top: 10px;" type="button" class="btn btn-primary" onclick="submitFilterForm()">Filter</button>
         </form>
     </div>
 
@@ -99,6 +99,9 @@
 
         </tbody>
       </table>
+	</div>
+	
+	
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>

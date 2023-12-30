@@ -41,6 +41,7 @@ import { MatListModule } from '@angular/material/list';
 import { FooterComponent } from './footer/footer.component';
 import { AttendBoughtProgramsComponent } from './attend-bought-programs/attend-bought-programs.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CheckUserProfileComponent } from './check-user-profile/check-user-profile.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     UploadPhotoComponent,
     MainNavComponent,
     FooterComponent,
-    AttendBoughtProgramsComponent
+    AttendBoughtProgramsComponent,
+    CheckUserProfileComponent
   ],
   imports: [
     BrowserModule,
