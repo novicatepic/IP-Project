@@ -12,8 +12,11 @@
 </div>
 
 <div class="container">
-    <div *ngFor="let item of data" style="margin-top: 20px;" class="jumbotron jumbotron-fluid">
+    <div *ngFor="let item of data" style="margin-top: 15px;" class="jumbotron jumbotron-fluid">
         <div class="container">
+            <!-- Delete Button (Moved to the Right) -->
+            <button class="btn btn-danger float-right" (click)="deleteEntry(item.id)">Delete Entry</button>
+    
             <h1 class="display-4">Journal entry</h1>
             <p class="lead">Exercise name: {{item.vjezba}}</p>
             <p class="lead">Intensity: {{item.intenzitet}}</p>

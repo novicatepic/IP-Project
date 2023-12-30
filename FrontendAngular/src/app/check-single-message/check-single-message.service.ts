@@ -15,13 +15,13 @@ export class CheckSingleMessageService {
   
   constructor(private http:HttpClient) { }
 
-  getMessage(id: any): Observable<any> {
-    const url = this.baseUrl + id;
+  getMessage(id: any, userId: any): Observable<any> {
+    const url = this.baseUrl + id + "/" + userId;
     return this.http.get(`${url}`);
   }
 
-  markMessageAsRead(id: any): Observable<any> {
-    const url = this.readUrl + id;
+  markMessageAsRead(id: any, userId : any): Observable<any> {
+    const url = this.readUrl + id + "/" + userId;
     return this.http.get(`${url}`);
   }
 

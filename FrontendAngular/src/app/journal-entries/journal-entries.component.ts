@@ -4,6 +4,7 @@ import { JournalEntriesService } from './journal-entries.service';
 import { Chart, Legend, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
 import { LinearScale, registerables } from 'chart.js';
 import { SnackBarService } from '../snack-bar/snack-bar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-journal-entries',
@@ -14,7 +15,10 @@ export class JournalEntriesComponent implements OnInit, AfterViewInit {
   data : any = [];
 
 
-  constructor(private http: HttpClient, private service: JournalEntriesService, private snackBarService: SnackBarService) {
+  constructor(private http: HttpClient,
+     private service: JournalEntriesService, 
+     private snackBarService: SnackBarService,
+     private router: Router) {
     
     
   }
@@ -96,5 +100,15 @@ export class JournalEntriesComponent implements OnInit, AfterViewInit {
         this.snackBarService.triggerSnackBar("Error downloading pdf!");
       }
     );
+  }
+
+  deleteEntry(id: any) {
+    this.service.deleteJournalEntry(id).subscribe((data:any) => {
+      this.snackBarService.triggerSnackBar(data.text);
+      this.router.navigate(['/journal-entries']);
+    }, error => {
+      console.log(error);
+      this.snackBarService.triggerSnackBar("Error deleting journal entry!");
+    })
   }
 }

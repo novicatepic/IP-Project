@@ -11,45 +11,50 @@
 
 <style>
     #maindiv {
-        height: 100vh;
-        background-color: aliceblue;
+        height: 90vh;
     }
+    
+    form {
+    	width: 400px;
+    }
+    
 </style>
 
 <body>
-    
+    <%@include file="./header.jsp" %>
     <%
     	FitnessUserBean user = (FitnessUserBean) session.getAttribute("fitnessuser");
     %>
     
     <div id="maindiv" class="d-flex flex-column align-items-center justify-content-center">
-        <form method="post" action="?action=updateuserpost">
-            <div class="form-group">
-              <label for="name">First Name</label>
-              <input type="text" name="name" class="form-control" id="name" value="<%= user.getName() %>">
-            </div>
-            <div class="form-group">
-              <label for="lastname">Last Name</label>
-              <input type="text" name="lastname" class="form-control" id="lastname" value="<%= user.getLastName() %>">
-            </div>
-            <div class="form-group">
-              <label for="city">City</label>
-              <input type="text" name="city" class="form-control" id="city" value="<%= user.getCity() %>">
-            </div>
-            <div class="form-group">
-              <label for="username">User Name</label>
-              <input type="text" name="username" class="form-control" id="username" value="<%= user.getUsername() %>">
-            </div>
-            <div class="form-group">
-              <label for="avatar">Avatar</label>
-              <input type="text" name="avatar" class="form-control" id="avatar" value="<%= user.getAvatar() != null ? user.getAvatar() : "" %>">
-            </div>
-            <div class="form-group">
-              <label for="mail">Mail</label>
-              <input type="text" name="mail" class="form-control" id="mail" value="<%= user.getMail() %>">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+        <form method="post" action="?action=updateuserpost" class="text-center">
+    <div class="form-group">
+        <label for="name">First Name</label>
+        <input type="text" name="name" class="form-control text-center" id="name" value="<%= user.getName() %>">
+    </div>
+    <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input type="text" name="lastname" class="form-control text-center" id="lastname" value="<%= user.getLastName() %>">
+    </div>
+    <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" name="city" class="form-control text-center" id="city" value="<%= user.getCity() %>">
+    </div>
+    <div class="form-group">
+        <label for="username">User Name</label>
+        <input type="text" name="username" class="form-control text-center" id="username" value="<%= user.getUsername() %>">
+    </div>
+    <div class="form-group">
+        <label for="avatar">Avatar</label>
+        <input type="text" name="avatar" class="form-control text-center" id="avatar" value="<%= user.getAvatar() != null ? user.getAvatar() : "" %>">
+    </div>
+    <div class="form-group">
+        <label for="mail">Mail</label>
+        <input type="text" name="mail" class="form-control text-center" id="mail" value="<%= user.getMail() %>">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
           <div style="margin-top: 10px;"><p><%= session.getAttribute("update-user-notification")!=null ? session.getAttribute("update-user-notification") : "" %></p></div> 
     </div>
 

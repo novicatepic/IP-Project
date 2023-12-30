@@ -22,6 +22,7 @@
       <a mat-menu-item routerLink="/my-fitness-programs">My fitness programs</a>
       <a mat-menu-item routerLink="/past-program-participations">Past Program Participations</a>
       <a mat-menu-item routerLink="/unparticipated">Unparticipated programs</a>
+      <a mat-menu-item routerLink="/attend-programs">Attend bought upcoming programs</a>
     </mat-menu>
     <a mat-button [matMenuTriggerFor]="phoneDropdown3">Categories&nbsp;&nbsp;&nbsp;&nbsp;</a>
     <mat-menu #phoneDropdown3="matMenu" class="full-width-menu">
@@ -64,6 +65,7 @@
           <a mat-menu-item routerLink="/my-fitness-programs">My fitness programs</a>
           <a mat-menu-item routerLink="/past-program-participations">Past Program Participations</a>
           <a mat-menu-item routerLink="/unparticipated">Unparticipated programs</a>
+          <a mat-menu-item routerLink="/attend-programs">Attend bought upcoming programs</a>
         </mat-menu>
         <span class="dropdown-text" *ngIf="!(isHandset$ | async)">
           Categories

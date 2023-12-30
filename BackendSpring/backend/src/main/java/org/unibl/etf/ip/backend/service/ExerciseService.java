@@ -3,6 +3,7 @@ package org.unibl.etf.ip.backend.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.unibl.etf.ip.backend.model.ExerciseAPI;
 
@@ -15,11 +16,16 @@ import java.util.List;
 @Service
 public class ExerciseService {
 
-    public List<ExerciseAPI> processApiResponse() {
-        try {
-            URL url = new URL("https://api.api-ninjas.com/v1/exercises?difficulty=intermediate");
+    @Value("${api.url}")
+    private String apiUrl;
+
+    @Value("${api.key}")
+    private String apiKey;
+
+    public List<ExerciseAPI> processApiResponse() throws IOException {
+            URL url = new URL(apiUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestProperty("x-api-key", "UnTW9ey5rROzstJ6IJ3fdQ==0ZZMbTXqO0KJatwX");
+            connection.setRequestProperty("x-api-key", apiKey);
             connection.setRequestProperty("accept", "application/json");
 
             int responseCode = connection.getResponseCode();
@@ -37,10 +43,6 @@ public class ExerciseService {
             } else {
                 System.out.println("HTTP request failed with response code: " + responseCode);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
         return null;
 
     }

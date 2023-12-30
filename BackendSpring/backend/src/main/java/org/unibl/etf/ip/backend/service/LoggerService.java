@@ -1,4 +1,5 @@
 package org.unibl.etf.ip.backend.service;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.unibl.etf.ip.backend.model.LogEntity;
 
@@ -10,7 +11,10 @@ import java.nio.file.Paths;
 @Service
 public class LoggerService {
 
-    private static final String PATH = "logging.log";
+    //private static final String PATH = "logging.log";
+
+    @Value("${logging.directory}")
+    private String PATH;
 
     public LogEntity getLogs() throws IOException {
         String logContent = readLogFile();

@@ -59,6 +59,10 @@ public class Controller extends HttpServlet {
 		AdminBean bean = (AdminBean)ses.getAttribute("admin");
 		
 		if(bean != null) {
+			System.out.println("Bean != null");
+		}
+		
+		if(bean != null) {
 			if(action == null || "".equals(action)) {
 				address = "/WEB-INF/login.jsp";
 			} else if("start".equals(action)) {
@@ -138,7 +142,23 @@ public class Controller extends HttpServlet {
 				CategoryDAO.update(cb);
 				extractCategories(ses);
 				address = "/WEB-INF/category.jsp";
-			} else if("updateuser".equals(action)) {
+			} else if("login".equals(action)) {
+				try {
+					String username = request.getParameter("username");
+					String password = request.getParameter("password");
+					AdminBean adminBean = AdminDAO.selectOne(username, PasswordHasher.hashPassword(password));
+					if(adminBean != null) {
+						address = "/WEB-INF/home.jsp";
+						adminBean.setLoggedIn(true);
+						ses.setAttribute("admin", adminBean);
+					} else {
+						ses.setAttribute("notification", "Username/password not correct!");
+					}
+				} catch(NoSuchAlgorithmException e) {
+					e.printStackTrace();
+				}
+			}
+			else if("updateuser".equals(action)) {
 				System.out.println("in");
 				String id = request.getParameter("id");
 				FitnessUserBean fitnessUser = FitnessUserDAO.selectOne(Integer.parseInt(id));
@@ -163,7 +183,7 @@ public class Controller extends HttpServlet {
 				String id = request.getParameter("id");
 				FitnessUserDAO.delete(Integer.parseInt(id));
 				extractUsers(ses);
-				address = "/WEB-INF/category.jsp";
+				address = "/WEB-INF/fitness.jsp";
 			}
 			else if("deletecategory".equals(action)) {
 				String id = request.getParameter("id");

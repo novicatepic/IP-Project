@@ -35,9 +35,6 @@ public class FitnessUserController {
 
     @GetMapping("/user/{userName}")
     public ResponseEntity<KorisnikEntity> getFitnessUserByUsername(@PathVariable("userName") String userName) throws NotFoundException {
-        /*if(!UserLoginHelp.checkUserValidity(id)) {
-            return ForbiddenEntity.returnForbidden();
-        }*/
 
         return new ResponseEntity<>(service.getByUsername(userName), HttpStatus.OK);
     }
@@ -49,9 +46,6 @@ public class FitnessUserController {
 
     @PostMapping("/input-code/{userId}")
     public ResponseEntity<JwtAuthResponse> inputCode(@PathVariable("userId") Integer userId, @RequestBody CodeModel code) throws NotFoundException {
-        /*if(!UserLoginHelp.checkUserValidity(userId)) {
-            return ForbiddenEntity.returnForbidden();
-        }*/
 
         return new ResponseEntity<>(service.userInsertCode(userId, code.getCode()), HttpStatus.OK);
     }

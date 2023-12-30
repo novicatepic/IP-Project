@@ -11,26 +11,29 @@
 <style>
     #maindiv {
         height: 100vh;
-        background-color: aliceblue;
     }
+    
 </style>
 
 <body>
     
     <div id="maindiv" class="d-flex flex-column align-items-center justify-content-center">
-        <form method="post" action="?action=login">
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" name="username" class="form-control" id="username" placeholder="Username">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-          <div style="margin-top: 10px;"><p><%= session.getAttribute("notification")!=null ? session.getAttribute("notification") : "" %></p></div> 
+    <form method="post" action="?action=login" class="text-center">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="text-center form-control" id="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password" class="text-center form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <div style="margin-top: 10px;">
+        <p><%= session.getAttribute("notification")!=null ? session.getAttribute("notification") : "" %></p>
     </div>
+</div>
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

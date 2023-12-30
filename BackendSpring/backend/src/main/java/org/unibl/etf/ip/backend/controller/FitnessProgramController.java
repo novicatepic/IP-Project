@@ -1,6 +1,5 @@
 package org.unibl.etf.ip.backend.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +10,7 @@ import org.unibl.etf.ip.backend.exceptions.NotEnoughMoneyException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.loginservice.UserLoginHelp;
 import org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntity;
+import org.unibl.etf.ip.backend.model.MessageModel;
 import org.unibl.etf.ip.backend.model.ProgramEntity;
 import org.unibl.etf.ip.backend.service.FitnessProgramService;
 
@@ -50,12 +50,11 @@ public class FitnessProgramController {
         if(!UserLoginHelp.checkUserValidity(userId)) {
             return ForbiddenEntity.returnForbidden();
         }
-
-        return new ResponseEntity<>(service.createProgram(fitnessProgram), HttpStatus.OK);
+         return new ResponseEntity<>(service.createProgram(fitnessProgram), HttpStatus.OK);
     }
 
     @DeleteMapping("/{programId}/{userId}")
-    public ResponseEntity<String> deleteProgram(@PathVariable("programId") Integer programId,
+    public ResponseEntity<MessageModel> deleteProgram(@PathVariable("programId") Integer programId,
                                                 @PathVariable("userId") Integer userId) throws NotFoundException, MethodNotAllowedException {
         if(!UserLoginHelp.checkUserValidity(userId)) {
             return ForbiddenEntity.returnForbidden();
@@ -63,7 +62,10 @@ public class FitnessProgramController {
 
 
         service.deleteProgram(programId, userId);
-        return new ResponseEntity<>("Success", HttpStatus.OK);
+
+        MessageModel messageModel = new MessageModel("Successfully deleted program!");
+
+        return new ResponseEntity<>(messageModel, HttpStatus.OK);
     }
 
     @PostMapping("/subscribe")
@@ -90,7 +92,6 @@ public class FitnessProgramController {
     @GetMapping("/past-user-programs/{userId}")
     public ResponseEntity<List<ProgramEntity>> getPastUserParticipations(@PathVariable("userId")Integer userId) {
         if(!UserLoginHelp.checkUserValidity(userId)) {
-            System.out.println("Not same");
             return ForbiddenEntity.returnForbidden();
         }
         return new ResponseEntity<>(service.getPastUserParticipations(userId), HttpStatus.OK);

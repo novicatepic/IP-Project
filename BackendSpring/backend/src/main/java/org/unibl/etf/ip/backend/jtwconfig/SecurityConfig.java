@@ -58,7 +58,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/files/download/**").permitAll()
 
                         .requestMatchers(HttpMethod.PUT, "/fitness-users/password-update").hasRole("USER")
-                        .requestMatchers("/pictures/upload/{programId}").hasRole("USER")
+                        .requestMatchers("/pictures/upload/{programId}/{userId}").hasRole("USER")
                         .requestMatchers("/locations/**").hasRole("USER")
                         .requestMatchers("/fitness-programs/**").hasRole("USER")
                         .requestMatchers("/category-subscriptions/**").hasRole("USER")

@@ -7,8 +7,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.ip.backend.errorservice.ForbiddenEntity;
+import org.unibl.etf.ip.backend.exceptions.MethodNotAllowedException;
+import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.loginservice.UserLoginHelp;
 import org.unibl.etf.ip.backend.model.DnevnikUnosEntity;
+import org.unibl.etf.ip.backend.model.MessageModel;
 import org.unibl.etf.ip.backend.service.JournalService;
 
 import java.util.List;
@@ -21,15 +24,6 @@ public class JournalController {
     @Autowired
     private JournalService service;
 
-    /*@GetMapping("/{id}")
-    public ResponseEntity<DnevnikEntity> getJournal(@PathVariable("id") Integer id) throws NotFoundException {
-        return new ResponseEntity<>(service.getJournal(id), HttpStatus.OK);
-    }
-
-    @PostMapping()
-    public ResponseEntity<DnevnikEntity> createJournal(@RequestBody DnevnikEntity journal) {
-        return new ResponseEntity<>(service.createJournal(journal), HttpStatus.OK);
-    }*/
 
     @GetMapping("/journal-entry/{id}")
     public ResponseEntity<List<DnevnikUnosEntity>> getJournalEntries(@PathVariable("id") Integer id) {
@@ -48,10 +42,13 @@ public class JournalController {
         return new ResponseEntity<>(service.createJournalEntry(journalEntry), HttpStatus.OK);
     }
 
-    @DeleteMapping("/journal-entry/{id}")
-    public ResponseEntity<String> deleteJournalEntry(@PathVariable("id") Integer id) {
-        service.deleteJournalEntry(id);
-        return new ResponseEntity<>("Deleted", HttpStatus.OK);
+    @DeleteMapping("/journal-entry/{id}/{userId}")
+    public ResponseEntity<MessageModel> deleteJournalEntry(@PathVariable("id") Integer id,
+                                                           @PathVariable("userId") Integer userId)
+                                                            throws NotFoundException, MethodNotAllowedException {
+        service.deleteJournalEntry(id, userId);
+        MessageModel m = new MessageModel("Successfully deleted journal entry");
+        return new ResponseEntity<>(m, HttpStatus.OK);
     }
 
     @GetMapping("/download-journal/{id}")

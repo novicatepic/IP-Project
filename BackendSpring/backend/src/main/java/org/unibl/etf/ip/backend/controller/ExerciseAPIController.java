@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.unibl.etf.ip.backend.model.ExerciseAPI;
 import org.unibl.etf.ip.backend.service.ExerciseService;
 
+import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -21,7 +22,7 @@ public class ExerciseAPIController {
     private ExerciseService service;
 
     @GetMapping
-    public ResponseEntity<List<ExerciseAPI>> responseEntity() {
+    public ResponseEntity<List<ExerciseAPI>> responseEntity() throws IOException {
        return new ResponseEntity<>(service.processApiResponse(), HttpStatus.OK);
     }
 }

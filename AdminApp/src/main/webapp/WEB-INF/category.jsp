@@ -26,6 +26,7 @@
     	body {
     		margin:0;
     	}
+    	
     </style>
     
 </head>
@@ -33,7 +34,8 @@
     
     <%@include file="./header.jsp" %>
     
-    <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#addcategory">Add Category</button>
+    <div class="container" style="margin-top: 20px;">
+    	    <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#addcategory">Add Category</button>
 
     
     <table class="table">
@@ -93,26 +95,31 @@
 
 	<div class="modal fade" id="addcategory" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="enrollLabel">Add Category</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p class="lead">New category</p>
-          <form method="post" action="?action=addcategory">
-            <div class="mb-3">
-                <label for="category-name" class="col-form-label">Category name</label>
-                <input id="category-name" name="categoryName" type="text" class="form-control">
-                
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="enrollLabel">Add Category</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <div class="modal-body">
+                <p class="lead">New category</p>
+                <form method="post" action="?action=addcategory">
+                    <div class="mb-3">
+                        <label for="category-name" class="col-form-label">Category name</label>
+                        <input id="category-name" name="categoryName" type="text" class="form-control">
+                    </div>
+                    <!-- Submit and Close buttons inside the form, in the same line -->
+                    <div class="d-flex justify-content-start">
+                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+
+    </div>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

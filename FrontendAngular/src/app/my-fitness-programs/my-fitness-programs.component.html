@@ -17,6 +17,7 @@
         <p *ngIf="item.tezina == 2" class="mb-1">Difficulty: Hard</p>
         <p class="mb-1">Duration (in minutes): {{ item.trajanje }}</p>
         <p class="mb-1">Active: {{ item.aktivan }}</p>
+        <p class="mb-1">Location: {{ item.nazivLokacije }}</p>
         <div><small>Price (in euro): {{ item.cijena }}</small></div>
         <button (click)="deleteProgram(item.id)" class="btn btn-danger mt-2">Delete program</button>
         

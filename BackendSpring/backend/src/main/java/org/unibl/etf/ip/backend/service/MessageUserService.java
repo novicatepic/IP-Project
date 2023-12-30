@@ -40,10 +40,10 @@ public class MessageUserService {
         return null;
     }
 
-    public PorukaEntity readMessage(Integer id) throws NotFoundException {
+    public PorukaEntity readMessage(Integer id, Integer userId) throws NotFoundException {
         List<PorukaEntity> messages = repository.findAll();
         for(PorukaEntity m : messages) {
-            if(m.getId() == id) {
+            if(m.getId() == id && m.getPrimalacId() == userId) {
                 m.setProcitana(true);
                 repository.save(m);
                 return m;

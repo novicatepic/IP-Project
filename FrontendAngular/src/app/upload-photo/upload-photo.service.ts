@@ -11,8 +11,8 @@ export class UploadPhotoService {
 
   constructor(private http:HttpClient) { }
 
-  uploadPhoto(formData: FormData, programId: any): Observable<any> {
-    const url = `${this.baseUrl}${programId}`;
+  uploadPhoto(formData: FormData, programId: any, userId: any): Observable<any> {
+    const url = `${this.baseUrl}${programId}/${userId}`;
   const headers = new HttpHeaders();
   // Set Content-Type explicitly to handle multipart form data
   headers.set('Content-Type', 'multipart/form-data');

@@ -17,12 +17,17 @@
     <title>Category</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        
+    <style>
+    	
+    </style>
 </head>
 <body>
     
    <%@include file="./header.jsp" %>
     
-    <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#adduser">Add New Fitness User</button>
+    <div class="container" style="margin-top: 20px;">
+    	    <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#adduser">Add New Fitness User</button>
     
     <table class="table">
         <thead>
@@ -32,7 +37,7 @@
             <th scope="col">Last Name</th>
             <th scope="col">City</th>
             <th scope="col">User Name</th>
-            <th scope="col">Avatar</th>
+            <!-- <th scope="col">Avatar</th> -->
             <th scope="col">Mail</th>
             <th scope="col">Active</th>
             <th scope="col">Update</th>
@@ -50,11 +55,11 @@
           		out.println("<td>"+user.getCity()+"</td>");
           		out.println("<td>"+user.getUsername()+"</td>");
           		
-          		if(user.getAvatar() != null) {
+          		/*if(user.getAvatar() != null) {
           			out.println("<td>"+user.getAvatar()+"</td>");
           		} else {
           			out.println("<td>No avatar</td>");
-          		}
+          		}*/
           		
           		
           		out.println("<td>"+user.getMail()+"</td>");
@@ -91,41 +96,48 @@
         <div class="modal-body">
           <p class="lead">New Fitness User</p>
           <form method="post" action="?action=addfitnessuser">
-            <div class="mb-3">
-                <label for="name" class="col-form-label">First name*</label>
-                <input id="name" name="name" type="text" class="form-control" required="required">
-            </div>
-            <div class="mb-3">
-                <label for="lastname" class="col-form-label">Last name*</label>
-                <input id="lastname" name="lastname" type="text" class="form-control" required="required">             
-            </div>
-            <div class="mb-3">
-                <label for="city" class="col-form-label">City*</label>
-                <input id="city" name="city" type="text" class="form-control" required="required">
-            </div>
-            <div class="mb-3">
-                <label for="username" class="col-form-label">User Name*</label>
-                <input id="username" name="username" type="text" class="form-control" required="required">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="col-form-label">Password*</label>
-                <input id="password" name="password" type="password" class="form-control" required="required">
-            </div>
-            <div class="mb-3">
-                <label for="avatar" class="col-form-label">Avatar</label>
-                <input id="avatar" name="avatar" type="text" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="mail" class="col-form-label" >Mail*</label>
-                <input id="mail" name="mail" type="email" class="form-control" required="required">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+<div class="mb-3 text-center">
+    <label for="name" class="col-form-label">First name*</label>
+    <input id="name" name="name" type="text" class="text-center form-control" required="required">
+</div>
+<div class="mb-3 text-center">
+    <label for="lastname" class="col-form-label">Last name*</label>
+    <input id="lastname" name="lastname" type="text" class="text-center form-control" required="required">             
+</div>
+<div class="mb-3 text-center">
+    <label for="city" class="col-form-label">City*</label>
+    <input id="city" name="city" type="text" class="text-center form-control" required="required">
+</div>
+<div class="mb-3 text-center">
+    <label for="username" class="col-form-label">User Name*</label>
+    <input id="username" name="username" type="text" class="text-center form-control" required="required">
+</div>
+<div class="mb-3 text-center">
+    <label for="password" class="col-form-label">Password*</label>
+    <input id="password" name="password" type="password" class="text-center form-control" required="required">
+</div>
+<div class="mb-3 text-center">
+    <label for="avatar" class="col-form-label">Avatar</label>
+    <input id="avatar" name="avatar" type="text" class="text-center form-control">
+</div>
+<div class="mb-3 text-center">
+    <label for="mail" class="col-form-label">Mail*</label>
+    <input id="mail" name="mail" type="email" class="text-center form-control" required="required">
+</div>
+
+            <div class="d-flex justify-content-start">
+                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
           </form>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
+    </div>
+    
+    
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

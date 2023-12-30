@@ -37,7 +37,7 @@ export class UploadPhotoComponent {
       const formData = new FormData();
       formData.append('file', this.selectedFile);
 
-      this.photoService.uploadPhoto(formData, this.programId).subscribe(
+      this.photoService.uploadPhoto(formData, this.programId, this.userId).subscribe(
         (response) => {
           this.snackService.triggerSnackBar("Photo uploaded successfully!");
           console.log('File uploaded successfully:', response);

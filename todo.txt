@@ -1,16 +1,20 @@
-u message user controlleru zadnje dvije stavke treba i user id pa provjera
-
-neophodna provjera za upload slike da li je korisnik nadlezan za fitnes program
-
-logger
-
 serverska validacija
 
 mejl svaki dan!
 
-provjeriti na bekendu sta se moze izdvojiti u konf. fajl
-
 dodati unique dijelove u bp
+
+dvije ostale aplikacije popraviti izgled
+
+captcha eventualno
+
+avatar kod komentara u angularu
+
+ADMIN:
+bug sa dodavanjem kategorije kod administratora (ISTESTIRATI ZA KATEGORIJU DA LI JE KOREKTNO NAKON IZMJENE)
+table layout
+
+dodati info o tome da li je login screen itd. ?
 
 eventualno modali za:
 -prikaz profila pa izmjena profila,
@@ -19,3 +23,5 @@ eventualno modali za:
 -prikaz sopstvenih fitnes programa pa kreiranje nekog,
 -prikaz journal entry-a pa kreiranje nekog,
 -registrovanje pa prikaz forme za unos koda ako se treba unijeti
+
+logger (create program, unsubscribed, subscribed to category, tried to register, post journal entry)

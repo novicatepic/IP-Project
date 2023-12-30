@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.ip.backend.errorservice.ForbiddenEntity;
+import org.unibl.etf.ip.backend.exceptions.MethodNotAllowedException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.loginservice.UserLoginHelp;
 import org.unibl.etf.ip.backend.model.PorukaEntity;
@@ -47,18 +48,23 @@ public class MessageUserController {
         return new ResponseEntity<>(service.readMessages(id), HttpStatus.OK);
     }
 
-    @GetMapping("/{messageId}")
-    public ResponseEntity<PorukaEntity> getOneMessage(@PathVariable("messageId")Integer messageId) throws NotFoundException {
+    @GetMapping("/{messageId}/{userId}")
+    public ResponseEntity<PorukaEntity> getOneMessage(@PathVariable("messageId")Integer messageId,
+                                                      @PathVariable("userId") Integer userId) throws NotFoundException, MethodNotAllowedException {
         PorukaEntity message = service.showMessage(messageId);
         if(message == null) {
             throw new NotFoundException();
         }
+        if(message.getPrimalacId() != userId) {
+            throw new MethodNotAllowedException();
+        }
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
-    @GetMapping("/read-message/{id}")
-    public ResponseEntity<PorukaEntity> readMessage(@PathVariable("id")Integer id) throws NotFoundException {
-        return new ResponseEntity<>(service.readMessage(id), HttpStatus.OK);
+    @GetMapping("/read-message/{id}/{userId}")
+    public ResponseEntity<PorukaEntity> readMessage(@PathVariable("id")Integer id,
+                                                    @PathVariable("userId")Integer userId) throws NotFoundException {
+        return new ResponseEntity<>(service.readMessage(id, userId), HttpStatus.OK);
     }
 
 }

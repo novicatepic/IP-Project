@@ -1,11 +1,15 @@
 package org.unibl.etf.ip.backend.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.unibl.etf.ip.backend.auth.JwtAuthResponse;
+import org.unibl.etf.ip.backend.controller.FitnessProgramController;
+import org.unibl.etf.ip.backend.controller.FitnessUserController;
 import org.unibl.etf.ip.backend.exceptions.ModifiedUserNameException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.exceptions.UserNotActiveException;
@@ -16,6 +20,8 @@ import org.unibl.etf.ip.backend.repository.FitnessUserRepository;
 
 @Service
 public class FitnessUserService {
+
+    private Logger logger = LoggerFactory.getLogger(FitnessUserService.class);
 
     @Autowired
     private FitnessUserRepository repository;
@@ -39,6 +45,7 @@ public class FitnessUserService {
         KorisnikEntity k = repository.save(fitnessUser);
         String code = codeService.saveCodeToDB(k);
         mailService.sendEmail(k.getMail(), "Code for password change", code);
+        logger.info("New attempt to create account for user with username " + fitnessUser.getUsername() + " and email " + fitnessUser.getMail());
         return k;
     }
 
@@ -72,9 +79,7 @@ public class FitnessUserService {
             KorisnikEntity k = repository.findById(userId).orElseThrow(NotFoundException::new);
             k.setAktivan(true);
             repository.save(k);
-            //System.out.println("User saved!");
             String token = jwtService.generateToken((k));
-            //System.out.println("Token generated: " + token);
             return new JwtAuthResponse(token);
         }
         return null;

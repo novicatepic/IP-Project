@@ -1,4 +1,5 @@
 package org.unibl.etf.ip.backend.controller;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -17,12 +18,16 @@ import java.nio.file.Paths;
 @RequestMapping("/api/files/download")
 public class FileDownloadController {
 
-    private static final String UPLOAD_DIR = "uploads";
+    //private static final String UPLOAD_DIR = "uploads";
 
-    @GetMapping(value = "/{fileName}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName) throws IOException {
+    @Value("${upload.directory}")
+    private String UPLOAD_DIR;
+
+    @GetMapping(value = "/{programId}/{fileName}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, @PathVariable("programId") Integer programId)
+            throws IOException {
         // Construct the file path
-        Path filePath = Paths.get(UPLOAD_DIR + File.separator + "11" + File.separator).resolve(fileName);
+        Path filePath = Paths.get(UPLOAD_DIR + File.separator + programId + File.separator).resolve(fileName);
 
         // Create a Resource representing the file
         Resource fileResource = new FileSystemResource(filePath.toFile());

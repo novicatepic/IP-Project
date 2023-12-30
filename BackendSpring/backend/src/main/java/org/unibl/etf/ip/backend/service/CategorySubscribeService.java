@@ -2,6 +2,8 @@ package org.unibl.etf.ip.backend.service;
 
 import jakarta.transaction.Transactional;
 import org.apache.catalina.LifecycleState;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
@@ -16,6 +18,8 @@ import java.util.List;
 
 @Service
 public class CategorySubscribeService {
+
+    private Logger logger = LoggerFactory.getLogger(CategorySubscribeService.class);
 
     @Autowired
     CategorySubscribeRepository repository;
@@ -42,7 +46,7 @@ public class CategorySubscribeService {
                 result.add(category);
             }
         }
-
+        logger.info("User with id " + userId + " checked his unsubscribed categories");
         return result;
 
     }
@@ -66,12 +70,13 @@ public class CategorySubscribeService {
                 result.add(category);
             }
         }
-
+        logger.info("User with id " + userId + " checked his subscribed categories");
         return result;
 
     }
 
     public KorisnikPretplacenKategorijaEntity subscribe(KorisnikPretplacenKategorijaEntity subscription) {
+        logger.info("Subscription to category " + subscription.getKategorijaId() + " by user " + subscription.getKorisnikId());
         return repository.save(subscription);
     }
 
@@ -80,6 +85,7 @@ public class CategorySubscribeService {
         List<KorisnikPretplacenKategorijaEntity> entities = repository.findAll();
         for(KorisnikPretplacenKategorijaEntity entity : entities) {
             if(entity.getKorisnikId() == subscription.getKorisnikId() && entity.getKategorijaId() == subscription.getKategorijaId()) {
+                logger.info("Unsubscription from category " + subscription.getKategorijaId() + " by user " + subscription.getKorisnikId());
                 repository.delete(subscription);
                 return true;
             }

@@ -8,11 +8,10 @@ import { JwtTokenService } from '../jwt-token/jwt-token.service';
 })
 export class JournalEntriesService {
 
-  //hard kodovana trica => id usera
   private baseUrl = 'http://localhost:4040/journals/journal-entry/';
-  
-  //hard kodovano za usera 3
+
   private pdfUrl = 'http://localhost:4040/journals/download-journal/';
+
 
   id : any;
   constructor(private http:HttpClient, private jwtService: JwtTokenService) {
@@ -28,5 +27,10 @@ export class JournalEntriesService {
   downloadPDF() {
     const url = this.pdfUrl + this.id;
     return this.http.get(`${url}`, { responseType: 'blob' });
+  }
+
+  deleteJournalEntry(entryId: any) {
+    const url = this.baseUrl + entryId + "/" + this.id;
+    return this.http.delete(`${url}`);
   }
 }

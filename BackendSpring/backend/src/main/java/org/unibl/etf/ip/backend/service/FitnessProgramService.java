@@ -1,8 +1,11 @@
 package org.unibl.etf.ip.backend.service;
 
 import org.hibernate.annotations.NotFound;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.unibl.etf.ip.backend.controller.FitnessProgramController;
 import org.unibl.etf.ip.backend.exceptions.MethodNotAllowedException;
 import org.unibl.etf.ip.backend.exceptions.NotEnoughMoneyException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
@@ -17,6 +20,8 @@ import java.util.Optional;
 
 @Service
 public class FitnessProgramService {
+
+    private Logger logger = LoggerFactory.getLogger(FitnessProgramService.class);
 
     @Autowired
     private FitnessProgramRepository repository;
@@ -38,7 +43,9 @@ public class FitnessProgramService {
     }
 
     public ProgramEntity createProgram(ProgramEntity fitnessProgram) {
-        return repository.save(fitnessProgram);
+        ProgramEntity program = repository.save(fitnessProgram);
+        logger.info("User with id " + fitnessProgram.getKreatorId() + " created program with id " + program.getId());
+        return program;
     }
 
     public void deleteProgram(Integer id, Integer userId) throws NotFoundException, MethodNotAllowedException {
@@ -98,7 +105,6 @@ public class FitnessProgramService {
         List<ProgramEntity> result = new ArrayList<>();
         for(KorisnikPretplacenProgramEntity k : allEntitites) {
             if(k.getKorisnikId() == userId && !k.getFitnessProgram().getAktivan()) {
-                System.out.println("IN");
                 result.add(k.getFitnessProgram());
             }
         }
@@ -110,7 +116,6 @@ public class FitnessProgramService {
         List<ProgramEntity> results = new ArrayList<>();
         for(KorisnikPretplacenProgramEntity k : allEntitites) {
             if(k.getKorisnikId() == userId) {
-                System.out.println("1="+k.getFitnessProgram().getNaziv());
                 results.add(k.getFitnessProgram());
             }
         }
@@ -121,7 +126,6 @@ public class FitnessProgramService {
             boolean participated = false;
             for(ProgramEntity result : results) {
                 if(program.getId() == result.getId()) {
-                    System.out.println("2="+true);
                     participated = true;
                 }
             }

@@ -11,13 +11,17 @@
 
 <style>
     #maindiv {
-        height: 100vh;
-        background-color: aliceblue;
+        height: 80vh;
     }
+    
+    form div {
+    	width: 300px;
+    }
+    
 </style>
 
 <body>
-    
+    <%@include file="./header.jsp" %>
 
    <div id="maindiv" class="d-flex flex-column align-items-center justify-content-center">
         <form action="?action=showcategory" method="post">

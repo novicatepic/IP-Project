@@ -23,8 +23,9 @@
 <body>
     
    <%@include file="./header.jsp" %>
-    
-    <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#addconsultant">Add New Consultant</button>
+    	
+    	<div class="container" style="margin-top: 20px;">
+    		<button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#addconsultant">Add New Consultant</button>
     
     <table class="table">
         <thead>
@@ -49,6 +50,9 @@
 
         </tbody>
       </table>
+    	</div>
+    	
+    
       
       <div class="modal fade" id="addconsultant" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -76,9 +80,11 @@
                 <label for="password" class="col-form-label">Password*</label>
                 <input id="password" name="password" type="password" class="form-control" required="required">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="d-flex justify-content-start">
+                     <button type="submit" class="btn btn-primary me-2">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             </div>
           </form>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
