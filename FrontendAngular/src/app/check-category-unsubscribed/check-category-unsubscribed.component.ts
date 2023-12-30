@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CheckCategoryUnsubscribedService } from './check-category-unsubscribed.service';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-check-category-unsubscribed',
@@ -15,7 +16,8 @@ export class CheckCategoryUnsubscribedComponent {
   constructor( 
      private router: Router,
      private service: CheckCategoryUnsubscribedService,
-     private jwtService: JwtTokenService) {
+     private jwtService: JwtTokenService,
+     private snackBarService: SnackBarService) {
       this.jwtService.getUserById().subscribe((data: any) => {
         this.user = data;
         this.getUnsubscribredCategories();
@@ -40,8 +42,12 @@ export class CheckCategoryUnsubscribedComponent {
     }
 
     this.service.subscribeToCategory(subscription).subscribe((data) => {
-      this.router.navigate(['/category-unsubscribed']);
+      this.snackBarService.triggerSnackBar("Successfully subscribed!");
+      this.router.navigate(['/category-subscribed']);
       //console.log(data);
+    }, (err) => {
+      console.log(err);
+      this.snackBarService.triggerSnackBar("Error subscribing!");
     });
   }
 }

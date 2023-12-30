@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PastProgramParticipationsService } from '../past-program-participations/past-program-participations.service';
 import { MyFitnessProgramsService } from './my-fitness-programs.service';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-my-fitness-programs',
@@ -16,7 +17,8 @@ export class MyFitnessProgramsComponent {
   constructor( 
      private router: Router,
      private service: MyFitnessProgramsService,
-     private jwtService: JwtTokenService) {
+     private jwtService: JwtTokenService,
+     private snackService: SnackBarService) {
 
       var temp = this.jwtService.extractTokenInfo();
       this.id = temp.id;
@@ -37,14 +39,13 @@ export class MyFitnessProgramsComponent {
     deleteProgram(programId: any) {
       event?.preventDefault();
       this.service.deleteProgram(this.id).subscribe((response) => {
-        //console.log(response);
+        this.snackService.triggerSnackBar("Successfully deleted program!");
         this.router.navigate(['/my-programs']);
       },
-      error => console.log(error))
+      error => {
+        console.log(error);
+        this.snackService.triggerSnackBar("Error deleting program!");
+      } )
     }
-
-    /*addPhoto(id: any) {
-
-    }*/
 
 }

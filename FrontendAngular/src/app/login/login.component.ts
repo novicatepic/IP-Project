@@ -7,6 +7,7 @@ import { ThisReceiver } from '@angular/compiler';
 import { Observable, Subject } from 'rxjs';
 import { AuthService } from '../interceptors/auth.service';
 import { AuthServiceService } from '../auth-service/auth-service.service';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-login',
@@ -24,11 +25,12 @@ export class LoginComponent {
      private router: Router,
      private service: LoginService,
      private jwtService: JwtTokenService,
-     private authService: AuthServiceService) {
+     private authService: AuthServiceService,
+     private snackBarService: SnackBarService) {
 
     this.firstForm = formBuilder.group({
-      username : [null, Validators.required],
-      password : [null, Validators.required]
+      username : [null, [Validators.required, Validators.maxLength(45)]],
+      password : [null, [Validators.required, Validators.maxLength(500)]]
     });
   }
 
@@ -50,13 +52,17 @@ export class LoginComponent {
           this.router.navigate(['/fitness-programs']);
         } else {
           this.service.getByUsername(fitnessUser.username).subscribe((user) => {
-            console.log(JSON.stringify(user));
+            this.snackBarService.triggerSnackBar("Code sent to your email: " + user.mail);
+            //console.log(JSON.stringify(user));
             this.router.navigate(['/code/'+user.id]);
           })
           
         }
       },
-      error => console.log("ERROR " + JSON.stringify(error)));
+      error => {
+        console.log("ERROR " + JSON.stringify(error));
+        this.snackBarService.triggerSnackBar("Incorrect credentials!");
+      } );
 
     }
   }

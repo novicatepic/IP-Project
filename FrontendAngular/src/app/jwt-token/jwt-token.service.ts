@@ -37,8 +37,8 @@ export class JwtTokenService {
     this.baseUrl = this.fixedUrl;
     var tokenInfo = this.extractTokenInfo();
     if(tokenInfo) {
-      this.baseUrl += tokenInfo.id;
-      return this.http.get<any[]>(`${this.baseUrl}`);
+      const url = this.baseUrl + tokenInfo.id;
+      return this.http.get<any[]>(`${url}`);
     }
     console.log("NULL");
     return null;

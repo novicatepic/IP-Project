@@ -19,7 +19,7 @@ export class LoginService {
   }
 
   getByUsername(username: any): Observable<any> {
-    this.usernameUrl += username;
-    return this.http.get(`${this.usernameUrl}`);
+    const url = this.usernameUrl + username;
+    return this.http.get(`${url}`);
   }
 }

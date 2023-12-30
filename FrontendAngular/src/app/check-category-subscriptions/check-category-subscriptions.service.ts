@@ -24,7 +24,7 @@ export class CheckCategorySubscriptionsService {
    }
 
    unsubscribeFromCategory(tokenId:any, id: any): Observable<any> {
-    const url = this.deleteUrl + "/" + tokenId + "/"+id;
+    const url = this.deleteUrl + tokenId + "/"+id;
     //const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.delete(`${url}`);
   }

@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { JournalEntriesService } from './journal-entries.service';
 import { Chart, Legend, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
 import { LinearScale, registerables } from 'chart.js';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-journal-entries',
@@ -13,7 +14,7 @@ export class JournalEntriesComponent implements OnInit, AfterViewInit {
   data : any = [];
 
 
-  constructor(private http: HttpClient, private service: JournalEntriesService) {
+  constructor(private http: HttpClient, private service: JournalEntriesService, private snackBarService: SnackBarService) {
     
     
   }
@@ -31,14 +32,13 @@ export class JournalEntriesComponent implements OnInit, AfterViewInit {
     const weightChartCanvas = document.getElementById('weight-chart') as HTMLCanvasElement | null;
 
     if (weightChartCanvas) {
-      //console.log('IN');
       const ctx = weightChartCanvas.getContext('2d');
       if (ctx) {
         Chart.register(...registerables);
         const myChart = new Chart(ctx, {
           type: 'line',
           data: {
-            labels: this.data.map((d: any) => d.trajanje),
+            labels: this.data.map((d: any) => d.datum),
             datasets: [
               {
                 label: 'Weight Progression',
@@ -93,6 +93,7 @@ export class JournalEntriesComponent implements OnInit, AfterViewInit {
       },
       error => {
         console.error('Error downloading PDF');
+        this.snackBarService.triggerSnackBar("Error downloading pdf!");
       }
     );
   }

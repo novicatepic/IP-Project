@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { RegisterService } from '../register/register.service';
 import { MessageConsultantService } from './message-consultant.service';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-message-consultant',
@@ -19,14 +21,15 @@ export class MessageConsultantComponent {
     private formBuilder: FormBuilder,
      private router: Router,
      private service: MessageConsultantService,
-     private jwtService: JwtTokenService) {
+     private jwtService: JwtTokenService, 
+     private snackService: SnackBarService) {
 
       var temp = this.jwtService.extractTokenInfo();
       this.id = temp.id;
 
     this.firstForm = formBuilder.group({
-      title: [null, Validators.required],
-      text : [null, Validators.required]
+      title: [null, [Validators.required, Validators.maxLength(100)]],
+      text : [null, [Validators.required, Validators.maxLength(1000)]]
     });
   }
 
@@ -42,9 +45,12 @@ export class MessageConsultantComponent {
       }
 
       this.service.messageConsultant(message).subscribe((data) => {
-          //console.log(data);
+          this.snackService.triggerSnackBar("Successfully sent!");
+          this.router.navigate(['/message-consultant']);
       },
-      error => console.log(error))
+      error => {
+        this.snackService.triggerSnackBar("Error sending message!");
+        console.log(error);})
 
     }
   }

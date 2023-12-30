@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BuyProgramService } from './buy-program.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-buy-program',
@@ -21,20 +22,17 @@ export class BuyProgramComponent {
     private formBuilder: FormBuilder,
      private router: Router,
      private service: BuyProgramService,
-     private jwtService: JwtTokenService) {
+     private jwtService: JwtTokenService,
+     private snackBarService : SnackBarService) {
       
       this.jwtService.getUserById().subscribe((data: any) => {
         this.user = data;
-        console.log(this.user);
         this.readData();
      });
 
-     
-      
-
       this.firstForm = formBuilder.group({
-        paymentMethod : [null],
-        paymentValue : [null]
+        paymentMethod : [null, [Validators.required, Validators.maxLength(100)]],
+        paymentValue : [null, [Validators.required, Validators.pattern("^[0-9]*$")]]
       });
 
   }
@@ -67,10 +65,11 @@ export class BuyProgramComponent {
         //console.log(JSON.stringify(obj));
 
         this.service.subscribeToProgram(obj).subscribe((data) => {
-          //console.log(data);
           this.message = null;
+          this.snackBarService.triggerSnackBar("Successfully subscribed!");
+          this.router.navigate(['/attend-programs']);
         }, (error:any) => {
-          this.message = "Not enough money";
+          this.snackBarService.triggerSnackBar("Not enough money!");
         })
         
       }

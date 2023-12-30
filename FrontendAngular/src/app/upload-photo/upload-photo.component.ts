@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
 import { UploadPhotoService } from './upload-photo.service';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-upload-photo',
@@ -17,7 +18,8 @@ export class UploadPhotoComponent {
 
   constructor(private route: ActivatedRoute, 
     private router : Router, private jwtService: JwtTokenService, 
-    private photoService : UploadPhotoService) {
+    private photoService : UploadPhotoService,
+    private snackService: SnackBarService) {
     this.route.paramMap.subscribe(params => {
       this.programId = params.get('programId');
     });
@@ -37,9 +39,11 @@ export class UploadPhotoComponent {
 
       this.photoService.uploadPhoto(formData, this.programId).subscribe(
         (response) => {
+          this.snackService.triggerSnackBar("Photo uploaded successfully!");
           console.log('File uploaded successfully:', response);
         },
         (error) => {
+          this.snackService.triggerSnackBar("Error uploading photo!");
           console.error('Error uploading file:', error);
         }
       );

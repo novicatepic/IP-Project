@@ -1,0 +1,17 @@
+<div class="container" style="margin-top: 10px;">
+    <div class="list-group" >
+      <div *ngFor="let item of data" style="z-index: 0;" class="list-group-item list-group-item-action flex-column align-items-start active">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Name : {{item.naziv}}</h5>
+          <small>Date: {{item.datum}}</small>
+        </div>
+        <p class="mb-1">Description: {{ item.opis }}</p>
+        <p class="mb-1">Attend at: {{ item.nazivLokacije }} </p>
+        <p class="mb-1"><a class="mb-1" style="color: white;" *ngIf="item.nazivLokacije == 'Link'" href="{{ item.porukaLokacije }}">Watch</a></p>
+        <p *ngIf="item.nazivLokacije != 'Link'" class="mb-1">{{ item.porukaLokacije }}</p>
+        <small>Price: {{ item.cijena }}</small>
+      </div>
+    </div>
+  </div>
+  
+  

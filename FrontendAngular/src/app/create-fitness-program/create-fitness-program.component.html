@@ -30,8 +30,8 @@
                 <option value="Live">Live</option>
                 <option value="Link">Youtube link</option>
             </select>
-            <div *ngIf="firstForm.get('location')?.value === 'Link'" class="form-group">
-                <label for="ytlink">Youtube link*</label>
+            <div class="form-group">
+                <label for="ytlink">Value (link or message)*</label>
                 <input formControlName="ytlink" type="text" class="text-center form-control" id="ytlink" placeholder="Enter youtube link">
             </div>
         </div>

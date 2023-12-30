@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { RegisterService } from '../register/register.service';
 import { CreateFitnessProgramService } from './create-fitness-program.service';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Component({
   selector: 'create-fitness-program',
@@ -20,7 +21,8 @@ export class CreateFitnessProgramComponent {
     private formBuilder: FormBuilder,
      private router: Router,
      private service: CreateFitnessProgramService,
-     private jwtService: JwtTokenService) {
+     private jwtService: JwtTokenService,
+     private snackBarService: SnackBarService) {
 
       this.jwtService.getUserById().subscribe((data: any) => {
         this.user = data;
@@ -31,16 +33,16 @@ export class CreateFitnessProgramComponent {
       })
 
     this.firstForm = formBuilder.group({
-      name : [null, Validators.required],
-      description : [null, Validators.required],
-      price : [null, Validators.required],
-      difficulty : [null, Validators.required],
-      duration : [null, Validators.required],
-      location : [null, Validators.required],
-      contact : [null, Validators.required],
-      date : [null, Validators.required],
-      select : [null, Validators.required],
-      ytlink : [null]
+      name : [null, [Validators.required, Validators.maxLength(200)]],
+      description : [null, [Validators.required, Validators.maxLength(2000)]],
+      price : [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
+      difficulty : [null, [Validators.required, Validators.maxLength(100)]],
+      duration : [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
+      location : [null, [Validators.required, Validators.maxLength(200)]],
+      contact : [null, [Validators.required, Validators.maxLength(45)]],
+      date : [null, [Validators.required]],
+      select : [null, [Validators.required, Validators.maxLength(45)]],
+      ytlink : [null, [Validators.required, Validators.maxLength(200)]]
     });
   }
 
@@ -57,29 +59,20 @@ export class CreateFitnessProgramComponent {
         datum: this.firstForm.get('date')?.value,
         kreatorId: this.user.id,
         ucestvovan: false,
-        kategorijaId: this.firstForm.get('select')?.value
-      }
-
-      const location = {
+        kategorijaId: this.firstForm.get('select')?.value,
         nazivLokacije: this.firstForm.get('location')?.value,
-        poruka: "",
-        programId: 0
+        porukaLokacije: this.firstForm.get('ytlink')?.value
       }
-
-      if(this.firstForm.get('location')?.value == 'Link') {
-        location.poruka = this.firstForm.get('ytlink')?.value;
-      }
-
 
 
       this.service.createFitnessProgram(fitnessProgram).subscribe((data)=> {
-        //console.log(data);
-        location.programId = data.id;
-        this.service.createLocation(location).subscribe((data) => {
-          console.log("Location " + location);
-        });
+        this.snackBarService.triggerSnackBar("Fitness program created!");
+        this.router.navigate(['/my-fitness-programs']);
       },
-      error => console.log(error));
+      error => {
+        console.log(error);
+        this.snackBarService.triggerSnackBar("Error creating fitness program!");
+      } );
 
     }
   }

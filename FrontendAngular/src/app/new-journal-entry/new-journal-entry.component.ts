@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NewJournalEntryService } from './new-journal-entry.service';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-new-journal-entry',
@@ -18,16 +19,18 @@ export class NewJournalEntryComponent {
     private formBuilder: FormBuilder,
      private router: Router,
      private service: NewJournalEntryService,
-     private jwtService: JwtTokenService) {
+     private jwtService: JwtTokenService,
+     private snackService: SnackBarService) {
 
       var temp = this.jwtService.extractTokenInfo();
       this.id = temp.id;
 
     this.firstForm = formBuilder.group({
-      exercise : [null, Validators.required],
-      duration : [null, Validators.required],
-      intensity : [null, Validators.required],
-      weight : [null, Validators.required]
+      exercise : [null, [Validators.required, Validators.maxLength(45)]],
+      duration : [null, [Validators.required, Validators.maxLength(45)]],
+      intensity : [null, [Validators.required, Validators.maxLength(45)]],
+      weight : [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
+      date : [null, [Validators.required]],
     });
   }
 
@@ -39,14 +42,19 @@ export class NewJournalEntryComponent {
         trajanje: this.firstForm.get('duration')?.value,
         intenzitet: this.firstForm.get('intensity')?.value,
         kilaza: this.firstForm.get('weight')?.value,
-        dnevnikKorisnikId: this.id
+        dnevnikKorisnikId: this.id,
+        datum: this.firstForm.get('date')?.value
       }
 
+
       this.service.createJournalEntry(journalEntry).subscribe((data) => {
-        //console.log("Success " + data)
+        this.snackService.triggerSnackBar("Successfully created journal entry!");
         this.router.navigate(['/journal-entries']);
       },
-      error => console.log(error));
+      error => {
+        console.log(error);
+        this.snackService.triggerSnackBar("Error creating journal entry!");
+      } );
 
     }
   }

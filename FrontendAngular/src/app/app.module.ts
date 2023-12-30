@@ -39,6 +39,8 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { FooterComponent } from './footer/footer.component';
+import { AttendBoughtProgramsComponent } from './attend-bought-programs/attend-bought-programs.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,8 @@ import { FooterComponent } from './footer/footer.component';
     ShowProfileComponent,
     UploadPhotoComponent,
     MainNavComponent,
-    FooterComponent
+    FooterComponent,
+    AttendBoughtProgramsComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,8 @@ import { FooterComponent } from './footer/footer.component';
     MatIconModule,
     MatMenuModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatSnackBarModule
   ],
   providers: [
     {

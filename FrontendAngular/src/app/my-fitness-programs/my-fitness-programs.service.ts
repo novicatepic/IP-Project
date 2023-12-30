@@ -18,7 +18,7 @@ export class MyFitnessProgramsService {
   }
 
   deleteProgram(id :any): Observable<any> {
-    const url = this.deleteUrl += id;
+    const url = this.deleteUrl + id;
     return this.http.delete(`${url}`, { responseType: 'text' });
   }
 }

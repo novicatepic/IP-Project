@@ -7,20 +7,22 @@ import { Observable } from 'rxjs';
 })
 export class CheckSingleMessageService {
 
-  baseUrl = 'http://localhost:4040/user-messages/';
+  private baseUrl = 'http://localhost:4040/user-messages/';
 
-  readUrl = 'http://localhost:4040/user-messages/read-message/';
+  private readUrl = 'http://localhost:4040/user-messages/read-message/';
 
   private responseUrl = 'http://localhost:4040/user-messages';
   
   constructor(private http:HttpClient) { }
 
-  getMessage(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
+  getMessage(id: any): Observable<any> {
+    const url = this.baseUrl + id;
+    return this.http.get(`${url}`);
   }
 
-  markMessageAsRead(): Observable<any> {
-    return this.http.get(`${this.readUrl}`);
+  markMessageAsRead(id: any): Observable<any> {
+    const url = this.readUrl + id;
+    return this.http.get(`${url}`);
   }
 
   sendResponse(message: any): Observable<any> {

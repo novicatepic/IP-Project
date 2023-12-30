@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from './register.service';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-register',
@@ -17,16 +18,17 @@ export class RegisterComponent {
   constructor( 
     private formBuilder: FormBuilder,
      private router: Router,
-     private service: RegisterService) {
+     private service: RegisterService,
+     private snackService: SnackBarService) {
 
     this.firstForm = formBuilder.group({
-      firstName : [null, Validators.required],
-      lastName : [null, Validators.required],
-      city : [null, Validators.required],
-      username : [null, Validators.required],
-      password : [null, Validators.required],
+      firstName : [null, [Validators.required, Validators.maxLength(45)]],
+      lastName : [null, [Validators.required, Validators.maxLength(45)]],
+      city : [null, [Validators.required, Validators.maxLength(100)]],
+      username : [null, [Validators.required, Validators.maxLength(45)]],
+      password : [null, [Validators.required, Validators.maxLength(500)]],
       avatar : [null],
-      email : [null, Validators.email],
+      email : [null, [Validators.required, Validators.email, Validators.maxLength(200)]],
     });
   }
 
@@ -46,11 +48,13 @@ export class RegisterComponent {
 
       this.service.createFitnessUser(fitnessUser).subscribe((data) => {
         const user = JSON.stringify(data);
-        console.log("Success: " + user);
-        console.log("Success: " + data.id);
+        this.snackService.triggerSnackBar("Code sent to mail: " + fitnessUser.mail);
         this.router.navigate(['/code/'+data.id]);
       },
-      error => console.log(error));
+      error => {
+        console.log(error);
+        this.snackService.triggerSnackBar("Error creating user!");
+      } );
 
     }
   }

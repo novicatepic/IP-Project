@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NinjaApiPageService } from './ninja-api-page.service';
 import { HttpClient } from '@angular/common/http';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-ninja-api-page',
@@ -10,14 +11,15 @@ import { HttpClient } from '@angular/common/http';
 export class NinjaApiPageComponent {
   data : any = [];
 
-  constructor(private http: HttpClient, private service: NinjaApiPageService) {
+  constructor(private snackService: SnackBarService, private service: NinjaApiPageService) {
     this.loadData();
   }
 
   loadData() {
     this.service.readNinjaApiExercises().subscribe((data) => {
       this.data = data;
-      //console.log(data);
+    }, (err) => {
+      this.snackService.triggerSnackBar("Error reading ninja API data!");
     })
 
 

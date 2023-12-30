@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Component({
   selector: 'new-question',
@@ -20,7 +21,8 @@ export class NewQuestionComponent {
     private formBuilder: FormBuilder,
      private route: ActivatedRoute,
      private router: Router,
-     private jwtService: JwtTokenService) {
+     private jwtService: JwtTokenService,
+     private snackService: SnackBarService) {
       var temp = this.jwtService.extractTokenInfo();
       this.userId = temp.id;
 
@@ -28,7 +30,7 @@ export class NewQuestionComponent {
       this.id = params.get('id');
     });
     this.firstForm = formBuilder.group({
-      question : [null, Validators.required]
+      question : [null, [Validators.required, Validators.maxLength(1000)]]
     });
   }
 
@@ -46,14 +48,14 @@ export class NewQuestionComponent {
        programId: parseInt(this.id, 10),
        korisnikId: this.userId
     };
-    return this.http.post(`${url}`, JSON.stringify(requestData), {headers}).subscribe(data => {
-      console.log(data);
+    this.http.post(`${url}`, JSON.stringify(requestData), {headers}).subscribe(data => {
+      this.snackService.triggerSnackBar("Comment posted!");
       this.router.navigate(['/fitness-programs/'+this.id]);
     }
     );
   } else {
     console.error('Error: Question control or its value is null');
-    return throwError('Error: Question control or its value is null');
+    this.snackService.triggerSnackBar("Error posting comment!");
   }
 }
 

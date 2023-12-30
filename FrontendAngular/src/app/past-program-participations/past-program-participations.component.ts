@@ -32,7 +32,10 @@ export class PastProgramParticipationsComponent {
         this.data = data;
         console.log(data);
       },
-      error => console.log(error));
+      error => {
+        console.log(error);
+        
+      } );
 
     }
 }

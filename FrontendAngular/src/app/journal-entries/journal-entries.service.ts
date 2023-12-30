@@ -21,12 +21,12 @@ export class JournalEntriesService {
    }
 
    readJournalEntriesForUser(): Observable<any> {
-    this.baseUrl +=  this.id;
-    return this.http.get(`${this.baseUrl}`);
+    const url = this.baseUrl + this.id;
+    return this.http.get(`${url}`);
   }
 
   downloadPDF() {
-    this.pdfUrl += this.id;
-    return this.http.get(this.pdfUrl, { responseType: 'blob' });
+    const url = this.pdfUrl + this.id;
+    return this.http.get(`${url}`, { responseType: 'blob' });
   }
 }

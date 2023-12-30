@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CodeService } from './code.service';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-code',
@@ -19,11 +20,12 @@ export class CodeComponent {
     private formBuilder: FormBuilder,
      private router: Router, 
      private service : CodeService,
-     private route: ActivatedRoute) 
+     private route: ActivatedRoute,
+     private snackBarService: SnackBarService) 
      
      {
     this.firstForm = formBuilder.group({
-      code : [null, Validators.required]
+      code : [null, [Validators.required, Validators.maxLength(5)]]
     });
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
@@ -41,14 +43,17 @@ export class CodeComponent {
 
       this.service.insertCode(code).subscribe((data) => {
         const user = JSON.stringify(data);
-        console.log("Success: " + data);
-        console.log("Success: " + user);
+        /*console.log("Success: " + data);
+        console.log("Success: " + user);*/
 
         localStorage.setItem("user", user);
-
+        this.snackBarService.triggerSnackBar("Successfully activated profile!");
         this.router.navigate(['/']);
       },
-      error => console.log(error));
+      error => {
+        console.log(error);
+        this.snackBarService.triggerSnackBar("Error activating profile!");
+      } );
   }
 }
 

@@ -24,6 +24,7 @@ import { BuyProgramComponent } from './buy-program/buy-program.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ShowProfileComponent } from './show-profile/show-profile.component';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
+import { AttendBoughtProgramsComponent } from './attend-bought-programs/attend-bought-programs.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
   {path: 'change-profile', component: ChangeProfileComponent, canActivate: [AuthGuard]},
   {path: 'past-program-participations', component: PastProgramParticipationsComponent, canActivate: [AuthGuard]},
   {path: 'unparticipated', component: BuyProgramComponent, canActivate: [AuthGuard]},
+  {path: 'attend-programs', component: AttendBoughtProgramsComponent  , canActivate: [AuthGuard]},
   {path: 'create-fitness-program', component: CreateFitnessProgramComponent, canActivate: [AuthGuard]},
   {path: 'my-fitness-programs', component: MyFitnessProgramsComponent, canActivate: [AuthGuard]},
   {path: 'upload-photo/:programId', component: UploadPhotoComponent, canActivate: [AuthGuard]},

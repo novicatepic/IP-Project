@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
 import { SingleFitnessProgramService } from './single-fitness-program.service';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Component({
   selector: 'single-fitness-program',
@@ -25,7 +26,8 @@ export class SingleFitnessProgramComponent implements OnInit {
     private router : Router, 
     private location: Location, 
     private jwtService: JwtTokenService,
-    private service: SingleFitnessProgramService) {
+    private service: SingleFitnessProgramService,
+    private snackService: SnackBarService) {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
     });
@@ -34,9 +36,6 @@ export class SingleFitnessProgramComponent implements OnInit {
     if(temp) {
       this.userId = temp.id;
     }
-    
-    
-
     this.loadData();
     this.loadQuestions();
     this.loadPhotos();
@@ -85,9 +84,10 @@ export class SingleFitnessProgramComponent implements OnInit {
         korisnikId: this.userId
       }
       this.http.post(url, JSON.stringify(answer), {headers}).subscribe((data) => {
-        //console.log("POSTED " + data);
-        const currentUrl = this.router.url;
+        this.snackService.triggerSnackBar("Comment successfully added!");
         this.router.navigate(['/fitness-programs/' + this.id]);
+      }, (err) => {
+        this.snackService.triggerSnackBar("Error adding comment!");
       });
     }
   }

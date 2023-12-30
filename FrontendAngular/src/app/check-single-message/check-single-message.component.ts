@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CheckSingleMessageService } from './check-single-message.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-check-single-message',
@@ -18,10 +19,11 @@ export class CheckSingleMessageComponent {
      private router: Router,
      private service: CheckSingleMessageService, 
      private route: ActivatedRoute,
-     private formBuilder: FormBuilder) {
+     private formBuilder: FormBuilder,
+     private snackBarService: SnackBarService) {
 
       this.firstForm = formBuilder.group({
-        response : [null]
+        response : [null,[Validators.required, Validators.maxLength(1000)]]
       });
 
       this.route.paramMap.subscribe(params => {
@@ -33,9 +35,9 @@ export class CheckSingleMessageComponent {
   }
 
   getMessage() {
-    this.service.baseUrl += this.id;
+    //this.service.baseUrl += this.id;
     
-      this.service.getMessage().subscribe((data) => {
+      this.service.getMessage(this.id).subscribe((data) => {
           this.data = data;
           //console.log(data);
           //this.service.markMessageAsRead().subscribe((readMessage) => {
@@ -46,7 +48,7 @@ export class CheckSingleMessageComponent {
   }
 
   respondToMessage() {
-    this.service.readUrl += this.id;
+    //this.service.readUrl += this.id;
     if(this.firstForm.valid) {
       const newMessage = {
         tekst: this.firstForm.get('response')?.value,
@@ -58,9 +60,14 @@ export class CheckSingleMessageComponent {
       //console.log("new mssg" + JSON.stringify(newMessage));
 
       this.service.sendResponse(newMessage).subscribe((data) => {
-        console.log(data);
-        this.service.markMessageAsRead().subscribe((readMessage) => {
+        //console.log(data);
+        this.service.markMessageAsRead(this.id).subscribe((readMessage) => {
+            this.snackBarService.triggerSnackBar("Message sent!");
+            this.router.navigate(['/all-messages']);
             //console.log("read");
+        }, (err) => {
+          console.log(err);
+          this.snackBarService.triggerSnackBar("Error, message not sent!");
         });
       })
     }
