@@ -31,7 +31,6 @@ import { CheckCategoryUnsubscribedComponent } from './check-category-unsubscribe
 import { ShowProfileComponent } from './show-profile/show-profile.component';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './navbar/navbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -66,7 +65,6 @@ import { MatListModule } from '@angular/material/list';
     CheckCategoryUnsubscribedComponent,
     ShowProfileComponent,
     UploadPhotoComponent,
-    NavbarComponent,
     MainNavComponent
   ],
   imports: [

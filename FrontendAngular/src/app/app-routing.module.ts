@@ -44,7 +44,7 @@ const routes: Routes = [
   {path: 'past-program-participations', component: PastProgramParticipationsComponent, canActivate: [AuthGuard]},
   {path: 'unparticipated', component: PastProgramParticipationsComponent, canActivate: [AuthGuard]},
   {path: 'create-fitness-program', component: CreateFitnessProgramComponent, canActivate: [AuthGuard]},
-  {path: 'my-programs', component: MyFitnessProgramsComponent, canActivate: [AuthGuard]},
+  {path: 'my-fitness-programs', component: MyFitnessProgramsComponent, canActivate: [AuthGuard]},
   {path: 'upload-photo/:programId', component: UploadPhotoComponent, canActivate: [AuthGuard]},
   {path: 'buy-programs', component: BuyProgramComponent, canActivate: [AuthGuard]},
   {path: 'message-consultant', component: MessageConsultantComponent, canActivate: [AuthGuard]},

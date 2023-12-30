@@ -1,42 +1,104 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-    </mat-nav-list>
-  </mat-sidenav>
+<mat-sidenav-container class="sidenav-container" style="margin-bottom: 0px;">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+  [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+  <mat-toolbar>Menu</mat-toolbar>
+  <mat-nav-list *ngIf="!this.loggedIn">
+    <a mat-list-item routerLink="/">Home</a>
+    <a mat-list-item routerLink="/login">Login</a>
+    <a mat-list-item routerLink="/register">Register</a>
+    <a mat-list-item routerLink="/fitness-programs">Fitness programs</a>
+    <a mat-list-item routerLink="/ninja">Ninja API News</a>
+  </mat-nav-list>
+  <mat-nav-list *ngIf="this.loggedIn">
+    <a mat-list-item routerLink="/">Home</a>
+    <a mat-list-item routerLink="/profile">Profile</a>
+    <a mat-list-item routerLink="/journal-entries">Journal</a>
+    <a mat-list-item (click)="logout()">Logout</a>
+  </mat-nav-list>
+  <span *ngIf="this.loggedIn">
+    <a mat-button [matMenuTriggerFor]="phoneDropdown">Fitness programs</a>
+    <mat-menu #phoneDropdown="matMenu" class="full-width-menu">
+      <a mat-menu-item routerLink="/fitness-programs">All fitness programs</a>
+      <a mat-menu-item routerLink="/my-fitness-programs">My fitness programs</a>
+      <a mat-menu-item routerLink="/past-program-participations">Past Program Participations</a>
+      <a mat-menu-item routerLink="/unparticipated">Unparticipated programs</a>
+    </mat-menu>
+    <a mat-button [matMenuTriggerFor]="phoneDropdown3">Categories&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <mat-menu #phoneDropdown3="matMenu" class="full-width-menu">
+      <a mat-menu-item routerLink="/category-subscriptions">Subscribed categories</a>
+      <a mat-menu-item routerLink="/category-unsubscribed">Unsubscribed categories</a>
+    </mat-menu>
+    <a mat-button [matMenuTriggerFor]="phoneDropdown2">Messages</a>
+    <mat-menu #phoneDropdown2="matMenu" class="full-width-menu">
+      <a mat-menu-item routerLink="/all-messages">All messages</a>
+      <a mat-menu-item routerLink="/check-messages">Check new messages</a>
+      <a mat-menu-item routerLink="/message-consultant">Message consultant</a>
+    </mat-menu>
+  </span>
+
+</mat-sidenav>
+
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button *ngIf="isHandset$ | async"
-              type="button"
-              aria-label="Toggle sidenav"
-              mat-icon-button
-              (click)="drawer.toggle()">
+      <button *ngIf="isHandset$ | async" type="button" aria-label="Toggle sidenav" mat-icon-button
+        (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>FrontendAngular</span>
       <span class="spacer"></span>
-      <span class="right-links">
-        <a href="#">Link1</a>
-        <a href="#">Link2</a>
-        <a href="#">Link3</a>
+
+      <span *ngIf="this.loggedIn" class="right-links">
+        <a routerLink="/">Home</a>
+        <a routerLink="/profile">Profile</a>
+        <a routerLink="/journal-entries">Journal</a>
+        <!-- Text near the dropdown menu -->
+        <span class="dropdown-text" *ngIf="!(isHandset$ | async)">
+          Fitness programs
+        </span>
+        <!-- Show dropdown only on larger screens -->
+        <button mat-icon-button *ngIf="!(isHandset$ | async)" [matMenuTriggerFor]="myDropdownMenu" aria-label="My Dropdown Menu">
+          <mat-icon class="dropdown-icon" aria-label="Dropdown menu icon">arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #myDropdownMenu="matMenu">
+          <a mat-menu-item routerLink="/fitness-programs">All fitness programs</a>
+          <a mat-menu-item routerLink="/my-fitness-programs">My fitness programs</a>
+          <a mat-menu-item routerLink="/past-program-participations">Past Program Participations</a>
+          <a mat-menu-item routerLink="/unparticipated">Unparticipated programs</a>
+        </mat-menu>
+        <span class="dropdown-text" *ngIf="!(isHandset$ | async)">
+          Categories
+        </span>
+        <button mat-icon-button *ngIf="!(isHandset$ | async)" [matMenuTriggerFor]="categories" aria-label="My Dropdown Menu">
+          <mat-icon class="dropdown-icon" aria-label="Dropdown menu icon">arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #categories="matMenu">
+          <a mat-menu-item routerLink="/category-subscriptions">Subscribed categories</a>
+          <a mat-menu-item routerLink="/category-unsubscribed">Unsubscribed categories</a>
+        </mat-menu>
+        <!-- Text near the dropdown menu -->
+        <span class="dropdown-text" *ngIf="!(isHandset$ | async)">
+          Messages
+        </span>
+        <!-- Show dropdown only on larger screens -->
+        <button mat-icon-button *ngIf="!(isHandset$ | async)" [matMenuTriggerFor]="myDropdownMenuMessages" aria-label="My Dropdown Menu">
+          <mat-icon class="dropdown-icon" aria-label="Dropdown menu icon">arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #myDropdownMenuMessages="matMenu">
+          <a mat-menu-item routerLink="/all-messages">All messages</a>
+          <a mat-menu-item routerLink="/check-messages">Check new messages</a>
+          <a mat-menu-item routerLink="/message-consultant">Message consultant</a>
+        </mat-menu> 
+        <a (click)="logout()">Logout</a>
+      </span>
+      <span *ngIf="!this.loggedIn" class="right-links">
+        <a routerLink="/">Start Page</a>
+        <a routerLink="/login">Login</a>
+        <a routerLink="/register">Register</a>
+        <a routerLink="/fitness-programs">Fitness programs</a>
+        <a routerLink="/ninja">Ninja API News</a>
       </span>
 
-      <!-- Text near the dropdown menu -->
-      <span class="dropdown-text" *ngIf="!(isHandset$ | async)">My Dropdown Menu</span>
-      <!-- Show dropdown only on larger screens -->
-      <button mat-icon-button *ngIf="!(isHandset$ | async)" [matMenuTriggerFor]="myDropdownMenu" aria-label="My Dropdown Menu">
-        <mat-icon aria-label="Dropdown menu icon">arrow_drop_down</mat-icon>
-      </button>
-      <mat-menu #myDropdownMenu="matMenu">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
-        <button mat-menu-item>Item 3</button>
-      </mat-menu>
+
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>

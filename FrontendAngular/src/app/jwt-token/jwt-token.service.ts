@@ -19,6 +19,7 @@ export class JwtTokenService {
       var token = JSON.parse(tokenTemp);
       return token.token;
     }
+    console.log("NULL");
     return null;
   }
 
@@ -32,13 +33,15 @@ export class JwtTokenService {
   }
 
   getUserById() : any {
+    
     this.baseUrl = this.fixedUrl;
     var tokenInfo = this.extractTokenInfo();
     if(tokenInfo) {
       this.baseUrl += tokenInfo.id;
       return this.http.get<any[]>(`${this.baseUrl}`);
-      
     }
+    console.log("NULL");
+    return null;
   }
 
   checkIfTokenExpired(token: any) {
