@@ -27,6 +27,7 @@
     %>
     
     <div id="maindiv" class="d-flex flex-column align-items-center justify-content-center">
+    <h2 class="text-center mb-4" style="margin-top:60px;">Update Fitness User</h2>
         <form method="post" action="?action=updateuserpost" class="text-center">
     <div class="form-group">
         <label for="name">First Name</label>

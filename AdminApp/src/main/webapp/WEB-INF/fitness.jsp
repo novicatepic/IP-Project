@@ -27,6 +27,7 @@
    <%@include file="./header.jsp" %>
     
     <div class="container" style="margin-top: 20px;">
+    <h1 class="text-center mb-4">Fitness Users</h1>
     	    <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#adduser">Add New Fitness User</button>
     
     <table class="table">

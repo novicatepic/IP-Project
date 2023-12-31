@@ -24,6 +24,7 @@
     <%@include file="./header.jsp" %>
 
    <div id="maindiv" class="d-flex flex-column align-items-center justify-content-center">
+   		<h2 class="text-center mb-4">Options</h2>
         <form action="?action=showcategory" method="post">
             <div class="mb-3"><button class="btn btn-primary w-100">Categories</button></div>
         </form>

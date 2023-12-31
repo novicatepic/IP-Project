@@ -48,7 +48,7 @@
 	<%@include file="./header.jsp" %>
 	
 	<div class="container">
-		<p class="h2 mt-5">Unanswered messages</p>
+		<p class="h1 mt-5 text-center">Unanswered messages</p>
 	<div class="mb-3" style="margin-bottom: 10px;">
         <form id="filterForm2" method="post" action="messages.jsp">
             <input type="text" class="form-control" id="attribute-name2" name="attributeName" placeholder="Enter text to filter" required>

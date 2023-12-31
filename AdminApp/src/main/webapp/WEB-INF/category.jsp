@@ -35,6 +35,7 @@
     <%@include file="./header.jsp" %>
     
     <div class="container" style="margin-top: 20px;">
+    		<h1 class="text-center mb-4">Categories</h1>
     	    <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#addcategory">Add Category</button>
 
     

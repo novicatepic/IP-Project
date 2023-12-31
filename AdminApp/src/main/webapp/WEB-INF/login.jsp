@@ -18,6 +18,7 @@
 <body>
     
     <div id="maindiv" class="d-flex flex-column align-items-center justify-content-center">
+    <h2 class="text-center mb-4">Login Form</h2>
     <form method="post" action="?action=login" class="text-center">
         <div class="form-group">
             <label for="username">Username</label>

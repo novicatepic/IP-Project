@@ -49,7 +49,7 @@
 	<%@include file="./header.jsp" %>
 	
 	<div class="container">
-		<p class="h2 mt-5">Unread messages</p>
+		<p class="h1 mt-5 text-center">Unread messages</p>
 	<div class="mb-3" style="margin-bottom: 10px;">
         <form id="filterForm" method="post" action="messages.jsp">
             <input type="text" class="form-control" id="attribute-name" name="attributeName" placeholder="Enter text to filter" required>

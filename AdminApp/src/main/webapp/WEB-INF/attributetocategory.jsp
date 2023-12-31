@@ -23,6 +23,7 @@
     %>
     
     <div id="maindiv" class="d-flex flex-column align-items-center justify-content-center">
+    <h2 class="text-center mb-4">Add Attribute To Category</h2>
     <form method="post" action="?action=finishattributeadd" class="text-center">
         <div class="form-group">
             <label for="name">Category name</label>
