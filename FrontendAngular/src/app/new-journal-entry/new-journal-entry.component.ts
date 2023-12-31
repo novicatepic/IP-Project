@@ -29,7 +29,7 @@ export class NewJournalEntryComponent {
       exercise : [null, [Validators.required, Validators.maxLength(45)]],
       duration : [null, [Validators.required, Validators.maxLength(45)]],
       intensity : [null, [Validators.required, Validators.maxLength(45)]],
-      weight : [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
+      weight : [null, [Validators.required, Validators.min(10), Validators.max(200)]],
       date : [null, [Validators.required]],
     });
   }

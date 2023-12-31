@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { SingleFitnessProgramService } from '../single-fitness-program/single-fitness-program.service';
 
 @Component({
   selector: 'fitness-program',
@@ -14,7 +15,7 @@ export class FitnessProgramComponent implements OnInit {
   currentPage = 1; // Current page
   pages: number[] = [];
   @ViewChild('filterTextRef') filterTextRef!: ElementRef;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private singleProgramService: SingleFitnessProgramService) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -36,6 +37,13 @@ export class FitnessProgramComponent implements OnInit {
 
     try {
       this.data = await this.http.get<any[]>(url).toPromise();
+      //console.log(this.data);
+      this.data.forEach((entry: any) => {
+        this.singleProgramService.loadPhotos((entry.id)).subscribe((photos) => {
+          entry.photos = photos;
+        })
+      })
+      //this.data.test = ":)";
       console.log(this.data);
       this.filteredData = this.data;  
       await this.updatePages(); // Await the updatePages call

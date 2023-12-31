@@ -2,6 +2,7 @@ package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 
@@ -11,6 +12,7 @@ import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBl
 public class KorisnikPretplacenProgramEntity {
     @NotBlank(message = "korisnikId is mandatory!")
     @Max(value = 1000000, message = "korisnikId value must be less than or equal to 1000000")
+    @Min(value = 1, message = "korisnikId value must be greater than or equal to 1!")
     @Id
     @Column(name = "korisnik_id", nullable = false)
     private Integer korisnikId;
@@ -18,6 +20,7 @@ public class KorisnikPretplacenProgramEntity {
 
     @NotBlank(message = "programId is mandatory!")
     @Max(value = 1000000, message = "programId value must be less than or equal to 1000000")
+    @Min(value = 1, message = "programId value must be greater than or equal to 1!")
     @Id
     @Column(name = "program_id", nullable = false)
     private Integer programId;
@@ -30,6 +33,7 @@ public class KorisnikPretplacenProgramEntity {
 
     @NotBlank(message = "vrijednost is mandatory!")
     @Max(value = 1000000, message = "vrijednost value must be less than or equal to 1000000")
+    @Min(value = 1, message = "vrijednost value must be greater than or equal to 1!")
     @Basic
     @Column(name = "vrijednost", nullable = false)
     private Integer vrijednost;

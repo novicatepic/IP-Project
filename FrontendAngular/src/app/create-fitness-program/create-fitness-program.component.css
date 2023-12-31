@@ -1,3 +1,18 @@
 #maindiv {
-    height: 90vh;
+    /* Default margin-top value for larger screens */
+    margin-top: 50px;
+}
+
+#form {
+    /* Default margin-top value for larger screens */
+    margin-top: 30px;
+    width: 600px;
+}
+
+@media screen and (max-width: 670px) {
+    
+    #form {
+        width: 400px;
+    }
+
 }

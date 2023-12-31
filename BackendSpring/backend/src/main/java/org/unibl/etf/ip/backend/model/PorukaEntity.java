@@ -2,6 +2,7 @@ package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 
@@ -21,12 +22,14 @@ public class PorukaEntity {
 
     @NotBlank(message = "posiljalacId is mandatory!")
     @Max(value = 1000000, message = "posiljalacId value must be less than or equal to 1000000")
+    @Min(value = 1, message = "posiljalacId value must be greater than or equal to 1!")
     @Basic
     @Column(name = "posiljalac_id", nullable = false)
     private Integer posiljalacId;
 
     @NotBlank(message = "primalacId is mandatory!")
     @Max(value = 1000000, message = "primalacId value must be less than or equal to 1000000")
+    @Min(value = 1, message = "primalacId value must be greater than or equal to 1!")
     @Basic
     @Column(name = "primalac_id", nullable = false)
     private Integer primalacId;

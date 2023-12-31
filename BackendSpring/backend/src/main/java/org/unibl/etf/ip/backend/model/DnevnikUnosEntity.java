@@ -2,6 +2,7 @@ package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 
@@ -35,18 +36,21 @@ public class DnevnikUnosEntity {
 
     @NotBlank(message = "kilaza is mandatory!")
     @Max(value = 200, message = "kilaza value must be less than or equal to 200!")
+    @Min(value = 10, message = "kilaza value must be greater than or equal to 10!")
     @Basic
     @Column(name = "kilaza", nullable = false)
     private Integer kilaza;
 
     @NotBlank(message = "dnevnikKorisnikId is mandatory!")
     @Max(value = 1000000, message = "dnevnikKorisnikId value must be less than or equal to 1000000!")
+    @Min(value = 1, message = "dnevnikKorisnikId value must be greater than or equal to 1!")
     @Basic
     @Column(name = "dnevnik_korisnik_id", nullable = false)
     private Integer dnevnikKorisnikId;
 
     @NotBlank(message = "datum is mandatory!")
     @Basic
+    @Temporal(TemporalType.DATE)
     @Column(name = "datum", nullable = false)
     private Date datum;
 

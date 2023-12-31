@@ -5,6 +5,9 @@ import { Chart, Legend, LineController, LineElement, PointElement, Title, Toolti
 import { LinearScale, registerables } from 'chart.js';
 import { SnackBarService } from '../snack-bar/snack-bar.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { JwtTokenService } from '../jwt-token/jwt-token.service';
+import { NewJournalEntryService } from '../new-journal-entry/new-journal-entry.service';
 
 @Component({
   selector: 'app-journal-entries',
@@ -13,14 +16,27 @@ import { Router } from '@angular/router';
 })
 export class JournalEntriesComponent implements OnInit, AfterViewInit {
   data : any = [];
-
+  public firstForm : FormGroup;
+  id: any;
 
   constructor(private http: HttpClient,
      private service: JournalEntriesService, 
      private snackBarService: SnackBarService,
-     private router: Router) {
+     private router: Router, 
+     private jwtService: JwtTokenService,
+     private formBuilder : FormBuilder, 
+     private entryService: NewJournalEntryService,
+     private snackService : SnackBarService) {
     
-    
+      this.firstForm = formBuilder.group({
+        exercise : [null, [Validators.required, Validators.maxLength(45)]],
+        duration : [null, [Validators.required, Validators.maxLength(45)]],
+        intensity : [null, [Validators.required, Validators.maxLength(45)]],
+        weight : [null, [Validators.required, Validators.min(10), Validators.max(200)]],
+        date : [null, [Validators.required]],
+      });
+      var temp = this.jwtService.extractTokenInfo();
+      this.id = temp.id;
   }
   ngAfterViewInit(): void {
     this.loadDataAndCreateChart();
@@ -28,11 +44,21 @@ export class JournalEntriesComponent implements OnInit, AfterViewInit {
 
   async loadDataAndCreateChart(): Promise<void> {
     await this.loadData();
+
+    
+
     this.waitForData();
     this.createChart();
   }
 
   createChart(): void {
+    this.data.sort((a:any, b:any) => {
+      const dateA = new Date(a.datum);
+      const dateB = new Date(b.datum);
+    
+      return dateA.getTime() - dateB.getTime();
+    });
+    this.data.sort((a:any, b:any) => a.datum - b.datum);
     const weightChartCanvas = document.getElementById('weight-chart') as HTMLCanvasElement | null;
 
     if (weightChartCanvas) {
@@ -79,8 +105,10 @@ export class JournalEntriesComponent implements OnInit, AfterViewInit {
     return new Promise((resolve) => {
       this.service.readJournalEntriesForUser().subscribe((data: any) => {
         this.data = data;
+        
         //console.log(this.data);
         resolve(this.data);
+        
       });
     });
   }
@@ -110,5 +138,34 @@ export class JournalEntriesComponent implements OnInit, AfterViewInit {
       console.log(error);
       this.snackBarService.triggerSnackBar("Error deleting journal entry!");
     })
+    }
+
+
+
+  async addJournalEntry() {
+    document.getElementById("btnclose")?.click();
+    await this.delay(1000);
+    if(this.firstForm.valid) {
+      const journalEntry = {
+        vjezba: this.firstForm.get('exercise')?.value,
+        trajanje: this.firstForm.get('duration')?.value,
+        intenzitet: this.firstForm.get('intensity')?.value,
+        kilaza: this.firstForm.get('weight')?.value,
+        dnevnikKorisnikId: this.id,
+        datum: this.firstForm.get('date')?.value
+      }
+
+
+      this.entryService.createJournalEntry(journalEntry).subscribe((data: any) => {
+        this.snackService.triggerSnackBar("Successfully created journal entry, refresh page to see the changes!");
+        
+        this.router.navigate(['/journal-entries']);
+      },
+      error => {
+        console.log(error);
+        this.snackService.triggerSnackBar("Error creating journal entry!");
+      } );
+
+    }
   }
 }

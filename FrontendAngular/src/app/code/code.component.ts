@@ -25,7 +25,7 @@ export class CodeComponent {
      
      {
     this.firstForm = formBuilder.group({
-      code : [null, [Validators.required, Validators.maxLength(5)]]
+      code : [null, [Validators.required, Validators.maxLength(4), Validators.minLength(4)]]
     });
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');

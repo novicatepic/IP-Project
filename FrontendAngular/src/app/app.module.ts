@@ -43,6 +43,8 @@ import { AttendBoughtProgramsComponent } from './attend-bought-programs/attend-b
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CheckUserProfileComponent } from './check-user-profile/check-user-profile.component';
 
+import { BsModalService, BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,7 +89,8 @@ import { CheckUserProfileComponent } from './check-user-profile/check-user-profi
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ModalModule.forRoot()
   ],
   providers: [
     {

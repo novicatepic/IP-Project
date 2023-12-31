@@ -23,10 +23,10 @@ export class ChangeProfileComponent {
      private service: ChangeProfileService,
      private jwtService: JwtTokenService,
      private snackBarService: SnackBarService) {
-      console.log("IN");
+      
       this.jwtService.getUserById().subscribe((data: any) => {
          this.user = data;
-         console.log( "USER="+this.user);
+         //console.log( "USER="+this.user);
       });
       
       this.firstForm = formBuilder.group({
@@ -44,7 +44,9 @@ export class ChangeProfileComponent {
       })
   }
 
-  updatePassword() {
+  async updatePassword() {
+    document.getElementById("btnclose")?.click();
+    await this.delay(1000);
     if(this.passwordForm && this.passwordForm.valid) {
       const pwObject = {
         id: this.user.id, 
@@ -60,9 +62,13 @@ export class ChangeProfileComponent {
           this.snackBarService.triggerSnackBar("Successfully updated password!");
           this.router.navigate(['/profile']);
         },
-        error => console.log(error));
+        error => {this.snackBarService.triggerSnackBar("Error updating password!");});
       }
     }
+  }
+
+  delay(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   changeProfile() {
@@ -80,6 +86,7 @@ export class ChangeProfileComponent {
       }
 
       this.service.updateFitnessUserProfile(fitnessUser).subscribe((data) => {
+        
         this.snackBarService.triggerSnackBar("Successfully updated profile!");
         this.router.navigate(['/profile']);
       },

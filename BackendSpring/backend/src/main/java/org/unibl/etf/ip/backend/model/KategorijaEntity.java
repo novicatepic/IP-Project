@@ -13,11 +13,8 @@ public class KategorijaEntity {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic
-    @Column(name = "naziv", nullable = false, length = 200)
+    @Column(name = "naziv", nullable = false, length = 200, unique = true)
     private String naziv;
-    @Basic
-    @Column(name = "program_id", nullable = false, length = 200)
-    private Integer programId;
 
     @OneToMany(mappedBy = "kategorijaId", cascade = CascadeType.ALL)
     private List<AtributEntity> attributes = new ArrayList<>();
@@ -44,13 +41,5 @@ public class KategorijaEntity {
 
     public void setAttributes(List<AtributEntity> attributes) {
         this.attributes = attributes;
-    }
-
-    public Integer getProgramId() {
-        return programId;
-    }
-
-    public void setProgramId(Integer programId) {
-        this.programId = programId;
     }
 }

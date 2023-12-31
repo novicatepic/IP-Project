@@ -21,8 +21,6 @@ export class CheckCategorySubscriptionsComponent {
       var temp = this.jwtService.extractTokenInfo();
       this.decodedTokenId = temp.id;
 
-      console.log("TOKEN = " + this.decodedTokenId);
-
       this.getSubscribredCategories();
 
   }

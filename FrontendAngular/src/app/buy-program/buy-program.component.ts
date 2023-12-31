@@ -32,7 +32,7 @@ export class BuyProgramComponent {
 
       this.firstForm = formBuilder.group({
         paymentMethod : [null, [Validators.required, Validators.maxLength(100)]],
-        paymentValue : [null, [Validators.required, Validators.pattern("^[0-9]*$")]]
+        paymentValue : [null, [Validators.required, Validators.min(1), Validators.max(1000000)]]
       });
 
   }

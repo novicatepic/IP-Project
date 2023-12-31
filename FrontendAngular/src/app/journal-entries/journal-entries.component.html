@@ -1,7 +1,6 @@
-
 <div class="container">
     <div style="margin-top: 10px;" class="d-flex justify-content-end mb-3">
-        <a routerLink="/new-journal-entry" style="color: white;" type="button" class="btn btn-lg btn-primary mr-2">Add new Journal entry</a>
+        <button class="btn btn-primary btn-lg mr-2" data-bs-toggle="modal" data-bs-target="#enroll">Add New Journal Entry</button>
         <button type="button" class="btn btn-lg btn-primary" (click)="downloadPDF()">Download PDF</button>
     </div>
 </div>
@@ -14,7 +13,6 @@
 <div class="container">
     <div *ngFor="let item of data" style="margin-top: 15px;" class="jumbotron jumbotron-fluid">
         <div class="container">
-            <!-- Delete Button (Moved to the Right) -->
             <button class="btn btn-danger float-right" (click)="deleteEntry(item.id)">Delete Entry</button>
     
             <h1 class="display-4">Journal entry</h1>
@@ -25,3 +23,45 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="enroll" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="enrollLabel">Add New Journal Entry</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="lead">New Journal Entry</p>
+          <form (ngSubmit)="addJournalEntry()" [formGroup]="firstForm">
+            <div class="mb-3">
+                <label for="exercise" class="col-form-label">Exercise</label>
+                <input formControlName="exercise" id="exercise" type="text" class="form-control" placeholder="Exercise...">
+            </div>
+            <div class="mb-3">
+                <label for="duration" class="col-form-label">Duration</label>
+                <input formControlName="duration" id="duration" type="text" class="form-control" placeholder="Duration...">
+            </div>
+            <div class="mb-3">
+                <label for="intensity" class="col-form-label">Intensity</label>
+                <input formControlName="intensity" id="intensity" type="text" class="form-control" placeholder="Intensity...">
+            </div>
+            <div class="mb-3">
+                <label for="weight" class="col-form-label">Weight</label>
+                <input formControlName="weight" id="weight" type="text" class="form-control" placeholder="Weight...">
+            </div>
+            <div class="mb-3">
+                <label for="date" class="col-form-label">Date</label>
+                <input formControlName="date" id="intensity" type="date" class="form-control" placeholder="Date...">
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button id="btnclose" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+            
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>

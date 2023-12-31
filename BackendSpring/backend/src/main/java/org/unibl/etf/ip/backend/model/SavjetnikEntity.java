@@ -12,7 +12,7 @@ public class SavjetnikEntity {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic
-    @Column(name = "korisnicko_ime", nullable = false, length = 45)
+    @Column(name = "korisnicko_ime", nullable = false, length = 45, unique = true)
     private String korisnickoIme;
     @Basic
     @Column(name = "lozinka", nullable = false, length = 45)

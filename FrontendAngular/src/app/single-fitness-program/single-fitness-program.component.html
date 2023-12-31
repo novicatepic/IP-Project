@@ -1,53 +1,89 @@
 
 
-<div class=" container jumbotron" style="margin-top: 10px;">
-    <h1 class="display-4">{{data.naziv}}</h1>
+<div class="container jumbotron" style="margin-top: 10px;">
+    <h1 class="display-4 text-center"><b>Fitness program info</b></h1>
+    <h2 class="display-4">{{data.naziv}}</h2>
     <p class="lead">Description: {{data.opis}}</p>
     <hr class="my-4">
     <p>Price: {{ data.cijena }}</p>
-    <p>Created by: {{ data.kreator.korisnickoIme }}</p>
+    <p *ngIf="data.tezina == 0">Difficulty: Easy</p>
+    <p *ngIf="data.tezina == 1">Difficulty: Medium</p>
+    <p *ngIf="data.tezina == 2">Difficulty: Hard</p>
+    <p>Duration (in days): {{ data.trajanje }}</p>
+    <p>Date starting: {{ data.datum }}</p>
+    <hr class="my-4 bg-dark">
+    <p>Category: {{ data.kategorija.naziv }}</p>
+    <div *ngFor="let attribute of data.kategorija.attributes">
+      <div class="row mb-2">
+        <div class="col-md-6">
+          Attribute name: {{ attribute.naziv }}
+        </div>
+        <div class="col-md-6">
+          Attribute value: {{ attribute.vrijednost }}
+        </div>
+      </div>
+    </div>
+    <hr class="my-4 bg-dark">
+    <p>Location: {{ data.nazivLokacije }}</p>
     <p>Contact: {{ data.kontakt }}</p>
-    <p>Duration: {{ data.trajanje }}</p>
-    <p>Difficulty: {{ data.tezina }}</p>
+    <p>Created by: <a routerLink="/profile/{{data.kreator.korisnickoIme}}">{{ data.kreator.korisnickoIme }}</a></p>
+    <h1 class="display-4 text-center"><b>Instructor info</b></h1>
+    <p>First Name: {{ data.instruktorIme }}</p>
+    <p>Last Name: {{ data.instruktorPrezime }}</p>
+    <p>Years of Experience: {{ data.godineIskustva }}</p>
   </div>
 
 
   <div class="container">
     <a *ngIf="this.userId" routerLink="/questions/new-question/{{id}}" class="btn btn-primary">Ask a question</a>
   
-    <p class="lead">Questions:</p>
+    <p class="lead text-center"><b>Questions and Comments</b></p>
     <div *ngFor="let question of questions">
       <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <div class="d-flex align-items-center">
-              <span class="mr-2">
-                  <!-- Assuming you have an avatar URL in question.user.avatar -->
-                  <!--img *ngIf="question.user.avatar" src="{{ question.user.avatar }}" alt="User Avatar" class="rounded-circle" style="width: 50px; height: 50px;"-->
-              </span>
-              Question: {{ question.tekst }} by user &nbsp; <a routerLink="/profile/{{question.user.korisnickoIme}}"> {{ question.user.korisnickoIme }}</a> 
-          </div>
-          <div class="row">
-              <form *ngIf="this.userId" (ngSubmit)="addComment(question.id)">
-                  <input type="text" name="comment" id="{{question.id}}" class="mr-2">
-                  <button type="submit" class="btn btn-primary mr-2">Get yourself into conversation</button>
+        <li class="list-group-item">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              Question: {{ question.tekst }} by user &nbsp;
+              <a routerLink="/profile/{{ question.user.korisnickoIme }}">{{ question.user.korisnickoIme }}</a>
+            </div>
+            <div class="d-flex align-items-center">
+              <form *ngIf="this.userId" (ngSubmit)="addComment(question.id)" class="w-100">
+                <input type="text" name="comment" id="{{ question.id }}" class="w-100 form-control">
+                <button type="submit" class="w-100 mt-1 btn btn-primary">Get into conversation</button>
               </form>
+            </div>
           </div>
-      </li>
+        </li>
+    
         <ul *ngIf="question.odgovori.length > 0" class="list-group-item">
-          <li *ngFor="let answer of question.odgovori" class=" list-group-item d-flex justify-content-between align-items-center">
-            Comment: {{ answer.odgovor }} &nbsp; <a routerLink="/profile/{{question.user.korisnickoIme}}"> {{ answer.korisnik.korisnickoIme }}</a> 
+          <li *ngFor="let answer of question.odgovori" class="list-group-item">
+            Comment: {{ answer.odgovor }} &nbsp;
+            <a routerLink="/profile/{{ question.user.korisnickoIme }}">{{ answer.korisnik.korisnickoIme }}</a>
           </li>
-
         </ul>
+    
         <li *ngIf="question.odgovor == 0" class="list-group-item">No answer for this question yet!</li>
       </ul>
     </div>
     
+    
+    
     <div class="image-gallery">
-      <div *ngFor="let url of photoUrls" class="image-item">
+      <div *ngFor="let url of photoUrls" class="image-item" (click)="openModal(modalTemplate, url)">
         <img [src]="url" alt="Image">
       </div>
     </div>
+    
+    <!-- Modal template -->
+    <ng-template #modalTemplate>
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+            <img [src]="selectedImageUrl" alt="Full Image">
+          </div>
+        </div>
+      </div>
+    </ng-template>
 
   
     <div class="modal fade" id="purchaseModal" tabindex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">

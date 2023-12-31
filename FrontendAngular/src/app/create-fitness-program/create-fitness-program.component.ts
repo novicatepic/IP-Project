@@ -35,14 +35,17 @@ export class CreateFitnessProgramComponent {
     this.firstForm = formBuilder.group({
       name : [null, [Validators.required, Validators.maxLength(200)]],
       description : [null, [Validators.required, Validators.maxLength(2000)]],
-      price : [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
-      difficulty : [null, [Validators.required, Validators.maxLength(100)]],
-      duration : [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
+      price : [null, [Validators.required, Validators.min(1), Validators.max(1000000)]],
+      difficulty : [null, [Validators.required]],
+      duration : [null, [Validators.required, Validators.min(1), Validators.max(1000)]],
       location : [null, [Validators.required, Validators.maxLength(200)]],
       contact : [null, [Validators.required, Validators.maxLength(45)]],
       date : [null, [Validators.required]],
-      select : [null, [Validators.required, Validators.maxLength(45)]],
-      ytlink : [null, [Validators.required, Validators.maxLength(200)]]
+      category : [null, [Validators.required, Validators.maxLength(45)]],
+      ytlink : [null, [Validators.required, Validators.maxLength(200)]],
+      instructorFirstName : [null, [Validators.required, Validators.maxLength(45)]],
+      instructorLastName : [null, [Validators.required, Validators.maxLength(45)]],
+      instructorExperience : [null, [Validators.required, Validators.min(1), Validators.max(40)]],
     });
   }
 
@@ -59,9 +62,13 @@ export class CreateFitnessProgramComponent {
         datum: this.firstForm.get('date')?.value,
         kreatorId: this.user.id,
         ucestvovan: false,
-        kategorijaId: this.firstForm.get('select')?.value,
+        kategorijaId: this.firstForm.get('category')?.value,
         nazivLokacije: this.firstForm.get('location')?.value,
-        porukaLokacije: this.firstForm.get('ytlink')?.value
+        porukaLokacije: this.firstForm.get('ytlink')?.value,
+        instruktorIme: this.firstForm.get('instructorFirstName')?.value,
+        instruktorPrezime: this.firstForm.get('instructorLastName')?.value,
+        godineIskustva: this.firstForm.get('instructorExperience')?.value,
+        datumKreiranja: new Date()
       }
 
 

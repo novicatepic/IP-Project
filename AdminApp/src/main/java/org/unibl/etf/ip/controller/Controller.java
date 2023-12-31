@@ -59,10 +59,6 @@ public class Controller extends HttpServlet {
 		AdminBean bean = (AdminBean)ses.getAttribute("admin");
 		
 		if(bean != null) {
-			System.out.println("Bean != null");
-		}
-		
-		if(bean != null) {
 			if(action == null || "".equals(action)) {
 				address = "/WEB-INF/login.jsp";
 			} else if("start".equals(action)) {

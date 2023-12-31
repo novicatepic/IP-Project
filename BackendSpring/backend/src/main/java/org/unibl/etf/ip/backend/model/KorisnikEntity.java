@@ -44,7 +44,7 @@ public class KorisnikEntity implements UserDetails {
     @NotBlank(message = "korisnickoIme is mandatory!")
     @Size(max = 45, message = "Maximum character size for korisnickoIme is 45!")
     @Basic
-    @Column(name = "korisnicko_ime", nullable = false, length = 45)
+    @Column(name = "korisnicko_ime", nullable = false, length = 45, unique = true)
     private String korisnickoIme;
 
     @NotBlank(message = "lozinka is mandatory!")
@@ -62,7 +62,7 @@ public class KorisnikEntity implements UserDetails {
     @Email
     @Size(max = 200, message = "Maximum character size for mail is 200!")
     @Basic
-    @Column(name = "mail", nullable = false, length = 200)
+    @Column(name = "mail", nullable = false, length = 200, unique = true)
     private String mail;
 
     @NotBlank(message = "aktivan is mandatory!")

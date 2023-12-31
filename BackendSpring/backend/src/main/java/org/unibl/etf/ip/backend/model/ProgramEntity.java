@@ -3,6 +3,7 @@ package org.unibl.etf.ip.backend.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,29 +26,32 @@ public class ProgramEntity implements Serializable {
     @NotBlank(message = "naziv is mandatory!")
     @Size(max = 200, message = "Maximum character size for naziv is 200!")
     @Basic
-    @Column(name = "naziv", nullable = false, length = 200)
+    @Column(name = "naziv", nullable = false, length = 200, unique = true)
     private String naziv;
 
     @NotBlank(message = "naziv is mandatory!")
-    @Size(max = 2000, message = "Maximum character size for opis is 200!")
+    @Size(max = 2000, message = "Maximum character size for opis is 2000!")
     @Basic
     @Column(name = "opis", nullable = false, length = 2000)
     private String opis;
 
     @NotBlank(message = "cijena is mandatory!")
     @Max(value = 1000000, message = "cijena value must be less than or equal to 1000000")
+    @Min(value = 1, message = "cijena value must be greater than or equal to 1!")
     @Basic
     @Column(name = "cijena", nullable = false, precision = 0)
     private Integer cijena;
 
     @NotBlank(message = "tezina is mandatory!")
     @Max(value = 2, message = "tezina value must be less than or equal to 2")
+    @Min(value = 0, message = "tezina value must be greater than or equal to 0!")
     @Basic
     @Column(name = "tezina", nullable = false)
     private Integer tezina;
 
     @NotBlank(message = "trajanje is mandatory!")
     @Max(value = 1000, message = "trajanje value must be less than or equal to 1000")
+    @Min(value = 1, message = "trajanje value must be greater than or equal to 1!")
     @Basic
     @Column(name = "trajanje", nullable = false)
     private Integer trajanje;
@@ -84,15 +88,43 @@ public class ProgramEntity implements Serializable {
 
     @NotBlank(message = "kreatorId is mandatory!")
     @Max(value = 1000000, message = "kreatorId value must be less than or equal to 1000000")
+    @Min(value = 1, message = "kreatorId value must be greater than or equal to 1!")
     @Basic
     @Column(name = "kreator_id", nullable = false)
     private Integer kreatorId;
 
     @NotBlank(message = "kategorijaId is mandatory!")
     @Max(value = 1000000, message = "kategorijaId value must be less than or equal to 1000000")
+    @Min(value = 1, message = "kategorijaId value must be greater than or equal to 1!")
     @Basic
     @Column(name = "kategorija_id", nullable = false)
     private Integer kategorijaId;
+
+    @NotBlank(message = "instructorFirstName is mandatory!")
+    @Size(max = 45, message = "Maximum character size for instructorFirstName is 45!")
+    @Basic
+    @Column(name = "instruktor_ime", nullable = false, length = 45)
+    private String instruktorIme;
+
+    @NotBlank(message = "instructorLastName is mandatory!")
+    @Size(max = 45, message = "Maximum character size for instructorLastName is 45!")
+    @Basic
+    @Column(name = "instruktor_prezime", nullable = false, length = 45)
+    private String instruktorPrezime;
+
+    @NotBlank(message = "godineIskustva is mandatory!")
+    @Max(value = 40, message = "godineIskustva value must be less than or equal to 40")
+    @Min(value = 1, message = "godineIskustva value must be greater than or equal to 1!")
+    @Basic
+    @Column(name = "godine_iskustva", nullable = false)
+    private Integer godineIskustva;
+
+    @NotBlank(message = "datumKreiranja is mandatory!")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Basic
+    @Column(name = "datum_kreiranja", nullable = false)
+    private Date datumKreiranja;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "kreator_id", nullable = false, insertable = false, updatable = false)
@@ -172,14 +204,6 @@ public class ProgramEntity implements Serializable {
         this.trajanje = trajanje;
     }
 
-    /*public String getLokacija() {
-        return lokacija;
-    }
-
-    public void setLokacija(String lokacija) {
-        this.lokacija = lokacija;
-    }*/
-
     public String getKontakt() {
         return kontakt;
     }
@@ -233,14 +257,6 @@ public class ProgramEntity implements Serializable {
         this.pictures = pictures;
     }
 
-    /*public List<KategorijaProgramEntity> getKategorijaProgramEntities() {
-        return kategorijaProgramEntities;
-    }
-
-    public void setKategorijaProgramEntities(List<KategorijaProgramEntity> kategorijaProgramEntities) {
-        this.kategorijaProgramEntities = kategorijaProgramEntities;
-    }*/
-
     public KategorijaEntity getKategorija() {
         return kategorija;
     }
@@ -265,19 +281,35 @@ public class ProgramEntity implements Serializable {
         this.programQuestions = programQuestions;
     }
 
-    /*public List<LokacijaEntity> getLokacije() {
-        return lokacije;
+    public String getInstruktorIme() {
+        return instruktorIme;
     }
 
-    public void setLokacije(List<LokacijaEntity> lokacije) {
-        this.lokacije = lokacije;
-    }*/
-
-    /*public LokacijaEntity getLokacija() {
-        return lokacija;
+    public void setInstruktorIme(String instruktorIme) {
+        this.instruktorIme = instruktorIme;
     }
 
-    public void setLokacija(LokacijaEntity lokacija) {
-        this.lokacija = lokacija;
-    }*/
+    public String getInstruktorPrezime() {
+        return instruktorPrezime;
+    }
+
+    public void setInstruktorPrezime(String instruktorPrezime) {
+        this.instruktorPrezime = instruktorPrezime;
+    }
+
+    public Integer getGodineIskustva() {
+        return godineIskustva;
+    }
+
+    public void setGodineIskustva(Integer godineIskustva) {
+        this.godineIskustva = godineIskustva;
+    }
+
+    public Date getDatumKreiranja() {
+        return datumKreiranja;
+    }
+
+    public void setDatumKreiranja(Date datumKreiranja) {
+        this.datumKreiranja = datumKreiranja;
+    }
 }

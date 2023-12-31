@@ -1,24 +1,28 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
 import { SingleFitnessProgramService } from './single-fitness-program.service';
 import { SnackBarService } from '../snack-bar/snack-bar.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
 
 @Component({
   selector: 'single-fitness-program',
   templateUrl: './single-fitness-program.component.html',
   styleUrl: './single-fitness-program.component.css'
 })
-export class SingleFitnessProgramComponent implements OnInit {
+export class SingleFitnessProgramComponent {
 
   data: any;
   questions: any[] = [];
   id: any;
   userId: any;
   photoUrls: string[] = [];
-  imageUrl = '/static/uploads/12/image1.jpg';
+
+  modalRef: BsModalRef | undefined;
+  selectedImageUrl: string | undefined;
 
   constructor(
     private http: HttpClient, 
@@ -27,7 +31,8 @@ export class SingleFitnessProgramComponent implements OnInit {
     private location: Location, 
     private jwtService: JwtTokenService,
     private service: SingleFitnessProgramService,
-    private snackService: SnackBarService) {
+    private snackService: SnackBarService,
+    private modalService: BsModalService) {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
     });
@@ -40,15 +45,17 @@ export class SingleFitnessProgramComponent implements OnInit {
     this.loadQuestions();
     this.loadPhotos();
   }
-  ngOnInit(): void {
-    
+  
+  openModal(template: TemplateRef<any>, imageUrl: string) {
+    this.selectedImageUrl = imageUrl;
+    this.modalRef = this.modalService.show(template);
   }
 
   loadData() {
     const url = `http://localhost:4040/fitness-programs/${this.id}`;
     this.http.get<any>(url).subscribe(data => {
       this.data = data;
-      //console.log(this.data);
+      console.log(this.data.kategorija.attributes);
     });
   }
 

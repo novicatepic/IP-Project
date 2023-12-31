@@ -1,54 +1,86 @@
-<div style="margin-top: 120px;" id="maindiv" class="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
-    <form [formGroup]="firstForm" (ngSubmit)="createFitnessProgram()" class="text-center">
-        <div class="form-group">
-            <label for="name">Name*</label>
-            <input formControlName="name" type="text" required="required" class="text-center form-control" id="name" placeholder="Enter name">
-        </div>
-        <div class="form-group">
-            <label for="description">Description*</label>
-            <textarea rows="5" formControlName="description" required="required" class="text-center form-control" id="description" placeholder="Enter description"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="price">Price (in euro)*</label>
-            <input formControlName="price" type="number" required="required" class="text-center form-control" id="price" placeholder="Enter price">
-        </div>
-        <div class="form-group">
-            <label for="difficulty">Difficulty*</label>
-            <select name="difficulty" id="difficulty" formControlName="difficulty" class="text-center form-control">
-                <option value="1">Easy</option>
-                <option value="2">Medium</option>
-                <option value="3">Hard</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="duration">Duration*</label>
-            <input formControlName="duration" type="text" required="required" class="text-center form-control" id="duration">
-        </div>
-        <div class="form-group">
-            <label for="location">Location*</label>
-            <select formControlName="location" name="location" required class="text-center form-control">
-                <option value="Live">Live</option>
-                <option value="Link">Youtube link</option>
-            </select>
-            <div class="form-group">
-                <label for="ytlink">Value (link or message)*</label>
-                <input formControlName="ytlink" type="text" class="text-center form-control" id="ytlink" placeholder="Enter youtube link">
+<div id="maindiv" class="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
+    <form id="form"  [formGroup]="firstForm" (ngSubmit)="createFitnessProgram()" class="text-center mt-sm-0">
+        <p class="lead text-center"><b>Fitness program info</b></p>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="name">Name*</label>
+                <input formControlName="name" type="text" required="required" class="text-center form-control" id="name" placeholder="Enter name">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="description">Description*</label>
+                <textarea rows="5" formControlName="description" required="required" class="text-center form-control" id="description" placeholder="Enter description"></textarea>
             </div>
         </div>
-        <div class="form-group">
-            <label for="contact">Contact*</label>
-            <input formControlName="contact" type="text" required="required" class="text-center form-control" id="contact" placeholder="Enter contact info">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="price">Price* (in euro)</label>
+                <input formControlName="price" type="number" required="required" class="text-center form-control" id="price" placeholder="Enter price">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="difficulty">Difficulty*</label>
+                <select name="difficulty" id="difficulty" formControlName="difficulty" class="text-center form-control">
+                    <option value="1">Easy</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Hard</option>
+                </select>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="date">Date*</label>
-            <input formControlName="date" type="date" required="required" class="text-center form-control" id="date" placeholder="Enter date">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="duration">Duration* (number of days)</label>
+                <input formControlName="duration" type="text" required="required" class="text-center form-control" id="duration">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="location">Location*</label>
+                <select formControlName="location" name="location" required class="text-center form-control">
+                    <option value="Live">Live</option>
+                    <option value="Link">Youtube link</option>
+                </select>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="date">Category*</label>
-            <select formControlName="select" name="text-center select" required class="form-control">
-                <option *ngFor="let cat of categories" value="{{cat.id}}">{{ cat.naziv }}</option>
-            </select>
+        
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="ytlink">Value (link or message)*</label>
+                <input formControlName="ytlink" type="text" class="text-center form-control" id="ytlink" placeholder="Enter link or message">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="contact">Contact*</label>
+                <input formControlName="contact" type="text" required="required" class="text-center form-control" id="contact" placeholder="Enter contact info">
+            </div>
         </div>
+        
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="date">Date*</label>
+                <input formControlName="date" type="date" required="required" class="text-center form-control" id="date" placeholder="Enter date">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="category">Category*</label>
+                <select formControlName="category" name="category" required class="text-center form-control">
+                    <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.naziv }}</option>
+                </select>
+            </div>
+        </div>
+        <hr class="my-4 bg-primary">
+        <p class="lead text-center"><b>Instructor info</b></p>
+        <div class="form-row">
+           
+            <div class="form-group col-md-4">
+                <label for="instructorFirstName">First name*</label>
+                <input formControlName="instructorFirstName" type="text" required="required" class="text-center form-control" id="instructorFirstName" placeholder="Enter first name">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="instructorLastName">Last name*</label>
+                <input formControlName="instructorLastName" type="text" required="required" class="text-center form-control" id="instructorLastName" placeholder="Enter last name">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="instructorExperience">Experience years*</label>
+                <input formControlName="instructorExperience" type="number" min="1" max="40" required="required" class="text-center form-control" id="instructorExperience" placeholder="Experience">
+            </div>
+        </div>
+        
         <button [disabled]="firstForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+
     </form>
 </div>
