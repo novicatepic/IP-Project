@@ -14,9 +14,8 @@ import org.unibl.etf.ip.backend.model.ProgramEntity;
 import org.unibl.etf.ip.backend.repository.FitnessProgramRepository;
 import org.unibl.etf.ip.backend.repository.ProgramSubscribeRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class FitnessProgramService {
@@ -31,6 +30,24 @@ public class FitnessProgramService {
 
     public List<ProgramEntity> getPrograms() {
         return repository.findAll();
+    }
+
+    public List<ProgramEntity> getProgramsFromLastDay(int categoryId) {
+        List<ProgramEntity> allPrograms = repository.findAll();
+
+        // Get the current date
+        Date currentDate = new Date();
+
+        // Use Calendar to subtract seven days from the current date
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        calendar.add(Calendar.DAY_OF_YEAR, -1);
+        Date sevenDaysAgo = calendar.getTime();
+
+        // Filter programs created in the last seven days
+        return allPrograms.stream()
+                .filter(program -> program.getDatumKreiranja().after(sevenDaysAgo) && program.getKategorijaId() == categoryId)
+                .collect(Collectors.toList());
     }
 
     public List<ProgramEntity> getMyPrograms(Integer id) {

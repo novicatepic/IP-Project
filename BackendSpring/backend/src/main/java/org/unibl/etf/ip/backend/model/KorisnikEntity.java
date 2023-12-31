@@ -70,6 +70,14 @@ public class KorisnikEntity implements UserDetails {
     @Column(name = "aktivan", nullable = false)
     private Boolean aktivan;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "korisnik_pretplacen_kategorija",
+            joinColumns = @JoinColumn(name = "korisnik_id"),
+            inverseJoinColumns = @JoinColumn(name = "kategorija_id")
+    )
+    private List<KategorijaEntity> subscribedCategories;
+
 
     public Integer getId() {
         return id;
@@ -160,6 +168,14 @@ public class KorisnikEntity implements UserDetails {
 
     public Boolean getAktivan() {
         return aktivan;
+    }
+
+    public List<KategorijaEntity> getSubscribedCategories() {
+        return subscribedCategories;
+    }
+
+    public void setSubscribedCategories(List<KategorijaEntity> subscribedCategories) {
+        this.subscribedCategories = subscribedCategories;
     }
 
     @Override
