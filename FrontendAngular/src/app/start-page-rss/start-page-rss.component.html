@@ -1,6 +1,7 @@
 
 <div class="container">
-  <div *ngFor="let item of data" style="margin-top: 10px;" class="jumbotron jumbotron-fluid">
+  <h1 style="margin-top: 10px;" class="text-center mb-4">RSS News</h1>
+  <div *ngFor="let item of data"  class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">{{item.title}}</h1>
       <p class="lead">{{item.description}}</p>

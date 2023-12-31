@@ -1,10 +1,11 @@
 
 <div class="container" style="margin-top: 10px;">
+  <h1 class="text-center mb-4">Message Check</h1>
   <div class="jumbotron">
-    <h1 class="display-4">Sender: {{data.posiljalac.korisnickoIme}}</h1>
+    <h2 class="display-4">Sender: {{data.posiljalac.korisnickoIme}}</h2>
     <p class="lead">NOTE: This message will be marked as read only if you answer to it!</p>
     <hr class="my-4">
-    <p>{{data.tekst}}</p>
+    <p class="lead"><b>Message text: {{data.tekst}}</b></p>
 
     <div *ngIf="!data.procitana" class="container">
       <form (ngSubmit)="respondToMessage()" [formGroup]="firstForm">

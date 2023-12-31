@@ -1,6 +1,8 @@
 
 <div id="maindiv" class="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
+  
   <form [formGroup]="firstForm" (ngSubmit)="sendMessage()" style="margin-top: 120px;">
+    <h1 class="text-center mb-4">Message Consultant</h1>
       <div class="form-group text-center">
           <label for="title">Title*</label>
           <input formControlName="title" type="text" required="required" class="form-control mx-auto" id="title" placeholder="Enter title...">

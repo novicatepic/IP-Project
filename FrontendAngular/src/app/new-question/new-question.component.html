@@ -1,10 +1,11 @@
-<div style="margin-top: 50px;" id="maindiv" class="d-flex flex-column align-items-center justify-content-center">
-    <form [formGroup]="firstForm" (ngSubmit)="postQuestion()">
-      <div class="form-group">
-        <label for="question">New Question</label>
-        <input formControlName="question" type="text" class="form-control" id="question" placeholder="Question">
-      </div>
-  
-      <input [disabled]="firstForm.invalid" type="submit" class="btn btn-primary" value="Submit"/>
-    </form>
-  </div>
+<div style="margin-top: 20px;" id="maindiv" class="d-flex flex-column align-items-center justify-content-center">
+  <h2 class="text-center mb-4">New Question</h2>
+  <form [formGroup]="firstForm" (ngSubmit)="postQuestion()" class="text-center">
+    <div class="form-group">
+      <label for="question">Input</label>
+      <input formControlName="question" type="text" class="text-center form-control" id="question" placeholder="Question">
+    </div>
+
+    <input [disabled]="firstForm.invalid" type="submit" class="btn btn-primary" value="Submit"/>
+  </form>
+</div>

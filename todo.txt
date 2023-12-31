@@ -1,7 +1,3 @@
-4) mejl svaki dan!
-
-6) dodati info o tome da li je login screen itd. ?
-
 
 
 logger (create program, unsubscribed, subscribed to category, tried to register, post journal entry)

@@ -10,15 +10,20 @@
     <a mat-list-item routerLink="/ninja">Ninja API News</a>
   </mat-nav-list>
   <mat-nav-list *ngIf="this.loggedIn">
-    <a mat-list-item routerLink="/">Home</a>
     <a mat-list-item routerLink="/profile">Profile</a>
     <a mat-list-item routerLink="/journal-entries">Journal</a>
     <a routerLink="/" mat-list-item (click)="logout()">Logout</a>
   </mat-nav-list>
   <span *ngIf="this.loggedIn">
+    <a mat-button [matMenuTriggerFor]="news">News</a>
+    <mat-menu #news="matMenu" class="full-width-menu">
+      <a mat-menu-item routerLink="/">Home</a>
+      <a mat-menu-item routerLink="/ninja">Ninja API News</a>
+    </mat-menu>
     <a mat-button [matMenuTriggerFor]="phoneDropdown">Fitness programs</a>
     <mat-menu #phoneDropdown="matMenu" class="full-width-menu">
       <a mat-menu-item routerLink="/fitness-programs">All fitness programs</a>
+      <a mat-menu-item routerLink="/create-fitness-program">Create fitness program</a>
       <a mat-menu-item routerLink="/my-fitness-programs">My fitness programs</a>
       <a mat-menu-item routerLink="/past-program-participations">Past Program Participations</a>
       <a mat-menu-item routerLink="/unparticipated">Unparticipated programs</a>
@@ -49,9 +54,22 @@
       <span class="spacer"></span>
 
       <span *ngIf="this.loggedIn" class="right-links">
-        <a routerLink="/">Home</a>
+        <span class="dropdown-text" *ngIf="!(isHandset$ | async)">
+          News
+        </span>
+        <!-- Show dropdown only on larger screens -->
+        <button mat-icon-button *ngIf="!(isHandset$ | async)" [matMenuTriggerFor]="newsMenu" aria-label="My Dropdown Menu">
+          <mat-icon class="dropdown-icon" aria-label="Dropdown menu icon">arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #newsMenu="matMenu">
+          <a mat-menu-item routerLink="/">Home</a>
+          <a mat-menu-item routerLink="/ninja">Ninja API News</a>
+        </mat-menu>
         <a routerLink="/profile">Profile</a>
         <a routerLink="/journal-entries">Journal</a>
+
+        
+
         <!-- Text near the dropdown menu -->
         <span class="dropdown-text" *ngIf="!(isHandset$ | async)">
           Fitness programs
@@ -62,6 +80,7 @@
         </button>
         <mat-menu #myDropdownMenu="matMenu">
           <a mat-menu-item routerLink="/fitness-programs">All fitness programs</a>
+          <a mat-menu-item routerLink="/create-fitness-program">Create fitness program</a>
           <a mat-menu-item routerLink="/my-fitness-programs">My fitness programs</a>
           <a mat-menu-item routerLink="/past-program-participations">Past Program Participations</a>
           <a mat-menu-item routerLink="/unparticipated">Unparticipated programs</a>

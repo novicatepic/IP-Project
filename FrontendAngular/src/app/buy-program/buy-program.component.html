@@ -1,5 +1,5 @@
 <p style="margin-top: 10px;" class="lead" *ngIf="this.message != null">{{message}}</p>
-
+<h1 class="text-center mb-4">Unparticipated Upcoming Fitness Programs</h1>
 <div class="container" style="margin-top: 10px;">
   <div class="list-group" >
     <div *ngFor="let item of data" style="z-index: 0;" class="mb-3 list-group-item list-group-item-action flex-column align-items-start active">
@@ -8,7 +8,8 @@
         <small>Date: {{item.datum}}</small>
       </div>
       <p class="mb-1">Description: {{ item.opis }}</p>
-      <div><small>Price: {{ item.cijena }} E</small></div>
+      <a class="mb-1" style="color: white;" routerLink="/fitness-programs/{{item.id}}">Learn more -> Click on this link</a>
+      <div><small>Price: {{ item.cijena }} EURO</small></div>
       <button (click)="showPart(item)" class="btn btn-success">Buy Program</button>
       <form [formGroup]="firstForm" (ngSubmit)="buyProgram()" *ngIf="selectedItem && selectedItem.id === item.id">
         <select formControlName="paymentMethod" class="mt-5 form-select">

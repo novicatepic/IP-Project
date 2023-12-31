@@ -1,5 +1,6 @@
 <div class="container" style="margin-top: 10px;">
-  <div *ngFor="let message of data" class="jumbotron jumbotron-fluid">
+  <h1 class="text-center mb-4">New Messages</h1>
+  <div *ngFor="let message of data" class="mb-3 jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">Sender : {{message.posiljalac.korisnickoIme}}</h1>
       <p class="lead">Message: {{ message.tekst }}</p>

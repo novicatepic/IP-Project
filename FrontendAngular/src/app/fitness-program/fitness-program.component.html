@@ -1,4 +1,5 @@
 <div class="container">
+  <h1 class="text-center mb-4">Fitness Programs</h1>
   <form (ngSubmit)="filter()">
     <div class="form-group">
       <label for="nameFilter">Search by name</label>
@@ -28,8 +29,8 @@
           <p class="card-text">Description: {{ program.opis }}</p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Created by: {{ program.kreator.korisnickoIme }}</li>
-          <li class="list-group-item">Price: {{ program.cijena }}</li>
+          <li class="list-group-item">Created by: <a target="_blank" routerLink="/profile/{{program.kreator.korisnickoIme}}">{{ program.kreator.korisnickoIme }}</a></li>
+          <li class="list-group-item">Price: {{ program.cijena }} EURO</li>
           <li *ngIf="program.tezina==0" class="list-group-item">Difficulty: Easy</li>
           <li *ngIf="program.tezina==1" class="list-group-item">Difficulty: Medium</li>
           <li *ngIf="program.tezina==2" class="list-group-item">Difficulty: Hard</li>

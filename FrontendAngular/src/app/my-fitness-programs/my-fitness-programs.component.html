@@ -1,4 +1,5 @@
 <div class="container">
+  <h1 class="text-center mb-4">Created Fitness Programs</h1>
   <div class="list-group" style="margin-top: 10px; position: relative;">
 
     <!-- Create New Program Button -->
@@ -8,7 +9,7 @@
       <div class="list-group-item list-group-item-action flex-column align-items-start active position-relative" style="z-index: 0;">
         <!-- Program Details -->
         <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">Name : {{item.naziv}}</h5>
+          <h5 class="mb-1">Name: {{item.naziv}}</h5>
           <small>Date: {{item.datum}}</small>
         </div>
         <p class="mb-1">Description: {{ item.opis }}</p>
@@ -18,13 +19,15 @@
         <p class="mb-1">Duration (in minutes): {{ item.trajanje }}</p>
         <p class="mb-1">Active: {{ item.aktivan }}</p>
         <p class="mb-1">Location: {{ item.nazivLokacije }}</p>
+        <a class="mb-1" style="color: white;" routerLink="/fitness-programs/{{item.id}}">Learn more -> Click on this link</a>
         <div><small>Price (in euro): {{ item.cijena }}</small></div>
         <button (click)="deleteProgram(item.id)" class="btn btn-danger mt-2">Delete program</button>
         
         <!-- Responsive "Add Photo" button -->
-        <a routerLink="/upload-photo/{{item.id}}" class="btn btn-success d-none d-md-block position-absolute top-0 end-0 m-3 mt-2" style="z-index: 2;">Add Photo</a>
+        <a routerLink="/upload-photo/{{item.id}}" class="btn btn-success position-absolute top-0 end-0 m-3 mt-2" style="z-index: 2;">Add Photo</a>
       </div>
     </div>
   </div>
 </div>
+
 
