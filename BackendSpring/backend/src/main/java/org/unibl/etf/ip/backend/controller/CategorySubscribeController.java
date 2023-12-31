@@ -1,5 +1,6 @@
 package org.unibl.etf.ip.backend.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +44,7 @@ public class CategorySubscribeController {
     }
 
     @PostMapping("/subscribe")
-    public ResponseEntity<KorisnikPretplacenKategorijaEntity> subscribeToCategory(@RequestBody KorisnikPretplacenKategorijaEntity subscription) {
+    public ResponseEntity<KorisnikPretplacenKategorijaEntity> subscribeToCategory(@Valid @RequestBody KorisnikPretplacenKategorijaEntity subscription) {
         Integer userId = subscription.getKorisnikId();
 
         if(!UserLoginHelp.checkUserValidity(userId)) {

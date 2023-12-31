@@ -1,5 +1,6 @@
 package org.unibl.etf.ip.backend.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,18 +41,18 @@ public class FitnessUserController {
     }
 
     @PostMapping
-    public ResponseEntity<KorisnikEntity> createFitnessUser(@RequestBody KorisnikEntity fitnessUser) {
+    public ResponseEntity<KorisnikEntity> createFitnessUser(@Valid @RequestBody KorisnikEntity fitnessUser) {
         return new ResponseEntity<>(service.createFitnessUser(fitnessUser), HttpStatus.OK);
     }
 
     @PostMapping("/input-code/{userId}")
-    public ResponseEntity<JwtAuthResponse> inputCode(@PathVariable("userId") Integer userId, @RequestBody CodeModel code) throws NotFoundException {
+    public ResponseEntity<JwtAuthResponse> inputCode(@Valid @PathVariable("userId") Integer userId, @RequestBody CodeModel code) throws NotFoundException {
 
         return new ResponseEntity<>(service.userInsertCode(userId, code.getCode()), HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<KorisnikEntity> updateFitnessUser(@RequestBody KorisnikEntity fitnessUser) throws UserNotActiveException, NotFoundException, ModifiedUserNameException {
+    public ResponseEntity<KorisnikEntity> updateFitnessUser(@Valid @RequestBody KorisnikEntity fitnessUser) throws UserNotActiveException, NotFoundException, ModifiedUserNameException {
         if(!UserLoginHelp.checkUserValidity(fitnessUser.getId())) {
             return ForbiddenEntity.returnForbidden();
         }
@@ -60,7 +61,7 @@ public class FitnessUserController {
     }
 
     @PutMapping("/password-update")
-    public ResponseEntity<KorisnikEntity> updateFitnessUserPassword(@RequestBody PasswordWrapper passwordWrapper) throws NotFoundException {
+    public ResponseEntity<KorisnikEntity> updateFitnessUserPassword(@Valid @RequestBody PasswordWrapper passwordWrapper) throws NotFoundException {
         if(!UserLoginHelp.checkUserValidity(passwordWrapper.getId())) {
             return ForbiddenEntity.returnForbidden();
         }

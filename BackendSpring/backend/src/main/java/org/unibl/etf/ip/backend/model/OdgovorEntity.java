@@ -1,6 +1,9 @@
 package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Size;
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "odgovor", schema = "ip_project", catalog = "")
@@ -10,12 +13,21 @@ public class OdgovorEntity {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
+
+    @NotBlank(message = "odgovor is mandatory!")
+    @Size(max = 1000, message = "Maximum character size for odgovor is 1000!")
     @Basic
     @Column(name = "odgovor", length = 1000)
     private String odgovor;
+
+    @NotBlank(message = "pitanjeId is mandatory!")
+    @Max(value = 10000000, message = "pitanjeId value must be less than or equal to 10000000")
     @Basic
     @Column(name = "pitanje_id")
     private Integer pitanjeId;
+
+    @NotBlank(message = "korisnikId is mandatory!")
+    @Max(value = 1000000, message = "korisnikId value must be less than or equal to 1000000")
     @Basic
     @Column(name = "korisnik_id")
     private Integer korisnikId;

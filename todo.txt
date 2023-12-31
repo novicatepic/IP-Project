@@ -1,14 +1,14 @@
-serverska validacija
+1) serverska validacija
 
-mejl svaki dan!
+2) dodati unique dijelove u bp
 
-dodati unique dijelove u bp
+3) kod kategorije eventualno izbaciti programId!
 
-captcha eventualno
+4) mejl svaki dan!
 
-kod kategorije eventualno izbaciti programId!
+5) captcha eventualno
 
-dodati info o tome da li je login screen itd. ?
+6) dodati info o tome da li je login screen itd. ?
 
 eventualno modali za:
 -prikaz profila pa izmjena profila,

@@ -1,5 +1,6 @@
 package org.unibl.etf.ip.backend.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class ConsultantMessageController {
 
 
     @PostMapping
-    public ResponseEntity<SavjetnikPorukaEntity> messageConsultant(@RequestBody SavjetnikPorukaEntity message) {
+    public ResponseEntity<SavjetnikPorukaEntity> messageConsultant(@Valid @RequestBody SavjetnikPorukaEntity message) {
 
         if(!UserLoginHelp.checkUserValidity(message.getKorisnikId())) {
             return ForbiddenEntity.returnForbidden();
@@ -29,7 +30,7 @@ public class ConsultantMessageController {
     }
 
     @PostMapping("/message-user")
-    public ResponseEntity<SavjetnikPorukaEntity> messageUser(@RequestBody SavjetnikPorukaEntity message) {
+    public ResponseEntity<SavjetnikPorukaEntity> messageUser(@Valid @RequestBody SavjetnikPorukaEntity message) {
         if(!UserLoginHelp.checkUserValidity(message.getKorisnikId())) {
             return ForbiddenEntity.returnForbidden();
         }

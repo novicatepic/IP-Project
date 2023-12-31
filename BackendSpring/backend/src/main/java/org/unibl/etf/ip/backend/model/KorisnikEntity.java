@@ -1,6 +1,9 @@
 package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,33 +22,54 @@ public class KorisnikEntity implements UserDetails {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
+
+    @NotBlank(message = "ime is mandatory!")
+    @Size(max = 45, message = "Maximum character size for ime is 45!")
     @Basic
     @Column(name = "ime", nullable = false, length = 45)
     private String ime;
+
+    @NotBlank(message = "prezime is mandatory!")
+    @Size(max = 45, message = "Maximum character size for prezime is 45!")
     @Basic
     @Column(name = "prezime", nullable = false, length = 45)
     private String prezime;
+
+    @NotBlank(message = "grad is mandatory!")
+    @Size(max = 100, message = "Maximum character size for grad is 100!")
     @Basic
     @Column(name = "grad", nullable = false, length = 100)
     private String grad;
+
+    @NotBlank(message = "korisnickoIme is mandatory!")
+    @Size(max = 45, message = "Maximum character size for korisnickoIme is 45!")
     @Basic
     @Column(name = "korisnicko_ime", nullable = false, length = 45)
     private String korisnickoIme;
+
+    @NotBlank(message = "lozinka is mandatory!")
+    @Size(max = 500, message = "Maximum character size for lozinka is 500!")
     @Basic
     @Column(name = "lozinka", nullable = false, length = 500)
     private String lozinka;
+
+    @Size(max = 21845, message = "Maximum character size for avatar is 21845!")
     @Basic
     @Column(name = "avatar", nullable = true, length = 21845)
     private String avatar;
+
+    @NotBlank(message = "mail is mandatory!")
+    @Email
+    @Size(max = 200, message = "Maximum character size for mail is 200!")
     @Basic
     @Column(name = "mail", nullable = false, length = 200)
     private String mail;
+
+    @NotBlank(message = "aktivan is mandatory!")
     @Basic
     @Column(name = "aktivan", nullable = false)
     private Boolean aktivan;
-    /*@Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private ROLE role = ROLE.FITNESS_USER;*/
+
 
     public Integer getId() {
         return id;
@@ -137,14 +161,6 @@ public class KorisnikEntity implements UserDetails {
     public Boolean getAktivan() {
         return aktivan;
     }
-
-    /*public ROLE getRole() {
-        return role;
-    }
-
-    public void setRole(ROLE role) {
-        this.role = role;
-    }*/
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

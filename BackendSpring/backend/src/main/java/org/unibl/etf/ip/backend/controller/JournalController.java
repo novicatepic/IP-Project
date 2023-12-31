@@ -1,5 +1,6 @@
 package org.unibl.etf.ip.backend.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,7 @@ public class JournalController {
     }
 
     @PostMapping("/journal-entry")
-    public ResponseEntity<DnevnikUnosEntity> createJournalEntry(@RequestBody DnevnikUnosEntity journalEntry) {
+    public ResponseEntity<DnevnikUnosEntity> createJournalEntry(@Valid @RequestBody DnevnikUnosEntity journalEntry) {
         if(!UserLoginHelp.checkUserValidity(journalEntry.getDnevnikKorisnikId())) {
             return ForbiddenEntity.returnForbidden();
         }

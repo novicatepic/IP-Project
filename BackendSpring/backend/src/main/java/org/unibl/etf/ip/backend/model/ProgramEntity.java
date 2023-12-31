@@ -1,6 +1,11 @@
 package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Size;
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -16,41 +21,75 @@ public class ProgramEntity implements Serializable {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
+
+    @NotBlank(message = "naziv is mandatory!")
+    @Size(max = 200, message = "Maximum character size for naziv is 200!")
     @Basic
     @Column(name = "naziv", nullable = false, length = 200)
     private String naziv;
+
+    @NotBlank(message = "naziv is mandatory!")
+    @Size(max = 2000, message = "Maximum character size for opis is 200!")
     @Basic
     @Column(name = "opis", nullable = false, length = 2000)
     private String opis;
+
+    @NotBlank(message = "cijena is mandatory!")
+    @Max(value = 1000000, message = "cijena value must be less than or equal to 1000000")
     @Basic
     @Column(name = "cijena", nullable = false, precision = 0)
     private Integer cijena;
+
+    @NotBlank(message = "tezina is mandatory!")
+    @Max(value = 2, message = "tezina value must be less than or equal to 2")
     @Basic
     @Column(name = "tezina", nullable = false)
     private Integer tezina;
+
+    @NotBlank(message = "trajanje is mandatory!")
+    @Max(value = 1000, message = "trajanje value must be less than or equal to 1000")
     @Basic
     @Column(name = "trajanje", nullable = false)
     private Integer trajanje;
+
+    @NotBlank(message = "nazivLokacije is mandatory!")
+    @Size(max = 200, message = "Maximum character size for nazivLokacije is 200!")
     @Basic
     @Column(name = "naziv_lokacije", nullable = false, length = 200)
     private String nazivLokacije;
+
+    @NotBlank(message = "porukaLokacije is mandatory!")
+    @Size(max = 200, message = "Maximum character size for porukaLokacije is 200!")
     @Basic
     @Column(name = "poruka_lokacije", nullable = false, length = 200)
     private String porukaLokacije;
+
+    @NotBlank(message = "kontakt is mandatory!")
+    @Size(max = 45, message = "Maximum character size for kontakt is 45!")
     @Basic
     @Column(name = "kontakt", nullable = false, length = 45)
     private String kontakt;
+
+    @NotBlank(message = "datum is mandatory!")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Future(message = "datum must be in the future!")
     @Basic
     @Column(name = "datum", nullable = false)
     private Date datum;
+
+    @NotBlank(message = "ucestvovan is mandatory!")
     @Basic
     @Column(name = "ucestvovan", nullable = false)
     private Boolean ucestvovan;
 
+    @NotBlank(message = "kreatorId is mandatory!")
+    @Max(value = 1000000, message = "kreatorId value must be less than or equal to 1000000")
     @Basic
     @Column(name = "kreator_id", nullable = false)
     private Integer kreatorId;
 
+    @NotBlank(message = "kategorijaId is mandatory!")
+    @Max(value = 1000000, message = "kategorijaId value must be less than or equal to 1000000")
     @Basic
     @Column(name = "kategorija_id", nullable = false)
     private Integer kategorijaId;
@@ -61,14 +100,6 @@ public class ProgramEntity implements Serializable {
 
     @OneToMany(mappedBy = "programId", cascade = CascadeType.ALL)
     private List<SlikaEntity> pictures = new ArrayList<>();
-
-    /*@OneToMany(mappedBy = "programId", cascade = CascadeType.ALL)
-    private List<LokacijaEntity> lokacije = new ArrayList<>();*/
-
-    /*@OneToOne(mappedBy = "programId", cascade = CascadeType.ALL)
-    private LokacijaEntity lokacija;*/
-
-
 
     @ManyToOne
     @JoinColumn(name = "kategorija_id", referencedColumnName = "id", insertable = false, updatable = false)

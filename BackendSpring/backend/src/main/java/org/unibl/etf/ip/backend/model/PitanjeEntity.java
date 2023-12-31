@@ -1,6 +1,9 @@
 package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Size;
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +15,21 @@ public class PitanjeEntity {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
+
+    @NotBlank(message = "tekst is mandatory!")
+    @Size(max = 1000, message = "Maximum character size for tekst is 1000!")
     @Basic
     @Column(name = "tekst", nullable = false, length = 1000)
     private String tekst;
 
+    @NotBlank(message = "programId is mandatory!")
+    @Max(value = 1000000, message = "programId value must be less than or equal to 1000000")
     @Basic
     @Column(name = "program_id", nullable = false)
     private Integer programId;
+
+    @NotBlank(message = "korisnikId is mandatory!")
+    @Max(value = 1000000, message = "korisnikId value must be less than or equal to 1000000")
     @Basic
     @Column(name = "korisnik_id", nullable = false)
     private Integer korisnikId;

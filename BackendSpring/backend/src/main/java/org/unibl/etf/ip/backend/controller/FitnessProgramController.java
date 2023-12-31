@@ -1,5 +1,6 @@
 package org.unibl.etf.ip.backend.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +46,7 @@ public class FitnessProgramController {
     }
 
     @PostMapping
-    public ResponseEntity<ProgramEntity> createProgram(@RequestBody ProgramEntity fitnessProgram) {
+    public ResponseEntity<ProgramEntity> createProgram(@Valid @RequestBody ProgramEntity fitnessProgram) {
         Integer userId = fitnessProgram.getKreatorId();
         if(!UserLoginHelp.checkUserValidity(userId)) {
             return ForbiddenEntity.returnForbidden();
@@ -69,7 +70,7 @@ public class FitnessProgramController {
     }
 
     @PostMapping("/subscribe")
-    public ResponseEntity<KorisnikPretplacenProgramEntity> subscribeToAProgram(@RequestBody KorisnikPretplacenProgramEntity subscribeEntity)
+    public ResponseEntity<KorisnikPretplacenProgramEntity> subscribeToAProgram(@Valid @RequestBody KorisnikPretplacenProgramEntity subscribeEntity)
             throws NotFoundException, NotEnoughMoneyException {
 
         Integer userId = subscribeEntity.getKorisnikId();

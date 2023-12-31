@@ -1,6 +1,9 @@
 package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Size;
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 
 import java.util.Date;
 
@@ -11,28 +14,42 @@ public class DnevnikUnosEntity {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
+
+    @NotBlank(message = "vjezba is mandatory!")
+    @Size(max = 45, message = "Maximum character size for vjezba is 45!")
     @Basic
     @Column(name = "vjezba", nullable = false, length = 45)
     private String vjezba;
+
+    @NotBlank(message = "trajanje is mandatory!")
+    @Size(max = 45, message = "Maximum character size for trajanje is 45!")
     @Basic
     @Column(name = "trajanje", nullable = false, length = 45)
     private String trajanje;
+
+    @NotBlank(message = "intenzitet is mandatory!")
+    @Size(max = 45, message = "Maximum character size for intenzitet is 45!")
     @Basic
     @Column(name = "intenzitet", nullable = false, length = 45)
     private String intenzitet;
+
+    @NotBlank(message = "kilaza is mandatory!")
+    @Max(value = 200, message = "kilaza value must be less than or equal to 200!")
     @Basic
     @Column(name = "kilaza", nullable = false)
     private Integer kilaza;
+
+    @NotBlank(message = "dnevnikKorisnikId is mandatory!")
+    @Max(value = 1000000, message = "dnevnikKorisnikId value must be less than or equal to 1000000!")
     @Basic
     @Column(name = "dnevnik_korisnik_id", nullable = false)
     private Integer dnevnikKorisnikId;
+
+    @NotBlank(message = "datum is mandatory!")
     @Basic
     @Column(name = "datum", nullable = false)
     private Date datum;
 
-    /*@ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "dnevnik_korisnik_id", referencedColumnName = "korisnik_id", insertable = false, updatable = false)
-    private DnevnikEntity dnevnik;*/
 
     public Integer getId() {
         return id;
@@ -81,14 +98,6 @@ public class DnevnikUnosEntity {
     public void setKilaza(Integer kilaza) {
         this.kilaza = kilaza;
     }
-
-    /*public DnevnikEntity getDnevnik() {
-        return dnevnik;
-    }
-
-    public void setDnevnik(DnevnikEntity dnevnik) {
-        this.dnevnik = dnevnik;
-    }*/
 
     public Date getDatum() {
         return datum;

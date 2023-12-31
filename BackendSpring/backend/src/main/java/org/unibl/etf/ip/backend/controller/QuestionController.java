@@ -1,6 +1,7 @@
 package org.unibl.etf.ip.backend.controller;
 
 import jakarta.annotation.security.PermitAll;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class QuestionController {
     }
 
     @PostMapping
-    public ResponseEntity<PitanjeEntity> createQuestion(@RequestBody PitanjeEntity question) {
+    public ResponseEntity<PitanjeEntity> createQuestion(@Valid @RequestBody PitanjeEntity question) {
         if(!UserLoginHelp.checkUserValidity(question.getKorisnikId())) {
             return ForbiddenEntity.returnForbidden();
         }
@@ -37,7 +38,7 @@ public class QuestionController {
     }
 
     @PostMapping("/consultants")
-    public ResponseEntity<SavjetnikPorukaEntity> createQuestionForConsultant(@RequestBody SavjetnikPorukaEntity question) {
+    public ResponseEntity<SavjetnikPorukaEntity> createQuestionForConsultant(@Valid @RequestBody SavjetnikPorukaEntity question) {
         if(!UserLoginHelp.checkUserValidity(question.getKorisnikId())) {
             return ForbiddenEntity.returnForbidden();
         }
@@ -45,7 +46,7 @@ public class QuestionController {
     }
 
     @PostMapping("/respond")
-    public ResponseEntity<OdgovorEntity> respondToQuestion(@RequestBody OdgovorEntity response) {
+    public ResponseEntity<OdgovorEntity> respondToQuestion(@Valid @RequestBody OdgovorEntity response) {
         if(!UserLoginHelp.checkUserValidity(response.getKorisnikId())) {
             return ForbiddenEntity.returnForbidden();
         }

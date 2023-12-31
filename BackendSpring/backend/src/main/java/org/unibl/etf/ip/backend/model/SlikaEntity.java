@@ -1,6 +1,7 @@
 package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 
 import java.util.Objects;
 
@@ -11,15 +12,16 @@ public class SlikaEntity {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
+
+    @NotBlank(message = "url is mandatory!")
     @Basic
     @Column(name = "url", nullable = false, length = 1000)
     private String url;
+
+    @NotBlank(message = "programId is mandatory!")
     @Basic
     @Column(name = "program_id", nullable = false)
     private Integer programId;
-    /*@ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "program_id", nullable = false)
-    private ProgramEntity program;*/
 
     public Integer getId() {
         return id;

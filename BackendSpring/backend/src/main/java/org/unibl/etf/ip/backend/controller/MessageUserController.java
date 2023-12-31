@@ -1,5 +1,6 @@
 package org.unibl.etf.ip.backend.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class MessageUserController {
     private MessageUserService service;
 
     @PostMapping
-    public ResponseEntity<PorukaEntity> createMessage(@RequestBody PorukaEntity message) {
+    public ResponseEntity<PorukaEntity> createMessage(@Valid @RequestBody PorukaEntity message) {
         if(!UserLoginHelp.checkUserValidity(message.getPosiljalacId())) {
             return ForbiddenEntity.returnForbidden();
         }
