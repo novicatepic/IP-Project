@@ -1,16 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckCategoryUnsubscribedService {
-  //hard kodovano, kasnije autentifikacija
-  private baseUrl = 'http://localhost:4040/category-subscriptions/unsubscribed/';
+  private baseUrl = environment.categoryUnsubscriptionsBaseUrl;
   
-  //hard kodovano
-  private subscribeUrl = 'http://localhost:4040/category-subscriptions/subscribe'
+  private subscribeUrl = environment.subscribeToCategoryUrl;
 
   constructor(private http:HttpClient) { }
 

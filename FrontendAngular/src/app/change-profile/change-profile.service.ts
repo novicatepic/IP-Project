@@ -3,15 +3,18 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as jwtDecode from 'jwt-decode';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChangeProfileService {
 
-  private baseUrl = 'http://localhost:4040/fitness-users';
+  private baseUrl = environment.changeProfileBaseUrl;
 
-  private updatePWUrl = 'http://localhost:4040/fitness-users/password-update';
+  //private updatePWUrl = 'http://localhost:4040/fitness-users/password-update';
+
+  private updatePWUrl = environment.updatePWUrl;
 
   constructor(private http:HttpClient) { }
 

@@ -27,8 +27,7 @@ export class CheckCategorySubscriptionsComponent {
 
   getSubscribredCategories() {
       //this.service.baseUrl += this.decodedTokenId;
-      this.service.getSubscribedCategories(this.decodedTokenId).subscribe((data) => {
-          //console.log(data);
+      this.service.getSubscribedCategories(this.decodedTokenId).subscribe((data) => {     
           this.data = data;
       },
       error => console.log(error))

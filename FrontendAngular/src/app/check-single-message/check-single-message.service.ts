@@ -1,17 +1,18 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckSingleMessageService {
 
-  private baseUrl = 'http://localhost:4040/user-messages/';
+  private baseUrl = environment.readUserMessagesUrl;
 
-  private readUrl = 'http://localhost:4040/user-messages/read-message/';
+  private readUrl = environment.readMessageUrl;
 
-  private responseUrl = 'http://localhost:4040/user-messages';
+  private responseUrl = environment.responseUrl;
   
   constructor(private http:HttpClient) { }
 

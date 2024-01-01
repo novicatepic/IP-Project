@@ -2,15 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JournalEntriesService {
 
-  private baseUrl = 'http://localhost:4040/journals/journal-entry/';
+  private baseUrl = environment.journalEntriesUrl;
 
-  private pdfUrl = 'http://localhost:4040/journals/download-journal/';
+  private pdfUrl = environment.pdfUrl;
 
 
   id : any;

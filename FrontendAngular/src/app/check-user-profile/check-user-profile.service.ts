@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckUserProfileService {
 
-  private baseUrl = 'http://localhost:4040/fitness-users/user/';
+  private baseUrl = environment.checkProfileUrl;
   constructor(private http:HttpClient) { 
       
   }

@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JwtTokenService {
 
-  private baseUrl = 'http://localhost:4040/fitness-users/';
+  private baseUrl = environment.fitnessUsersUrl;
 
-  private fixedUrl = 'http://localhost:4040/fitness-users/';
+  //private fixedUrl = 'http://localhost:4040/fitness-users/';
 
   constructor(private http: HttpClient) { }
 
@@ -34,7 +35,7 @@ export class JwtTokenService {
 
   getUserById() : any {
     
-    this.baseUrl = this.fixedUrl;
+    //this.baseUrl = this.fixedUrl;
     var tokenInfo = this.extractTokenInfo();
     if(tokenInfo) {
       const url = this.baseUrl + tokenInfo.id;

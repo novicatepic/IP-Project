@@ -1,13 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PastProgramParticipationsService {
 
-  private baseUrl = 'http://localhost:4040/fitness-programs/past-user-programs/';
+  private baseUrl = environment.pastProgramParticipationsUrl;
   
   constructor(private http:HttpClient) { }
 

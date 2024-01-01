@@ -6,6 +6,7 @@ import { JwtTokenService } from '../jwt-token/jwt-token.service';
 import { SingleFitnessProgramService } from './single-fitness-program.service';
 import { SnackBarService } from '../snack-bar/snack-bar.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -41,6 +42,9 @@ export class SingleFitnessProgramComponent {
     if(temp) {
       this.userId = temp.id;
     }
+
+    console.log("user id " + this.userId);
+
     this.loadData();
     this.loadQuestions();
     this.loadPhotos();
@@ -52,7 +56,8 @@ export class SingleFitnessProgramComponent {
   }
 
   loadData() {
-    const url = `http://localhost:4040/fitness-programs/${this.id}`;
+    const programsUrl = environment.fitnessProgramsBaseUrl;
+    const url = `${programsUrl}/${this.id}`;
     this.http.get<any>(url).subscribe(data => {
       this.data = data;
       console.log(this.data.kategorija.attributes);
@@ -60,7 +65,8 @@ export class SingleFitnessProgramComponent {
   }
 
   loadQuestions() {
-    const url = `http://localhost:4040/questions/${this.id}`;
+    const questionsUrl = environment.questionsUrl;
+    const url = `${questionsUrl}/${this.id}`;
     this.http.get<any>(url).subscribe(data => {
       this.questions = data;
       //console.log("QUESTIONS=" + JSON.stringify(this.questions[0]));
@@ -81,7 +87,7 @@ export class SingleFitnessProgramComponent {
 
   addComment(id: any) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `http://localhost:4040/questions/respond`;
+    const url = environment.respondQuestionUrl;
     var text = (document.getElementById(id) as HTMLInputElement)?.value;
     //console.log(text);
     if(text && text != "") {

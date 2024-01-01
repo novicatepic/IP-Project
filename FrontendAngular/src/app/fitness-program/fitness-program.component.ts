@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SingleFitnessProgramService } from '../single-fitness-program/single-fitness-program.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'fitness-program',
@@ -33,7 +34,7 @@ export class FitnessProgramComponent implements OnInit {
   }
 
   async loadData() {
-    const url = `http://localhost:4040/fitness-programs`;
+    const url = environment.fitnessProgramsBaseUrl;
 
     try {
       this.data = await this.http.get<any[]>(url).toPromise();

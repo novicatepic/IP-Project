@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyFitnessProgramsService {
 
-  baseUrl = 'http://localhost:4040/fitness-programs/my-programs/';
-  deleteUrl = 'http://localhost:4040/fitness-programs/';
+  baseUrl = environment.myProgramsBaseUrl;
+  deleteUrl = environment.deleteFitnessProgramsBaseUrl;
   
   constructor(private http:HttpClient) { }
 

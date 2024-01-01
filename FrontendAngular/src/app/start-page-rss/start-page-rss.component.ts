@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { StartPageRssService } from './start-page-rss.service';
 import { SnackBarService } from '../snack-bar/snack-bar.service';
+import { RSS } from '../model/RSS';
 
 const plainTextPassword = 'k1';
 
@@ -12,7 +13,7 @@ const plainTextPassword = 'k1';
 })
 export class StartPageRssComponent {
 
-  data : any = [];
+  data : Array<RSS> = new Array();
 
   constructor(private http: HttpClient, private service: StartPageRssService, private snackService: SnackBarService) {
     this.loadData();

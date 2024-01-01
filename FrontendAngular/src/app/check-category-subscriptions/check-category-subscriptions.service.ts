@@ -2,17 +2,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckCategorySubscriptionsService {
 
-   //hard kodovano, kasnije autentifikacija
-   private baseUrl = 'http://localhost:4040/category-subscriptions/subscribed/';
+   private baseUrl = environment.categorySubscriptionsBaseUrl;
   
-   //hard kodovano
-   private deleteUrl = 'http://localhost:4040/category-subscriptions/unsubscribe/'
+   private deleteUrl = environment.deleteCategorySubscription;
 
    constructor(private http:HttpClient) { 
 

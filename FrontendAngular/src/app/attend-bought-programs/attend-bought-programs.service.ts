@@ -1,16 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AttendBoughtProgramsService {
+  private baseUrl: string = environment.upcomingProgramsUrl;
 
-  private baseUrl = 'http://localhost:4040/fitness-programs/upcoming-user-programs/';
+  private locationsUrl = environment.locationsUrl;
 
-  private locationsUrl = 'http://localhost:4040/locations/';
-  
+
   constructor(private http:HttpClient) { }
 
   getCurrentParticipations(id: any): Observable<any> {

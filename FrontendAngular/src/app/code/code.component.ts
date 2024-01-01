@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CodeService } from './code.service';
 import { SnackBarService } from '../snack-bar/snack-bar.service';
+import { Code } from '../model/Code';
 
 @Component({
   selector: 'app-code',
@@ -31,17 +32,20 @@ export class CodeComponent {
       this.id = params.get('id');
     });
 
-    this.service.baseUrl += this.id;
+    //this.service.baseUrl += this.id;
    
   }
 
   inputCode() {
     if(this.firstForm.valid) {
-      const code = {
+      /*const code = {
         code: this.firstForm.get('code')?.value
-      }
+      }*/
 
-      this.service.insertCode(code).subscribe((data) => {
+      let value = this.firstForm.get('code')?.value;
+      const code = new Code(value);
+
+      this.service.insertCode(code, this.id).subscribe((data) => {
         const user = JSON.stringify(data);
         /*console.log("Success: " + data);
         console.log("Success: " + user);*/

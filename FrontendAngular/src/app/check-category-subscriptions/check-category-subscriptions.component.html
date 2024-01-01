@@ -4,6 +4,10 @@
     <div class="container">
       <h1 class="display-4">Category id: {{ item.id }}</h1>
       <p class="lead">Category name: {{  item.naziv }}</p>
+      <hr class="my-4 border-primary">
+        <p class="lead">Attributes</p>
+        <p *ngFor="let attribute of item.attributes">Name: {{attribute.naziv}} Value: {{attribute.vrijednost}}</p>
+        <hr class="my-4 border-primary">
       <button (click)="unsubscribe(item.id)" class="btn btn-primary">UNSUBSCRIBE</button>
     </div>
   </div>

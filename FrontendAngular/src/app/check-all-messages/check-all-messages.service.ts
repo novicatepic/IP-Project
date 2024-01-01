@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckAllMessagesService {
 
-  private baseUrl = 'http://localhost:4040/user-messages/all/';
-  
+  private baseUrl = environment.allMessagesUrl;
   constructor(private http:HttpClient) { 
   }
 

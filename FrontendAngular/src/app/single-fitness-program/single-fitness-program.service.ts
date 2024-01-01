@@ -1,13 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SingleFitnessProgramService {
 
-  private baseUrl = 'http://localhost:4040/pictures/';
+  private baseUrl = environment.picturesUrl;
 
   constructor(private http:HttpClient) { }
 

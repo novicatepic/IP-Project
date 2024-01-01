@@ -1,13 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
 
-  private baseUrl = 'http://localhost:4040/fitness-users';
+  private baseUrl = environment.changeProfileBaseUrl;
   
   constructor(private http:HttpClient) { }
 

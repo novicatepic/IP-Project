@@ -1,17 +1,18 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CreateFitnessProgramService {
 
-  private baseUrl = 'http://localhost:4040/fitness-programs';
+  private baseUrl = environment.fitnessProgramsBaseUrl;
 
-  private categoryUrl = 'http://localhost:4040/categories';
+  private categoryUrl = environment.categoryUrl;
 
-  private locationUrl = 'http://localhost:4040/locations';
+  private locationUrl = environment.locationUrl;
   
   constructor(private http:HttpClient) { }
 

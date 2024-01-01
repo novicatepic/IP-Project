@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NinjaApiPageService } from './ninja-api-page.service';
 import { HttpClient } from '@angular/common/http';
 import { SnackBarService } from '../snack-bar/snack-bar.service';
+import { Exercise } from '../model/Exercise';
 
 @Component({
   selector: 'app-ninja-api-page',
@@ -9,7 +10,7 @@ import { SnackBarService } from '../snack-bar/snack-bar.service';
   styleUrl: './ninja-api-page.component.css'
 })
 export class NinjaApiPageComponent {
-  data : any = [];
+  data : Array<Exercise> = new Array();
 
   constructor(private snackService: SnackBarService, private service: NinjaApiPageService) {
     this.loadData();

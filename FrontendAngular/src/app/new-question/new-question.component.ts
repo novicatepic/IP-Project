@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
 import { SnackBarService } from '../snack-bar/snack-bar.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'new-question',
@@ -37,7 +38,7 @@ export class NewQuestionComponent {
 
   postQuestion()  {
     
-    const url = `http://localhost:4040/questions`;
+    const url = environment.questionsUrl;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     const questionControl = this.firstForm.get('question');
