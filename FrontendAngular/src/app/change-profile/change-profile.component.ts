@@ -38,9 +38,9 @@ export class ChangeProfileComponent {
       });
 
       this.passwordForm = formBuilder.group({
-        oldPassword :[null, [Validators.required, Validators.maxLength(45)]],
-        newPassword :[null, [Validators.required, Validators.maxLength(45)]],
-        newPassword2 :[null, [Validators.required, Validators.maxLength(45)]],
+        oldPassword :[null, [Validators.required, Validators.maxLength(45), Validators.minLength(8)]],
+        newPassword :[null, [Validators.required, Validators.maxLength(45), Validators.minLength(8)]],
+        newPassword2 :[null, [Validators.required, Validators.maxLength(45), Validators.minLength(8)]],
       })
   }
 

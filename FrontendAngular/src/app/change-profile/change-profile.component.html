@@ -109,6 +109,10 @@
                   *ngIf="passwordForm.get('oldPassword')?.hasError('maxlength')"
                   > Must be less than 45 characters
                 </small>
+                <small class="text-danger"
+                          *ngIf="passwordForm.get('oldPassword')?.hasError('minlength')"
+                          > Must be more or equal to 8 characters
+                        </small>
               </div>
 
           </div>
@@ -126,6 +130,10 @@
                   *ngIf="passwordForm.get('newPassword')?.hasError('maxlength')"
                   > Must be less than 45 characters
                 </small>
+                <small class="text-danger"
+                          *ngIf="passwordForm.get('newPassword')?.hasError('minlength')"
+                          > Must be more or equal to 8 characters
+                        </small>
               </div>
 
           </div>
@@ -143,6 +151,10 @@
                   *ngIf="passwordForm.get('newPassword2')?.hasError('maxlength')"
                   > Must be less than 45 characters
                 </small>
+                <small class="text-danger"
+                          *ngIf="passwordForm.get('newPassword2')?.hasError('minlength')"
+                          > Must be more or equal to 8 characters
+                        </small>
               </div>
 
           </div>

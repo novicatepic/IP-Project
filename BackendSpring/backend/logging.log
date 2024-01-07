@@ -4297,3 +4297,620 @@ java.lang.ClassCastException: class java.lang.String cannot be cast to class org
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
 	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
 
+2024-01-07T14:04:20.977+01:00 ERROR 15212 --- [http-nio-4040-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.ClassCastException: class java.lang.String cannot be cast to class org.unibl.etf.ip.backend.model.KorisnikEntity (java.lang.String is in module java.base of loader 'bootstrap'; org.unibl.etf.ip.backend.model.KorisnikEntity is in unnamed module of loader 'app')] with root cause
+
+java.lang.ClassCastException: class java.lang.String cannot be cast to class org.unibl.etf.ip.backend.model.KorisnikEntity (java.lang.String is in module java.base of loader 'bootstrap'; org.unibl.etf.ip.backend.model.KorisnikEntity is in unnamed module of loader 'app')
+	at org.unibl.etf.ip.backend.loginservice.UserLoginHelp.extractCredentials(UserLoginHelp.java:12) ~[classes/:na]
+	at org.unibl.etf.ip.backend.loginservice.UserLoginHelp.checkUserValidity(UserLoginHelp.java:17) ~[classes/:na]
+	at org.unibl.etf.ip.backend.controller.FitnessUserController.getFitnessUserById(FitnessUserController.java:30) ~[classes/:na]
+	at jdk.internal.reflect.GeneratedMethodAccessor54.invoke(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:262) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:917) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:829) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.17.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.17.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.unibl.etf.ip.backend.jtwconfig.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:42) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:225) ~[spring-security-config-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2024-01-07T14:04:28.670+01:00  INFO 15212 --- [http-nio-4040-exec-10] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 7
+2024-01-07T14:04:28.675+01:00  INFO 15212 --- [http-nio-4040-exec-5] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 14
+2024-01-07T14:04:28.699+01:00  INFO 15212 --- [http-nio-4040-exec-9] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 3
+2024-01-07T14:04:28.699+01:00  INFO 15212 --- [http-nio-4040-exec-2] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 8
+2024-01-07T14:04:28.707+01:00  INFO 15212 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 9
+2024-01-07T14:04:28.719+01:00  INFO 15212 --- [http-nio-4040-exec-1] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 16
+2024-01-07T14:04:28.727+01:00  INFO 15212 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 11
+2024-01-07T14:04:28.729+01:00  INFO 15212 --- [http-nio-4040-exec-6] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T14:04:28.843+01:00  INFO 15212 --- [http-nio-4040-exec-8] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 15
+2024-01-07T14:04:28.855+01:00  INFO 15212 --- [http-nio-4040-exec-4] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 17
+2024-01-07T14:04:28.858+01:00  INFO 15212 --- [http-nio-4040-exec-5] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 18
+2024-01-07T14:57:44.568+01:00  INFO 15212 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-07T14:57:44.582+01:00  INFO 15212 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-01-07T14:57:44.595+01:00  INFO 15212 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-01-07T20:01:36.114+01:00  INFO 11740 --- [main] o.u.etf.ip.backend.BackendApplication    : Starting BackendApplication using Java 17.0.9 with PID 11740 (C:\Users\User\Desktop\IP-Project\BackendSpring\backend\target\classes started by Тепица in C:\Users\User\Desktop\IP-Project\BackendSpring\backend)
+2024-01-07T20:01:36.118+01:00  INFO 11740 --- [main] o.u.etf.ip.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2024-01-07T20:01:38.604+01:00  INFO 11740 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-07T20:01:38.713+01:00  INFO 11740 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 100 ms. Found 12 JPA repository interfaces.
+2024-01-07T20:01:39.454+01:00  INFO 11740 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 4040 (http)
+2024-01-07T20:01:39.466+01:00  INFO 11740 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-07T20:01:39.466+01:00  INFO 11740 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2024-01-07T20:01:39.556+01:00  INFO 11740 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-07T20:01:39.556+01:00  INFO 11740 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3357 ms
+2024-01-07T20:01:39.700+01:00  INFO 11740 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-07T20:01:39.771+01:00  INFO 11740 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-07T20:01:39.819+01:00  INFO 11740 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-01-07T20:01:40.067+01:00  INFO 11740 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-07T20:01:40.099+01:00  INFO 11740 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-07T20:01:40.666+01:00  INFO 11740 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3ef0e576
+2024-01-07T20:01:40.669+01:00  INFO 11740 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-07T20:01:40.777+01:00  WARN 11740 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-07T20:01:40.780+01:00  WARN 11740 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-01-07T20:01:41.569+01:00  WARN 11740 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2024-01-07T20:01:41.570+01:00  WARN 11740 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2024-01-07T20:01:41.570+01:00  WARN 11740 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenKategorijaEntityPK
+2024-01-07T20:01:41.571+01:00  WARN 11740 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenKategorijaEntityPK
+2024-01-07T20:01:42.542+01:00  INFO 11740 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-07T20:01:42.875+01:00  INFO 11740 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-07T20:01:43.785+01:00  WARN 11740 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-07T20:01:44.119+01:00  INFO 11740 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@16df0ebd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@29becf8b, org.springframework.security.web.context.SecurityContextHolderFilter@7d816d32, org.springframework.security.web.header.HeaderWriterFilter@2e4262d2, org.springframework.web.filter.CorsFilter@628b1538, org.springframework.security.web.authentication.logout.LogoutFilter@326d39fd, org.unibl.etf.ip.backend.jtwconfig.JwtAuthenticationFilter@4e8b36af, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5069a91b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@443d94ae, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@36995784, org.springframework.security.web.session.SessionManagementFilter@2060df8, org.springframework.security.web.access.ExceptionTranslationFilter@2c3d1214, org.springframework.security.web.access.intercept.AuthorizationFilter@4822d7a1]
+2024-01-07T20:01:44.472+01:00  WARN 11740 --- [main] o.s.b.a.f.FreeMarkerAutoConfiguration    : Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2024-01-07T20:01:44.565+01:00  INFO 11740 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 4040 (http) with context path ''
+2024-01-07T20:01:44.580+01:00  INFO 11740 --- [main] o.u.etf.ip.backend.BackendApplication    : Started BackendApplication in 9.252 seconds (process running for 12.112)
+2024-01-07T20:03:28.347+01:00  INFO 11740 --- [http-nio-4040-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-01-07T20:03:28.378+01:00  INFO 11740 --- [http-nio-4040-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-01-07T20:03:28.489+01:00  INFO 11740 --- [http-nio-4040-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 111 ms
+2024-01-07T20:03:28.884+01:00 ERROR 11740 --- [http-nio-4040-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.ClassCastException: class java.lang.String cannot be cast to class org.unibl.etf.ip.backend.model.KorisnikEntity (java.lang.String is in module java.base of loader 'bootstrap'; org.unibl.etf.ip.backend.model.KorisnikEntity is in unnamed module of loader 'app')] with root cause
+
+java.lang.ClassCastException: class java.lang.String cannot be cast to class org.unibl.etf.ip.backend.model.KorisnikEntity (java.lang.String is in module java.base of loader 'bootstrap'; org.unibl.etf.ip.backend.model.KorisnikEntity is in unnamed module of loader 'app')
+	at org.unibl.etf.ip.backend.loginservice.UserLoginHelp.extractCredentials(UserLoginHelp.java:12) ~[classes/:na]
+	at org.unibl.etf.ip.backend.loginservice.UserLoginHelp.checkUserValidity(UserLoginHelp.java:17) ~[classes/:na]
+	at org.unibl.etf.ip.backend.controller.FitnessUserController.getFitnessUserById(FitnessUserController.java:30) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:262) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:917) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:829) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.17.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.17.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.unibl.etf.ip.backend.jtwconfig.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:42) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:225) ~[spring-security-config-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2024-01-07T20:03:52.092+01:00  INFO 11740 --- [http-nio-4040-exec-9] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 8
+2024-01-07T20:03:52.092+01:00  INFO 11740 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 3
+2024-01-07T20:03:52.092+01:00  INFO 11740 --- [http-nio-4040-exec-8] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 7
+2024-01-07T20:03:52.094+01:00  INFO 11740 --- [http-nio-4040-exec-10] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 9
+2024-01-07T20:03:52.113+01:00  INFO 11740 --- [http-nio-4040-exec-2] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 14
+2024-01-07T20:03:52.113+01:00  INFO 11740 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 15
+2024-01-07T20:03:52.118+01:00  INFO 11740 --- [http-nio-4040-exec-4] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 16
+2024-01-07T20:03:52.122+01:00  INFO 11740 --- [http-nio-4040-exec-5] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 17
+2024-01-07T20:03:52.127+01:00  INFO 11740 --- [http-nio-4040-exec-1] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 11
+2024-01-07T20:03:52.129+01:00  INFO 11740 --- [http-nio-4040-exec-6] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:03:52.130+01:00  INFO 11740 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 18
+2024-01-07T20:04:07.556+01:00 ERROR 11740 --- [http-nio-4040-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.ClassCastException: class java.lang.String cannot be cast to class org.unibl.etf.ip.backend.model.KorisnikEntity (java.lang.String is in module java.base of loader 'bootstrap'; org.unibl.etf.ip.backend.model.KorisnikEntity is in unnamed module of loader 'app')] with root cause
+
+java.lang.ClassCastException: class java.lang.String cannot be cast to class org.unibl.etf.ip.backend.model.KorisnikEntity (java.lang.String is in module java.base of loader 'bootstrap'; org.unibl.etf.ip.backend.model.KorisnikEntity is in unnamed module of loader 'app')
+	at org.unibl.etf.ip.backend.loginservice.UserLoginHelp.extractCredentials(UserLoginHelp.java:12) ~[classes/:na]
+	at org.unibl.etf.ip.backend.loginservice.UserLoginHelp.checkUserValidity(UserLoginHelp.java:17) ~[classes/:na]
+	at org.unibl.etf.ip.backend.controller.FitnessUserController.getFitnessUserById(FitnessUserController.java:30) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:262) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:917) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:829) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.17.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.17.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.unibl.etf.ip.backend.jtwconfig.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:42) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:225) ~[spring-security-config-6.2.1.jar:6.2.1]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.2.jar:6.1.2]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.17.jar:10.1.17]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2024-01-07T20:04:11.187+01:00  INFO 11740 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 15
+2024-01-07T20:04:17.288+01:00  INFO 11740 --- [http-nio-4040-exec-1] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:04:17.294+01:00  INFO 11740 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 3
+2024-01-07T20:04:17.295+01:00  INFO 11740 --- [http-nio-4040-exec-8] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 9
+2024-01-07T20:04:17.296+01:00  INFO 11740 --- [http-nio-4040-exec-6] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 7
+2024-01-07T20:04:17.297+01:00  INFO 11740 --- [http-nio-4040-exec-2] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 14
+2024-01-07T20:04:17.297+01:00  INFO 11740 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 8
+2024-01-07T20:04:17.303+01:00  INFO 11740 --- [http-nio-4040-exec-10] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 11
+2024-01-07T20:04:17.304+01:00  INFO 11740 --- [http-nio-4040-exec-5] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 17
+2024-01-07T20:04:17.308+01:00  INFO 11740 --- [http-nio-4040-exec-2] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 15
+2024-01-07T20:04:17.311+01:00  INFO 11740 --- [http-nio-4040-exec-4] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 16
+2024-01-07T20:04:17.311+01:00  INFO 11740 --- [http-nio-4040-exec-1] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 18
+2024-01-07T20:04:20.106+01:00  INFO 11740 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:04:52.803+01:00  INFO 11740 --- [http-nio-4040-exec-4] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:04:55.321+01:00  INFO 11740 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:04:57.332+01:00  INFO 11740 --- [http-nio-4040-exec-1] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 3
+2024-01-07T20:04:57.333+01:00  INFO 11740 --- [http-nio-4040-exec-6] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:04:57.335+01:00  INFO 11740 --- [http-nio-4040-exec-9] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 7
+2024-01-07T20:04:57.336+01:00  INFO 11740 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 8
+2024-01-07T20:04:57.340+01:00  INFO 11740 --- [http-nio-4040-exec-5] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 9
+2024-01-07T20:04:57.344+01:00  INFO 11740 --- [http-nio-4040-exec-10] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 11
+2024-01-07T20:04:57.345+01:00  INFO 11740 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 15
+2024-01-07T20:04:57.345+01:00  INFO 11740 --- [http-nio-4040-exec-2] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 14
+2024-01-07T20:04:57.349+01:00  INFO 11740 --- [http-nio-4040-exec-8] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 17
+2024-01-07T20:04:57.351+01:00  INFO 11740 --- [http-nio-4040-exec-4] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 16
+2024-01-07T20:04:57.352+01:00  INFO 11740 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 18
+2024-01-07T20:04:58.708+01:00  INFO 11740 --- [http-nio-4040-exec-5] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:05:02.419+01:00  INFO 11740 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:05:02.745+01:00  INFO 11740 --- [http-nio-4040-exec-1] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:05:02.746+01:00  INFO 11740 --- [http-nio-4040-exec-5] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 3
+2024-01-07T20:05:02.747+01:00  INFO 11740 --- [http-nio-4040-exec-6] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 7
+2024-01-07T20:05:02.751+01:00  INFO 11740 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 8
+2024-01-07T20:05:02.753+01:00  INFO 11740 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 14
+2024-01-07T20:05:02.754+01:00  INFO 11740 --- [http-nio-4040-exec-8] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 11
+2024-01-07T20:05:02.756+01:00  INFO 11740 --- [http-nio-4040-exec-9] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 16
+2024-01-07T20:05:02.757+01:00  INFO 11740 --- [http-nio-4040-exec-4] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 9
+2024-01-07T20:05:02.760+01:00  INFO 11740 --- [http-nio-4040-exec-10] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 15
+2024-01-07T20:05:02.763+01:00  INFO 11740 --- [http-nio-4040-exec-2] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 17
+2024-01-07T20:05:02.764+01:00  INFO 11740 --- [http-nio-4040-exec-4] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 18
+2024-01-07T20:05:04.328+01:00  INFO 11740 --- [http-nio-4040-exec-8] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:05:18.561+01:00  INFO 11740 --- [http-nio-4040-exec-5] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:05:18.561+01:00  INFO 11740 --- [http-nio-4040-exec-1] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 3
+2024-01-07T20:05:18.562+01:00  INFO 11740 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 7
+2024-01-07T20:05:18.570+01:00  INFO 11740 --- [http-nio-4040-exec-9] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 9
+2024-01-07T20:05:18.570+01:00  INFO 11740 --- [http-nio-4040-exec-4] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 15
+2024-01-07T20:05:18.570+01:00  INFO 11740 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 8
+2024-01-07T20:05:18.570+01:00  INFO 11740 --- [http-nio-4040-exec-8] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 11
+2024-01-07T20:05:18.570+01:00  INFO 11740 --- [http-nio-4040-exec-10] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 14
+2024-01-07T20:05:18.572+01:00  INFO 11740 --- [http-nio-4040-exec-6] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 16
+2024-01-07T20:05:18.579+01:00  INFO 11740 --- [http-nio-4040-exec-2] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 17
+2024-01-07T20:05:18.579+01:00  INFO 11740 --- [http-nio-4040-exec-1] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 18
+2024-01-07T20:05:56.236+01:00  INFO 11740 --- [http-nio-4040-exec-5] o.u.e.i.b.service.FitnessUserService     : New attempt to create account for user with username regggg and email regggg@mail.com
+2024-01-07T20:06:02.340+01:00  INFO 11740 --- [http-nio-4040-exec-8] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:06:02.342+01:00  INFO 11740 --- [http-nio-4040-exec-9] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 3
+2024-01-07T20:06:02.347+01:00  INFO 11740 --- [http-nio-4040-exec-4] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 7
+2024-01-07T20:06:02.347+01:00  INFO 11740 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 11
+2024-01-07T20:06:02.347+01:00  INFO 11740 --- [http-nio-4040-exec-10] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 14
+2024-01-07T20:06:02.347+01:00  INFO 11740 --- [http-nio-4040-exec-2] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 9
+2024-01-07T20:06:02.348+01:00  INFO 11740 --- [http-nio-4040-exec-1] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 15
+2024-01-07T20:06:02.348+01:00  INFO 11740 --- [http-nio-4040-exec-6] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 8
+2024-01-07T20:06:02.354+01:00  INFO 11740 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 17
+2024-01-07T20:06:02.354+01:00  INFO 11740 --- [http-nio-4040-exec-8] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 18
+2024-01-07T20:06:02.354+01:00  INFO 11740 --- [http-nio-4040-exec-5] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 16
+2024-01-07T20:06:07.502+01:00  INFO 11740 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 9
+2024-01-07T20:06:07.502+01:00  INFO 11740 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:06:07.506+01:00  INFO 11740 --- [http-nio-4040-exec-6] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 8
+2024-01-07T20:06:07.508+01:00  INFO 11740 --- [http-nio-4040-exec-5] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 11
+2024-01-07T20:06:07.515+01:00  INFO 11740 --- [http-nio-4040-exec-8] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 3
+2024-01-07T20:06:07.518+01:00  INFO 11740 --- [http-nio-4040-exec-4] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 7
+2024-01-07T20:06:07.532+01:00  INFO 11740 --- [http-nio-4040-exec-2] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 16
+2024-01-07T20:06:07.534+01:00  INFO 11740 --- [http-nio-4040-exec-9] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 14
+2024-01-07T20:06:07.537+01:00  INFO 11740 --- [http-nio-4040-exec-1] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 17
+2024-01-07T20:06:07.542+01:00  INFO 11740 --- [http-nio-4040-exec-10] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 15
+2024-01-07T20:06:07.546+01:00  INFO 11740 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 18
+2024-01-07T20:07:19.270+01:00  INFO 11740 --- [http-nio-4040-exec-6] o.u.e.ip.backend.service.JournalService  : User with id 1 created new journal entry
+2024-01-07T20:07:46.481+01:00  INFO 11740 --- [http-nio-4040-exec-8] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:07:46.483+01:00  INFO 11740 --- [http-nio-4040-exec-1] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 3
+2024-01-07T20:07:46.488+01:00  INFO 11740 --- [http-nio-4040-exec-10] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 7
+2024-01-07T20:07:46.489+01:00  INFO 11740 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 8
+2024-01-07T20:07:46.490+01:00  INFO 11740 --- [http-nio-4040-exec-2] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 9
+2024-01-07T20:07:46.495+01:00  INFO 11740 --- [http-nio-4040-exec-6] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 11
+2024-01-07T20:07:46.508+01:00  INFO 11740 --- [http-nio-4040-exec-9] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 14
+2024-01-07T20:07:46.517+01:00  INFO 11740 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 15
+2024-01-07T20:07:46.522+01:00  INFO 11740 --- [http-nio-4040-exec-5] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 18
+2024-01-07T20:07:46.529+01:00  INFO 11740 --- [http-nio-4040-exec-10] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 16
+2024-01-07T20:07:46.529+01:00  INFO 11740 --- [http-nio-4040-exec-4] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 17
+2024-01-07T20:08:04.035+01:00  INFO 11740 --- [http-nio-4040-exec-9] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:08:35.429+01:00  INFO 11740 --- [http-nio-4040-exec-9] o.u.e.i.b.s.CategorySubscribeService     : User with id 1 checked his subscribed categories
+2024-01-07T20:08:37.013+01:00  INFO 11740 --- [http-nio-4040-exec-7] o.u.e.i.b.s.CategorySubscribeService     : User with id 1 checked his unsubscribed categories
+2024-01-07T20:08:42.707+01:00  INFO 11740 --- [http-nio-4040-exec-2] o.u.e.i.b.s.CategorySubscribeService     : Subscription to category 4 by user 1
+2024-01-07T20:08:42.789+01:00  INFO 11740 --- [http-nio-4040-exec-6] o.u.e.i.b.s.CategorySubscribeService     : User with id 1 checked his subscribed categories
+2024-01-07T20:11:25.102+01:00  INFO 11740 --- [http-nio-4040-exec-10] o.u.e.i.b.s.CategorySubscribeService     : User with id 1 checked his subscribed categories
+2024-01-07T20:11:27.697+01:00  INFO 11740 --- [http-nio-4040-exec-2] o.u.e.i.b.s.CategorySubscribeService     : User with id 1 checked his unsubscribed categories
+2024-01-07T20:17:18.011+01:00  INFO 11740 --- [http-nio-4040-exec-6] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:17:18.013+01:00  INFO 11740 --- [http-nio-4040-exec-4] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 3
+2024-01-07T20:17:18.017+01:00  INFO 11740 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 7
+2024-01-07T20:17:18.019+01:00  INFO 11740 --- [http-nio-4040-exec-9] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 8
+2024-01-07T20:17:18.021+01:00  INFO 11740 --- [http-nio-4040-exec-1] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 11
+2024-01-07T20:17:18.032+01:00  INFO 11740 --- [http-nio-4040-exec-4] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 14
+2024-01-07T20:17:18.036+01:00  INFO 11740 --- [http-nio-4040-exec-10] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 15
+2024-01-07T20:17:18.038+01:00  INFO 11740 --- [http-nio-4040-exec-5] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 9
+2024-01-07T20:17:18.039+01:00  INFO 11740 --- [http-nio-4040-exec-8] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 16
+2024-01-07T20:17:18.045+01:00  INFO 11740 --- [http-nio-4040-exec-1] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 17
+2024-01-07T20:17:18.049+01:00  INFO 11740 --- [http-nio-4040-exec-2] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 18
+2024-01-07T20:20:38.859+01:00  INFO 11740 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-07T20:20:38.952+01:00  INFO 11740 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-01-07T20:20:39.011+01:00  INFO 11740 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-01-07T20:20:48.134+01:00  INFO 5244 --- [main] o.u.etf.ip.backend.BackendApplication    : Starting BackendApplication using Java 17.0.9 with PID 5244 (C:\Users\User\Desktop\IP-Project\BackendSpring\backend\target\classes started by Тепица in C:\Users\User\Desktop\IP-Project\BackendSpring\backend)
+2024-01-07T20:20:48.138+01:00  INFO 5244 --- [main] o.u.etf.ip.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2024-01-07T20:20:49.294+01:00  INFO 5244 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-07T20:20:49.408+01:00  INFO 5244 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 104 ms. Found 12 JPA repository interfaces.
+2024-01-07T20:20:50.134+01:00  INFO 5244 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 4040 (http)
+2024-01-07T20:20:50.153+01:00  INFO 5244 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-07T20:20:50.154+01:00  INFO 5244 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2024-01-07T20:20:50.274+01:00  INFO 5244 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-07T20:20:50.275+01:00  INFO 5244 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2067 ms
+2024-01-07T20:20:50.492+01:00  INFO 5244 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-07T20:20:50.577+01:00  INFO 5244 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-07T20:20:50.624+01:00  INFO 5244 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-01-07T20:20:50.851+01:00  INFO 5244 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-07T20:20:50.884+01:00  INFO 5244 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-07T20:20:51.400+01:00  INFO 5244 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5086623f
+2024-01-07T20:20:51.403+01:00  INFO 5244 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-07T20:20:51.478+01:00  WARN 5244 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-07T20:20:51.479+01:00  WARN 5244 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-01-07T20:20:52.059+01:00  WARN 5244 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2024-01-07T20:20:52.059+01:00  WARN 5244 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2024-01-07T20:20:52.059+01:00  WARN 5244 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenKategorijaEntityPK
+2024-01-07T20:20:52.059+01:00  WARN 5244 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenKategorijaEntityPK
+2024-01-07T20:20:53.025+01:00  INFO 5244 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-07T20:20:53.326+01:00  INFO 5244 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-07T20:20:54.157+01:00  WARN 5244 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-07T20:20:54.497+01:00  INFO 5244 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6df0d030, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@33319df0, org.springframework.security.web.context.SecurityContextHolderFilter@6c37c36, org.springframework.security.web.header.HeaderWriterFilter@2c3d1214, org.springframework.web.filter.CorsFilter@73b71935, org.springframework.security.web.authentication.logout.LogoutFilter@5b395ee, org.unibl.etf.ip.backend.jtwconfig.JwtAuthenticationFilter@72ad577b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5e38329d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@60be9fdf, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d453075, org.springframework.security.web.session.SessionManagementFilter@4400026, org.springframework.security.web.access.ExceptionTranslationFilter@3e79473d, org.springframework.security.web.access.intercept.AuthorizationFilter@2aac60b]
+2024-01-07T20:20:54.775+01:00  WARN 5244 --- [main] o.s.b.a.f.FreeMarkerAutoConfiguration    : Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2024-01-07T20:20:54.865+01:00  INFO 5244 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 4040 (http) with context path ''
+2024-01-07T20:20:54.880+01:00  INFO 5244 --- [main] o.u.etf.ip.backend.BackendApplication    : Started BackendApplication in 7.416 seconds (process running for 8.885)
+2024-01-07T20:21:05.184+01:00  INFO 5244 --- [http-nio-4040-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-01-07T20:21:05.184+01:00  INFO 5244 --- [http-nio-4040-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-01-07T20:21:05.185+01:00  INFO 5244 --- [http-nio-4040-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-01-07T20:21:11.801+01:00  INFO 5244 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 3
+2024-01-07T20:21:11.808+01:00  INFO 5244 --- [http-nio-4040-exec-8] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 8
+2024-01-07T20:21:11.815+01:00  INFO 5244 --- [http-nio-4040-exec-5] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:21:11.817+01:00  INFO 5244 --- [http-nio-4040-exec-6] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 7
+2024-01-07T20:21:11.817+01:00  INFO 5244 --- [http-nio-4040-exec-9] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 9
+2024-01-07T20:21:11.822+01:00  INFO 5244 --- [http-nio-4040-exec-10] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 11
+2024-01-07T20:21:11.835+01:00  INFO 5244 --- [http-nio-4040-exec-2] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 14
+2024-01-07T20:21:11.848+01:00  INFO 5244 --- [http-nio-4040-exec-9] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 17
+2024-01-07T20:21:11.855+01:00  INFO 5244 --- [http-nio-4040-exec-4] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 16
+2024-01-07T20:21:11.863+01:00  INFO 5244 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 18
+2024-01-07T20:21:11.876+01:00  INFO 5244 --- [http-nio-4040-exec-1] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 15
+2024-01-07T20:22:41.065+01:00  INFO 5244 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-07T20:22:41.069+01:00  INFO 5244 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-01-07T20:22:41.081+01:00  INFO 5244 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-01-07T20:22:49.720+01:00  INFO 22420 --- [main] o.u.etf.ip.backend.BackendApplication    : Starting BackendApplication using Java 17.0.9 with PID 22420 (C:\Users\User\Desktop\IP-Project\BackendSpring\backend\target\classes started by Тепица in C:\Users\User\Desktop\IP-Project\BackendSpring\backend)
+2024-01-07T20:22:49.725+01:00  INFO 22420 --- [main] o.u.etf.ip.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2024-01-07T20:22:50.987+01:00  INFO 22420 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-07T20:22:51.127+01:00  INFO 22420 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 127 ms. Found 12 JPA repository interfaces.
+2024-01-07T20:22:51.874+01:00  INFO 22420 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 4040 (http)
+2024-01-07T20:22:51.885+01:00  INFO 22420 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-07T20:22:51.886+01:00  INFO 22420 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2024-01-07T20:22:51.959+01:00  INFO 22420 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-07T20:22:51.960+01:00  INFO 22420 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2154 ms
+2024-01-07T20:22:52.096+01:00  INFO 22420 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-07T20:22:52.159+01:00  INFO 22420 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-07T20:22:52.199+01:00  INFO 22420 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-01-07T20:22:52.403+01:00  INFO 22420 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-07T20:22:52.427+01:00  INFO 22420 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-07T20:22:52.765+01:00  INFO 22420 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7eae55
+2024-01-07T20:22:52.768+01:00  INFO 22420 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-07T20:22:52.814+01:00  WARN 22420 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-07T20:22:52.815+01:00  WARN 22420 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-01-07T20:22:53.444+01:00  WARN 22420 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2024-01-07T20:22:53.444+01:00  WARN 22420 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2024-01-07T20:22:53.445+01:00  WARN 22420 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenKategorijaEntityPK
+2024-01-07T20:22:53.445+01:00  WARN 22420 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenKategorijaEntityPK
+2024-01-07T20:22:54.904+01:00  INFO 22420 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-07T20:22:55.385+01:00  INFO 22420 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-07T20:22:56.422+01:00  WARN 22420 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-07T20:22:56.900+01:00  INFO 22420 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@16df0ebd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@29becf8b, org.springframework.security.web.context.SecurityContextHolderFilter@7d816d32, org.springframework.security.web.header.HeaderWriterFilter@2e4262d2, org.springframework.web.filter.CorsFilter@628b1538, org.springframework.security.web.authentication.logout.LogoutFilter@326d39fd, org.unibl.etf.ip.backend.jtwconfig.JwtAuthenticationFilter@5605a59b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5069a91b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@443d94ae, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@36995784, org.springframework.security.web.session.SessionManagementFilter@2060df8, org.springframework.security.web.access.ExceptionTranslationFilter@2c3d1214, org.springframework.security.web.access.intercept.AuthorizationFilter@4822d7a1]
+2024-01-07T20:22:57.907+01:00  WARN 22420 --- [main] o.s.b.a.f.FreeMarkerAutoConfiguration    : Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2024-01-07T20:22:58.026+01:00  INFO 22420 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 4040 (http) with context path ''
+2024-01-07T20:22:58.047+01:00  INFO 22420 --- [main] o.u.etf.ip.backend.BackendApplication    : Started BackendApplication in 9.13 seconds (process running for 11.198)
+2024-01-07T20:23:03.431+01:00  INFO 22420 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-07T20:23:03.434+01:00  INFO 22420 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-01-07T20:23:03.444+01:00  INFO 22420 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-01-07T20:23:13.410+01:00  INFO 19664 --- [main] o.u.etf.ip.backend.BackendApplication    : Starting BackendApplication using Java 17.0.9 with PID 19664 (C:\Users\User\Desktop\IP-Project\BackendSpring\backend\target\classes started by Тепица in C:\Users\User\Desktop\IP-Project\BackendSpring\backend)
+2024-01-07T20:23:13.418+01:00  INFO 19664 --- [main] o.u.etf.ip.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2024-01-07T20:23:14.948+01:00  INFO 19664 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-07T20:23:15.104+01:00  INFO 19664 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 144 ms. Found 12 JPA repository interfaces.
+2024-01-07T20:23:15.859+01:00  INFO 19664 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 4040 (http)
+2024-01-07T20:23:15.871+01:00  INFO 19664 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-07T20:23:15.871+01:00  INFO 19664 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2024-01-07T20:23:15.966+01:00  INFO 19664 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-07T20:23:15.967+01:00  INFO 19664 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2441 ms
+2024-01-07T20:23:16.133+01:00  INFO 19664 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-07T20:23:16.194+01:00  INFO 19664 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-07T20:23:16.241+01:00  INFO 19664 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-01-07T20:23:16.462+01:00  INFO 19664 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-07T20:23:16.487+01:00  INFO 19664 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-07T20:23:16.921+01:00  INFO 19664 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@18989e0
+2024-01-07T20:23:16.926+01:00  INFO 19664 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-07T20:23:17.003+01:00  WARN 19664 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-07T20:23:17.006+01:00  WARN 19664 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-01-07T20:23:17.709+01:00  WARN 19664 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2024-01-07T20:23:17.709+01:00  WARN 19664 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntityPK
+2024-01-07T20:23:17.709+01:00  WARN 19664 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): org.unibl.etf.ip.backend.model.KorisnikPretplacenKategorijaEntityPK
+2024-01-07T20:23:17.710+01:00  WARN 19664 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): org.unibl.etf.ip.backend.model.KorisnikPretplacenKategorijaEntityPK
+2024-01-07T20:23:18.601+01:00  INFO 19664 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-07T20:23:18.844+01:00  INFO 19664 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-07T20:23:19.924+01:00  WARN 19664 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-07T20:23:20.269+01:00  INFO 19664 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2943e61c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6bab373c, org.springframework.security.web.context.SecurityContextHolderFilter@304933cb, org.springframework.security.web.header.HeaderWriterFilter@6c37c36, org.springframework.web.filter.CorsFilter@493ed8e6, org.springframework.security.web.authentication.logout.LogoutFilter@6fa5fc67, org.unibl.etf.ip.backend.jtwconfig.JwtAuthenticationFilter@65293ca5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6fe55fcf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4d1f6e1c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7b897456, org.springframework.security.web.session.SessionManagementFilter@4f70b659, org.springframework.security.web.access.ExceptionTranslationFilter@5c94d4b8, org.springframework.security.web.access.intercept.AuthorizationFilter@3dd8b40e]
+2024-01-07T20:23:20.566+01:00  WARN 19664 --- [main] o.s.b.a.f.FreeMarkerAutoConfiguration    : Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.check-template-location=false)
+2024-01-07T20:23:20.659+01:00  INFO 19664 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 4040 (http) with context path ''
+2024-01-07T20:23:20.677+01:00  INFO 19664 --- [main] o.u.etf.ip.backend.BackendApplication    : Started BackendApplication in 8.265 seconds (process running for 10.009)
+2024-01-07T20:23:25.522+01:00  INFO 19664 --- [http-nio-4040-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-01-07T20:23:25.522+01:00  INFO 19664 --- [http-nio-4040-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-01-07T20:23:25.524+01:00  INFO 19664 --- [http-nio-4040-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-01-07T20:23:37.858+01:00  INFO 19664 --- [http-nio-4040-exec-8] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 8
+2024-01-07T20:23:37.876+01:00  INFO 19664 --- [http-nio-4040-exec-6] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 3
+2024-01-07T20:23:37.882+01:00  INFO 19664 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 7
+2024-01-07T20:23:37.905+01:00  INFO 19664 --- [http-nio-4040-exec-9] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 9
+2024-01-07T20:23:37.918+01:00  INFO 19664 --- [http-nio-4040-exec-1] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 14
+2024-01-07T20:23:37.921+01:00  INFO 19664 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 15
+2024-01-07T20:23:37.930+01:00  INFO 19664 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 16
+2024-01-07T20:23:37.979+01:00  INFO 19664 --- [http-nio-4040-exec-8] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 18
+2024-01-07T20:23:37.983+01:00  INFO 19664 --- [http-nio-4040-exec-4] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 17
+2024-01-07T20:23:37.997+01:00  INFO 19664 --- [http-nio-4040-exec-5] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 1
+2024-01-07T20:23:37.997+01:00  INFO 19664 --- [http-nio-4040-exec-10] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 11
+2024-01-07T20:23:48.114+01:00  INFO 19664 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-07T20:23:48.118+01:00  INFO 19664 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-01-07T20:23:48.128+01:00  INFO 19664 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

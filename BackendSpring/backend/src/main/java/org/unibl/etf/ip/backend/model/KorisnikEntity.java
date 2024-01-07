@@ -49,7 +49,7 @@ public class KorisnikEntity implements UserDetails {
     private String korisnickoIme;
 
     @NotBlank(message = "lozinka is mandatory!")
-    @Size(max = 500, message = "Maximum character size for lozinka is 500!")
+    @Size(max = 500, min = 8, message = "Maximum character size for lozinka is 500, and minimum is 8!")
     @Basic
     @Column(name = "lozinka", nullable = false, length = 500)
     private String lozinka;

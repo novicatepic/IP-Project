@@ -11,15 +11,15 @@ public class PasswordWrapper {
     private Integer id;
 
     @NotBlank(message = "oldPassword is mandatory!")
-    @Size(max = 256, message = "Maximum character size for oldPassword is 256!")
+    @Size(max = 256, min = 8, message = "Maximum character size for oldPassword is 256, and minimum is 8!")
     private String oldPassword;
 
     @NotBlank(message = "newPassword is mandatory!")
-    @Size(max = 256, message = "Maximum character size for newPassword is 256!")
+    @Size(max = 256, min = 8, message = "Maximum character size for newPassword is 256, and minimum is 8!")
     private String newPassword;
 
     @NotBlank(message = "newPassword2 is mandatory!")
-    @Size(max = 256, message = "Maximum character size for newPassword2 is 256!")
+    @Size(max = 256, min = 8, message = "Maximum character size for newPassword2 is 256, and minimum is 8!")
     private String newPassword2;
 
     public Integer getId() {

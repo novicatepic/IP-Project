@@ -1,5 +1,6 @@
 package org.unibl.etf.ip.backend.auth;
 
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<JwtAuthResponse> login(@RequestBody AuthRequest request) throws InvalidUsernameException, NotFoundException {
+    public ResponseEntity<JwtAuthResponse> login(@Valid @RequestBody AuthRequest request) throws InvalidUsernameException, NotFoundException {
 
         JwtAuthResponse response = authenticationService.login(request);
 
