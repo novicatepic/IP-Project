@@ -2,6 +2,7 @@ package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
@@ -65,7 +66,7 @@ public class KorisnikEntity implements UserDetails {
     @Column(name = "mail", nullable = false, length = 200, unique = true)
     private String mail;
 
-    @NotBlank(message = "aktivan is mandatory!")
+    @NotNull(message = "aktivan is mandatory!")
     @Basic
     @Column(name = "aktivan", nullable = false)
     private Boolean aktivan;

@@ -43,7 +43,7 @@ export class FitnessProgramComponent implements OnInit {
         this.singleProgramService.loadPhotos((entry.id)).subscribe((photos) => {
           entry.photos = photos;
         })
-      })
+      })  
       //this.data.test = ":)";
       console.log(this.data);
       this.filteredData = this.data;  

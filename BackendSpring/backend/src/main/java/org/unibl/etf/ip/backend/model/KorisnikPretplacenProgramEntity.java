@@ -3,6 +3,7 @@ package org.unibl.etf.ip.backend.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 
@@ -10,7 +11,7 @@ import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBl
 @Table(name = "korisnik_pretplacen_program", schema = "ip_project", catalog = "")
 @IdClass(KorisnikPretplacenProgramEntityPK.class)
 public class KorisnikPretplacenProgramEntity {
-    @NotBlank(message = "korisnikId is mandatory!")
+    @NotNull(message = "korisnikId is mandatory!")
     @Max(value = 1000000, message = "korisnikId value must be less than or equal to 1000000")
     @Min(value = 1, message = "korisnikId value must be greater than or equal to 1!")
     @Id
@@ -18,7 +19,7 @@ public class KorisnikPretplacenProgramEntity {
     private Integer korisnikId;
 
 
-    @NotBlank(message = "programId is mandatory!")
+    @NotNull(message = "programId is mandatory!")
     @Max(value = 1000000, message = "programId value must be less than or equal to 1000000")
     @Min(value = 1, message = "programId value must be greater than or equal to 1!")
     @Id
@@ -31,7 +32,7 @@ public class KorisnikPretplacenProgramEntity {
     @Column(name = "nacin_placanja", nullable = false, length = 100)
     private String nacinPlacanja;
 
-    @NotBlank(message = "vrijednost is mandatory!")
+    @NotNull(message = "vrijednost is mandatory!")
     @Max(value = 1000000, message = "vrijednost value must be less than or equal to 1000000")
     @Min(value = 1, message = "vrijednost value must be greater than or equal to 1!")
     @Basic

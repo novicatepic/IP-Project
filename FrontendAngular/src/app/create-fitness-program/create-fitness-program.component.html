@@ -6,16 +6,59 @@
             <div class="form-group col-md-6">
                 <label for="name">Name*</label>
                 <input formControlName="name" type="text" required="required" class="text-center form-control" id="name" placeholder="Enter name">
+
+                <div *ngIf="firstForm.get('name')?.invalid && (firstForm.get('name')?.dirty || firstForm.get('name')?.touched)">
+                    <!-- Greske -->
+                    <small class="text-danger"
+                    *ngIf="firstForm.get('name')?.hasError('required')"
+                    > This field is required
+                    </small>
+                    <small class="text-danger"
+                      *ngIf="firstForm.get('name')?.hasError('maxlength')"
+                      > Must be less than 200 characters
+                    </small>
+                </div>
+
             </div>
             <div class="form-group col-md-6">
                 <label for="description">Description*</label>
                 <textarea rows="5" formControlName="description" required="required" class="text-center form-control" id="description" placeholder="Enter description"></textarea>
+
+                <div *ngIf="firstForm.get('description')?.invalid && (firstForm.get('description')?.dirty || firstForm.get('description')?.touched)">
+                    <!-- Greske -->
+                    <small class="text-danger"
+                    *ngIf="firstForm.get('description')?.hasError('required')"
+                    > This field is required
+                    </small>
+                    <small class="text-danger"
+                      *ngIf="firstForm.get('description')?.hasError('maxlength')"
+                      > Must be less than 2000 characters
+                    </small>
+                </div>
+
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="price">Price* (in euro)</label>
                 <input formControlName="price" type="number" required="required" class="text-center form-control" id="price" placeholder="Enter price">
+
+                <div *ngIf="firstForm.get('price')?.invalid && (firstForm.get('price')?.dirty || firstForm.get('price')?.touched)">
+                    <!-- Greske -->
+                    <small class="text-danger"
+                    *ngIf="firstForm.get('price')?.hasError('required')"
+                    > This field is required
+                    </small>
+                    <small class="text-danger"
+                      *ngIf="firstForm.get('price')?.hasError('min')"
+                      > Must be greater than 1
+                    </small>
+                    <small class="text-danger"
+                      *ngIf="firstForm.get('price')?.hasError('max')"
+                      > Must be less than 1000000
+                    </small>
+                </div>
+
             </div>
             <div class="form-group col-md-6">
                 <label for="difficulty">Difficulty*</label>
@@ -24,12 +67,38 @@
                     <option value="2">Medium</option>
                     <option value="3">Hard</option>
                 </select>
+
+                <div *ngIf="firstForm.get('difficulty')?.invalid && (firstForm.get('difficulty')?.dirty || firstForm.get('difficulty')?.touched)">
+                    <!-- Greske -->
+                    <small class="text-danger"
+                    *ngIf="firstForm.get('difficulty')?.hasError('required')"
+                    > This field is required
+                    </small>
+                </div>
+
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="duration">Duration* (number of days)</label>
                 <input formControlName="duration" type="text" required="required" class="text-center form-control" id="duration">
+
+                <div *ngIf="firstForm.get('duration')?.invalid && (firstForm.get('duration')?.dirty || firstForm.get('duration')?.touched)">
+                    <!-- Greske -->
+                    <small class="text-danger"
+                    *ngIf="firstForm.get('duration')?.hasError('required')"
+                    > This field is required
+                    </small>
+                    <small class="text-danger"
+                      *ngIf="firstForm.get('duration')?.hasError('min')"
+                      > Must be greater than 1
+                    </small>
+                    <small class="text-danger"
+                      *ngIf="firstForm.get('duration')?.hasError('max')"
+                      > Must be less than 1000
+                    </small>
+                </div>
+
             </div>
             <div class="form-group col-md-6">
                 <label for="location">Location*</label>
@@ -37,6 +106,19 @@
                     <option value="Live">Live</option>
                     <option value="Link">Youtube link</option>
                 </select>
+
+                <div *ngIf="firstForm.get('location')?.invalid && (firstForm.get('location')?.dirty || firstForm.get('location')?.touched)">
+                    <!-- Greske -->
+                    <small class="text-danger"
+                    *ngIf="firstForm.get('location')?.hasError('required')"
+                    > This field is required
+                    </small>
+                    <small class="text-danger"
+                      *ngIf="firstForm.get('location')?.hasError('maxlength')"
+                      > Must be less than 200 characters
+                    </small>
+                </div>
+
             </div>
         </div>
         
@@ -44,10 +126,36 @@
             <div class="form-group col-md-6">
                 <label for="ytlink">Value (link or message)*</label>
                 <input formControlName="ytlink" type="text" class="text-center form-control" id="ytlink" placeholder="Enter link or message">
+
+                <div *ngIf="firstForm.get('ytlink')?.invalid && (firstForm.get('ytlink')?.dirty || firstForm.get('ytlink')?.touched)">
+                    <!-- Greske -->
+                    <small class="text-danger"
+                    *ngIf="firstForm.get('ytlink')?.hasError('required')"
+                    > This field is required
+                    </small>
+                    <small class="text-danger"
+                      *ngIf="firstForm.get('ytlink')?.hasError('maxlength')"
+                      > Must be less than 200 characters
+                    </small>
+                </div>
+
             </div>
             <div class="form-group col-md-6">
                 <label for="contact">Contact*</label>
                 <input formControlName="contact" type="text" required="required" class="text-center form-control" id="contact" placeholder="Enter contact info">
+
+                <div *ngIf="firstForm.get('contact')?.invalid && (firstForm.get('contact')?.dirty || firstForm.get('contact')?.touched)">
+                    <!-- Greske -->
+                    <small class="text-danger"
+                    *ngIf="firstForm.get('contact')?.hasError('required')"
+                    > This field is required
+                    </small>
+                    <small class="text-danger"
+                      *ngIf="firstForm.get('contact')?.hasError('maxlength')"
+                      > Must be less than 45 characters
+                    </small>
+                </div>
+
             </div>
         </div>
         
@@ -55,12 +163,34 @@
             <div class="form-group col-md-6">
                 <label for="date">Date*</label>
                 <input formControlName="date" type="date" required="required" class="text-center form-control" id="date" placeholder="Enter date">
+
+                <div *ngIf="firstForm.get('date')?.invalid && (firstForm.get('date')?.dirty || firstForm.get('date')?.touched)">
+                    <!-- Greske -->
+                    <small class="text-danger"
+                    *ngIf="firstForm.get('date')?.hasError('required')"
+                    > This field is required
+                    </small>
+                </div>
+
             </div>
             <div class="form-group col-md-6">
                 <label for="category">Category*</label>
                 <select formControlName="category" name="category" required class="text-center form-control">
                     <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.naziv }}</option>
                 </select>
+
+                <div *ngIf="firstForm.get('category')?.invalid && (firstForm.get('category')?.dirty || firstForm.get('category')?.touched)">
+                    <!-- Greske -->
+                    <small class="text-danger"
+                    *ngIf="firstForm.get('category')?.hasError('required')"
+                    > This field is required
+                    </small>
+                    <small class="text-danger"
+                      *ngIf="firstForm.get('category')?.hasError('maxlength')"
+                      > Must be less than 45 characters
+                    </small>
+                </div>
+
             </div>
         </div>
         <hr class="my-4 bg-primary">
@@ -70,14 +200,57 @@
             <div class="form-group col-md-4">
                 <label for="instructorFirstName">First name*</label>
                 <input formControlName="instructorFirstName" type="text" required="required" class="text-center form-control" id="instructorFirstName" placeholder="Enter first name">
+
+                <div *ngIf="firstForm.get('instructorFirstName')?.invalid && (firstForm.get('instructorFirstName')?.dirty || firstForm.get('instructorFirstName')?.touched)">
+                    <!-- Greske -->
+                    <small class="text-danger"
+                    *ngIf="firstForm.get('instructorFirstName')?.hasError('required')"
+                    > This field is required
+                    </small>
+                    <small class="text-danger"
+                      *ngIf="firstForm.get('instructorFirstName')?.hasError('maxlength')"
+                      > Must be less than 45 characters
+                    </small>
+                </div>
+
             </div>
             <div class="form-group col-md-4">
                 <label for="instructorLastName">Last name*</label>
                 <input formControlName="instructorLastName" type="text" required="required" class="text-center form-control" id="instructorLastName" placeholder="Enter last name">
+
+                <div *ngIf="firstForm.get('instructorLastName')?.invalid && (firstForm.get('instructorLastName')?.dirty || firstForm.get('instructorLastName')?.touched)">
+                    <!-- Greske -->
+                    <small class="text-danger"
+                    *ngIf="firstForm.get('instructorLastName')?.hasError('required')"
+                    > This field is required
+                    </small>
+                    <small class="text-danger"
+                      *ngIf="firstForm.get('instructorLastName')?.hasError('maxlength')"
+                      > Must be less than 45 characters
+                    </small>
+                </div>
+
             </div>
             <div class="form-group col-md-4">
                 <label for="instructorExperience">Experience years*</label>
                 <input formControlName="instructorExperience" type="number" min="1" max="40" required="required" class="text-center form-control" id="instructorExperience" placeholder="Experience">
+
+                <div *ngIf="firstForm.get('instructorExperience')?.invalid && (firstForm.get('instructorExperience')?.dirty || firstForm.get('instructorExperience')?.touched)">
+                    <!-- Greske -->
+                    <small class="text-danger"
+                    *ngIf="firstForm.get('instructorExperience')?.hasError('required')"
+                    > This field is required
+                    </small>
+                    <small class="text-danger"
+                      *ngIf="firstForm.get('instructorExperience')?.hasError('min')"
+                      > Must be greater than 1
+                    </small>
+                    <small class="text-danger"
+                      *ngIf="firstForm.get('instructorExperience')?.hasError('max')"
+                      > Must be less than 40
+                    </small>
+                </div>
+
             </div>
         </div>
         

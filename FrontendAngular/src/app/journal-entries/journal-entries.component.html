@@ -38,10 +38,36 @@
             <div class="mb-3">
                 <label for="exercise" class="col-form-label">Exercise</label>
                 <input formControlName="exercise" id="exercise" type="text" class="form-control" placeholder="Exercise...">
+
+                <div *ngIf="firstForm.get('exercise')?.invalid && (firstForm.get('exercise')?.dirty || firstForm.get('exercise')?.touched)">
+                  <!-- Greske -->
+                  <small class="text-danger"
+                  *ngIf="firstForm.get('exercise')?.hasError('required')"
+                  > This field is required
+                  </small>
+                  <small class="text-danger"
+                    *ngIf="firstForm.get('exercise')?.hasError('maxlength')"
+                    > Must be less than 45 characters
+                  </small>
+              </div>
+
             </div>
             <div class="mb-3">
                 <label for="duration" class="col-form-label">Duration</label>
                 <input formControlName="duration" id="duration" type="text" class="form-control" placeholder="Duration...">
+
+                <div *ngIf="firstForm.get('duration')?.invalid && (firstForm.get('duration')?.dirty || firstForm.get('duration')?.touched)">
+                  <!-- Greske -->
+                  <small class="text-danger"
+                  *ngIf="firstForm.get('duration')?.hasError('required')"
+                  > This field is required
+                  </small>
+                  <small class="text-danger"
+                    *ngIf="firstForm.get('duration')?.hasError('maxlength')"
+                    > Must be less than 45 characters
+                  </small>
+              </div>
+
             </div>
             <div class="mb-3">
                 <label for="intensity" class="col-form-label">Intensity</label>
@@ -50,15 +76,53 @@
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
                 </select>
-                <!--input formControlName="intensity" id="intensity" type="text" class="form-control" placeholder="Intensity..."-->
+
+                <div *ngIf="firstForm.get('intensity')?.invalid && (firstForm.get('intensity')?.dirty || firstForm.get('intensity')?.touched)">
+                  <!-- Greske -->
+                  <small class="text-danger"
+                  *ngIf="firstForm.get('intensity')?.hasError('required')"
+                  > This field is required
+                  </small>
+                  <small class="text-danger"
+                    *ngIf="firstForm.get('intensity')?.hasError('maxlength')"
+                    > Must be less than 45 characters
+                  </small>
+              </div>
             </div>
             <div class="mb-3">
                 <label for="weight" class="col-form-label">Weight</label>
                 <input formControlName="weight" id="weight" type="text" class="form-control" placeholder="Weight...">
+
+                <div *ngIf="firstForm.get('weight')?.invalid && (firstForm.get('weight')?.dirty || firstForm.get('weight')?.touched)">
+                  <!-- Greske -->
+                  <small class="text-danger"
+                  *ngIf="firstForm.get('weight')?.hasError('required')"
+                  > This field is required
+                  </small>
+                  <small class="text-danger"
+                    *ngIf="firstForm.get('weight')?.hasError('max')"
+                    > Must be less than 200
+                  </small>
+                  <small class="text-danger"
+                    *ngIf="firstForm.get('weight')?.hasError('min')"
+                    > Must be greater than 10
+                  </small>
+              </div>
+
+
             </div>
             <div class="mb-3">
                 <label for="date" class="col-form-label">Date</label>
-                <input formControlName="date" id="intensity" type="date" class="form-control" placeholder="Date...">
+                <input formControlName="date" id="intensity" type="date" class="form-control" placeholder="Intensity...">
+
+                <div *ngIf="firstForm.get('date')?.invalid && (firstForm.get('date')?.dirty || firstForm.get('date')?.touched)">
+                  <!-- Greske -->
+                  <small class="text-danger"
+                  *ngIf="firstForm.get('date')?.hasError('required')"
+                  > This field is required
+                  </small>
+              </div>
+
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary">Submit</button>

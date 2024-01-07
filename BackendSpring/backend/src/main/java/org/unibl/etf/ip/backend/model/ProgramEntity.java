@@ -1,10 +1,7 @@
 package org.unibl.etf.ip.backend.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -35,21 +32,21 @@ public class ProgramEntity implements Serializable {
     @Column(name = "opis", nullable = false, length = 2000)
     private String opis;
 
-    @NotBlank(message = "cijena is mandatory!")
+    @NotNull(message = "cijena is mandatory!")
     @Max(value = 1000000, message = "cijena value must be less than or equal to 1000000")
     @Min(value = 1, message = "cijena value must be greater than or equal to 1!")
     @Basic
     @Column(name = "cijena", nullable = false, precision = 0)
     private Integer cijena;
 
-    @NotBlank(message = "tezina is mandatory!")
+    @NotNull(message = "tezina is mandatory!")
     @Max(value = 2, message = "tezina value must be less than or equal to 2")
     @Min(value = 0, message = "tezina value must be greater than or equal to 0!")
     @Basic
     @Column(name = "tezina", nullable = false)
     private Integer tezina;
 
-    @NotBlank(message = "trajanje is mandatory!")
+    @NotNull(message = "trajanje is mandatory!")
     @Max(value = 1000, message = "trajanje value must be less than or equal to 1000")
     @Min(value = 1, message = "trajanje value must be greater than or equal to 1!")
     @Basic
@@ -74,26 +71,26 @@ public class ProgramEntity implements Serializable {
     @Column(name = "kontakt", nullable = false, length = 45)
     private String kontakt;
 
-    @NotBlank(message = "datum is mandatory!")
+    @NotNull(message = "datum is mandatory!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Future(message = "datum must be in the future!")
     @Basic
     @Column(name = "datum", nullable = false)
     private Date datum;
 
-    @NotBlank(message = "ucestvovan is mandatory!")
+    @NotNull(message = "ucestvovan is mandatory!")
     @Basic
     @Column(name = "ucestvovan", nullable = false)
     private Boolean ucestvovan;
 
-    @NotBlank(message = "kreatorId is mandatory!")
+    @NotNull(message = "kreatorId is mandatory!")
     @Max(value = 1000000, message = "kreatorId value must be less than or equal to 1000000")
     @Min(value = 1, message = "kreatorId value must be greater than or equal to 1!")
     @Basic
     @Column(name = "kreator_id", nullable = false)
     private Integer kreatorId;
 
-    @NotBlank(message = "kategorijaId is mandatory!")
+    @NotNull(message = "kategorijaId is mandatory!")
     @Max(value = 1000000, message = "kategorijaId value must be less than or equal to 1000000")
     @Min(value = 1, message = "kategorijaId value must be greater than or equal to 1!")
     @Basic
@@ -112,14 +109,14 @@ public class ProgramEntity implements Serializable {
     @Column(name = "instruktor_prezime", nullable = false, length = 45)
     private String instruktorPrezime;
 
-    @NotBlank(message = "godineIskustva is mandatory!")
+    @NotNull(message = "godineIskustva is mandatory!")
     @Max(value = 40, message = "godineIskustva value must be less than or equal to 40")
     @Min(value = 1, message = "godineIskustva value must be greater than or equal to 1!")
     @Basic
     @Column(name = "godine_iskustva", nullable = false)
     private Integer godineIskustva;
 
-    @NotBlank(message = "datumKreiranja is mandatory!")
+    @NotNull(message = "datumKreiranja is mandatory!")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Basic

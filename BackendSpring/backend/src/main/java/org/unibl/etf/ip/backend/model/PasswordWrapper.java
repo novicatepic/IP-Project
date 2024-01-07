@@ -1,11 +1,12 @@
 package org.unibl.etf.ip.backend.model;
 
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 
 public class PasswordWrapper {
-    @NotBlank(message = "id is mandatory!")
+    @NotNull(message = "id is mandatory!")
     @Max(value = 1000000, message = "id value must be less than or equal to 1000000")
     private Integer id;
 

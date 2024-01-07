@@ -3,6 +3,7 @@ package org.unibl.etf.ip.backend.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 
@@ -20,14 +21,14 @@ public class PorukaEntity {
     @Column(name = "tekst", nullable = false, length = 1000)
     private String tekst;
 
-    @NotBlank(message = "posiljalacId is mandatory!")
+    @NotNull(message = "posiljalacId is mandatory!")
     @Max(value = 1000000, message = "posiljalacId value must be less than or equal to 1000000")
     @Min(value = 1, message = "posiljalacId value must be greater than or equal to 1!")
     @Basic
     @Column(name = "posiljalac_id", nullable = false)
     private Integer posiljalacId;
 
-    @NotBlank(message = "primalacId is mandatory!")
+    @NotNull(message = "primalacId is mandatory!")
     @Max(value = 1000000, message = "primalacId value must be less than or equal to 1000000")
     @Min(value = 1, message = "primalacId value must be greater than or equal to 1!")
     @Basic
@@ -41,7 +42,7 @@ public class PorukaEntity {
     @JoinColumn(name = "primalac_id", nullable = false, updatable = false, insertable = false)
     private KorisnikEntity primalac;
 
-    @NotBlank(message = "procitana is mandatory!")
+    @NotNull(message = "procitana is mandatory!")
     @Basic
     @Column(name = "procitana", nullable = false)
     private Boolean procitana;

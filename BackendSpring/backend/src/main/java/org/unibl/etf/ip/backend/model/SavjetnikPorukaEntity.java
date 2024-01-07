@@ -3,6 +3,7 @@ package org.unibl.etf.ip.backend.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 
@@ -17,7 +18,7 @@ public class SavjetnikPorukaEntity {
     @Column(name = "tekst", nullable = false, length = 1000)
     private String tekst;
 
-    @NotBlank(message = "procitana is mandatory!")
+    @NotNull(message = "procitana is mandatory!")
     @Basic
     @Column(name = "procitana", nullable = false)
     private Boolean procitana;
@@ -28,7 +29,7 @@ public class SavjetnikPorukaEntity {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @NotBlank(message = "korisnikId is mandatory!")
+    @NotNull(message = "korisnikId is mandatory!")
     @Max(value = 1000000, message = "korisnikId value must be less than or equal to 1000000")
     @Min(value = 1, message = "korisnikId value must be greater than or equal to 1!")
     @Basic
@@ -39,7 +40,7 @@ public class SavjetnikPorukaEntity {
     @JoinColumn(name = "korisnik_id", nullable = false, insertable = false, updatable = false)
     private KorisnikEntity korisnik;
 
-    @NotBlank(message = "datum is mandatory!")
+    @NotNull(message = "datum is mandatory!")
     @Basic
     @Column(name = "datum", nullable = false)
     private Date datum;
@@ -50,7 +51,7 @@ public class SavjetnikPorukaEntity {
     @Column(name = "naslov", nullable = false, length = 100)
     private String naslov;
 
-    @NotBlank(message = "odgovorena is mandatory!")
+    @NotNull(message = "odgovorena is mandatory!")
     @Basic
     @Column(name = "odgovorena", nullable = false)
     private Boolean odgovorena;

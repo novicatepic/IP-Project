@@ -4,6 +4,19 @@
     <div class="form-group">
       <label for="question">Input</label>
       <input formControlName="question" type="text" class="text-center form-control" id="question" placeholder="Question">
+
+      <div *ngIf="firstForm.get('question')?.invalid && (firstForm.get('question')?.dirty || firstForm.get('question')?.touched)">
+        <!-- Greske -->
+        <small class="text-danger"
+        *ngIf="firstForm.get('question')?.hasError('required')"
+        > This field is required
+        </small>
+        <small class="text-danger"
+          *ngIf="firstForm.get('question')?.hasError('maxlength')"
+          > Must be less than 1000 characters
+        </small>
+    </div>
+
     </div>
 
     <input [disabled]="firstForm.invalid" type="submit" class="btn btn-primary" value="Submit"/>

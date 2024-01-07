@@ -12,14 +12,45 @@
       <div><small>Price: {{ item.cijena }} EURO</small></div>
       <button (click)="showPart(item)" class="btn btn-success">Buy Program</button>
       <form [formGroup]="firstForm" (ngSubmit)="buyProgram()" *ngIf="selectedItem && selectedItem.id === item.id">
-        <select formControlName="paymentMethod" class="mt-5 form-select">
-          <option selected value="Debit card">Debit card</option>
-          <option value="Paypal">PayPal</option>
-          <option value="Live">Live</option>
-        </select>
+        <div class="form-group">
+          <select formControlName="paymentMethod" class="mt-5 form-select">
+            <option selected value="Debit card">Debit card</option>
+            <option value="Paypal">PayPal</option>
+            <option value="Live">Live</option>
+          </select>
+
+          <div *ngIf="firstForm.get('paymentMethod')?.invalid && (firstForm.get('paymentMethod')?.dirty || firstForm.get('paymentMethod')?.touched)">
+            <!-- Greske -->
+            <small class="text-danger"
+            *ngIf="firstForm.get('paymentMethod')?.hasError('required')"
+            > This field is required
+            </small>
+            <small class="text-danger"
+              *ngIf="firstForm.get('paymentMethod')?.hasError('maxlength')"
+              > Must be less than 100 characters
+            </small>
+          </div>
+
+        </div>
+        
         <div class="form-group">
           <label for="payment-value">Payment value</label>
           <input formControlName="paymentValue" type="number" min="0" class="form-control" id="exampleInputPassword1" placeholder="Value...">
+          <div *ngIf="firstForm.get('paymentValue')?.invalid && (firstForm.get('paymentValue')?.dirty || firstForm.get('paymentValue')?.touched)">
+            <!-- Greske -->
+            <small class="text-danger"
+            *ngIf="firstForm.get('paymentValue')?.hasError('required')"
+            > This field is required
+            </small>
+            <small class="text-danger"
+              *ngIf="firstForm.get('paymentValue')?.hasError('max')"
+              > Number must be smaller than 1000000
+            </small>
+            <small class="text-danger"
+              *ngIf="firstForm.get('paymentValue')?.hasError('min')"
+              > Number must be greater than 1
+            </small>
+          </div>
         </div>
         <button type="submit" class="btn btn-danger">Submit</button>
       </form>
