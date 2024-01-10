@@ -14,6 +14,7 @@ public class FitnessUserBean implements Serializable {
 	private String avatar;
 	private String mail;
 	private boolean active = false;
+	private boolean terminated;
 	
 	public FitnessUserBean() {
 		// TODO Auto-generated constructor stub
@@ -29,7 +30,7 @@ public class FitnessUserBean implements Serializable {
 	
 
 	public FitnessUserBean(String name, String lastName, String city, String username, String password, String avatar,
-			String mail, boolean active) {
+			String mail, boolean active, boolean terminated) {
 		super();
 		this.name = name;
 		this.lastName = lastName;
@@ -39,12 +40,25 @@ public class FitnessUserBean implements Serializable {
 		this.avatar = avatar;
 		this.mail = mail;
 		this.active = active;
+		this.terminated = terminated;
+	}
+
+	
+
+	public boolean isTerminated() {
+		return terminated;
+	}
+
+
+
+	public void setTerminated(boolean terminated) {
+		this.terminated = terminated;
 	}
 
 
 
 	public FitnessUserBean(int id, String name, String lastName, String city, String username, String password,
-			String avatar, String mail, boolean active) {
+			String avatar, String mail, boolean active, boolean terminated) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -55,6 +69,7 @@ public class FitnessUserBean implements Serializable {
 		this.avatar = avatar;
 		this.mail = mail;
 		this.active = active;
+		this.terminated = terminated;
 	}
 
 

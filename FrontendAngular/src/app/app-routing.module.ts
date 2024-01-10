@@ -26,6 +26,7 @@ import { ShowProfileComponent } from './show-profile/show-profile.component';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { AttendBoughtProgramsComponent } from './attend-bought-programs/attend-bought-programs.component';
 import { CheckUserProfileComponent } from './check-user-profile/check-user-profile.component';
+import { MessageUserComponent } from './message-user/message-user.component';
 
 
 const routes: Routes = [
@@ -52,6 +53,7 @@ const routes: Routes = [
   {path: 'upload-photo/:programId', component: UploadPhotoComponent, canActivate: [AuthGuard]},
   {path: 'buy-programs', component: BuyProgramComponent, canActivate: [AuthGuard]},
   {path: 'message-consultant', component: MessageConsultantComponent, canActivate: [AuthGuard]},
+  {path: 'message-user', component: MessageUserComponent, canActivate: [AuthGuard]},
   {path: 'check-messages', component: CheckMessagesComponent, canActivate: [AuthGuard]},
   {path: 'all-messages', component: CheckAllMessagesComponent},
   {path: 'check-messages/:id', component: CheckSingleMessageComponent, canActivate: [AuthGuard]},

@@ -46,6 +46,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/auth/**")
                         .permitAll()
                         .requestMatchers("/fitness-programs", "/fitness-programs/{id}").permitAll()
+                        .requestMatchers("/fitness-users/password-encode").permitAll()
                         .requestMatchers("/categories").permitAll()
                         .requestMatchers("/logger").permitAll()
                         .requestMatchers("/rss").permitAll()

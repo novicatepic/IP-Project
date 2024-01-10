@@ -93,7 +93,10 @@
 
         </tbody>
       </table>
-
+	<p class="lead"><%= session.getAttribute("categoryadd") != null ? session.getAttribute("categoryadd") : "" %></p>
+	
+	<% session.setAttribute("categoryadd", null); %>
+	
 	<div class="modal fade" id="addcategory" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -106,7 +109,7 @@
                 <form method="post" action="?action=addcategory">
                     <div class="mb-3">
                         <label for="category-name" class="col-form-label">Category name</label>
-                        <input id="category-name" name="categoryName" type="text" class="form-control">
+                        <input id="category-name" name="categoryName" type="text" required="required" class="form-control">
                     </div>
                     <!-- Submit and Close buttons inside the form, in the same line -->
                     <div class="d-flex justify-content-start">

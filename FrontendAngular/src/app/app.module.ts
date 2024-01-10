@@ -44,6 +44,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CheckUserProfileComponent } from './check-user-profile/check-user-profile.component';
 
 import { BsModalService, BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
+import { MessageUserComponent } from './message-user/message-user.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { BsModalService, BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
     MainNavComponent,
     FooterComponent,
     AttendBoughtProgramsComponent,
-    CheckUserProfileComponent
+    CheckUserProfileComponent,
+    MessageUserComponent
   ],
   imports: [
     BrowserModule,

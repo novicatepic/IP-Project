@@ -31,11 +31,11 @@
         </div>
         <div class="form-group">
             <label for="attrname">Attribute Name</label>
-            <input type="text" name="attrname" class="text-center form-control" id="attrname" placeholder="Name">
+            <input type="text" name="attrname" class="text-center form-control" required="required" id="attrname" placeholder="Name">
         </div>
         <div class="form-group">
             <label for="attrvalue">Attribute Value</label>
-            <input type="text" name="attrvalue" class="text-center form-control" id="attrvalue" placeholder="Value">
+            <input type="text" required="required" name="attrvalue" class="text-center form-control" id="attrvalue" placeholder="Value">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

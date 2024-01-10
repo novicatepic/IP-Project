@@ -14,8 +14,11 @@ import org.unibl.etf.ip.backend.exceptions.UserNotActiveException;
 import org.unibl.etf.ip.backend.loginservice.UserLoginHelp;
 import org.unibl.etf.ip.backend.model.CodeModel;
 import org.unibl.etf.ip.backend.model.KorisnikEntity;
+import org.unibl.etf.ip.backend.model.PasswordHelper;
 import org.unibl.etf.ip.backend.model.PasswordWrapper;
 import org.unibl.etf.ip.backend.service.FitnessUserService;
+
+import java.util.List;
 
 @CrossOrigin("*")
 @RestController
@@ -32,6 +35,15 @@ public class FitnessUserController {
         }
 
         return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/all-but-me/{id}")
+    public ResponseEntity<List<KorisnikEntity>> getFitnessUsersForMessage(@PathVariable("id") Integer id) throws NotFoundException {
+        if(!UserLoginHelp.checkUserValidity(id)) {
+            return ForbiddenEntity.returnForbidden();
+        }
+
+        return new ResponseEntity<>(service.getAllButMe(id), HttpStatus.OK);
     }
 
     @GetMapping("/user/{userName}")
@@ -67,5 +79,10 @@ public class FitnessUserController {
         }
 
         return new ResponseEntity<>(service.updateFitnessUserPassword(passwordWrapper), HttpStatus.OK);
+    }
+
+    @PostMapping("/password-encode")
+    public ResponseEntity<PasswordHelper> getPassowrdEncoded(@RequestBody PasswordHelper passwordHelper) throws NotFoundException {
+        return new ResponseEntity<>(service.encodePassword(passwordHelper), HttpStatus.OK);
     }
 }

@@ -22,11 +22,11 @@
     <form method="post" action="?action=login" class="text-center">
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" name="username" class="text-center form-control" id="username" placeholder="Username">
+            <input type="text" name="username" required="required" class="text-center form-control" id="username" placeholder="Username">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" name="password" class="text-center form-control" id="exampleInputPassword1" placeholder="Password">
+            <input type="password" required="required"  name="password" class="text-center form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

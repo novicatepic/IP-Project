@@ -8,6 +8,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Service;
 import org.unibl.etf.ip.backend.exceptions.InvalidUsernameException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
+import org.unibl.etf.ip.backend.exceptions.UserTerminatedException;
 import org.unibl.etf.ip.backend.jtwconfig.JwtService;
 import org.unibl.etf.ip.backend.model.KorisnikEntity;
 import org.unibl.etf.ip.backend.model.NalogAktivacijaEntity;
@@ -28,13 +29,14 @@ public class AuthenticationService {
     @Autowired
     private MailService mailService;
 
-    public AuthenticationService(FitnessUserRepository userRepository, JwtService jwtService, AuthenticationManager authenticationManager) {
+    public AuthenticationService(FitnessUserRepository userRepository, JwtService jwtService, AuthenticationManager authenticationManager)
+     {
         this.userRepository = userRepository;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
     }
 
-    public JwtAuthResponse login(AuthRequest request) throws InvalidUsernameException, NotFoundException {
+    public JwtAuthResponse login(AuthRequest request) throws InvalidUsernameException, NotFoundException, UserTerminatedException {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 
@@ -45,6 +47,10 @@ public class AuthenticationService {
 
         if(!user.isAktivan()) {
             return null;
+        }
+
+        if(user.getTerminiran()) {
+            throw new UserTerminatedException();
         }
 
         //System.out.println(user.getKorisnickoIme());

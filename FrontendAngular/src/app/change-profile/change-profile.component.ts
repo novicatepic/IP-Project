@@ -82,7 +82,8 @@ export class ChangeProfileComponent {
         grad: this.firstForm.get('city')?.value,
         avatar: this.firstForm.get('avatar')?.value,
         mail: this.firstForm.get('email')?.value,
-        aktivan: this.user.aktivan 
+        aktivan: this.user.aktivan,
+        terminiran: false 
       }
 
       this.service.updateFitnessUserProfile(fitnessUser).subscribe((data) => {

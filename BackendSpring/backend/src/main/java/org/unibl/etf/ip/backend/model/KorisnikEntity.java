@@ -71,6 +71,11 @@ public class KorisnikEntity implements UserDetails {
     @Column(name = "aktivan", nullable = false)
     private Boolean aktivan;
 
+    @NotNull(message = "terminiran is mandatory!")
+    @Basic
+    @Column(name = "terminiran", nullable = false)
+    private Boolean terminiran;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "korisnik_pretplacen_kategorija",
@@ -79,6 +84,13 @@ public class KorisnikEntity implements UserDetails {
     )
     private List<KategorijaEntity> subscribedCategories;
 
+    public Boolean getTerminiran() {
+        return terminiran;
+    }
+
+    public void setTerminiran(Boolean terminiran) {
+        this.terminiran = terminiran;
+    }
 
     public Integer getId() {
         return id;

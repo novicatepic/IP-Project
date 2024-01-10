@@ -43,7 +43,8 @@ export class RegisterComponent {
         lozinka: this.firstForm.get('password')?.value,
         avatar: this.firstForm.get('avatar')?.value,
         mail: this.firstForm.get('email')?.value,
-        aktivan: false
+        aktivan: false,
+        terminiran: false
       }
 
       this.service.createFitnessUser(fitnessUser).subscribe((data) => {

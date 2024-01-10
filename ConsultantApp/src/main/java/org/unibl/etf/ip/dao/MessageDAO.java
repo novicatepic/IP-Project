@@ -154,7 +154,7 @@ public class MessageDAO {
 	}
 	
 	public static ArrayList<MessageBean> filterByText(String text) {
-		text = "%" + text + "%";
+		text = "%" +  text + "%";
 		ArrayList<MessageBean> retVal = new ArrayList<>();
 		Connection connection = null;
 		ResultSet rs = null;
@@ -184,6 +184,8 @@ public class MessageDAO {
 		Connection connection = null;
 		ResultSet rs = null;
 		Object values[] = {text};
+		
+		
 		try {
 			connection = connectionPool.checkOut();
 			PreparedStatement pstmt = DAOUtil.prepareStatement(connection, FILTER_BY_TEXT_UNANSWERED, false, values);

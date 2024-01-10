@@ -36,6 +36,9 @@ export const environment = {
     usernameUrl: 'http://localhost:4040/fitness-users/user/',
 
     messageConsultantUrl: 'http://localhost:4040/messages',
+    messageUserUrl: 'http://localhost:4040/user-messages',
+
+    getAllButMe: 'http://localhost:4040/fitness-users/all-but-me/',
 
     deleteFitnessProgramsBaseUrl: 'http://localhost:4040/fitness-programs/',
     myProgramsBaseUrl: 'http://localhost:4040/fitness-programs/my-programs/',

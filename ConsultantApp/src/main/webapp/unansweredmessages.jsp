@@ -14,7 +14,7 @@
 	
 	String filterText = request.getParameter("filterText");
     if (filterText != null && !filterText.isEmpty()) {
-    	unasweredMessages = MessageDAO.filterByText(filterText); // Replace with your actual filtering method
+    	unasweredMessages = MessageDAO.filterByTextUnanswered(filterText); // Replace with your actual filtering method
     }
 
 %>
@@ -37,6 +37,7 @@
     <script>    
         function submitFilterUnasweredForm() {
             var filterText = document.getElementById('attribute-name2').value;
+            console.log("F text " + filterText);
             document.getElementById('filterText2').value = filterText;
             document.getElementById('filterForm2').submit();
         }
@@ -50,10 +51,10 @@
 	<div class="container">
 		<p class="h1 mt-5 text-center">Unanswered messages</p>
 	<div class="mb-3" style="margin-bottom: 10px;">
-        <form id="filterForm2" method="post" action="messages.jsp">
+        <form id="filterForm2" method="post" action="unansweredmessages.jsp">
             <input type="text" class="form-control" id="attribute-name2" name="attributeName" placeholder="Enter text to filter" required>
             <input type="hidden" id="filterText2" name="filterText" value="">
-            <button  style="margin-top: 10px;" type="button" class="btn btn-primary" onclick="submitFilterUnansweredForm()">Filter</button>
+            <button  style="margin-top: 10px;" type="button" class="btn btn-primary" onclick="submitFilterUnasweredForm()">Filter</button>
         </form>
     </div>
 	<table class="table">
@@ -95,15 +96,16 @@
 
         </tbody>
       </table>
+      <p class="lead"><%= session.getAttribute("email-notification")!=null ?session.getAttribute("email-notification") : "" %></p>
 	</div>
 		 
-	  <p class="lead"><%= session.getAttribute("email-notification")!=null ?session.getAttribute("email-notification") : "" %></p>	
+	  	
 	  
 	  <%
 	  	session.setAttribute("email-notification", null);
 	  %>
 		
-   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         

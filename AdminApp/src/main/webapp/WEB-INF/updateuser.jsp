@@ -31,19 +31,19 @@
         <form method="post" action="?action=updateuserpost" class="text-center">
     <div class="form-group">
         <label for="name">First Name</label>
-        <input type="text" name="name" class="form-control text-center" id="name" value="<%= user.getName() %>">
+        <input required="required" type="text" name="name" class="form-control text-center" id="name" value="<%= user.getName() %>">
     </div>
     <div class="form-group">
         <label for="lastname">Last Name</label>
-        <input type="text" name="lastname" class="form-control text-center" id="lastname" value="<%= user.getLastName() %>">
+        <input required="required" type="text" name="lastname" class="form-control text-center" id="lastname" value="<%= user.getLastName() %>">
     </div>
     <div class="form-group">
         <label for="city">City</label>
-        <input type="text" name="city" class="form-control text-center" id="city" value="<%= user.getCity() %>">
+        <input required="required" type="text" name="city" class="form-control text-center" id="city" value="<%= user.getCity() %>">
     </div>
     <div class="form-group">
         <label for="username">User Name</label>
-        <input type="text" name="username" class="form-control text-center" id="username" value="<%= user.getUsername() %>">
+        <input required="required" type="text" name="username" class="form-control text-center" id="username" value="<%= user.getUsername() %>">
     </div>
     <div class="form-group">
         <label for="avatar">Avatar</label>
@@ -51,7 +51,7 @@
     </div>
     <div class="form-group">
         <label for="mail">Mail</label>
-        <input type="text" name="mail" class="form-control text-center" id="mail" value="<%= user.getMail() %>">
+        <input required="required" type="text" name="mail" class="form-control text-center" id="mail" value="<%= user.getMail() %>">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

@@ -52,6 +52,12 @@ public class GlobalExceptionHandler {
         logger.error("Action not allowed!");
     }
 
+    @ExceptionHandler(UserTerminatedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public void handleUserTerminatedException() {
+        logger.error("User terminated!");
+    }
+
     @ExceptionHandler(FeedException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public void handleFeedException() {

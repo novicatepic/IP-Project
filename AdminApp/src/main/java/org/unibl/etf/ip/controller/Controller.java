@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
@@ -29,6 +30,7 @@ import org.unibl.etf.ip.dao.CategoryDAO;
 import org.unibl.etf.ip.dao.ConsultantDAO;
 import org.unibl.etf.ip.dao.FitnessUserDAO;
 import org.unibl.etf.ip.model.LoggerData;
+import org.unibl.etf.ip.model.PasswordHelper;
 import org.unibl.etf.ip.password.PasswordHasher;
 
 import com.mysql.cj.Session;
@@ -83,10 +85,15 @@ public class Controller extends HttpServlet {
 				address = "/WEB-INF/stats.jsp";
 			}  else if("addcategory".equals(action)) {
 				String categoryName = request.getParameter("categoryName");
-				CategoryBean categoryBean = new CategoryBean();
-				categoryBean.setName(categoryName);
-				CategoryDAO.insert(categoryBean);
-				extractCategories(ses);
+				if(categoryName != null && !"".equals(categoryName)) {
+					CategoryBean categoryBean = new CategoryBean();
+					categoryBean.setName(categoryName);
+					CategoryDAO.insert(categoryBean);
+					extractCategories(ses);
+				} else {
+					ses.setAttribute("categoryadd", "Empty field for category");
+				}
+				
 				address = "/WEB-INF/category.jsp";
 			} else if("addconsultant".equals(action)) {
 				String name = request.getParameter("name");
@@ -98,14 +105,24 @@ public class Controller extends HttpServlet {
 				extractConsultants(ses);
 				address = "/WEB-INF/consultants.jsp";
 			} else if("addfitnessuser".equals(action)) {
+				String password = request.getParameter("password");
+				Client client = ClientBuilder.newClient();
+				WebTarget target = client.target("http://localhost:4040/fitness-users/password-encode");
+				Response apiResponse = 
+						target.request(javax.ws.rs.core.MediaType.APPLICATION_JSON)
+						.post(Entity.entity(new PasswordHelper(password), javax.ws.rs.core.MediaType.APPLICATION_JSON));
+				PasswordHelper passwordHelper = apiResponse.readEntity(PasswordHelper.class);
+				
+				
 				String name = request.getParameter("name");
 				String lastname = request.getParameter("lastname");
 				String city = request.getParameter("city");
 				String username = request.getParameter("username");
-				String password = request.getParameter("password");
+				
+				PasswordHelper ph = new PasswordHelper(password);
 				String avatar = request.getParameter("avatar");
 				String mail = request.getParameter("mail");
-				FitnessUserBean user = new FitnessUserBean(name, lastname, city, username, password, avatar, mail, false);
+				FitnessUserBean user = new FitnessUserBean(name, lastname, city, username, passwordHelper.getPassword(), avatar, mail, false, false);
 				FitnessUserDAO.insert(user);
 				extractUsers(ses);
 				address = "/WEB-INF/fitness.jsp";
@@ -177,7 +194,12 @@ public class Controller extends HttpServlet {
 				address = "/WEB-INF/fitness.jsp";
 			} else if("deleteuser".equals(action)) {
 				String id = request.getParameter("id");
-				FitnessUserDAO.delete(Integer.parseInt(id));
+				FitnessUserDAO.updateTerminate(Integer.valueOf(id));
+				extractUsers(ses);
+				address = "/WEB-INF/fitness.jsp";
+			} else if("undeleteuser".equals(action)) {
+				String id = request.getParameter("id");
+				FitnessUserDAO.updateUnterminate(Integer.valueOf(id));
 				extractUsers(ses);
 				address = "/WEB-INF/fitness.jsp";
 			}

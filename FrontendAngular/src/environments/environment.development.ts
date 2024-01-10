@@ -47,5 +47,9 @@ export const environment = {
     picturesUrl: 'http://localhost:4040/pictures/',
     respondQuestionUrl: 'http://localhost:4040/questions/respond',
 
-    uploadPhotoUrl: 'http://localhost:4040/pictures/upload/'
+    uploadPhotoUrl: 'http://localhost:4040/pictures/upload/' , 
+    
+    messageUserUrl: 'http://localhost:4040/user-messages',
+
+    getAllButMe: 'http://localhost:4040/fitness-users/all-but-me/',
 };

@@ -8,6 +8,7 @@ import { Observable, Subject } from 'rxjs';
 import { AuthService } from '../interceptors/auth.service';
 import { AuthServiceService } from '../auth-service/auth-service.service';
 import { SnackBarService } from '../snack-bar/snack-bar.service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -45,12 +46,15 @@ export class LoginComponent {
 
 
       this.service.loginFitnessUser(fitnessUser).subscribe((data) => {
-        console.log(JSON.stringify(data));
+        console.log("Data = " + JSON.stringify(data));
         if(data != null) {
           localStorage.setItem("user", JSON.stringify(data));
           this.authService.notifyLoginSuccess();
           this.router.navigate(['/fitness-programs']);
-        } else {
+        } else if(data.terminated) {
+          this.snackBarService.triggerSnackBar("Your account has been terminated by the administrator!");
+        } 
+        else {
           this.service.getByUsername(fitnessUser.username).subscribe((user) => {
             this.snackBarService.triggerSnackBar("Code sent to your email: " + user.mail);
             //console.log(JSON.stringify(user));
@@ -59,9 +63,11 @@ export class LoginComponent {
           
         }
       },
-      error => {
-        console.log("ERROR " + JSON.stringify(error));
-        this.snackBarService.triggerSnackBar("Incorrect credentials!");
+      (error : HttpResponse<any>) => {
+        if(error.status === 403) {
+          this.snackBarService.triggerSnackBar("Terminated account or incorrect credentials!");
+        } 
+        
       } );
 
     }

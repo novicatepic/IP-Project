@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.ip.backend.exceptions.InvalidUsernameException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
+import org.unibl.etf.ip.backend.exceptions.UserTerminatedException;
 
 @CrossOrigin("*")
 @RestController
@@ -19,7 +20,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<JwtAuthResponse> login(@Valid @RequestBody AuthRequest request) throws InvalidUsernameException, NotFoundException {
+    public ResponseEntity<JwtAuthResponse> login(@Valid @RequestBody AuthRequest request)
+            throws InvalidUsernameException, NotFoundException, UserTerminatedException {
 
         JwtAuthResponse response = authenticationService.login(request);
 

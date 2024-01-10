@@ -26,7 +26,7 @@
     <form method="post" action="?action=updatecategorypost" class="text-center">
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" name="name" class="text-center form-control" id="name" value="<%= categoryBean.getName() %>">
+            <input type="text" name="name" class="text-center form-control" required="required" id="name" value="<%= categoryBean.getName() %>">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

@@ -74,11 +74,29 @@
           		out.println("<td><form action=\"?action=updateuser\" method=\"post\">\r\n"
         				+ "                <button class=\"btn btn-primary\">Update</button>\r\n"
         				+ "                <input type=\"text\" style=\"display: none;\" name=\"id\" value=\""+user.getId()+"\">\r\n"
+        				+ "            </form></td>");
+          		
+          		if(!user.isTerminated()) {
+          			out.println("<td><form action=\"?action=deleteuser\" method=\"post\">\r\n"
+            				+ "                <button class=\"btn btn-primary\">Terminate</button>\r\n"
+            				+ "                <input type=\"text\" style=\"display: none;\" name=\"id\" value=\""+user.getId()+"\">\r\n"
+            				+ "            </form></td>");
+          		} else {
+          			out.println("<td><form action=\"?action=undeleteuser\" method=\"post\">\r\n"
+            				+ "                <button class=\"btn btn-primary\">Determinate</button>\r\n"
+            				+ "                <input type=\"text\" style=\"display: none;\" name=\"id\" value=\""+user.getId()+"\">\r\n"
+            				+ "            </form></td>");
+          		}
+          		/*out.println("<td><form action=\"?action=updateuser\" method=\"post\">\r\n"
+        				+ "                <button class=\"btn btn-primary\">Update</button>\r\n"
+        				+ "                <input type=\"text\" style=\"display: none;\" name=\"id\" value=\""+user.getId()+"\">\r\n"
         				+ "            </form></td>\r\n"
         				+ "            <td><form action=\"?action=deleteuser\" method=\"post\">\r\n"
-        				+ "                <button class=\"btn btn-primary\">Delete</button>\r\n"
+        				+ "                <button class=\"btn btn-primary\">Terminate</button>\r\n"
         				+ "                <input type=\"text\" style=\"display: none;\" name=\"id\" value=\""+user.getId()+"\">\r\n"
-        				+ "            </form></td>");
+        				+ "            </form></td>");*/
+          		
+          		
                 
           		out.println("</tr>");
           	}

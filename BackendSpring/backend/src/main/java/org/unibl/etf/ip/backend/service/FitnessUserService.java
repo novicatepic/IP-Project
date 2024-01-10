@@ -15,8 +15,11 @@ import org.unibl.etf.ip.backend.exceptions.NotFoundException;
 import org.unibl.etf.ip.backend.exceptions.UserNotActiveException;
 import org.unibl.etf.ip.backend.jtwconfig.JwtService;
 import org.unibl.etf.ip.backend.model.KorisnikEntity;
+import org.unibl.etf.ip.backend.model.PasswordHelper;
 import org.unibl.etf.ip.backend.model.PasswordWrapper;
 import org.unibl.etf.ip.backend.repository.FitnessUserRepository;
+
+import java.util.List;
 
 @Service
 public class FitnessUserService {
@@ -40,6 +43,11 @@ public class FitnessUserService {
         return new BCryptPasswordEncoder();
     }
 
+    public PasswordHelper encodePassword(PasswordHelper ph) {
+        PasswordHelper result = new PasswordHelper(passwordEncoder().encode(ph.getPassword()));
+        return result;
+    }
+
     public KorisnikEntity createFitnessUser(KorisnikEntity fitnessUser)   {
         fitnessUser.setLozinka(passwordEncoder().encode(fitnessUser.getLozinka()) );
         KorisnikEntity k = repository.save(fitnessUser);
@@ -51,6 +59,11 @@ public class FitnessUserService {
 
     public KorisnikEntity getById(Integer id) throws NotFoundException {
         return repository.findById(id).orElseThrow(NotFoundException::new);
+    }
+
+    public List<KorisnikEntity> getAllButMe(Integer id) throws NotFoundException {
+        List<KorisnikEntity> all = repository.findAll();
+        return all.stream().filter((x) -> x.getId() != id).toList();
     }
 
     public KorisnikEntity getByUsername(String userName) throws NotFoundException {

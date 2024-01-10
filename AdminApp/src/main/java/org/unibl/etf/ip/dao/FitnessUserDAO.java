@@ -18,6 +18,9 @@ public class FitnessUserDAO {
 	private static final String SQL_UPDATE = "UPDATE korisnik SET ime=?, prezime=?, grad=?, korisnicko_ime=?, lozinka=? "
 			+ ", avatar=?, mail=? WHERE id=?";
 	private static final String SQL_DELETE = "DELETE FROM korisnik WHERE id=?";
+	
+	private static final String SQL_TERMINATE = "UPDATE korisnik SET terminiran=1 WHERE id=?";
+	private static final String SQL_UNTERMINATE = "UPDATE korisnik SET terminiran=0 WHERE id=?";
 
 	public static FitnessUserBean selectOne(int id) {
 		FitnessUserBean c = new FitnessUserBean();
@@ -32,7 +35,7 @@ public class FitnessUserDAO {
 				
 				c = new FitnessUserBean(rs.getInt("id"), rs.getString("ime"), rs.getString("prezime"),
 						rs.getString("grad"), rs.getString("korisnicko_ime"), rs.getString("lozinka"), rs.getString("avatar"), 
-						rs.getString("mail"), rs.getBoolean("aktivan"));
+						rs.getString("mail"), rs.getBoolean("aktivan"), rs.getBoolean("terminiran"));
 			} else {
 				return null;
 			}
@@ -57,7 +60,7 @@ public class FitnessUserDAO {
 			while (rs.next()) {
 				retVal.add(new FitnessUserBean(rs.getInt("id"), rs.getString("ime"), rs.getString("prezime"),
 						rs.getString("grad"), rs.getString("korisnicko_ime"), rs.getString("lozinka"), rs.getString("avatar"), 
-						rs.getString("mail"), rs.getBoolean("aktivan")));
+						rs.getString("mail"), rs.getBoolean("aktivan"), rs.getBoolean("terminiran")));
 			}
 			pstmt.close();
 		} catch (SQLException exp) {
@@ -99,6 +102,46 @@ public class FitnessUserDAO {
 		try {
 			connection = connectionPool.checkOut();
 			PreparedStatement pstmt = DAOUtil.prepareStatement(connection, SQL_UPDATE, false, values);
+			pstmt.executeUpdate();
+			if(pstmt.getUpdateCount()>0) {
+				result = true;
+			}
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			connectionPool.checkIn(connection);
+		}
+		return result;
+	}
+	
+	public static boolean updateTerminate(Integer id) {
+		boolean result = false;
+		Connection connection = null;
+		Object values[] = { id };
+		try {
+			connection = connectionPool.checkOut();
+			PreparedStatement pstmt = DAOUtil.prepareStatement(connection, SQL_TERMINATE, false, values);
+			pstmt.executeUpdate();
+			if(pstmt.getUpdateCount()>0) {
+				result = true;
+			}
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			connectionPool.checkIn(connection);
+		}
+		return result;
+	}
+	
+	public static boolean updateUnterminate(Integer id) {
+		boolean result = false;
+		Connection connection = null;
+		Object values[] = { id };
+		try {
+			connection = connectionPool.checkOut();
+			PreparedStatement pstmt = DAOUtil.prepareStatement(connection, SQL_UNTERMINATE, false, values);
 			pstmt.executeUpdate();
 			if(pstmt.getUpdateCount()>0) {
 				result = true;
