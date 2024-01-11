@@ -21,7 +21,8 @@
     	CategoryBean categoryBean = (CategoryBean) session.getAttribute("category");
     %>
     
-    <div id="maindiv" class="d-flex flex-column align-items-center justify-content-center">
+    <div class="container">
+    	<div id="maindiv" class="d-flex flex-column align-items-center justify-content-center">
     <h2 class="text-center mb-4">Update Category</h2>
     <form method="post" action="?action=updatecategorypost" class="text-center">
         <div class="form-group">
@@ -34,6 +35,13 @@
         <p><%= session.getAttribute("update-category-notification")!=null ? session.getAttribute("update-category-notification") : "" %></p>
     </div>
 </div>
+	<p class="lead"><%= session.getAttribute("update-category-notification2")!=null?session.getAttribute("update-category-notification2"):"" %></p>
+      
+      <%
+    	session.setAttribute("update-category-notification2", null);
+    %>
+    </div>
+    
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

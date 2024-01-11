@@ -15,6 +15,8 @@ import org.unibl.etf.ip.backend.exceptions.UserTerminatedException;
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
+    Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
+
     public AuthenticationController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
@@ -22,6 +24,8 @@ public class AuthenticationController {
     @PostMapping("/login")
     public ResponseEntity<JwtAuthResponse> login(@Valid @RequestBody AuthRequest request)
             throws InvalidUsernameException, NotFoundException, UserTerminatedException {
+
+        logger.info("User with username " + request.getUsername() + " tried to log in!");
 
         JwtAuthResponse response = authenticationService.login(request);
 

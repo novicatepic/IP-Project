@@ -51,9 +51,12 @@
 
         </tbody>
       </table>
+      	<p class="lead"><%= session.getAttribute("consultantadd")!=null?session.getAttribute("consultantadd"):"" %></p>
     	</div>
     	
-    
+    <%
+    	session.setAttribute("consultantadd", null);
+    %>
       
       <div class="modal fade" id="addconsultant" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
     <div class="modal-dialog">

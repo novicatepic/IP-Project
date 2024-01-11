@@ -1,5 +1,0 @@
-
-
-logger (create program, unsubscribed, subscribed to category, tried to register, post journal entry)
-serverska validacija
-min provjera za int vrijednosti

@@ -1,10 +1,13 @@
 package org.unibl.etf.ip.backend.controller;
 
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.unibl.etf.ip.backend.auth.AuthenticationController;
 import org.unibl.etf.ip.backend.errorservice.ForbiddenEntity;
 import org.unibl.etf.ip.backend.exceptions.MethodNotAllowedException;
 import org.unibl.etf.ip.backend.exceptions.NotEnoughMoneyException;
@@ -25,6 +28,8 @@ public class FitnessProgramController {
     @Autowired
     private FitnessProgramService service;
 
+    Logger logger = LoggerFactory.getLogger(FitnessProgramController.class);
+
     @GetMapping
     public ResponseEntity<List<ProgramEntity>> getPrograms() {
         return new ResponseEntity<>(service.getPrograms(), HttpStatus.OK);
@@ -32,6 +37,9 @@ public class FitnessProgramController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ProgramEntity> getProgram(@PathVariable("id") Integer id) throws NotFoundException {
+
+        logger.info("Program info for program with id " + id + " requested!");
+
         return new ResponseEntity<>(service.getProgramById(id), HttpStatus.OK);
     }
 
@@ -42,6 +50,8 @@ public class FitnessProgramController {
             return ForbiddenEntity.returnForbidden();
         }
 
+        logger.info("User with id " + id + " requested his programs!");
+
         return new ResponseEntity<>(service.getMyPrograms(id), HttpStatus.OK);
     }
 
@@ -51,6 +61,9 @@ public class FitnessProgramController {
         if(!UserLoginHelp.checkUserValidity(userId)) {
             return ForbiddenEntity.returnForbidden();
         }
+
+        logger.info("User with id " + userId + " tried to create program with name " + fitnessProgram.getNaziv());
+
          return new ResponseEntity<>(service.createProgram(fitnessProgram), HttpStatus.OK);
     }
 
@@ -66,6 +79,8 @@ public class FitnessProgramController {
 
         MessageModel messageModel = new MessageModel("Successfully deleted program!");
 
+        logger.info("User with id " + userId + " deleted program with id " + programId);
+
         return new ResponseEntity<>(messageModel, HttpStatus.OK);
     }
 
@@ -78,6 +93,8 @@ public class FitnessProgramController {
             return ForbiddenEntity.returnForbidden();
         }
 
+        logger.info("User with id " + userId + " wants to subscribe to a program with id " + subscribeEntity.getProgramId());
+
         return new ResponseEntity<>(service.subscribeToAProgram(subscribeEntity), HttpStatus.OK);
     }
 
@@ -87,6 +104,8 @@ public class FitnessProgramController {
             return ForbiddenEntity.returnForbidden();
         }
 
+        logger.info("User with id " + userId + " checked upcoming programs!");
+
         return new ResponseEntity<>(service.getUserParticipations(userId), HttpStatus.OK);
     }
 
@@ -95,6 +114,9 @@ public class FitnessProgramController {
         if(!UserLoginHelp.checkUserValidity(userId)) {
             return ForbiddenEntity.returnForbidden();
         }
+
+        logger.info("User with id " + userId + " checked past program participations!");
+
         return new ResponseEntity<>(service.getPastUserParticipations(userId), HttpStatus.OK);
     }
 
@@ -103,6 +125,9 @@ public class FitnessProgramController {
         if(!UserLoginHelp.checkUserValidity(userId)) {
             return ForbiddenEntity.returnForbidden();
         }
+
+        logger.info("User with id " + userId + " checked unparticipated programs!");
+
         return new ResponseEntity<>(service.getUserUnparticipations(userId), HttpStatus.OK);
     }
 

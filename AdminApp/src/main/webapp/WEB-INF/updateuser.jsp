@@ -57,6 +57,12 @@
 </form>
 
           <div style="margin-top: 10px;"><p><%= session.getAttribute("update-user-notification")!=null ? session.getAttribute("update-user-notification") : "" %></p></div> 
+          <div style="margin-top: 10px;"><p><%= session.getAttribute("update-user-bad")!=null ? session.getAttribute("update-user-bad") : "" %></p></div> 
+          
+          <% session.setAttribute("update-user-notification", null); 
+          	session.setAttribute("update-user-bad", null);
+          %>
+          
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -1,0 +1,2 @@
+http://localhost:4040/logger
+http://localhost:4040/fitness-users/password-encode

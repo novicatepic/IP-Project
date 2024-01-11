@@ -1,6 +1,8 @@
 package org.unibl.etf.ip.backend.controller;
 
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +24,15 @@ public class MessageUserController {
     @Autowired
     private MessageUserService service;
 
+    Logger logger = LoggerFactory.getLogger(MessageUserController.class);
+
     @PostMapping
     public ResponseEntity<PorukaEntity> createMessage(@Valid @RequestBody PorukaEntity message) {
         if(!UserLoginHelp.checkUserValidity(message.getPosiljalacId())) {
             return ForbiddenEntity.returnForbidden();
         }
+
+        logger.info("User with id " + message.getPosiljalacId() + " messaged user with id " + message.getPrimalacId());
 
         return new ResponseEntity<>(service.createUserMessage(message), HttpStatus.OK);
     }
@@ -37,6 +43,8 @@ public class MessageUserController {
             return ForbiddenEntity.returnForbidden();
         }
 
+        logger.info("User with id " + id + " checked his unread messages!");
+
         return new ResponseEntity<>(service.readUnreadMessages(id), HttpStatus.OK);
     }
 
@@ -45,6 +53,8 @@ public class MessageUserController {
         if(!UserLoginHelp.checkUserValidity(id)) {
             return ForbiddenEntity.returnForbidden();
         }
+
+        logger.info("User with id " + id + " checked all of his messages!");
 
         return new ResponseEntity<>(service.readMessages(id), HttpStatus.OK);
     }
@@ -59,6 +69,9 @@ public class MessageUserController {
         if(message.getPrimalacId() != userId) {
             throw new MethodNotAllowedException();
         }
+
+        logger.info("User with id " + userId + " checked message with id " + messageId);
+
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 

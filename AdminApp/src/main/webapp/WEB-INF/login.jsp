@@ -33,6 +33,10 @@
     <div style="margin-top: 10px;">
         <p><%= session.getAttribute("notification")!=null ? session.getAttribute("notification") : "" %></p>
     </div>
+    <div style="margin-top: 10px;">
+        <p><%= session.getAttribute("login-invalid")!=null ? session.getAttribute("login-invalid") : "" %></p>
+    </div>
+    <% session.setAttribute("notification", null); session.setAttribute("login-invalid", null); %>
 </div>
 
 

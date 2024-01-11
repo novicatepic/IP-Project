@@ -87,23 +87,21 @@
             				+ "                <input type=\"text\" style=\"display: none;\" name=\"id\" value=\""+user.getId()+"\">\r\n"
             				+ "            </form></td>");
           		}
-          		/*out.println("<td><form action=\"?action=updateuser\" method=\"post\">\r\n"
-        				+ "                <button class=\"btn btn-primary\">Update</button>\r\n"
-        				+ "                <input type=\"text\" style=\"display: none;\" name=\"id\" value=\""+user.getId()+"\">\r\n"
-        				+ "            </form></td>\r\n"
-        				+ "            <td><form action=\"?action=deleteuser\" method=\"post\">\r\n"
-        				+ "                <button class=\"btn btn-primary\">Terminate</button>\r\n"
-        				+ "                <input type=\"text\" style=\"display: none;\" name=\"id\" value=\""+user.getId()+"\">\r\n"
-        				+ "            </form></td>");*/
-          		
-          		
-                
+       
           		out.println("</tr>");
           	}
           %>
 
         </tbody>
       </table>
+      
+      <p class="lead"><%= session.getAttribute("useradd")!=null?session.getAttribute("useradd"):"" %></p>
+      <p class="lead"><%= session.getAttribute("passwordlength")!=null?session.getAttribute("passwordlength"):"" %></p>
+      
+      <%
+    	session.setAttribute("useradd", null);
+      	session.setAttribute("passwordlength", null);
+   		 %>
       
       <div class="modal fade" id="adduser" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -133,7 +131,7 @@
 </div>
 <div class="mb-3 text-center">
     <label for="password" class="col-form-label">Password*</label>
-    <input id="password" name="password" type="password" class="text-center form-control" required="required">
+    <input id="password" min="8" minlength="8" name="password" type="password" class="text-center form-control" required="required">
 </div>
 <div class="mb-3 text-center">
     <label for="avatar" class="col-form-label">Avatar</label>

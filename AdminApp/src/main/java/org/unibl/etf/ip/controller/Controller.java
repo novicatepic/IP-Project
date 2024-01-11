@@ -1,7 +1,9 @@
 package org.unibl.etf.ip.controller;
 
 import java.awt.PageAttributes.MediaType;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -41,6 +43,7 @@ import com.mysql.cj.Session;
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String configFile = "config/config.txt";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -75,12 +78,15 @@ public class Controller extends HttpServlet {
 				address = "/WEB-INF/consultants.jsp";
 				extractConsultants(ses);
 			} else if("showstats".equals(action)) {
+				BufferedReader fr = new BufferedReader(
+						new InputStreamReader(getServletContext().getResourceAsStream(configFile)));
+				String url = fr.readLine();
+				fr.close();
 				Client client = ClientBuilder.newClient();
-				WebTarget target = client.target("http://localhost:4040/logger");
+				WebTarget target = client.target(url);
 				Response apiResponse = target.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get();
 				LoggerData loggerData = apiResponse.readEntity(LoggerData.class);
 				String[] splitLoggerString = loggerData.getLogData().split("2023");
-				//System.out.println("SIZE = " + splitLoggerString.length);
 				ses.setAttribute("loggerString", splitLoggerString);
 				address = "/WEB-INF/stats.jsp";
 			}  else if("addcategory".equals(action)) {
@@ -100,14 +106,27 @@ public class Controller extends HttpServlet {
 				String lastname = request.getParameter("lastname");
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
-				ConsultantBean user = new ConsultantBean(name, lastname, username, password);
-				ConsultantDAO.insert(user);
-				extractConsultants(ses);
+				
+				
+				if(name != null && lastname != null && username != null && password != null
+						 && !"".equals(name) && !"".equals(lastname) && !"".equals(username) && !"".equals(password)) {
+					ConsultantBean user = new ConsultantBean(name, lastname, username, password);
+					ConsultantDAO.insert(user);
+					extractConsultants(ses);
+				} else {
+					ses.setAttribute("consultantadd", "Must input all fields!");
+				}
+				
 				address = "/WEB-INF/consultants.jsp";
 			} else if("addfitnessuser".equals(action)) {
+				BufferedReader fr = new BufferedReader(
+						new InputStreamReader(getServletContext().getResourceAsStream(configFile)));
+				fr.readLine();
+				String url = fr.readLine();
+				fr.close();
 				String password = request.getParameter("password");
 				Client client = ClientBuilder.newClient();
-				WebTarget target = client.target("http://localhost:4040/fitness-users/password-encode");
+				WebTarget target = client.target(url);
 				Response apiResponse = 
 						target.request(javax.ws.rs.core.MediaType.APPLICATION_JSON)
 						.post(Entity.entity(new PasswordHelper(password), javax.ws.rs.core.MediaType.APPLICATION_JSON));
@@ -118,13 +137,27 @@ public class Controller extends HttpServlet {
 				String lastname = request.getParameter("lastname");
 				String city = request.getParameter("city");
 				String username = request.getParameter("username");
-				
-				PasswordHelper ph = new PasswordHelper(password);
 				String avatar = request.getParameter("avatar");
 				String mail = request.getParameter("mail");
-				FitnessUserBean user = new FitnessUserBean(name, lastname, city, username, passwordHelper.getPassword(), avatar, mail, false, false);
-				FitnessUserDAO.insert(user);
-				extractUsers(ses);
+				
+				if(name != null && lastname != null && city != null && username != null && password != null && mail != null
+						 && !"".equals(name) && !"".equals(lastname) && !"".equals(username) && !"".equals(password)
+						 && !"".equals(mail) && !"".equals(city)) {
+					
+					if(password.trim().length() < 8) {
+						FitnessUserBean user = new FitnessUserBean(name, lastname, city, username, passwordHelper.getPassword(), avatar, mail, false, false);
+						FitnessUserDAO.insert(user);
+						extractUsers(ses);
+					} else {
+						ses.setAttribute("passwordlength", "Password must be more or equal to 8 characters!");
+					}
+					
+					
+				} else {
+					ses.setAttribute("useradd", "Must input all fields except avatar!");
+				}
+				
+				
 				address = "/WEB-INF/fitness.jsp";
 			}else if("addattributetocategory".equals(action)) {
 				CategoryBean c = CategoryDAO.selectOne(Integer.valueOf(request.getParameter("id")) );
@@ -137,13 +170,19 @@ public class Controller extends HttpServlet {
 			} else if("finishattributeadd".equals(action)) {
 				String name = request.getParameter("attrname");
 				String value = request.getParameter("attrvalue");
-				CategoryBean c = (CategoryBean) ses.getAttribute("catattr");
-				AttributeDAO.insert(new AttributeBean(name, value, c.getId()));
+				
+				if(name!=null && value!=null && !"".equals(name) && !"".equals(value)) {
+					CategoryBean c = (CategoryBean) ses.getAttribute("catattr");
+					AttributeDAO.insert(new AttributeBean(name, value, c.getId()));
+				} else {
+					ses.setAttribute("attributeadd", "Must input all fields!");
+				}
+				
 				address = "/WEB-INF/category.jsp";
 			} else if("updatecategory".equals(action)) {
 				String id = request.getParameter("id");
 				CategoryBean categoryBean = CategoryDAO.selectOne(Integer.parseInt(id));
-				if(categoryBean != null) {
+				if(id!=null && categoryBean != null) {
 					address = "/WEB-INF/updatecategory.jsp";
 					ses.setAttribute("category", categoryBean);
 				} else {
@@ -151,28 +190,39 @@ public class Controller extends HttpServlet {
 				}
 			} else if("updatecategorypost".equals(action)) {
 				CategoryBean cb = (CategoryBean)ses.getAttribute("category");
-				cb.setName(request.getParameter("name"));
-				CategoryDAO.update(cb);
-				extractCategories(ses);
-				address = "/WEB-INF/category.jsp";
+				String name = request.getParameter("name");
+				
+				if(name!=null && !"".equals(name)) {
+					cb.setName(request.getParameter("name"));
+					CategoryDAO.update(cb);
+					extractCategories(ses);
+					address = "/WEB-INF/category.jsp";
+				} else {
+					ses.setAttribute("update-category-notification2", "Name must not be null!");
+					address = "/WEB-INF/updatecategory.jsp";
+				}
 			} else if("login".equals(action)) {
 				try {
 					String username = request.getParameter("username");
 					String password = request.getParameter("password");
-					AdminBean adminBean = AdminDAO.selectOne(username, PasswordHasher.hashPassword(password));
-					if(adminBean != null) {
-						address = "/WEB-INF/home.jsp";
-						adminBean.setLoggedIn(true);
-						ses.setAttribute("admin", adminBean);
+					if(username != null && password != null && !"".equals(username) && !"".equals(password)) {
+						AdminBean adminBean = AdminDAO.selectOne(username, PasswordHasher.hashPassword(password));
+						if(adminBean != null) {
+							address = "/WEB-INF/home.jsp";
+							adminBean.setLoggedIn(true);
+							ses.setAttribute("admin", adminBean);
+						} else {
+							ses.setAttribute("notification", "Username/password not correct!");
+						}
 					} else {
-						ses.setAttribute("notification", "Username/password not correct!");
+						ses.setAttribute("login-invalid", "Login parameters must be entered!");
 					}
+					
 				} catch(NoSuchAlgorithmException e) {
 					e.printStackTrace();
 				}
 			}
 			else if("updateuser".equals(action)) {
-				System.out.println("in");
 				String id = request.getParameter("id");
 				FitnessUserBean fitnessUser = FitnessUserDAO.selectOne(Integer.parseInt(id));
 				if(fitnessUser != null) {
@@ -182,31 +232,54 @@ public class Controller extends HttpServlet {
 					ses.setAttribute("update-user-notification", "No user!");
 				}
 			} else if("updateuserpost".equals(action)) {
-				FitnessUserBean cb = (FitnessUserBean)ses.getAttribute("fitnessuser");
-				cb.setName(request.getParameter("name"));
-				cb.setLastName(request.getParameter("lastname"));
-				cb.setCity(request.getParameter("city"));
-				cb.setUsername(request.getParameter("username"));
-				cb.setAvatar(request.getParameter("avatar"));
-				cb.setMail(request.getParameter("mail"));
-				FitnessUserDAO.update(cb);
-				extractUsers(ses);
-				address = "/WEB-INF/fitness.jsp";
+				FitnessUserBean cb = (FitnessUserBean)ses.getAttribute("fitnessuser");	
+				String name = request.getParameter("name");
+				String lastname = request.getParameter("lastname");
+				String city = request.getParameter("city");
+				String username = request.getParameter("username");
+				String mail = request.getParameter("mail");
+				
+				if(name != null && lastname != null && city != null && username != null && mail != null
+						 && !"".equals(name) && !"".equals(lastname) && !"".equals(username)
+						 && !"".equals(mail) && !"".equals(city) && cb != null) {
+					cb.setName(request.getParameter("name"));
+					cb.setLastName(request.getParameter("lastname"));
+					cb.setCity(request.getParameter("city"));
+					cb.setUsername(request.getParameter("username"));
+					cb.setAvatar(request.getParameter("avatar"));
+					cb.setMail(request.getParameter("mail"));
+					FitnessUserDAO.update(cb);
+					extractUsers(ses);
+					address = "/WEB-INF/fitness.jsp";
+				} else {
+					ses.setAttribute("update-user-bad", "Must enter all parameters!");
+					address = "/WEB-INF/updateuser.jsp";
+				}
+				 
+				
+				
 			} else if("deleteuser".equals(action)) {
 				String id = request.getParameter("id");
-				FitnessUserDAO.updateTerminate(Integer.valueOf(id));
-				extractUsers(ses);
+				if(id != null && !"".equals(id)) {
+					FitnessUserDAO.updateTerminate(Integer.valueOf(id));
+					extractUsers(ses);
+				}
+				
 				address = "/WEB-INF/fitness.jsp";
 			} else if("undeleteuser".equals(action)) {
 				String id = request.getParameter("id");
-				FitnessUserDAO.updateUnterminate(Integer.valueOf(id));
-				extractUsers(ses);
+				if(id != null && !"".equals(id)) {
+					FitnessUserDAO.updateUnterminate(Integer.valueOf(id));
+					extractUsers(ses);
+				}
 				address = "/WEB-INF/fitness.jsp";
 			}
 			else if("deletecategory".equals(action)) {
 				String id = request.getParameter("id");
-				CategoryDAO.delete(Integer.parseInt(id));
-				extractCategories(ses);
+				if(id != null && !"".equals(id)) {
+					CategoryDAO.delete(Integer.parseInt(id));
+					extractCategories(ses);
+				}	
 				address = "/WEB-INF/category.jsp";
 			} else if("logout".equals(action)) {
 				ses.invalidate();
@@ -218,13 +291,17 @@ public class Controller extends HttpServlet {
 			try {
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
-				AdminBean adminBean = AdminDAO.selectOne(username, PasswordHasher.hashPassword(password));
-				if(adminBean != null) {
-					address = "/WEB-INF/home.jsp";
-					adminBean.setLoggedIn(true);
-					ses.setAttribute("admin", adminBean);
+				if(username != null && password != null && !"".equals(username) && !"".equals(password)) {
+					AdminBean adminBean = AdminDAO.selectOne(username, PasswordHasher.hashPassword(password));
+					if(adminBean != null) {
+						address = "/WEB-INF/home.jsp";
+						adminBean.setLoggedIn(true);
+						ses.setAttribute("admin", adminBean);
+					} else {
+						ses.setAttribute("notification", "Username/password not correct!");
+					}
 				} else {
-					ses.setAttribute("notification", "Username/password not correct!");
+					ses.setAttribute("login-invalid", "Login parameters must be entered!");
 				}
 			} catch(NoSuchAlgorithmException e) {
 				e.printStackTrace();
@@ -234,14 +311,6 @@ public class Controller extends HttpServlet {
 		else {
 			address = "/WEB-INF/login.jsp";
 		}
-
-		
-		//PrintWriter pw = response.getWriter();
-		
-		/*pw.println("<div class=\"form-group\">\r\n"
-				+ "        <label for=\"fileInput\">Attach File:</label>\r\n"
-				+ "        <input type=\"file\" class=\"form-control-file\" id=\"fileInput\" name=\"fileInput\">\r\n"
-				+ "      </div>");*/
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);

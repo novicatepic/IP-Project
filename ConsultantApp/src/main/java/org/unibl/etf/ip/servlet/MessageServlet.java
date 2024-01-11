@@ -1,9 +1,11 @@
 package org.unibl.etf.ip.servlet;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -44,7 +46,7 @@ import org.unibl.etf.ip.dao.MessageDAO;
 	)
 public class MessageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static final String configFile = "config/config.txt";   
 	private Properties emailProperties;
 	
     /**
@@ -110,14 +112,17 @@ public class MessageServlet extends HttpServlet {
         return "";
     }
 	
-	private void sendEmail(String responseText, String fileName, Part filePart, HttpServletRequest request) {
-		
+	private void sendEmail(String responseText, String fileName, Part filePart, HttpServletRequest request) throws IOException {
+		BufferedReader fr = new BufferedReader(
+		new InputStreamReader(getServletContext().getResourceAsStream(configFile)));
+		String fromFile = fr.readLine();
+		fr.close();
 		HttpSession ses = request.getSession();
 		FitnessUserBean user = (FitnessUserBean)ses.getAttribute("currentUser");
 		
 	    //String to = "novica.tepic@student.etf.unibl.org";
 		String to = user.getMail();
-	    String from = "manastiri1389@gmail.com";
+	    String from = fromFile;
 
 	    Session session = Session.getDefaultInstance(emailProperties, new javax.mail.Authenticator() {
 	        protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
@@ -150,7 +155,6 @@ public class MessageServlet extends HttpServlet {
 	        }
 
 	        Transport.send(message);
-	        System.out.println("Email sent successfully.");
 	    } catch (MessagingException | IOException mex) {
 	        mex.printStackTrace();
 	    }
