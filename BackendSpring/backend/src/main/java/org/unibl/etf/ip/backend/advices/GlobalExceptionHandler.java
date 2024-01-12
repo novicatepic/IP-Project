@@ -82,6 +82,12 @@ public class GlobalExceptionHandler {
         logger.error("Incorrect username!");
     }
 
+    @ExceptionHandler(ProgramTerminatedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public void handleProgramTerminatedException() {
+        logger.error("Tried to work with terminated program!");
+    }
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public void handleValidationExceptions(

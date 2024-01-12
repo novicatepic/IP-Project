@@ -61,7 +61,7 @@ export class FitnessProgramComponent implements OnInit {
 
   filter() {
     const filterValue = this.filterTextRef.nativeElement.value;
-    this.filteredData = this.data.filter((item: any) => item.naziv.includes(filterValue));
+    this.filteredData = this.data.filter((item: any) => item.naziv.startsWith(filterValue));
     //console.log(this.filteredData);
   }
 

@@ -154,7 +154,7 @@ public class MessageDAO {
 	}
 	
 	public static ArrayList<MessageBean> filterByText(String text) {
-		text = "%" +  text + "%";
+		text = /*"%" +*/text + "%";
 		ArrayList<MessageBean> retVal = new ArrayList<>();
 		Connection connection = null;
 		ResultSet rs = null;
@@ -179,7 +179,7 @@ public class MessageDAO {
 	}
 	
 	public static ArrayList<MessageBean> filterByTextUnanswered(String text) {
-		text = "%" + text + "%";
+		text = /*"%" +*/ text + "%";
 		ArrayList<MessageBean> retVal = new ArrayList<>();
 		Connection connection = null;
 		ResultSet rs = null;

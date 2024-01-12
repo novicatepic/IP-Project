@@ -62,16 +62,17 @@ export class BuyProgramComponent {
           vrijednost: parseInt(this.firstForm.get('paymentValue')?.value, 10),
         }
 
-        //console.log(JSON.stringify(obj));
-
-        this.service.subscribeToProgram(obj).subscribe((data) => {
-          this.message = null;
-          this.snackBarService.triggerSnackBar("Successfully subscribed!");
-          this.router.navigate(['/attend-programs']);
-        }, (error:any) => {
+        if(obj.vrijednost < this.selectedItem.cijena) {
           this.snackBarService.triggerSnackBar("Not enough money!");
-        })
-        
+        } else {
+          this.service.subscribeToProgram(obj).subscribe((data) => {
+            this.message = null;
+            this.snackBarService.triggerSnackBar("Successfully subscribed!");
+            this.router.navigate(['/attend-programs']);
+          }, (error:any) => {
+            this.snackBarService.triggerSnackBar("Not enough money!");
+          })
+        }       
       }
       event?.preventDefault();
       

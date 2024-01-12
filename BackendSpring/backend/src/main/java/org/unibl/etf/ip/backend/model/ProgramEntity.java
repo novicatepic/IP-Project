@@ -83,6 +83,11 @@ public class ProgramEntity implements Serializable {
     @Column(name = "ucestvovan", nullable = false)
     private Boolean ucestvovan;
 
+    @NotNull(message = "terminiran is mandatory!")
+    @Basic
+    @Column(name = "terminiran", nullable = false)
+    private Boolean terminiran;
+
     @NotNull(message = "kreatorId is mandatory!")
     @Max(value = 1000000, message = "kreatorId value must be less than or equal to 1000000")
     @Min(value = 1, message = "kreatorId value must be greater than or equal to 1!")
@@ -308,5 +313,13 @@ public class ProgramEntity implements Serializable {
 
     public void setDatumKreiranja(Date datumKreiranja) {
         this.datumKreiranja = datumKreiranja;
+    }
+
+    public Boolean getTerminiran() {
+        return terminiran;
+    }
+
+    public void setTerminiran(Boolean terminiran) {
+        this.terminiran = terminiran;
     }
 }

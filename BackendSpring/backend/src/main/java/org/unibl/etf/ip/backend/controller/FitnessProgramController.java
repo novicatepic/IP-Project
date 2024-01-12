@@ -12,6 +12,7 @@ import org.unibl.etf.ip.backend.errorservice.ForbiddenEntity;
 import org.unibl.etf.ip.backend.exceptions.MethodNotAllowedException;
 import org.unibl.etf.ip.backend.exceptions.NotEnoughMoneyException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
+import org.unibl.etf.ip.backend.exceptions.ProgramTerminatedException;
 import org.unibl.etf.ip.backend.loginservice.UserLoginHelp;
 import org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntity;
 import org.unibl.etf.ip.backend.model.MessageModel;
@@ -74,6 +75,7 @@ public class FitnessProgramController {
             return ForbiddenEntity.returnForbidden();
         }
 
+        System.out.println("In");
 
         service.deleteProgram(programId, userId);
 
@@ -86,7 +88,7 @@ public class FitnessProgramController {
 
     @PostMapping("/subscribe")
     public ResponseEntity<KorisnikPretplacenProgramEntity> subscribeToAProgram(@Valid @RequestBody KorisnikPretplacenProgramEntity subscribeEntity)
-            throws NotFoundException, NotEnoughMoneyException {
+            throws NotFoundException, NotEnoughMoneyException, ProgramTerminatedException {
 
         Integer userId = subscribeEntity.getKorisnikId();
         if(!UserLoginHelp.checkUserValidity(userId)) {

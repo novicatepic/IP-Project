@@ -38,9 +38,9 @@ export class MyFitnessProgramsComponent {
 
     deleteProgram(programId: any) {
       event?.preventDefault();
-      this.service.deleteProgram(this.id).subscribe((response) => {
+      this.service.deleteProgram(this.id, programId).subscribe((response) => {
         this.snackService.triggerSnackBar("Successfully deleted program!");
-        this.router.navigate(['/my-programs']);
+        this.router.navigate(['/my-fitness-programs']);
       },
       error => {
         console.log(error);

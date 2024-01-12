@@ -9,6 +9,7 @@ import org.unibl.etf.ip.backend.controller.FitnessProgramController;
 import org.unibl.etf.ip.backend.exceptions.MethodNotAllowedException;
 import org.unibl.etf.ip.backend.exceptions.NotEnoughMoneyException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
+import org.unibl.etf.ip.backend.exceptions.ProgramTerminatedException;
 import org.unibl.etf.ip.backend.model.KorisnikPretplacenProgramEntity;
 import org.unibl.etf.ip.backend.model.ProgramEntity;
 import org.unibl.etf.ip.backend.repository.FitnessProgramRepository;
@@ -29,7 +30,8 @@ public class FitnessProgramService {
     private ProgramSubscribeRepository subscribeRepository;
 
     public List<ProgramEntity> getPrograms() {
-        return repository.findAll();
+        return repository.findAll().stream().filter((x) -> !x.getTerminiran()).collect(Collectors.toList());
+        //return repository.findAll();
     }
 
     public List<ProgramEntity> getProgramsFromLastDay(int categoryId) {
@@ -46,17 +48,31 @@ public class FitnessProgramService {
 
         // Filter programs created in the last seven days
         return allPrograms.stream()
-                .filter(program -> program.getDatumKreiranja().after(sevenDaysAgo) && program.getKategorijaId() == categoryId)
+                .filter(program ->
+                        program.getDatumKreiranja().after(sevenDaysAgo) &&
+                                program.getKategorijaId() == categoryId &&
+                                !program.getTerminiran())
                 .collect(Collectors.toList());
     }
 
     public List<ProgramEntity> getMyPrograms(Integer id) {
-        return repository.findByKreator_Id(id);
+        return repository.findByKreator_Id(id).stream().filter((x) -> !x.getTerminiran()).toList();
     }
 
     public ProgramEntity getProgramById(Integer id) throws NotFoundException {
-        return repository.findById(id)
-                .orElseThrow(NotFoundException::new);
+        /*return repository.findById(id)
+                .orElseThrow(NotFoundException::new);*/
+
+        Optional<ProgramEntity> program = repository.findById(id);
+        if(program.isPresent()) {
+            ProgramEntity prog = program.get();
+            if(!prog.getTerminiran()) {
+                return prog;
+            }
+        }
+
+        throw new NotFoundException();
+
     }
 
     public ProgramEntity createProgram(ProgramEntity fitnessProgram) {
@@ -68,15 +84,17 @@ public class FitnessProgramService {
     public void deleteProgram(Integer id, Integer userId) throws NotFoundException, MethodNotAllowedException {
         ProgramEntity program = repository.findById(id).orElseThrow(NotFoundException::new);
 
-        if(program.getKreatorId() != userId) {
+        if(program.getKreatorId() != userId || program.getTerminiran()) {
             throw new MethodNotAllowedException();
         }
 
-        repository.deleteById(id);
+        program.setTerminiran(true);
+        repository.save(program);
+        //repository.deleteById(id);
     }
 
     public KorisnikPretplacenProgramEntity subscribeToAProgram(KorisnikPretplacenProgramEntity entity)
-            throws NotFoundException, NotEnoughMoneyException {
+            throws NotFoundException, NotEnoughMoneyException, ProgramTerminatedException {
         List<KorisnikPretplacenProgramEntity> allEntitites = subscribeRepository.findAll();
         //already subscribed
         for(KorisnikPretplacenProgramEntity k : allEntitites) {
@@ -90,6 +108,10 @@ public class FitnessProgramService {
         if(pe.isPresent()) {
 
             ProgramEntity fitnessProgram = pe.get();
+
+            if(fitnessProgram.getTerminiran()) {
+                throw new ProgramTerminatedException();
+            }
 
             if(fitnessProgram.getCijena() > entity.getVrijednost()) {
                 throw new NotEnoughMoneyException();
@@ -110,7 +132,7 @@ public class FitnessProgramService {
         List<KorisnikPretplacenProgramEntity> allEntitites = subscribeRepository.findAll();
         List<ProgramEntity> result = new ArrayList<>();
         for(KorisnikPretplacenProgramEntity k : allEntitites) {
-            if(k.getKorisnikId() == userId && (k.getFitnessProgram().getAktivan())) {
+            if(k.getKorisnikId() == userId && k.getFitnessProgram().getAktivan() && !k.getFitnessProgram().getTerminiran()) {
                 result.add(k.getFitnessProgram());
             }
         }
@@ -121,7 +143,7 @@ public class FitnessProgramService {
         List<KorisnikPretplacenProgramEntity> allEntitites = subscribeRepository.findAll();
         List<ProgramEntity> result = new ArrayList<>();
         for(KorisnikPretplacenProgramEntity k : allEntitites) {
-            if(k.getKorisnikId() == userId && !k.getFitnessProgram().getAktivan()) {
+            if(k.getKorisnikId() == userId && !k.getFitnessProgram().getAktivan() && !k.getFitnessProgram().getTerminiran()) {
                 result.add(k.getFitnessProgram());
             }
         }
@@ -146,7 +168,7 @@ public class FitnessProgramService {
                     participated = true;
                 }
             }
-            if(!participated && program.getAktivan()) {
+            if(!participated && program.getAktivan() && !program.getTerminiran()) {
                 toReturn.add(program);
             }
         }

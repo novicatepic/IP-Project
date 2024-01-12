@@ -62,6 +62,7 @@ export class CreateFitnessProgramComponent {
         datum: this.firstForm.get('date')?.value,
         kreatorId: this.user.id,
         ucestvovan: false,
+        terminiran: false,
         kategorijaId: this.firstForm.get('category')?.value,
         nazivLokacije: this.firstForm.get('location')?.value,
         porukaLokacije: this.firstForm.get('ytlink')?.value,
