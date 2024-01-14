@@ -1,4 +1,5 @@
 package org.unibl.etf.ip.backend.controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
@@ -8,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.unibl.etf.ip.backend.exceptions.NotFoundException;
+import org.unibl.etf.ip.backend.exceptions.ProgramTerminatedException;
+import org.unibl.etf.ip.backend.service.FitnessProgramService;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,9 +26,17 @@ public class FileDownloadController {
     @Value("${upload.directory}")
     private String UPLOAD_DIR;
 
+    @Autowired
+    private FitnessProgramService fitnessProgramService;
+
     @GetMapping(value = "/{programId}/{fileName}", produces = MediaType.IMAGE_JPEG_VALUE)
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, @PathVariable("programId") Integer programId)
-            throws IOException {
+            throws IOException, ProgramTerminatedException, NotFoundException {
+
+        if(fitnessProgramService.checkIfTerminated(programId)) {
+            throw new ProgramTerminatedException();
+        }
+
         // Construct the file path
         Path filePath = Paths.get(UPLOAD_DIR + File.separator + programId + File.separator).resolve(fileName);
 

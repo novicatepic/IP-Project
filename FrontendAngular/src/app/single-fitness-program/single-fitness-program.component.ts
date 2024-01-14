@@ -43,8 +43,6 @@ export class SingleFitnessProgramComponent {
       this.userId = temp.id;
     }
 
-    console.log("user id " + this.userId);
-
     this.loadData();
     this.loadQuestions();
     this.loadPhotos();

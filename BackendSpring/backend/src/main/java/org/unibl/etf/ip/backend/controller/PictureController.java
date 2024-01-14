@@ -10,8 +10,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.unibl.etf.ip.backend.errorservice.ForbiddenEntity;
 import org.unibl.etf.ip.backend.exceptions.MethodNotAllowedException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
+import org.unibl.etf.ip.backend.exceptions.ProgramTerminatedException;
 import org.unibl.etf.ip.backend.loginservice.UserLoginHelp;
 import org.unibl.etf.ip.backend.model.MessageModel;
+import org.unibl.etf.ip.backend.service.FitnessProgramService;
 import org.unibl.etf.ip.backend.service.PictureService;
 
 import java.io.File;
@@ -34,11 +36,19 @@ public class PictureController {
     @Autowired
     private PictureService fileStorageService;
 
+    @Autowired
+    private FitnessProgramService fitnessProgramService;
+
     @PostMapping("/upload/{programId}/{userId}")
     public ResponseEntity<MessageModel> uploadFile(
             @RequestParam("file") MultipartFile file,
             @PathVariable("programId") Integer programId,
-            @PathVariable("userId") Integer userId) throws IOException, NotFoundException, MethodNotAllowedException {
+            @PathVariable("userId") Integer userId)
+            throws IOException, NotFoundException, MethodNotAllowedException, ProgramTerminatedException {
+
+        if(fitnessProgramService.checkIfTerminated(programId)) {
+            throw new ProgramTerminatedException();
+        }
 
         if(!UserLoginHelp.checkUserValidity(userId)) {
             return ForbiddenEntity.returnForbidden();

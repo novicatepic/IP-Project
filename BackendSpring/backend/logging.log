@@ -631,3 +631,6 @@ java.lang.ClassCastException: class java.lang.String cannot be cast to class org
 2024-01-12T18:51:28.081+01:00  INFO 16992 --- [http-nio-4040-exec-5] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 16
 2024-01-12T18:51:28.081+01:00  INFO 16992 --- [http-nio-4040-exec-7] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 17
 2024-01-12T18:51:28.085+01:00  INFO 16992 --- [http-nio-4040-exec-3] o.u.e.ip.backend.service.PictureService  : Photos read from program with id 19
+2024-01-12T19:11:10.785+01:00  INFO 16992 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-12T19:11:10.820+01:00  INFO 16992 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-01-12T19:11:10.853+01:00  INFO 16992 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

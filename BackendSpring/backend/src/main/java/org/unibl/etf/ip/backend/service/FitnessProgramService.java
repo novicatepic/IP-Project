@@ -34,6 +34,11 @@ public class FitnessProgramService {
         //return repository.findAll();
     }
 
+    public Boolean checkIfTerminated(Integer id) throws NotFoundException {
+        ProgramEntity entity = repository.findById(id).orElseThrow(NotFoundException::new);
+        return entity.getTerminiran();
+    }
+
     public List<ProgramEntity> getProgramsFromLastDay(int categoryId) {
         List<ProgramEntity> allPrograms = repository.findAll();
 
