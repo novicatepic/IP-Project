@@ -14,7 +14,7 @@ public class CategoryService {
     private CategoryRepository repository;
 
     public List<KategorijaEntity> getAllCategories() {
-        return repository.findAll();
+        return repository.findAll().stream().filter((x) -> !x.getTerminirana()).toList();
     }
 
 }

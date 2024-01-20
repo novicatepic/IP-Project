@@ -56,7 +56,8 @@ public class FitnessProgramService {
                 .filter(program ->
                         program.getDatumKreiranja().after(sevenDaysAgo) &&
                                 program.getKategorijaId() == categoryId &&
-                                !program.getTerminiran())
+                                !program.getTerminiran() &&
+                                !program.getKategorija().getTerminirana())
                 .collect(Collectors.toList());
     }
 

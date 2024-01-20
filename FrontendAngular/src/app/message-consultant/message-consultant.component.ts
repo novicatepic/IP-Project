@@ -46,6 +46,7 @@ export class MessageConsultantComponent {
 
       this.service.messageConsultant(message).subscribe((data) => {
           this.snackService.triggerSnackBar("Successfully sent!");
+          this.firstForm.reset();
           this.router.navigate(['/message-consultant']);
       },
       error => {

@@ -58,7 +58,13 @@ export class SingleFitnessProgramComponent {
     const url = `${programsUrl}/${this.id}`;
     this.http.get<any>(url).subscribe(data => {
       this.data = data;
-      console.log(this.data.kategorija.attributes);
+      const sqlDate = new Date(data.datum);
+        if(sqlDate > new Date()) {
+          this.data.aktivan = true;
+        } else {
+          this.data.aktivan = false;
+        }
+      //console.log(this.data.aktivan);
     });
   }
 

@@ -18,11 +18,11 @@ public class CategoryDAO {
 	private static final String SQL_SELECT_ATTRIBUTES = "SELECT * FROM atribut WHERE kategorija_id=?";
 	
 	private static final String SQL_SELECT_ALL = "SELECT * FROM kategorija";
-	private static final String SQL_INSERT = "INSERT INTO kategorija (naziv)"
-			+ " VALUES (?)";
+	private static final String SQL_INSERT = "INSERT INTO kategorija (naziv, terminirana)"
+			+ " VALUES (?, ?)";
 	private static final String SQL_UPDATE = "UPDATE kategorija SET naziv=? "
 			+ "WHERE id=?";
-	private static final String SQL_DELETE = "DELETE FROM kategorija WHERE id=?";
+	private static final String SQL_DELETE = "UPDATE kategorija SET terminirana=true WHERE id=?";
 
 	public static CategoryBean selectOne(int id) {
 		CategoryBean c = new CategoryBean();
@@ -35,7 +35,7 @@ public class CategoryDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				
-				c = new CategoryBean(rs.getInt("id"), rs.getString("naziv"));
+				c = new CategoryBean(rs.getInt("id"), rs.getString("naziv"), rs.getBoolean("terminirana"));
 			} else {
 				return null;
 			}
@@ -79,7 +79,11 @@ public class CategoryDAO {
 			PreparedStatement pstmt = DAOUtil.prepareStatement(connection, SQL_SELECT_ALL, false, values);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				retVal.add(new CategoryBean(rs.getInt("id"), rs.getString("naziv")));
+				if(!rs.getBoolean("terminirana")) {
+					retVal.add(new CategoryBean(rs.getInt("id"), rs.getString("naziv"), 
+							rs.getBoolean("terminirana")));
+				}
+				
 			}
 			pstmt.close();
 		} catch (SQLException exp) {
@@ -94,7 +98,7 @@ public class CategoryDAO {
 		boolean result = false;
 		Connection connection = null;
 		ResultSet generatedKeys = null;
-		Object values[] = { category.getName() };
+		Object values[] = { category.getName(), false };
 		try {
 			connection = connectionPool.checkOut();
 			PreparedStatement pstmt = DAOUtil.prepareStatement(connection, SQL_INSERT, true, values);

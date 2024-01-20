@@ -53,6 +53,7 @@ export class MessageUserComponent {
 
       this.service.messageUser(message).subscribe((data) => {
           this.snackService.triggerSnackBar("Successfully sent!");
+          this.firstForm.reset();
           this.router.navigate(['/message-user']);
       },
       error => {

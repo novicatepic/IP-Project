@@ -40,12 +40,16 @@ export class FitnessProgramComponent implements OnInit {
       this.data = await this.http.get<any[]>(url).toPromise();
       //console.log(this.data);
       this.data.forEach((entry: any) => {
+        const sqlDate = new Date(entry.datum);
+        if(sqlDate > new Date()) {
+          entry.aktivan = true;
+        } else {
+          entry.aktivan = false;
+        }
         this.singleProgramService.loadPhotos((entry.id)).subscribe((photos) => {
           entry.photos = photos;
         })
       })  
-      //this.data.test = ":)";
-      console.log(this.data);
       this.filteredData = this.data;  
       await this.updatePages(); // Await the updatePages call
     } catch (error) {

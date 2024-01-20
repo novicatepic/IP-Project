@@ -58,11 +58,11 @@
 
 <div class="container" style="margin-top: 50px;">
   <div class="jumbotron">
-    <h1 class="display-4"><%= m.getTitle() %></h1>
-    <p class="lead"><%= m.getText() %></p>
+    <h1 class="display-4">Title: <%= m.getTitle() %></h1>
+    <p class="lead">Text: <%= m.getText() %></p>
     <hr class="my-4">
-    <p><%= user.getUsername() %></p>
-    <p><%= m.getDate() %></p>
+    <p>Writer: <%= user.getUsername() %></p>
+    <p>Date: <%= m.getDate() %></p>
     
     
     <%

@@ -15,6 +15,9 @@ public class KategorijaEntity {
     @Basic
     @Column(name = "naziv", nullable = false, length = 200, unique = true)
     private String naziv;
+    @Basic
+    @Column(name = "terminirana", nullable = false)
+    private Boolean terminirana;
 
     @OneToMany(mappedBy = "kategorijaId", cascade = CascadeType.ALL)
     private List<AtributEntity> attributes = new ArrayList<>();
@@ -41,5 +44,13 @@ public class KategorijaEntity {
 
     public void setAttributes(List<AtributEntity> attributes) {
         this.attributes = attributes;
+    }
+
+    public Boolean getTerminirana() {
+        return terminirana;
+    }
+
+    public void setTerminirana(Boolean terminirana) {
+        this.terminirana = terminirana;
     }
 }

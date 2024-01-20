@@ -142,6 +142,21 @@ public class ProgramEntity implements Serializable {
     @OneToMany(mappedBy = "programId", cascade = CascadeType.ALL)
     private List<PitanjeEntity> programQuestions = new ArrayList<>();
 
+    /*@Transient
+    private Boolean aktivan;*/
+
+    public ProgramEntity() {
+        //aktivan = this.datum.getTime() > new java.util.Date().getTime();
+    }
+
+    /*public void setAktivan(Boolean aktivan) {
+        this.aktivan = aktivan;
+    }*/
+
+    public Boolean getAktivan() {
+        return this.datum.getTime() > new java.util.Date().getTime();
+    }
+
     public Integer getId() {
         return id;
     }
@@ -231,9 +246,7 @@ public class ProgramEntity implements Serializable {
         this.ucestvovan = ucestvovan;
     }
 
-    public Boolean getAktivan() {
-        return this.datum.getTime() > new java.util.Date().getTime();
-    }
+
 
     public Integer getKreatorId() {
         return kreatorId;

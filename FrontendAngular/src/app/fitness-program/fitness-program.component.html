@@ -37,6 +37,7 @@
           <li class="list-group-item">Duration: {{ program.trajanje }} days</li>
           <li class="list-group-item">Date created: {{ program.datum }}</li>
           <li class="list-group-item">Location: {{ program.nazivLokacije }}</li>
+          <li class="list-group-item">Active: {{ program.aktivan }}</li>
         </ul>
         <div class="card-body">
             <a routerLink="/fitness-programs/{{program.id}}" class="card-link">Read more</a>

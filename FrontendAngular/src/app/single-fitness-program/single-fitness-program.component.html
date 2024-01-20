@@ -26,7 +26,7 @@
     <hr class="my-4 bg-dark">
     <p>Location: {{ data.nazivLokacije }}</p>
     <p>Contact: {{ data.kontakt }}</p>
-    <p>Created by: <a routerLink="/profile/{{data.kreator.korisnickoIme}}">{{ data.kreator.korisnickoIme }}</a></p>
+    <p>Created by: <a target="_blank" routerLink="/profile/{{data.kreator.korisnickoIme}}">{{ data.kreator.korisnickoIme }}</a></p>
     <h1 class="display-4 text-center"><b>Instructor info</b></h1>
     <p>First Name: {{ data.instruktorIme }}</p>
     <p>Last Name: {{ data.instruktorPrezime }}</p>
@@ -35,9 +35,9 @@
 
 
   <div class="container">
-    <a *ngIf="this.userId" routerLink="/questions/new-question/{{id}}" class="btn btn-primary">Ask a question</a>
+    <a *ngIf="this.userId && this.data.aktivan" routerLink="/questions/new-question/{{id}}" class="btn btn-primary">Ask a question</a>
   
-    <p class="lead text-center"><b>Questions and Comments</b></p>
+    <p *ngIf="this.questions.length > 0" class="lead text-center"><b>Questions and Comments</b></p>
     <div *ngFor="let question of questions">
       <ul class="list-group">
         <li class="list-group-item">
@@ -47,7 +47,7 @@
               <a routerLink="/profile/{{ question.user.korisnickoIme }}">{{ question.user.korisnickoIme }}</a>
             </div>
             <div class="d-flex align-items-center">
-              <form *ngIf="this.userId" (ngSubmit)="addComment(question.id)" class="w-100">
+              <form *ngIf="this.userId && this.data.aktivan" (ngSubmit)="addComment(question.id)" class="w-100">
                 <input type="text" name="comment" id="{{ question.id }}" class="w-100 form-control">
                 <button type="submit" class="w-100 mt-1 btn btn-primary">Get into conversation</button>
               </form>
@@ -69,7 +69,7 @@
     
     
     <div class="image-gallery">
-      <div *ngFor="let url of photoUrls" class="image-item" (click)="openModal(modalTemplate, url)">
+      <div *ngFor="let url of photoUrls" class="image-item" >
         <img [src]="url" alt="Image">
       </div>
     </div>

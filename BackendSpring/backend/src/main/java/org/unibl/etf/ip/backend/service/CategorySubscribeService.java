@@ -42,7 +42,7 @@ public class CategorySubscribeService {
                     found = true;
                 }
             }
-            if(!found) {
+            if(!found && !category.getTerminirana()) {
                 result.add(category);
             }
         }
@@ -66,7 +66,7 @@ public class CategorySubscribeService {
                     found = true;
                 }
             }
-            if(found) {
+            if(found && !category.getTerminirana()) {
                 result.add(category);
             }
         }
