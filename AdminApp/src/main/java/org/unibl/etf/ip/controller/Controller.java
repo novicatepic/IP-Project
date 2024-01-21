@@ -145,7 +145,7 @@ public class Controller extends HttpServlet {
 						 && !"".equals(name) && !"".equals(lastname) && !"".equals(username) && !"".equals(password)
 						 && !"".equals(mail) && !"".equals(city)) {
 					
-					if(password.trim().length() < 8) {
+					if(password.length() >= 8) {
 						FitnessUserBean user = new FitnessUserBean(name, lastname, city, username, passwordHelper.getPassword(), avatar, mail, false, false);
 						FitnessUserDAO.insert(user);
 						extractUsers(ses);

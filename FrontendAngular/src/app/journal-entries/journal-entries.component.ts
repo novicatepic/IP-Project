@@ -133,7 +133,7 @@ export class JournalEntriesComponent implements OnInit, AfterViewInit {
   deleteEntry(id: any) {
     this.service.deleteJournalEntry(id).subscribe((data:any) => {
       this.snackBarService.triggerSnackBar(data.text);
-      this.router.navigate(['/journal-entries']);
+      location.reload();
     }, error => {
       console.log(error);
       this.snackBarService.triggerSnackBar("Error deleting journal entry!");
@@ -157,9 +157,8 @@ export class JournalEntriesComponent implements OnInit, AfterViewInit {
 
 
       this.entryService.createJournalEntry(journalEntry).subscribe((data: any) => {
-        this.snackService.triggerSnackBar("Successfully created journal entry, refresh page to see the changes!");
-        
-        this.router.navigate(['/journal-entries']);
+        this.snackService.triggerSnackBar("Successfully created journal entry!");
+        location.reload();
       },
       error => {
         console.log(error);

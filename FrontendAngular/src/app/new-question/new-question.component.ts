@@ -52,6 +52,7 @@ export class NewQuestionComponent {
     this.http.post(`${url}`, JSON.stringify(requestData), {headers}).subscribe(data => {
       this.snackService.triggerSnackBar("Comment posted!");
       this.router.navigate(['/fitness-programs/'+this.id]);
+      location.reload();
     }
     );
   } else {

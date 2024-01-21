@@ -12,6 +12,8 @@ import { SnackBarService } from '../snack-bar/snack-bar.service';
 })
 export class MyFitnessProgramsComponent {
   data: any = [];
+  activePrograms: any = [];
+  finishedPrograms: any = [];
   id: any;
 
   constructor( 
@@ -30,6 +32,16 @@ export class MyFitnessProgramsComponent {
   readData() {
       this.service.getMyPrograms(this.id).subscribe((data) => {
         this.data = data;
+        this.data.forEach((entry: any) => {
+          const sqlDate = new Date(entry.datum);
+          if(sqlDate > new Date()) {
+            entry.aktivan = true;
+            this.activePrograms.push(entry);
+          } else {
+            entry.aktivan = false;
+            this.finishedPrograms.push(entry);
+          }
+        });
         console.log(data);
       },
       error => console.log(error));
@@ -40,12 +52,20 @@ export class MyFitnessProgramsComponent {
       event?.preventDefault();
       this.service.deleteProgram(this.id, programId).subscribe((response) => {
         this.snackService.triggerSnackBar("Successfully deleted program!");
-        this.router.navigate(['/my-fitness-programs']);
+        location.reload();
       },
       error => {
         console.log(error);
         this.snackService.triggerSnackBar("Error deleting program!");
       } )
+    }
+
+    showActive() {
+      this.data = this.activePrograms;
+    }
+
+    showFinished() {
+      this.data = this.finishedPrograms;
     }
 
 }

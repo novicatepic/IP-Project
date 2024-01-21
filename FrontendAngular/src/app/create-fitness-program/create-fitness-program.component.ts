@@ -52,35 +52,44 @@ export class CreateFitnessProgramComponent {
   createFitnessProgram() {
     if(this.firstForm.valid) {
 
-      const fitnessProgram = {
-        naziv: this.firstForm.get('name')?.value,
-        opis: this.firstForm.get('description')?.value,
-        cijena: this.firstForm.get('price')?.value,
-        tezina: this.firstForm.get('difficulty')?.value,
-        trajanje: this.firstForm.get('duration')?.value,
-        kontakt: this.firstForm.get('contact')?.value,
-        datum: this.firstForm.get('date')?.value,
-        kreatorId: this.user.id,
-        ucestvovan: false,
-        terminiran: false,
-        kategorijaId: this.firstForm.get('category')?.value,
-        nazivLokacije: this.firstForm.get('location')?.value,
-        porukaLokacije: this.firstForm.get('ytlink')?.value,
-        instruktorIme: this.firstForm.get('instructorFirstName')?.value,
-        instruktorPrezime: this.firstForm.get('instructorLastName')?.value,
-        godineIskustva: this.firstForm.get('instructorExperience')?.value,
-        datumKreiranja: new Date()
+      const currentDate = new Date();
+      console.log(currentDate);
+      const selectedDate = new Date(this.firstForm.get('date')?.value);
+      if (selectedDate > currentDate) {
+        const fitnessProgram = {
+          naziv: this.firstForm.get('name')?.value,
+          opis: this.firstForm.get('description')?.value,
+          cijena: this.firstForm.get('price')?.value,
+          tezina: this.firstForm.get('difficulty')?.value,
+          trajanje: this.firstForm.get('duration')?.value,
+          kontakt: this.firstForm.get('contact')?.value,
+          datum: this.firstForm.get('date')?.value,
+          kreatorId: this.user.id,
+          ucestvovan: false,
+          terminiran: false,
+          kategorijaId: this.firstForm.get('category')?.value,
+          nazivLokacije: this.firstForm.get('location')?.value,
+          porukaLokacije: this.firstForm.get('ytlink')?.value,
+          instruktorIme: this.firstForm.get('instructorFirstName')?.value,
+          instruktorPrezime: this.firstForm.get('instructorLastName')?.value,
+          godineIskustva: this.firstForm.get('instructorExperience')?.value,
+          datumKreiranja: new Date()
+        }
+  
+  
+        this.service.createFitnessProgram(fitnessProgram).subscribe((data)=> {
+          this.snackBarService.triggerSnackBar("Fitness program created!");
+          this.router.navigate(['/my-fitness-programs']);
+        },
+        error => {
+          console.log(error);
+          this.snackBarService.triggerSnackBar("Error creating fitness program!");
+        } );
+      } else {
+        this.snackBarService.triggerSnackBar("Date must be in the future!");
       }
 
-
-      this.service.createFitnessProgram(fitnessProgram).subscribe((data)=> {
-        this.snackBarService.triggerSnackBar("Fitness program created!");
-        this.router.navigate(['/my-fitness-programs']);
-      },
-      error => {
-        console.log(error);
-        this.snackBarService.triggerSnackBar("Error creating fitness program!");
-      } );
+      
 
     }
   }

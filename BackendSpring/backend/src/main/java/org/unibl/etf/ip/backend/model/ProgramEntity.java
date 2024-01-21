@@ -73,7 +73,6 @@ public class ProgramEntity implements Serializable {
 
     @NotNull(message = "datum is mandatory!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Future(message = "datum must be in the future!")
     @Basic
     @Column(name = "datum", nullable = false)
     private Date datum;

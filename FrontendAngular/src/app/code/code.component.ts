@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CodeService } from './code.service';
 import { SnackBarService } from '../snack-bar/snack-bar.service';
 import { Code } from '../model/Code';
+import { AuthServiceService } from '../auth-service/auth-service.service';
 
 @Component({
   selector: 'app-code',
@@ -22,7 +23,8 @@ export class CodeComponent {
      private router: Router, 
      private service : CodeService,
      private route: ActivatedRoute,
-     private snackBarService: SnackBarService) 
+     private snackBarService: SnackBarService,
+     private authService: AuthServiceService) 
      
      {
     this.firstForm = formBuilder.group({
@@ -52,6 +54,7 @@ export class CodeComponent {
 
         localStorage.setItem("user", user);
         this.snackBarService.triggerSnackBar("Successfully activated profile!");
+        this.authService.notifyLoginSuccess();
         this.router.navigate(['/']);
       },
       error => {

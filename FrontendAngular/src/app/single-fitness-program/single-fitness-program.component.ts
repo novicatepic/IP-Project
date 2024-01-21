@@ -103,6 +103,7 @@ export class SingleFitnessProgramComponent {
       this.http.post(url, JSON.stringify(answer), {headers}).subscribe((data) => {
         this.snackService.triggerSnackBar("Comment successfully added!");
         this.router.navigate(['/fitness-programs/' + this.id]);
+        location.reload();
       }, (err) => {
         this.snackService.triggerSnackBar("Error adding comment!");
       });

@@ -51,7 +51,7 @@ export class LoginComponent {
           localStorage.setItem("user", JSON.stringify(data));
           this.authService.notifyLoginSuccess();
           this.router.navigate(['/fitness-programs']);
-        } else if(data.terminated) {
+        } else if(data!=null && data.terminated) {
           this.snackBarService.triggerSnackBar("Your account has been terminated by the administrator!");
         } 
         else {

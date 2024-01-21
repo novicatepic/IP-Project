@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
   styleUrl: './fitness-program.component.css'
 })
 export class FitnessProgramComponent implements OnInit {
-
+  tempData: any = [];
   data: any = [];
   filteredData: any = [];
   pageSize = 3; // Number of items per page
@@ -37,12 +37,13 @@ export class FitnessProgramComponent implements OnInit {
     const url = environment.fitnessProgramsBaseUrl;
 
     try {
-      this.data = await this.http.get<any[]>(url).toPromise();
+      this.tempData = await this.http.get<any[]>(url).toPromise();
       //console.log(this.data);
-      this.data.forEach((entry: any) => {
+      this.tempData.forEach((entry: any) => {
         const sqlDate = new Date(entry.datum);
         if(sqlDate > new Date()) {
           entry.aktivan = true;
+          this.data.push(entry);
         } else {
           entry.aktivan = false;
         }

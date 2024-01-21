@@ -5,6 +5,13 @@
     <!-- Create New Program Button -->
     <a routerLink="/create-fitness-program" class="btn btn-success mt-4 mb-2">Create New Program</a>
 
+    <div class="text-center mb-4" style="margin-top: 20px;">
+      <!-- Links to Active and Finished Programs -->
+      <a (click)="showActive()" style="color: white;" class="btn btn-primary mx-2">Active Programs</a>
+      <a (click)="showFinished()" style="color: white;" class="btn btn-primary mx-2">Finished Programs</a>
+    </div>
+
+    <p class="h2 text-center" style="margin-top: 20px;">Programs</p>
     <div *ngFor="let item of data" class="mb-3">
       <div class="list-group-item list-group-item-action flex-column align-items-start active position-relative" style="z-index: 0;">
         <!-- Program Details -->
@@ -22,9 +29,7 @@
         <a class="mb-1" style="color: white;" routerLink="/fitness-programs/{{item.id}}">Learn more -> Click on this link</a>
         <div><small>Price (in euro): {{ item.cijena }}</small></div>
         <button (click)="deleteProgram(item.id)" class="btn btn-danger mt-2">Delete program</button>
-        
-        <!-- Responsive "Add Photo" button -->
-        <a routerLink="/upload-photo/{{item.id}}" class="btn btn-success position-absolute top-0 end-0 m-3 mt-2" style="z-index: 2;">Add Photo</a>
+        <a *ngIf="item.aktivan" routerLink="/upload-photo/{{item.id}}" class="btn btn-success position-absolute top-0 end-0 m-3 mt-2" style="z-index: 2;">Add Photo</a>
       </div>
     </div>
   </div>
