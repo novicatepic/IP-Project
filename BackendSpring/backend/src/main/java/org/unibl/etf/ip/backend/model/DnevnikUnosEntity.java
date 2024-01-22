@@ -55,6 +55,17 @@ public class DnevnikUnosEntity {
     @Column(name = "datum", nullable = false)
     private Date datum;
 
+    /*@ManyToOne
+    @JoinColumn(name = "dnevnik_korisnik_id", insertable = false, updatable = false)
+    private KorisnikEntity korisnikEntity;
+
+    public KorisnikEntity getKorisnikEntity() {
+        return korisnikEntity;
+    }
+
+    public void setKorisnikEntity(KorisnikEntity korisnikEntity) {
+        this.korisnikEntity = korisnikEntity;
+    }*/
 
     public Integer getId() {
         return id;

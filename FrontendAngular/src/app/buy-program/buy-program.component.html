@@ -34,7 +34,7 @@
         </div>
         
         <div class="form-group">
-          <label for="payment-value">Payment value</label>
+          <label for="payment-value">Payment value (leave more money if you want to support)</label>
           <input formControlName="paymentValue" type="number" min="0" class="form-control" id="exampleInputPassword1" placeholder="Value...">
           <div *ngIf="firstForm.get('paymentValue')?.invalid && (firstForm.get('paymentValue')?.dirty || firstForm.get('paymentValue')?.touched)">
             <!-- Greske -->

@@ -145,26 +145,34 @@ export class JournalEntriesComponent implements OnInit, AfterViewInit {
   async addJournalEntry() {
     document.getElementById("btnclose")?.click();
     await this.delay(1000);
-    if(this.firstForm.valid) {
-      const journalEntry = {
-        vjezba: this.firstForm.get('exercise')?.value,
-        trajanje: this.firstForm.get('duration')?.value,
-        intenzitet: this.firstForm.get('intensity')?.value,
-        kilaza: this.firstForm.get('weight')?.value,
-        dnevnikKorisnikId: this.id,
-        datum: this.firstForm.get('date')?.value
+
+    const currentDate = new Date();
+    const selectedDate = new Date(this.firstForm.get('date')?.value);
+    if(selectedDate <= currentDate) {
+      if(this.firstForm.valid) {
+        const journalEntry = {
+          vjezba: this.firstForm.get('exercise')?.value,
+          trajanje: this.firstForm.get('duration')?.value,
+          intenzitet: this.firstForm.get('intensity')?.value,
+          kilaza: this.firstForm.get('weight')?.value,
+          dnevnikKorisnikId: this.id,
+          datum: this.firstForm.get('date')?.value
+        }
+  
+  
+        this.entryService.createJournalEntry(journalEntry).subscribe((data: any) => {
+          this.snackService.triggerSnackBar("Successfully created journal entry!");
+          location.reload();
+        },
+        error => {
+          console.log(error);
+          this.snackService.triggerSnackBar("Error creating journal entry!");
+        } );
+  
       }
-
-
-      this.entryService.createJournalEntry(journalEntry).subscribe((data: any) => {
-        this.snackService.triggerSnackBar("Successfully created journal entry!");
-        location.reload();
-      },
-      error => {
-        console.log(error);
-        this.snackService.triggerSnackBar("Error creating journal entry!");
-      } );
-
+    } else {
+      this.snackBarService.triggerSnackBar("Date must be in the past or present!");
     }
+    
   }
 }

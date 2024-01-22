@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.unibl.etf.ip.backend.exceptions.MethodNotAllowedException;
 import org.unibl.etf.ip.backend.exceptions.NotFoundException;
+import org.unibl.etf.ip.backend.model.DnevnikEntity;
 import org.unibl.etf.ip.backend.model.DnevnikUnosEntity;
+import org.unibl.etf.ip.backend.repository.DnevnikRepository;
 import org.unibl.etf.ip.backend.repository.JournalEntryRepository;
 
 import java.io.ByteArrayOutputStream;
@@ -25,6 +27,9 @@ public class JournalService {
     @Autowired
     private JournalEntryRepository journalEntryRepository;
 
+    @Autowired
+    private DnevnikRepository journalRepository;
+
     public List<DnevnikUnosEntity> getJournalEntries(Integer id) {
         List<DnevnikUnosEntity> entries = journalEntryRepository.findAll();
         ArrayList<DnevnikUnosEntity> result = new ArrayList<>();
@@ -38,6 +43,12 @@ public class JournalService {
 
     public DnevnikUnosEntity createJournalEntry(DnevnikUnosEntity journalEntry) {
         logger.info("User with id " + journalEntry.getDnevnikKorisnikId() + " created new journal entry");
+        Optional<DnevnikEntity> find = journalRepository.findById(journalEntry.getDnevnikKorisnikId());
+        if(!find.isPresent()) {
+            DnevnikEntity entity = new DnevnikEntity();
+            entity.setId(journalEntry.getDnevnikKorisnikId());
+            journalRepository.save(entity);
+        }
         return journalEntryRepository.save(journalEntry);
     }
 

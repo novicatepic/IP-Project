@@ -53,7 +53,6 @@ export class CreateFitnessProgramComponent {
     if(this.firstForm.valid) {
 
       const currentDate = new Date();
-      console.log(currentDate);
       const selectedDate = new Date(this.firstForm.get('date')?.value);
       if (selectedDate > currentDate) {
         const fitnessProgram = {

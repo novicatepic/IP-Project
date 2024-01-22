@@ -24,7 +24,7 @@ public class ScheduledMailService {
     @Autowired
     private MailService mailService;
 
-    @Scheduled(cron = "5 20 16 * * ?")
+    @Scheduled(cron = "5 1 16 * * ?")
     public void sendMailToUsers() {
         List<KorisnikEntity> fitnessUsers = userRepository.findAll();
 
