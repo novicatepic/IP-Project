@@ -10,17 +10,17 @@ export class JwtTokenService {
 
   private baseUrl = environment.fitnessUsersUrl;
 
-  //private fixedUrl = 'http://localhost:4040/fitness-users/';
+  private key = environment.storageKey;
 
   constructor(private http: HttpClient) { }
 
   extractToken() {
-    var tokenTemp = localStorage.getItem("user");
+    var tokenTemp = localStorage.getItem(this.key);
     if(tokenTemp) {
       var token = JSON.parse(tokenTemp);
       return token.token;
     }
-    console.log("NULL");
+    //console.log("NULL");
     return null;
   }
 
@@ -41,7 +41,7 @@ export class JwtTokenService {
       const url = this.baseUrl + tokenInfo.id;
       return this.http.get<any[]>(`${url}`);
     }
-    console.log("NULL");
+    //console.log("NULL");
     return null;
   }
 

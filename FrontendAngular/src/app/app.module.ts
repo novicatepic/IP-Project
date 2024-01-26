@@ -25,7 +25,6 @@ import { CheckAllMessagesComponent } from './check-all-messages/check-all-messag
 import { StartPageRssComponent } from './start-page-rss/start-page-rss.component';
 import { NinjaApiPageComponent } from './ninja-api-page/ninja-api-page.component';
 import { JournalEntriesComponent } from './journal-entries/journal-entries.component';
-import { NewJournalEntryComponent } from './new-journal-entry/new-journal-entry.component';
 import { CheckCategorySubscriptionsComponent } from './check-category-subscriptions/check-category-subscriptions.component';
 import { CheckCategoryUnsubscribedComponent } from './check-category-unsubscribed/check-category-unsubscribed.component';
 import { ShowProfileComponent } from './show-profile/show-profile.component';
@@ -38,7 +37,6 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { FooterComponent } from './footer/footer.component';
 import { AttendBoughtProgramsComponent } from './attend-bought-programs/attend-bought-programs.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CheckUserProfileComponent } from './check-user-profile/check-user-profile.component';
@@ -67,13 +65,11 @@ import { MessageUserComponent } from './message-user/message-user.component';
     StartPageRssComponent,
     NinjaApiPageComponent,
     JournalEntriesComponent,
-    NewJournalEntryComponent,
     CheckCategorySubscriptionsComponent,
     CheckCategoryUnsubscribedComponent,
     ShowProfileComponent,
     UploadPhotoComponent,
     MainNavComponent,
-    FooterComponent,
     AttendBoughtProgramsComponent,
     CheckUserProfileComponent,
     MessageUserComponent

@@ -9,6 +9,7 @@ import { AuthService } from '../interceptors/auth.service';
 import { AuthServiceService } from '../auth-service/auth-service.service';
 import { SnackBarService } from '../snack-bar/snack-bar.service';
 import { HttpResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent {
   public firstForm : FormGroup
   question: any;
 
-
+  private key = environment.storageKey;
 
   constructor( 
     private formBuilder: FormBuilder,
@@ -48,7 +49,7 @@ export class LoginComponent {
       this.service.loginFitnessUser(fitnessUser).subscribe((data) => {
         console.log("Data = " + JSON.stringify(data));
         if(data != null) {
-          localStorage.setItem("user", JSON.stringify(data));
+          localStorage.setItem(this.key, JSON.stringify(data)); //was user
           this.authService.notifyLoginSuccess();
           this.router.navigate(['/fitness-programs']);
         } else if(data!=null && data.terminated) {

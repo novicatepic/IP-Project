@@ -21,8 +21,6 @@ import java.nio.file.Paths;
 @RequestMapping("/api/files/download")
 public class FileDownloadController {
 
-    //private static final String UPLOAD_DIR = "uploads";
-
     @Value("${upload.directory}")
     private String UPLOAD_DIR;
 

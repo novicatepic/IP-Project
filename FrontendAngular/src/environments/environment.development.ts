@@ -52,4 +52,6 @@ export const environment = {
     messageUserUrl: 'http://localhost:4040/user-messages',
 
     getAllButMe: 'http://localhost:4040/fitness-users/all-but-me/',
+
+    storageKey: 'user'
 };

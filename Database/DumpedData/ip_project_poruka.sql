@@ -1,0 +1,60 @@
+CREATE DATABASE  IF NOT EXISTS `ip_project` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `ip_project`;
+-- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+--
+-- Host: localhost    Database: ip_project
+-- ------------------------------------------------------
+-- Server version	8.0.32
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `poruka`
+--
+
+DROP TABLE IF EXISTS `poruka`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `poruka` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `tekst` varchar(1000) NOT NULL,
+  `posiljalac_id` int NOT NULL,
+  `primalac_id` int NOT NULL,
+  `procitana` bit(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_poruka_korisnik1_idx` (`posiljalac_id`),
+  KEY `fk_poruka_korisnik2_idx` (`primalac_id`),
+  CONSTRAINT `fk_poruka_korisnik1` FOREIGN KEY (`posiljalac_id`) REFERENCES `korisnik` (`id`),
+  CONSTRAINT `fk_poruka_korisnik2` FOREIGN KEY (`primalac_id`) REFERENCES `korisnik` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `poruka`
+--
+
+LOCK TABLES `poruka` WRITE;
+/*!40000 ALTER TABLE `poruka` DISABLE KEYS */;
+INSERT INTO `poruka` VALUES (1,'poruka 123!',1,3,_binary '\0'),(3,'abc',3,1,_binary ''),(4,'Sent!',1,3,_binary '\0'),(5,'responded',1,3,_binary '\0'),(6,'aabvasfas',1,40,_binary '\0'),(7,'djesi noviceee',1,40,_binary '\0'),(8,'Poruka za postman2',1,3,_binary '\0'),(9,'asfaf',40,1,_binary ''),(10,'asfasf',1,40,_binary '\0'),(11,'asfasfas',1,45,_binary '\0'),(12,'hello user ',52,1,_binary ''),(13,'hi!',1,52,_binary '\0'),(14,'hi user k1',53,1,_binary '\0');
+/*!40000 ALTER TABLE `poruka` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-01-26 14:58:22

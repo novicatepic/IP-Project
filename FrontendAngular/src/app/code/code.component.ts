@@ -6,6 +6,7 @@ import { CodeService } from './code.service';
 import { SnackBarService } from '../snack-bar/snack-bar.service';
 import { Code } from '../model/Code';
 import { AuthServiceService } from '../auth-service/auth-service.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-code',
@@ -17,6 +18,8 @@ export class CodeComponent {
   public firstForm : FormGroup
   question: any;
   id:any;
+
+  private key = environment.storageKey;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -52,7 +55,7 @@ export class CodeComponent {
         /*console.log("Success: " + data);
         console.log("Success: " + user);*/
 
-        localStorage.setItem("user", user);
+        localStorage.setItem(this.key, user);
         this.snackBarService.triggerSnackBar("Successfully activated profile!");
         this.authService.notifyLoginSuccess();
         this.router.navigate(['/']);

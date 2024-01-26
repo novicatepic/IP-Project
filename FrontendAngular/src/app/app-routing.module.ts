@@ -17,7 +17,6 @@ import { CheckAllMessagesComponent } from './check-all-messages/check-all-messag
 import { StartPageRssComponent } from './start-page-rss/start-page-rss.component';
 import { NinjaApiPageComponent } from './ninja-api-page/ninja-api-page.component';
 import { JournalEntriesComponent } from './journal-entries/journal-entries.component';
-import { NewJournalEntryComponent } from './new-journal-entry/new-journal-entry.component';
 import { CheckCategorySubscriptionsComponent } from './check-category-subscriptions/check-category-subscriptions.component';
 import { CheckCategoryUnsubscribedComponent } from './check-category-unsubscribed/check-category-unsubscribed.component';
 import { BuyProgramComponent } from './buy-program/buy-program.component';
@@ -33,7 +32,6 @@ const routes: Routes = [
   {path: '', component:StartPageRssComponent},
   {path: 'ninja', component:NinjaApiPageComponent},
   {path: 'journal-entries', component:JournalEntriesComponent, canActivate: [AuthGuard]},
-  {path: 'new-journal-entry', component:NewJournalEntryComponent, canActivate: [AuthGuard]},
   {path: 'category-subscriptions', component:CheckCategorySubscriptionsComponent, canActivate: [AuthGuard]},
   {path: 'category-unsubscribed', component:CheckCategoryUnsubscribedComponent, canActivate: [AuthGuard]},
   {path: 'fitness-programs', component:FitnessProgramComponent},

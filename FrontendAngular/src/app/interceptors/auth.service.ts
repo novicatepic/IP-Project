@@ -15,7 +15,7 @@ export class AuthService implements HttpInterceptor  {
       let token = this.jwtService.extractToken();
       if (token) {
         if(this.jwtService.checkIfTokenExpired(token)) {
-          console.log("EXPIRED!");
+          //console.log("EXPIRED!");
         } else {
           request = request.clone({
             setHeaders: {

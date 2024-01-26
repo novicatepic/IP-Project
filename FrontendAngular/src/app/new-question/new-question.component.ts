@@ -52,11 +52,9 @@ export class NewQuestionComponent {
     this.http.post(`${url}`, JSON.stringify(requestData), {headers}).subscribe(data => {
       this.snackService.triggerSnackBar("Comment posted!");
       this.router.navigate(['/fitness-programs/'+this.id]);
-      location.reload();
     }
     );
   } else {
-    console.error('Error: Question control or its value is null');
     this.snackService.triggerSnackBar("Error posting comment!");
   }
 }

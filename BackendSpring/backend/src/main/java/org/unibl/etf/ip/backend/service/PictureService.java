@@ -30,8 +30,6 @@ public class PictureService {
     @Autowired
     private FitnessProgramRepository repository;
 
-    //private static final String UPLOAD_DIR = "uploads";
-
     @Value("${upload.directory}")
     private String UPLOAD_DIR;
 

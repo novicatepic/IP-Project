@@ -137,7 +137,6 @@ public class MessageServlet extends HttpServlet {
 	        message.setSubject("Response to Message");
 	        message.setText("Response Text: " + responseText);
 
-	        // Attach file if available
 	        if (!fileName.isEmpty()) {
 	            BodyPart messageBodyPart = new MimeBodyPart();
 	            messageBodyPart.setText("Response Text: " + responseText);

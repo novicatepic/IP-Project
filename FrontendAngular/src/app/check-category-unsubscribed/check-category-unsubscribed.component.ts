@@ -42,9 +42,8 @@ export class CheckCategoryUnsubscribedComponent {
     }
 
     this.service.subscribeToCategory(subscription).subscribe((data) => {
-      this.snackBarService.triggerSnackBar("Successfully subscribed!");
-      this.router.navigate(['/category-subscriptions']);
-      //console.log(data);
+      this.snackBarService.triggerSnackBar("Successfully subscribed!");  
+      location.reload();
     }, (err) => {
       console.log(err);
       this.snackBarService.triggerSnackBar("Error subscribing!");

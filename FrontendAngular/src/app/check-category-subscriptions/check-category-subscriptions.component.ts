@@ -26,7 +26,6 @@ export class CheckCategorySubscriptionsComponent {
   }
 
   getSubscribredCategories() {
-      //this.service.baseUrl += this.decodedTokenId;
       this.service.getSubscribedCategories(this.decodedTokenId).subscribe((data) => {     
           this.data = data;
       },
@@ -36,8 +35,7 @@ export class CheckCategorySubscriptionsComponent {
   unsubscribe(id: any) {
     this.service.unsubscribeFromCategory(this.decodedTokenId, id).subscribe((data) => {
       this.snackBarService.triggerSnackBar("Successfully unsubscribed!");
-      this.router.navigate(['/category-unsubscribed']);
-      //console.log(data);
+      location.reload();
     }, (err) => {
       console.log(err);
       this.snackBarService.triggerSnackBar("Error while trying to unsubscribe!");

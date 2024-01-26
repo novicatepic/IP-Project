@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { JwtTokenService } from '../jwt-token/jwt-token.service'; // Replace with the actual path to your JwtTokenService
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard {
-
+  
   constructor(private jwtService: JwtTokenService, private router: Router) { }
 
   canActivate(): boolean {
