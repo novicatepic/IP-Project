@@ -132,8 +132,8 @@ export class JournalEntriesComponent implements OnInit, AfterViewInit {
 
   deleteEntry(id: any) {
     this.service.deleteJournalEntry(id).subscribe((data:any) => {
-      this.snackBarService.triggerSnackBar(data.text);
       location.reload();
+      this.snackBarService.triggerSnackBar(data.text);
     }, error => {
       console.log(error);
       this.snackBarService.triggerSnackBar("Error deleting journal entry!");

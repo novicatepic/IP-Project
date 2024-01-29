@@ -75,8 +75,6 @@ public class FitnessProgramController {
             return ForbiddenEntity.returnForbidden();
         }
 
-        System.out.println("In");
-
         service.deleteProgram(programId, userId);
 
         MessageModel messageModel = new MessageModel("Successfully deleted program!");

@@ -91,7 +91,7 @@
             </div>
             <div class="mb-3">
                 <label for="weight" class="col-form-label">Weight</label>
-                <input formControlName="weight" id="weight" type="text" class="form-control" placeholder="Weight...">
+                <input formControlName="weight" id="weight" type="number" class="form-control" placeholder="Weight...">
 
                 <div *ngIf="firstForm.get('weight')?.invalid && (firstForm.get('weight')?.dirty || firstForm.get('weight')?.touched)">
                   <!-- Greske -->

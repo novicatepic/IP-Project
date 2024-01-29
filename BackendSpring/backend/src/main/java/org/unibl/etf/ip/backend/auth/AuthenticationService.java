@@ -69,7 +69,7 @@ public class AuthenticationService {
                 codeService.deleteCode(k.getId());
             }
             String code = codeService.saveCodeToDB(k);
-            mailService.sendEmail(k.getMail(), "Code for password change", code);
+            mailService.sendEmail(k.getMail(), "Code for activating account", code);
         }
         return k;
 

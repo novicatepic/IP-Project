@@ -134,7 +134,7 @@ public class MessageServlet extends HttpServlet {
 	        MimeMessage message = new MimeMessage(session);
 	        message.setFrom(new InternetAddress(from));
 	        message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-	        message.setSubject("Response to Message");
+	        message.setSubject("Consultant response");
 	        message.setText("Response Text: " + responseText);
 
 	        if (!fileName.isEmpty()) {

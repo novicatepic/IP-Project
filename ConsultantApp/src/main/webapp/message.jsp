@@ -31,9 +31,7 @@
 	
 	if(request.getParameter("submit") != null) {
 		String responseText = request.getParameter("responseText");
-		System.out.println(responseText);
 		String file = request.getParameter("file");
-		System.out.println(file);
 	}
 	
 %>

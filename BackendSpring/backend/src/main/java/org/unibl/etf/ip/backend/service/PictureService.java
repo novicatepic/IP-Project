@@ -75,7 +75,7 @@ public class PictureService {
                 }
             }
         }
-        logger.info("Photos read from program with id " + programId);
+
         return photoUrls;
     }
 

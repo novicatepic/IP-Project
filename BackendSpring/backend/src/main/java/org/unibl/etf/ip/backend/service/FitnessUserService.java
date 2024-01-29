@@ -52,7 +52,7 @@ public class FitnessUserService {
         fitnessUser.setLozinka(passwordEncoder().encode(fitnessUser.getLozinka()) );
         KorisnikEntity k = repository.save(fitnessUser);
         String code = codeService.saveCodeToDB(k);
-        mailService.sendEmail(k.getMail(), "Code for password change", code);
+        mailService.sendEmail(k.getMail(), "Code for profile activation", code);
         logger.info("New attempt to create account for user with username " + fitnessUser.getUsername() + " and email " + fitnessUser.getMail());
         return k;
     }

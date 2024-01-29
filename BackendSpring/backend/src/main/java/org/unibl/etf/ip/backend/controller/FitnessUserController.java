@@ -59,7 +59,6 @@ public class FitnessUserController {
 
     @PostMapping("/input-code/{userId}")
     public ResponseEntity<JwtAuthResponse> inputCode(@Valid @PathVariable("userId") Integer userId, @RequestBody CodeModel code) throws NotFoundException {
-
         return new ResponseEntity<>(service.userInsertCode(userId, code.getCode()), HttpStatus.OK);
     }
 

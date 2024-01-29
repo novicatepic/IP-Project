@@ -5,6 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { JwtTokenService } from '../jwt-token/jwt-token.service';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../auth-service/auth-service.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'main-nav',
@@ -16,6 +17,8 @@ export class MainNavComponent implements OnInit {
 
   user: any;
   loggedIn: boolean = false;
+
+  private key = environment.storageKey;
 
   constructor(private jwtService: JwtTokenService, private router : Router, private authService2 : AuthServiceService) {
 
@@ -47,7 +50,7 @@ export class MainNavComponent implements OnInit {
     );
 
     logout() {
-      localStorage.removeItem("user");
+      localStorage.removeItem(this.key);
       this.loggedIn = false;
       this.router.navigate(['/']);
     }

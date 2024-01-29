@@ -86,7 +86,6 @@ public class Controller extends HttpServlet {
 				WebTarget target = client.target(url);
 				Response apiResponse = target.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get();
 				LoggerData loggerData = apiResponse.readEntity(LoggerData.class);
-				//String[] splitLoggerString = loggerData.getLogData().split("2023");
 				String[] splitLoggerString = loggerData.getLogData().split("\n");
 				ses.setAttribute("loggerString", splitLoggerString);
 				address = "/WEB-INF/stats.jsp";

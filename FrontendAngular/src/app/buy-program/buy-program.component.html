@@ -13,12 +13,13 @@
       <button (click)="showPart(item)" class="btn btn-success">Buy Program</button>
       <form [formGroup]="firstForm" (ngSubmit)="buyProgram()" *ngIf="selectedItem && selectedItem.id === item.id">
         <div class="form-group">
-          <select formControlName="paymentMethod" class="mt-5 form-select">
+          <label for="payment-value" class="mt-5">Payment method</label>
+          <select formControlName="paymentMethod" class=" form-select">
             <option selected value="Debit card">Debit card</option>
             <option value="Paypal">PayPal</option>
             <option value="Live">Live</option>
           </select>
-
+          
           <div *ngIf="firstForm.get('paymentMethod')?.invalid && (firstForm.get('paymentMethod')?.dirty || firstForm.get('paymentMethod')?.touched)">
             <!-- Greske -->
             <small class="text-danger"
